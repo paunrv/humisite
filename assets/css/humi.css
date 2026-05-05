@@ -6,15 +6,16 @@
   --muted: #5b616a;
   --border: #e6e8eb;
   --surface: #f6f7f8;
+  --accent: #e11d48;
+  --dark: #07080a;
 
   --container: 1120px;
   --gutter: 24px;
 
   --radius: 16px;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
-    "Segoe UI Emoji";
-  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  --font-serif: "Playfair Display", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --shadow: 0 12px 40px rgba(11, 13, 16, 0.08);
@@ -144,8 +145,92 @@ textarea:focus-visible {
   border-bottom: 1px solid var(--border);
 }
 
+.section--stats {
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0b0b0b;
+  color: rgba(255, 255, 255, 0.92);
+  position: relative;
+  z-index: 2;
+  margin-top: -22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.statsBanner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.stat {
+  text-align: center;
+  padding: 18px 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.stat__value {
+  font-family: var(--font-serif);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: clamp(30px, 2.6vw, 44px);
+  color: rgba(255, 255, 255, 0.995);
+}
+
+.stat__label {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.stat__label::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  margin-right: 10px;
+  transform: translateY(-1px);
+}
+
+.statsBanner__sub {
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.statsBanner__subItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.statsBanner__subItem::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(225, 29, 72, 0.65);
+}
+
+@media (max-width: 760px) {
+  .statsBanner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .section--hero {
-  padding: 96px 0 78px;
+  padding: 96px 0 56px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   position: relative;
   color: rgba(255, 255, 255, 0.95);
@@ -156,7 +241,7 @@ textarea:focus-visible {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.48);
+  background: rgba(0, 0, 0, 0.56);
   pointer-events: none;
 }
 
@@ -383,6 +468,87 @@ textarea:focus-visible {
   margin-top: 18px;
 }
 
+/* Schedule cards */
+.scheduleCards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+
+@media (max-width: 920px) {
+  .scheduleCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scheduleCard__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.scheduleCard__age {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.scheduleCard__time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(11, 13, 16, 0.78);
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 13, 16, 0.10);
+  background: rgba(11, 13, 16, 0.03);
+  white-space: nowrap;
+}
+
+.scheduleCard__grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+@media (max-width: 520px) {
+  .scheduleCard__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.scheduleCard__block .eyebrow {
+  margin-bottom: 8px;
+}
+
+.scheduleCard__focus {
+  margin-top: 14px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(11, 13, 16, 0.10);
+  background: rgba(11, 13, 16, 0.03);
+  color: rgba(11, 13, 16, 0.78);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
 .schedule--tight {
   margin-top: 14px;
 }
@@ -513,10 +679,32 @@ textarea:focus-visible {
   line-height: 1.55;
 }
 
+.review__quote::before {
+  content: "“";
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 0;
+  display: inline-block;
+  margin-right: 6px;
+  transform: translateY(10px);
+  color: rgba(225, 29, 72, 0.28);
+}
+
 .review__name {
   margin: 12px 0 0;
   color: var(--muted);
   font-size: 13px;
+}
+
+/* Subtle premium hover without redesign */
+.card.review {
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.card.review:hover {
+  transform: translateY(-2px);
+  border-color: rgba(11, 13, 16, 0.18);
+  box-shadow: 0 14px 44px rgba(11, 13, 16, 0.10);
 }
 
 .locationGrid {
@@ -584,6 +772,18 @@ textarea:focus-visible {
   margin: 0;
   color: rgba(11, 13, 16, 0.78);
   max-width: 72ch;
+}
+
+.p--pre {
+  white-space: pre-line;
+}
+
+.badge--soft {
+  background: rgba(11, 13, 16, 0.02);
+  border-color: rgba(11, 13, 16, 0.10);
+  color: rgba(11, 13, 16, 0.76);
+  max-width: 34ch;
+  white-space: pre-line;
 }
 
 .eyebrow {

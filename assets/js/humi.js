@@ -1,23 +1,22 @@
 const data = {
   hero: {
-    kicker: "HUMI Taekwondo",
     title: "Taekwondo en Ensenada\nTécnica, disciplina y evolución real",
-    lede: "Más de 15 años formando atletas — 5 generaciones de cintas negras y un programa pionero en freestyle.",
-    bullets: [
-      "Programas para niños, jóvenes y adultos",
-      "Equipo profesional KPNP SS",
-      "Primera escuela con programa estructurado de freestyle",
-      "Formación técnica y competitiva",
-    ],
+    lede:
+      "Formación técnica, disciplina y confianza en un entorno seguro.\nClases para niños, jóvenes y adultos en Ensenada.",
     ctas: [
       { label: "Agendar clase →", href: "#location", variant: "primary" },
       { label: "Ver horarios →", href: "#location", variant: "ghost" },
     ],
-    extra: ["Ensenada, Baja California", "Clases toda la semana"],
-    media: {
-      label: "Entrenamiento real — HUMI Taekwondo",
-      image: "images/picfs.jpg",
-    },
+    mediaImage: "images/pic02.jpg",
+  },
+  stats: {
+    items: [
+      { value: "15+", label: "Años formando atletas" },
+      { value: "5", label: "Generaciones de cintas negras" },
+      { value: "Freestyle", label: "Programa pionero" },
+      { value: "KPNP SS", label: "Equipo profesional" },
+    ],
+    sub: ["Programas para niños, jóvenes y adultos", "Formación técnica y competitiva"],
   },
   programs: {
     kicker: "Programas",
@@ -36,37 +35,105 @@ const data = {
     body: "Un buen programa depende de buenos instructores: técnica clara, disciplina y progreso medible.",
     people: [
       {
-        name: "Instructor/a 1",
-        rank: "Cinta negra — Dan __",
-        years: "15+ años",
-        bio: "Enfoque en técnica, disciplina y formación competitiva. (Listo para reemplazar con perfil real.)",
+        name: "Paulina Noriega Romero Vargas",
+        role: "5to Dan — Directora General",
+        bio: "Formación de alto nivel con enfoque en disciplina, estructura y desarrollo integral. Más de una década formando atletas y equipos competitivos.",
       },
       {
-        name: "Instructor/a 2",
-        rank: "Cinta negra — Dan __",
-        years: "10+ años",
-        bio: "Trabajo con grupos por edad y nivel; acompañamiento de progresión y preparación para examen.",
+        name: "Dulce Carolina Curiel",
+        role: "3er Dan — Especialista en Poomsae",
+        bio: "Precisión técnica, control y fundamentos. Acompaña procesos de aprendizaje con enfoque en detalle y progresión.",
       },
       {
-        name: "Instructor/a 3",
-        rank: "Cinta negra — Dan __",
-        years: "8+ años",
-        bio: "Especialidad en freestyle: fundamentos, control y evolución progresiva con estructura.",
+        name: "Mario Rodríguez Verti",
+        role: "2do Dan — Instructor",
+        bio: "Trabajo técnico y formación por niveles. Enfoque en constancia, disciplina y evolución progresiva.",
       },
     ],
-    fineprint:
-      "Este bloque está listo para nombres reales, grados exactos, certificaciones y fotos. Recomendado: 1–3 perfiles máximo.",
+    fineprint: "",
+  },
+  philosophy: {
+    kicker: "Filosofía",
+    title: "Más que entrenamiento",
+    body:
+      "Formamos atletas, pero sobre todo personas.\n\nCreamos un espacio seguro donde cada alumno desarrolla confianza, disciplina y carácter.\n\nNuestros valores: integridad, respeto y espíritu indomable.",
+    support: "Clases de lunes a viernes.\nGrupos segmentados por edad para un aprendizaje más efectivo.",
+  },
+  schedule: {
+    kicker: "Horarios",
+    title: "Horarios claros por edad",
+    body:
+      "Encuentra tu grupo en menos de 10 segundos.\nSelecciona por edad y revisa horarios disponibles.",
+    groups: [
+      {
+        age: "3 años",
+        days: "Martes, miércoles y jueves",
+        time: "3:25 – 3:55 PM",
+        types: ["Taekwondo (iniciación)"],
+        focus: "Coordinación, disciplina y confianza con acompañamiento cercano.",
+      },
+      {
+        age: "4–6 años",
+        days: "Lunes — Sparring\nMartes y jueves — Programa básico\nViernes — Freestyle",
+        time: "4:00 – 4:50 PM",
+        types: ["Sparring", "Programa básico", "Freestyle"],
+        focus: "Fundamentos, control y hábitos de disciplina en un entorno seguro.",
+      },
+      {
+        age: "7–10 años",
+        days: "Lunes — Sparring\nMartes y jueves — Programa básico\nMiércoles — Poomsae\nViernes — Freestyle",
+        time: "5:00 – 6:00 PM",
+        types: ["Sparring", "Programa básico", "Poomsae", "Freestyle"],
+        focus: "Técnica sólida, progresión por niveles y preparación competitiva.",
+      },
+      {
+        age: "11–17 años",
+        days: "Lunes — Sparring\nMartes y jueves — Programa básico\nMiércoles — Poomsae\nViernes — Freestyle",
+        time: "6:00 – 7:00 PM",
+        types: ["Sparring", "Programa básico", "Poomsae", "Freestyle"],
+        focus: "Disciplina, condición y técnica con enfoque en constancia y evolución.",
+      },
+      {
+        age: "Adultos (tarde)",
+        days: "Martes y jueves",
+        time: "7:00 – 8:00 PM",
+        types: ["Taekwondo"],
+        focus: "Entrenamiento técnico y físico para salud, enfoque y progreso real.",
+      },
+      {
+        age: "Adultos (mañana)",
+        days: "Lunes a jueves",
+        time: "7:30 AM / 8:30 AM",
+        types: ["HIIT + Taekwondo"],
+        focus: "Energía, condición y técnica. Ideal para rutina antes del trabajo.",
+      },
+    ],
+    cta: { label: "Agendar clase →", href: "#location", variant: "primary" },
   },
   reviews: {
     kicker: "Reseñas",
-    title: "Resultados que hablan por sí solos",
-    body: "Testimonios editables hoy; listos para conectarse con reseñas de Google Maps cuando tengamos el Place ID.",
-    note:
-      "Nota: no estamos inventando reseñas. Pega aquí 2–3 reseñas reales (texto + nombre) y luego conectamos Google Maps.",
+    title: "Lo que dicen quienes entrenan aquí",
+    body: "Testimonios reales de alumnos y familias en Ensenada.",
+    note: "Reseñas reales compartidas con permiso.",
     items: [
-      { quote: "Pega aquí una reseña real de Google o WhatsApp (con permiso).", name: "Nombre (real)", rating: 5 },
-      { quote: "Pega aquí una reseña real (sin editar el sentido).", name: "Nombre (real)", rating: 5 },
-      { quote: "Pega aquí una reseña real (puede ser iniciales si prefieren).", name: "Nombre (real)", rating: 5 },
+      {
+        quote:
+          "El lugar está súper bien montado y los instructores con gran capacidad técnica… mis nietos están felices y emocionados. ¡Ya se ven campeones!",
+        name: "Aurea Torra",
+        rating: 5,
+      },
+      {
+        quote:
+          "Excelente para hacer ejercicio y aprender técnica. Llevamos a nuestros sobrinos y les fascinó. Todo muy limpio y profesional. Totalmente recomendado.",
+        name: "Lucia CM",
+        rating: 5,
+      },
+      {
+        quote:
+          "No solo encontré un lugar para entrenar, encontré una familia. Clases dinámicas y muy enriquecedoras física y emocionalmente.",
+        name: "Tammy Unger",
+        rating: 5,
+      },
     ],
   },
   location: {
@@ -74,8 +141,9 @@ const data = {
     title: "Ubicación real, abierta y en operación",
     headline: "Ubicación real, abierta y en operación",
     address: "Ensenada, Baja California\n(Dirección exacta aquí)",
-    mapsHref: "#",
-    mapEmbedSrc: "",
+    mapsHref: "https://www.google.com/maps/search/?api=1&query=31.86920987405615,-116.62705212444732",
+    mapEmbedSrc:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.3753201934683!2d-116.62705212444732!3d31.86920987405615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d893ec6f498c99%3A0x76d0a2c80324fd09!2sHUMI%20%7C%20Taekwondo%2C%20Freestyle%20%26%20Martial%20Fitness!5e0!3m2!1sen!2smx!4v1778012458336!5m2!1sen!2smx",
     schedule: [
       { day: "Lunes", hours: "—" },
       { day: "Martes", hours: "—" },
@@ -85,9 +153,8 @@ const data = {
       { day: "Sábado", hours: "—" },
       { day: "Domingo", hours: "—" },
     ],
-    note:
-      "Sugerencia: agrega colonia, referencias y estacionamiento. Reemplaza el mapa con el iframe real de Google Maps (Embed).",
-    mapNote: "Pega el `src` del iframe desde Google Maps → Compartir → Insertar un mapa.",
+    note: "Si quieres, agrega referencias de llegada (colonia, puntos de referencia, estacionamiento).",
+    mapNote: "Mapa embebido desde Google Maps.",
   },
   social: {
     kicker: "Social",
@@ -102,8 +169,11 @@ const data = {
 
 const sections = [
   { id: "hero", templateId: "tpl-hero", props: data.hero },
+  { id: "stats", templateId: "tpl-stats", props: data.stats },
   { id: "programs", templateId: "tpl-programs", props: data.programs },
+  { id: "schedule", templateId: "tpl-schedule", props: data.schedule },
   { id: "instructors", templateId: "tpl-instructors", props: data.instructors },
+  { id: "philosophy", templateId: "tpl-philosophy", props: data.philosophy },
   { id: "reviews", templateId: "tpl-reviews", props: data.reviews },
   { id: "location", templateId: "tpl-location", props: data.location },
   { id: "social", templateId: "tpl-social", props: data.social },
@@ -141,34 +211,17 @@ function renderTemplate(templateId, props) {
   bindText(fragment, "[data-title]", props.title);
   bindText(fragment, "[data-body]", props.body);
   bindText(fragment, "[data-lede]", props.lede);
+  bindText(fragment, "[data-support]", props.support);
 
-  // Hero: bullets, actions, extra, media
-  const heroBullets = fragment.querySelector("[data-hero-bullets]");
-  if (heroBullets && Array.isArray(props.bullets)) {
-    props.bullets.forEach((text) => {
-      const li = document.createElement("li");
-      li.textContent = text;
-      heroBullets.appendChild(li);
-    });
-  }
+  // Hero: actions, media
 
   const actions = fragment.querySelector("[data-actions]");
   if (actions && Array.isArray(props.ctas)) {
     props.ctas.forEach((cta) => actions.appendChild(createButton(cta)));
   }
 
-  const heroExtra = fragment.querySelector("[data-hero-extra]");
-  if (heroExtra && Array.isArray(props.extra)) {
-    props.extra.forEach((text) => {
-      const span = document.createElement("span");
-      span.className = "hero__extraItem";
-      span.textContent = text;
-      heroExtra.appendChild(span);
-    });
-  }
-
   const heroSection = fragment.querySelector("[data-hero-bg]");
-  const heroBg = props.media?.image;
+  const heroBg = props.mediaImage ?? props.media?.image;
   if (heroSection && heroBg) {
     heroSection.style.setProperty("--hero-bg", `url("${heroBg}")`);
   }
@@ -203,7 +256,8 @@ function renderTemplate(templateId, props) {
         <p class="p person__bio"></p>
       `;
       card.querySelector(".person__name").textContent = person.name;
-      card.querySelector(".person__meta").textContent = `${person.rank} · ${person.years}`;
+      const meta = [person.role, person.rank, person.years].filter(Boolean).join(" · ");
+      card.querySelector(".person__meta").textContent = meta;
       card.querySelector(".person__bio").textContent = person.bio;
       instructors.appendChild(card);
     });
@@ -248,15 +302,49 @@ function renderTemplate(templateId, props) {
     mapIframe.src = props.mapEmbedSrc || "about:blank";
   }
 
-  const schedule = fragment.querySelector("[data-schedule]");
-  if (schedule && Array.isArray(props.schedule)) {
-    props.schedule.forEach((row) => {
-      const div = document.createElement("div");
-      div.className = "schedule__row";
-      div.innerHTML = `<div class="schedule__day"></div><div class="schedule__hours"></div>`;
-      div.querySelector(".schedule__day").textContent = row.day;
-      div.querySelector(".schedule__hours").textContent = row.hours;
-      schedule.appendChild(div);
+
+  // Schedule cards (by age group)
+  const scheduleCards = fragment.querySelector("[data-schedule-cards]");
+  if (scheduleCards && Array.isArray(props.groups)) {
+    props.groups.forEach((group) => {
+      const card = document.createElement("article");
+      card.className = "card scheduleCard";
+      card.innerHTML = `
+        <div class="scheduleCard__top">
+          <h3 class="scheduleCard__age"></h3>
+          <div class="scheduleCard__time"></div>
+        </div>
+        <div class="scheduleCard__grid">
+          <div class="scheduleCard__block">
+            <p class="eyebrow">Días</p>
+            <p class="p p--pre scheduleCard__days"></p>
+          </div>
+          <div class="scheduleCard__block">
+            <p class="eyebrow">Clases</p>
+            <div class="chips scheduleCard__types"></div>
+          </div>
+        </div>
+        <p class="p scheduleCard__focus"></p>
+        <div class="actions actions--tight scheduleCard__cta"></div>
+      `;
+
+      card.querySelector(".scheduleCard__age").textContent = group.age;
+      card.querySelector(".scheduleCard__time").textContent = group.time;
+      card.querySelector(".scheduleCard__days").textContent = group.days;
+      card.querySelector(".scheduleCard__focus").textContent = group.focus;
+
+      const types = card.querySelector(".scheduleCard__types");
+      (group.types ?? []).forEach((t) => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = t;
+        types.appendChild(chip);
+      });
+
+      const ctaWrap = card.querySelector(".scheduleCard__cta");
+      if (ctaWrap && props.cta) ctaWrap.appendChild(createButton(props.cta));
+
+      scheduleCards.appendChild(card);
     });
   }
 
@@ -268,6 +356,32 @@ function renderTemplate(templateId, props) {
       a.target = "_blank";
       a.rel = "noreferrer";
       socialActions.appendChild(a);
+    });
+  }
+
+  // Stats banner
+  const stats = fragment.querySelector("[data-stats]");
+  if (stats && Array.isArray(props.items)) {
+    props.items.forEach((item) => {
+      const cell = document.createElement("div");
+      cell.className = "stat";
+      cell.innerHTML = `
+        <div class="stat__value"></div>
+        <div class="stat__label"></div>
+      `;
+      cell.querySelector(".stat__value").textContent = item.value;
+      cell.querySelector(".stat__label").textContent = item.label;
+      stats.appendChild(cell);
+    });
+  }
+
+  const statsSub = fragment.querySelector("[data-stats-sub]");
+  if (statsSub && Array.isArray(props.sub)) {
+    props.sub.forEach((text) => {
+      const span = document.createElement("span");
+      span.className = "statsBanner__subItem";
+      span.textContent = text;
+      statsSub.appendChild(span);
     });
   }
 

@@ -5,6 +5,12 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="HUMI Taekwondo en Ensenada, Baja California. Técnica, disciplina y evolución real." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="assets/css/humi.css" />
 	</head>
 	<body>
@@ -43,12 +49,18 @@
 		<template id="tpl-hero">
 			<section class="section section--hero" data-hero-bg>
 				<div class="container hero__content">
-						<p class="section__kicker" data-kicker></p>
 						<h1 class="h1" data-title></h1>
 						<p class="lede" data-lede></p>
-						<ul class="hero__bullets" data-hero-bullets></ul>
 						<div class="actions actions--hero" data-actions></div>
-						<div class="hero__extra" data-hero-extra></div>
+				</div>
+			</section>
+		</template>
+
+		<template id="tpl-stats">
+			<section class="section section--stats" data-section="stats" aria-label="HUMI credibility stats">
+				<div class="container">
+					<div class="statsBanner" data-stats></div>
+					<div class="statsBanner__sub" data-stats-sub></div>
 				</div>
 			</section>
 		</template>
@@ -76,6 +88,23 @@
 			</section>
 		</template>
 
+		<template id="tpl-philosophy">
+			<section class="section section--philosophy">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<div class="sectionHead">
+						<div>
+							<h2 class="h2" data-title></h2>
+							<p class="p p--pre" data-body></p>
+						</div>
+						<div class="sectionHead__aside">
+							<div class="badge badge--soft" data-support></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+
 		<template id="tpl-reviews">
 			<section class="section section--reviews">
 				<div class="container">
@@ -93,6 +122,21 @@
 			</section>
 		</template>
 
+		<template id="tpl-schedule">
+			<section class="section section--schedule" aria-label="Horarios por edad">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<div class="sectionHead">
+						<div>
+							<h2 class="h2" data-title></h2>
+							<p class="p p--pre" data-body></p>
+						</div>
+					</div>
+					<div class="scheduleCards" data-schedule-cards></div>
+				</div>
+			</section>
+		</template>
+
 		<template id="tpl-location">
 			<section class="section section--location">
 				<div class="container">
@@ -105,7 +149,6 @@
 							<div class="actions actions--tight">
 								<a class="btn" data-maps-link target="_blank" rel="noreferrer">Abrir en Google Maps →</a>
 							</div>
-							<div class="schedule schedule--tight" data-schedule></div>
 							<p class="fineprint" data-location-note></p>
 						</div>
 						<div class="card">
