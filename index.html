@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>HUMI Taekwondo — Ensenada</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="HUMI Taekwondo en Ensenada, Baja California. Técnica, disciplina y evolución real." />
+		<link rel="stylesheet" href="assets/css/humi.css" />
+	</head>
+	<body>
+
+		<a class="skip-link" href="#main">Skip to content</a>
+
+		<header class="topbar" role="banner">
+			<div class="container topbar__inner">
+				<a class="brand" href="#hero" aria-label="HUMI Taekwondo">
+					<span class="brand__mark" aria-hidden="true"></span>
+					<span>HUMI Taekwondo</span>
+				</a>
+
+				<nav class="nav" aria-label="Primary">
+					<a href="#programs">Programas</a>
+					<a href="#instructors">Instructores</a>
+					<a href="#reviews">Reseñas</a>
+					<a href="#location">Ubicación</a>
+					<a href="#social">Social</a>
+				</nav>
+			</div>
+		</header>
+
+		<main id="main" role="main">
+			<div id="app"></div>
+		</main>
+
+		<footer class="footer" role="contentinfo">
+			<div class="container footer__inner">
+				<div class="muted">© HUMI</div>
+				<div class="muted">Built to iterate.</div>
+			</div>
+		</footer>
+
+		<!-- Component templates (rendered by assets/js/humi.js) -->
+		<template id="tpl-hero">
+			<section class="section section--hero" data-hero-bg>
+				<div class="container hero__content">
+						<p class="section__kicker" data-kicker></p>
+						<h1 class="h1" data-title></h1>
+						<p class="lede" data-lede></p>
+						<ul class="hero__bullets" data-hero-bullets></ul>
+						<div class="actions actions--hero" data-actions></div>
+						<div class="hero__extra" data-hero-extra></div>
+				</div>
+			</section>
+		</template>
+
+		<template id="tpl-programs">
+			<section class="section section--programs">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<h2 class="h2" data-title></h2>
+					<p class="p" data-body></p>
+					<div class="grid-4" data-programs></div>
+				</div>
+			</section>
+		</template>
+
+		<template id="tpl-instructors">
+			<section class="section section--instructors">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<h2 class="h2" data-title></h2>
+					<p class="p" data-body></p>
+					<div class="grid-3" data-instructors></div>
+					<p class="fineprint" data-fineprint></p>
+				</div>
+			</section>
+		</template>
+
+		<template id="tpl-reviews">
+			<section class="section section--reviews">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<div class="sectionHead">
+						<div>
+							<h2 class="h2" data-title></h2>
+							<p class="p" data-body></p>
+						</div>
+						<div class="sectionHead__aside"></div>
+					</div>
+					<div class="grid-3" data-reviews></div>
+					<p class="fineprint" data-reviews-note></p>
+				</div>
+			</section>
+		</template>
+
+		<template id="tpl-location">
+			<section class="section section--location">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<h2 class="h2" data-title></h2>
+					<div class="locationGrid">
+						<div class="card">
+							<p class="eyebrow" data-location-headline></p>
+							<p class="p" data-address></p>
+							<div class="actions actions--tight">
+								<a class="btn" data-maps-link target="_blank" rel="noreferrer">Abrir en Google Maps →</a>
+							</div>
+							<div class="schedule schedule--tight" data-schedule></div>
+							<p class="fineprint" data-location-note></p>
+						</div>
+						<div class="card">
+							<p class="eyebrow">Mapa</p>
+							<div class="map">
+								<iframe
+									data-map-iframe
+									title="Google Maps — HUMI Taekwondo"
+									loading="lazy"
+									referrerpolicy="no-referrer-when-downgrade"
+									allowfullscreen
+								></iframe>
+							</div>
+							<p class="fineprint" data-map-note></p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+
+		<template id="tpl-social">
+			<section class="section section--social">
+				<div class="container">
+					<p class="section__kicker" data-kicker></p>
+					<div class="sectionHead">
+						<div>
+							<h2 class="h2" data-title></h2>
+							<p class="p" data-body></p>
+						</div>
+						<div class="sectionHead__aside">
+							<div class="actions actions--flush" data-social-actions></div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</template>
+
+		<script type="module" src="assets/js/humi.js"></script>
+
+	</body>
+</html>
