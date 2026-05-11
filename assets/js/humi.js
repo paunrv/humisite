@@ -1,120 +1,266 @@
+/** Google Maps embed (sección Ubicación) */
+const HUMI_MAP_EMBED_SRC =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.3753201934683!2d-116.62705212444732!3d31.86920987405615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d893ec6f498c99%3A0x76d0a2c80324fd09!2sHUMI%20%7C%20Taekwondo%2C%20Freestyle%20%26%20Martial%20Fitness!5e0!3m2!1sen!2smx!4v1778012458336!5m2!1sen!2smx";
+
+/** Dirección del dojang (Ubicación, footer y enlaces a mapas) */
+const HUMI_ADDRESS_LINES = "C. Séptima 436\nZona Centro\n22800 Ensenada, B.C.";
+const HUMI_ADDRESS_MAP_QUERY = encodeURIComponent(
+  "C. Séptima 436, Zona Centro, 22800 Ensenada, B.C., México",
+);
+
+/** Perfil oficial; las celdas pueden apuntar a cada publicación (Copiar enlace en Instagram). */
+const INSTAGRAM_HUMI = "https://www.instagram.com/humi.taekwondo/";
+
 const data = {
   hero: {
-    title: "Taekwondo en Ensenada\nTécnica, disciplina y evolución real",
+    kicker: "ENSENADA · DESARROLLO HUMANO A TRAVÉS DEL TAEKWONDO",
+    title: "La confianza no se declara.\nSe entrena.",
     lede:
-      "Formación técnica, disciplina y confianza en un entorno seguro.\nClases para niños, jóvenes y adultos en Ensenada.",
+      "Para padres que buscan estructura emocional, no solo una actividad.\nEl Taekwondo es nuestro lenguaje; la presencia, el punto.",
     ctas: [
-      { label: "Agendar clase →", href: "#location", variant: "primary" },
-      { label: "Ver horarios →", href: "#location", variant: "ghost" },
+      {
+        label: "Más información",
+        href: "https://wa.me/526461093879",
+        variant: "primary",
+      },
+      { label: "Ver horarios", href: "#schedule", variant: "ghost" },
     ],
-    mediaImage: "images/pic02.jpg",
+    mediaImage: "/images/pic01.jpg",
   },
-  stats: {
-    items: [
-      { value: "15+", label: "Años formando atletas" },
-      { value: "5", label: "Generaciones de cintas negras" },
-      { value: "Freestyle", label: "Programa pionero" },
-      { value: "KPNP SS", label: "Equipo profesional" },
+  instagram: {
+    kicker: "INSTAGRAM",
+    title: "@humi.taekwondo",
+    sub:
+      "En HUMI la comunidad es lo importante: por eso desarrollamos una metodología y un programa para asegurar experiencias únicas y un desarrollo íntegro de nuestros alumnos.",
+    // Mantén 4 entradas: `image` en /public/images (o URL), `href` con «Copiar enlace» del post, `label` para accesibilidad.
+    posts: [
+      {
+        image: "/images/pic10.png",
+        href: INSTAGRAM_HUMI,
+        label: "Publicación en Instagram",
+      },
+      {
+        image: "/images/pic11.png",
+        href: INSTAGRAM_HUMI,
+        label: "Publicación en Instagram",
+      },
+      {
+        image: "/images/pic12.png",
+        href: INSTAGRAM_HUMI,
+        label: "Publicación en Instagram",
+      },
+      {
+        image: "/images/pic13.png",
+        href: INSTAGRAM_HUMI,
+        label: "Publicación en Instagram",
+      },
     ],
-    sub: ["Programas para niños, jóvenes y adultos", "Formación técnica y competitiva"],
+    ctas: [{ label: "Ir a Instagram,", href: INSTAGRAM_HUMI, variant: "ghost" }],
+  },
+  manifesto: {
+    kicker: "MANIFIESTO",
+    pyramidLabel: "PROGRESIÓN DE GRADOS",
+    pyramidFoot:
+      "Cada color se amplía con el cursor; al salir de la pirámide, vuelve el manifiesto.",
+    quote:
+      "En HUMI el color cuenta lo que estás aprendiendo a ser, no solo lo que sabes hacer.\nPasa el cursor por la pirámide para leer el significado de cada cinta.",
+    beltMeanings: {
+      black: {
+        title: "Cinta Negra",
+        paragraphs: [
+          "Une técnica, disciplina y carácter. No cierra el camino: abre un Taekwondo más profundo, tras años de constancia, respeto y autocontrol — hasta dominar cuerpo y mente bajo presión.",
+          "Va más allá del grado: es compromiso con la excelencia, el liderazgo y la mejora constante.",
+        ],
+      },
+      red: {
+        title: "Rojo",
+        paragraphs: [
+          "La energía empieza a explotar. El estudiante aprende a controlar fuerza, impulsos y emociones mientras desarrolla técnica y enfoque.",
+          "Etapa clave en el desarrollo de autocontrol y disciplina en artes marciales.",
+        ],
+      },
+      blue: {
+        title: "Azul",
+        paragraphs: [
+          "La visión se amplía. El practicante entiende estrategia, distancia y ritmo. Ya no solo reacciona: comienza a anticipar.",
+          "Formación avanzada de técnica, concentración y lectura corporal.",
+        ],
+      },
+      green: {
+        title: "Verde",
+        paragraphs: [
+          "El crecimiento se vuelve evidente. La constancia empieza a dar resultados físicos y mentales visibles dentro y fuera del tatami.",
+          "Nivel enfocado en resistencia, precisión y seguridad personal.",
+        ],
+      },
+      yellow: {
+        title: "Amarillo",
+        paragraphs: [
+          "La luz del conocimiento aparece. El alumno conecta técnica con propósito y desarrolla mayor confianza en combate y movimiento.",
+          "Progresión enfocada en coordinación avanzada y liderazgo juvenil.",
+        ],
+      },
+      orange: {
+        title: "Naranja",
+        paragraphs: [
+          "La identidad del practicante se fortalece. Cada entrenamiento pule disciplina, velocidad y mentalidad competitiva.",
+        ],
+      },
+      white: {
+        title: "Blanco",
+        paragraphs: [
+          "Pureza, humildad y potencial infinito. El cinturón blanco representa el valor de comenzar y la valentía de aprender desde cero.",
+          "Ideal para niños, adolescentes y adultos que buscan iniciar en taekwondo.",
+        ],
+      },
+    },
+    mediaImage: "/images/pic06.jpg",
   },
   programs: {
-    kicker: "Programas",
-    title: "Opciones claras por etapa y objetivo.",
-    body: "Entrenamiento con estructura, disciplina y seguimiento. Te recomendamos el grupo ideal según edad y nivel.",
+    kicker: "DOJANG",
+    title: "Para quien participa — y para quien decide",
+    body:
+      "Los niños y jóvenes viven en el dojang; los padres buscan cambios que se notan en casa y en el aula. Cuatro entradas, una misma ética: respeto al proceso, al compañero y a uno mismo.",
     items: [
-      { title: "Niños", body: "Bases, coordinación, respeto y confianza. Progresión por niveles." },
-      { title: "Jóvenes", body: "Técnica sólida, condición, disciplina y preparación competitiva." },
-      { title: "Adultos", body: "Aprendizaje desde cero o continuidad. Técnica, salud y enfoque." },
-      { title: "Freestyle", body: "Programa estructurado: fundamentos, control, combos y evolución." },
+      {
+        title: "Niños (3–6)",
+        body: "Primer contacto con límites claros, juego con propósito y seguridad. Semillas de autocontrol y valentía tranquila.",
+        href: "#schedule",
+        image: "/images/pic07.jpg",
+      },
+      {
+        title: "Niños (7–10)",
+        body: "Foco, cuerpo y hábito: lo que se repite en el tatami se traduce en tareas, resiliencia ante el error y mirada al frente.",
+        href: "#schedule",
+        image: "/images/pic02.jpg",
+      },
+      {
+        title: "Teens (11–16)",
+        body: "Identidad en construcción: constancia bajo presión, manejo del estrés y orgullo por el esfuerzo, no por el volumen.",
+        href: "#schedule",
+        image: "/images/pic05.jpg",
+      },
+      {
+        title: "Adultos",
+        body: "Taekwondo, HIIT y pesas en una sola rutina: condición, técnica y cabeza despejada para quien también necesita un lugar serio.",
+        href: "#schedule",
+        image: "/images/pic17.jpg",
+      },
     ],
   },
   instructors: {
-    kicker: "Instructores",
-    title: "Equipo con experiencia real.",
-    body: "Un buen programa depende de buenos instructores: técnica clara, disciplina y progreso medible.",
+    kicker: "EQUIPO",
+    title: "Autoridad con calma.",
+    body:
+      "En HUMI la autoridad viene del criterio: se corrige con precisión y se acompaña sin humillar. Padres entienden el rumbo; los alumnos entienden el estándar del dojang.",
     people: [
       {
         name: "Paulina Noriega Romero Vargas",
         role: "5to Dan — Directora General",
-        bio: "Formación de alto nivel con enfoque en disciplina, estructura y desarrollo integral. Más de una década formando atletas y equipos competitivos.",
+        bio: "Liderazgo técnico y visión de largo plazo: disciplina como estructura amable, y desarrollo humano al centro de la exigencia.",
       },
       {
         name: "Dulce Carolina Curiel",
         role: "3er Dan — Especialista en Poomsae",
-        bio: "Precisión técnica, control y fundamentos. Acompaña procesos de aprendizaje con enfoque en detalle y progresión.",
+        bio: "Control, detalle y progresión medida. Enseña a que la precisión sea una forma de respeto propio.",
       },
       {
         name: "Mario Rodríguez Verti",
         role: "2do Dan — Instructor",
-        bio: "Trabajo técnico y formación por niveles. Enfoque en constancia, disciplina y evolución progresiva.",
+        bio: "Constancia y claridad en cada nivel. Acompaña la evolución técnica como hábito, no como prisa.",
       },
     ],
-    fineprint: "",
+    fineprint:
+      "¿Primera vez en Taekwondo? Empezamos por hábitos seguros y presencia en el dojang. ¿Ya entrenas? Aterrizamos tu nivel sin saltar fundamentos.",
   },
   philosophy: {
-    kicker: "Filosofía",
-    title: "Más que entrenamiento",
+    kicker: "ESENCIA",
+    title: "Antes del primer saludo en el tatami",
     body:
-      "Formamos atletas, pero sobre todo personas.\n\nCreamos un espacio seguro donde cada alumno desarrolla confianza, disciplina y carácter.\n\nNuestros valores: integridad, respeto y espíritu indomable.",
-    support: "Clases de lunes a viernes.\nGrupos segmentados por edad para un aprendizaje más efectivo.",
+      "HUMI es tribu con reglas claras, no ruido motivacional. Te decimos qué encontrarás para que la primera vez sea honesta — para ti y para tu hijo o hija.",
+    planItems: [
+      {
+        title: "Lo que entrenamos",
+        body: "Seis pilares vivos en cada clase: integridad, respeto, espíritu indomable, cortesía, perseverancia y autocontrol. No lemas de pared: práctica repetida.",
+        cta: "Ver prácticas",
+        href: "#programs",
+      },
+      {
+        title: "Dojang",
+        body: "Grupos por edad, instructores presentes y acuerdos visibles. Sparring, Poomsae y Freestyle en los días que corresponden — siempre con contención.",
+        cta: "Horarios",
+        href: "#schedule",
+      },
+      {
+        title: "Tu ritmo",
+        body: "Progreso por niveles sin vergüenza pública. Defensa personal y herramientas ante el estrés como parte de una vida más capaz, no como show.",
+        cta: "Cómo llegar",
+        href: "#location",
+      },
+    ],
+    support:
+      "Llega 10 minutos antes la primera vez. Si tu hijo o hija es tímido o ansioso, avísanos: ajustamos la bienvenida sin presión.",
   },
   schedule: {
-    kicker: "Horarios",
-    title: "Horarios claros por edad",
+    kicker: "RUTA",
+    hoursTag: "Programa de dojang",
+    title: "Horarios por edad",
     body:
-      "Encuentra tu grupo en menos de 10 segundos.\nSelecciona por edad y revisa horarios disponibles.",
+      "Elige el grupo que corresponde. Cada día tiene su énfasis (Sparring, Poomsae o Freestyle) según la edad. Si no estás seguro, escríbenos: te colocamos donde el reto sea real, no abrumador.",
+    footerNote:
+      "Sparring, Poomsae y Freestyle aplican según calendario por grupo. En fechas especiales los horarios pueden variar; confirma en sala o por mensaje.",
+    footerCta: { label: "Agendar o preguntar →", href: "#location", variant: "primary" },
     groups: [
       {
         age: "3 años",
         days: "Martes, miércoles y jueves",
-        time: "3:25 – 3:55 PM",
+        time: "3:20 – 3:55 PM",
         types: ["Taekwondo (iniciación)"],
-        focus: "Coordinación, disciplina y confianza con acompañamiento cercano.",
+        focus: "Primeras rutinas de cuerpo y atención, con acompañamiento cercano y contención emocional.",
       },
       {
         age: "4–6 años",
         days: "Lunes — Sparring\nMartes y jueves — Programa básico\nViernes — Freestyle",
         time: "4:00 – 4:50 PM",
         types: ["Sparring", "Programa básico", "Freestyle"],
-        focus: "Fundamentos, control y hábitos de disciplina en un entorno seguro.",
+        focus: "Fundamentos, control y hábito de esfuerzo en un espacio seguro y predecible.",
       },
       {
         age: "7–10 años",
         days: "Lunes — Sparring\nMartes y jueves — Programa básico\nMiércoles — Poomsae\nViernes — Freestyle",
         time: "5:00 – 6:00 PM",
         types: ["Sparring", "Programa básico", "Poomsae", "Freestyle"],
-        focus: "Técnica sólida, progresión por niveles y preparación competitiva.",
+        focus: "Técnica, condición y foco: el estándar sube con el cuerpo y con la actitud.",
       },
       {
-        age: "11–17 años",
+        age: "11–16 años",
         days: "Lunes — Sparring\nMartes y jueves — Programa básico\nMiércoles — Poomsae\nViernes — Freestyle",
         time: "6:00 – 7:00 PM",
         types: ["Sparring", "Programa básico", "Poomsae", "Freestyle"],
-        focus: "Disciplina, condición y técnica con enfoque en constancia y evolución.",
+        focus: "Constancia bajo exigencia, compañerismo y mentalidad: fuerza sin necesidad de gritar.",
       },
       {
         age: "Adultos (tarde)",
         days: "Martes y jueves",
         time: "7:00 – 8:00 PM",
-        types: ["Taekwondo"],
-        focus: "Entrenamiento técnico y físico para salud, enfoque y progreso real.",
+        types: ["Taekwondo + HIIT + dumbbells"],
+        focus: "Cuerpo fuerte, técnica clara y válvula seria para el estrés del día a día.",
       },
       {
         age: "Adultos (mañana)",
         days: "Lunes a jueves",
-        time: "7:30 AM / 8:30 AM",
-        types: ["HIIT + Taekwondo"],
-        focus: "Energía, condición y técnica. Ideal para rutina antes del trabajo.",
+        time: "7:30 – 8:30 AM",
+        types: ["Taekwondo + HIIT + dumbbells"],
+        focus: "Energía y enfoque antes del trabajo: disciplina que cabe en la agenda real.",
       },
     ],
-    cta: { label: "Agendar clase →", href: "#location", variant: "primary" },
   },
   reviews: {
-    kicker: "Reseñas",
-    title: "Lo que dicen quienes entrenan aquí",
-    body: "Testimonios reales de alumnos y familias en Ensenada.",
-    note: "Reseñas reales compartidas con permiso.",
+    kicker: "TESTIMONIOS",
+    title: "Historias de quienes ya caminan con HUMI",
+    body:
+      "La reputación se gana en silencio: orden, técnica y trato. Estas voces son de familias y alumnos que ya eligieron el dojang.",
+    note: "Opiniones reales, compartidas con permiso.",
     items: [
       {
         quote:
@@ -136,32 +282,113 @@ const data = {
       },
     ],
   },
+  blog: {
+    kicker: "BLOG",
+    title: "Artículos",
+    body:
+      "Textos sobre Taekwondo, su filosofía y su historia: contexto para entrenar con más claridad dentro y fuera del tatami.",
+    posts: [
+      {
+        title: "Taekwondo y su Filosofía",
+        excerpt:
+          "La palabra Taekwondo viene del camino del desarrollo físico, mental y emocional… y va mucho más allá de una traducción literal.",
+        href: "/blog-taekwondo-y-su-filosofia.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Historia del Taekwondo",
+        excerpt:
+          "Del origen coreano y el General Choi Hong Hi al crecimiento en México: Dai Won Moon, “karate coreano” y la potencia olímpica actual.",
+        href: "/blog-historia-del-taekwondo.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Juramento, Reglas y Vocabulario del Taekwondo",
+        excerpt:
+          "Juramento, reglas del dojang y palabras en coreano que escucharás en clase: cultura, respeto y disciplina detrás de cada saludo.",
+        href: "/blog-juramento-reglas-y-vocabulario-del-taekwondo.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Sydney 2000",
+        excerpt:
+          "Primera medalla olímpica oficial del Taekwondo mexicano: contexto, repechaje y el bronce que abrió la puerta a una potencia mundial.",
+        href: "/blog-victor-estrada-sydney-2000.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Atenas 2004",
+        excerpt:
+          "Óscar Salazar, la plata en -58 kg y la familia Salazar: disciplina, coach José Luis Salazar y el puente olímpico hacia Beijing 2008.",
+        href: "/blog-atenas-2004-hermanos-salazar.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Beijing 2008",
+        excerpt:
+          "Doble oro olímpico: Guillermo Pérez y María Espinoza, el contexto post-Sydney y el día en que México se consolidó como potencia en Taekwondo.",
+        href: "/blog-beijing-2008-taekwondo-mexico.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Londres 2012",
+        excerpt:
+          "Tras el doble oro, defender el podio: Damián Villa, peto electrónico y el bronce de María Espinoza como prueba de élite sostenida.",
+        href: "/blog-londres-2012-taekwondo-mexico.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Río 2016",
+        excerpt:
+          "Taekwondo electrónico, presión heredada de Beijing y la plata de María Espinoza: talento, estructura y el espejo de una nueva era global.",
+        href: "/blog-rio-2016-taekwondo-mexico.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "Tokyo 2020",
+        excerpt:
+          "Pandemia, el debate María Espinoza vs Briseida Acosta, sin medalla en Taekwondo y el legado de un ciclo olímpico sin precedentes en México.",
+        href: "/blog-tokyo-2020-taekwondo-mexico.html",
+        cta: "Leer artículo →",
+      },
+      {
+        title: "París 2024",
+        excerpt:
+          "Post-Tokyo con hambre: Daniela Souza, Carlos Sansores, ranking y la lección de que el circuito no siempre se traduce en podio olímpico.",
+        href: "/blog-paris-2024-taekwondo-mexico.html",
+        cta: "Leer artículo →",
+      },
+    ],
+  },
   location: {
-    kicker: "Ubicación + horario",
-    title: "Ubicación real, abierta y en operación",
-    headline: "Ubicación real, abierta y en operación",
-    address: "Ensenada, Baja California\n(Dirección exacta aquí)",
-    mapsHref: "https://www.google.com/maps/search/?api=1&query=31.86920987405615,-116.62705212444732",
-    mapEmbedSrc:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.3753201934683!2d-116.62705212444732!3d31.86920987405615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d893ec6f498c99%3A0x76d0a2c80324fd09!2sHUMI%20%7C%20Taekwondo%2C%20Freestyle%20%26%20Martial%20Fitness!5e0!3m2!1sen!2smx!4v1778012458336!5m2!1sen!2smx",
+    kicker: "VISITA",
+    title: "Ensenada — puerta abierta con cita",
+    headline: "HUMI · Taekwondo con propósito",
+    address: HUMI_ADDRESS_LINES,
+    // Ejemplo: "https://wa.me/526641234567?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20HUMI"
+    whatsappHref: "",
+    whatsappLabel: "WhatsApp →",
+    mapsHref: `https://www.google.com/maps/search/?api=1&query=${HUMI_ADDRESS_MAP_QUERY}`,
+    mapEmbedSrc: HUMI_MAP_EMBED_SRC,
     schedule: [
-      { day: "Lunes", hours: "—" },
-      { day: "Martes", hours: "—" },
-      { day: "Miércoles", hours: "—" },
-      { day: "Jueves", hours: "—" },
-      { day: "Viernes", hours: "—" },
+      { day: "Lunes", hours: "3:20–7:00 pm · 7:30–8:30 am" },
+      { day: "Martes", hours: "3:20–8:00 pm · 7:30–8:30 am" },
+      { day: "Miércoles", hours: "3:20–7:00 pm · 7:30–8:30 am" },
+      { day: "Jueves", hours: "3:20–8:00 pm · 7:30–8:30 am" },
+      { day: "Viernes", hours: "3:20–6:00 pm" },
       { day: "Sábado", hours: "—" },
       { day: "Domingo", hours: "—" },
     ],
-    note: "Si quieres, agrega referencias de llegada (colonia, puntos de referencia, estacionamiento).",
-    mapNote: "Mapa embebido desde Google Maps.",
+    note: "Padres: llega unos minutos antes la primera vez. Pregunta por estacionamiento; el equipo te orienta.",
+    mapNote: "Mapa vía Google Maps.",
   },
   social: {
-    kicker: "Social",
-    title: "Síguenos y conoce el entrenamiento real",
-    body: "Fotos y videos del entrenamiento real, clases y eventos.",
+    kicker: "COMUNIDAD",
+    title: "Menos ruido, más trabajo",
+    body:
+      "En redes compartimos técnica, silencio antes del esfuerzo y la constancia del equipo.\n¿Respuesta rápida? Mensaje directo o visita en el horario de tu grupo.",
     links: [
-      { label: "Instagram →", href: "https://www.instagram.com/humi.taekwondo/", variant: "primary" },
+      { label: "Instagram →", href: INSTAGRAM_HUMI, variant: "primary" },
       { label: "Facebook →", href: "https://www.facebook.com/HumiTaekwondo/", variant: "ghost" },
     ],
   },
@@ -169,12 +396,14 @@ const data = {
 
 const sections = [
   { id: "hero", templateId: "tpl-hero", props: data.hero },
-  { id: "stats", templateId: "tpl-stats", props: data.stats },
+  { id: "instagram", templateId: "tpl-instagram", props: data.instagram },
+  { id: "manifesto", templateId: "tpl-manifesto", props: data.manifesto },
   { id: "programs", templateId: "tpl-programs", props: data.programs },
+  { id: "philosophy", templateId: "tpl-philosophy", props: data.philosophy },
   { id: "schedule", templateId: "tpl-schedule", props: data.schedule },
   { id: "instructors", templateId: "tpl-instructors", props: data.instructors },
-  { id: "philosophy", templateId: "tpl-philosophy", props: data.philosophy },
   { id: "reviews", templateId: "tpl-reviews", props: data.reviews },
+  { id: "blog", templateId: "tpl-blog", props: data.blog },
   { id: "location", templateId: "tpl-location", props: data.location },
   { id: "social", templateId: "tpl-social", props: data.social },
 ];
@@ -203,6 +432,65 @@ function bindText(node, selector, value) {
   el.textContent = value;
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function beltMeaningMarkup(entry) {
+  const paras = (entry.paragraphs ?? []).map(
+    (p) => `<p class="manifesto__beltPara">${escapeHtml(p)}</p>`,
+  );
+  return `<span class="manifesto__beltName">${escapeHtml(entry.title)}</span>${paras.join("")}`;
+}
+
+function bindManifestoBeltMeanings(fragment, props) {
+  const quote = fragment.querySelector("[data-manifesto-quote]");
+  const figure = fragment.querySelector(".beltPyramid");
+  if (!quote || !figure || !props.beltMeanings) return;
+
+  const baseText = props.quote ?? "";
+  const meanings = props.beltMeanings;
+
+  const showBase = () => {
+    quote.classList.remove("manifesto--beltView");
+    quote.textContent = baseText;
+  };
+
+  const showBelt = (key) => {
+    if (!key) return;
+    const entry = meanings[key];
+    if (!entry) return;
+    quote.classList.add("manifesto--beltView");
+    quote.innerHTML = beltMeaningMarkup(entry);
+  };
+
+  figure.querySelectorAll("[data-belt]").forEach((tier) => {
+    const key = tier.getAttribute("data-belt");
+    if (!key) return;
+    tier.addEventListener("pointerenter", () => showBelt(key));
+  });
+
+  figure.addEventListener("pointerleave", () => {
+    showBase();
+  });
+
+  figure.addEventListener("focusin", (e) => {
+    const t = e.target;
+    if (!(t instanceof Element)) return;
+    const tier = t.closest("[data-belt]");
+    if (tier) showBelt(tier.getAttribute("data-belt") || "");
+  });
+
+  figure.addEventListener("focusout", (e) => {
+    const next = e.relatedTarget;
+    if (!next || !figure.contains(next)) showBase();
+  });
+}
+
 function renderTemplate(templateId, props) {
   const tpl = getTemplate(templateId);
   const fragment = tpl.content.cloneNode(true);
@@ -226,16 +514,95 @@ function renderTemplate(templateId, props) {
     heroSection.style.setProperty("--hero-bg", `url("${heroBg}")`);
   }
 
-  // Programs
+  const manifestoSection = fragment.querySelector("[data-manifesto-bg]");
+  if (manifestoSection && props.mediaImage) {
+    manifestoSection.style.setProperty("--manifesto-bg", `url("${props.mediaImage}")`);
+  }
+
+  bindText(fragment, "[data-manifesto-quote]", props.quote);
+  bindText(fragment, "[data-manifesto-pyramid-label]", props.pyramidLabel);
+  bindText(fragment, "[data-manifesto-pyramid-foot]", props.pyramidFoot);
+  bindManifestoBeltMeanings(fragment, props);
+
+  const instaGrid = fragment.querySelector("[data-instagram-grid]");
+  if (instaGrid && Array.isArray(props.posts)) {
+    props.posts.forEach((post) => {
+      const li = document.createElement("li");
+      li.className = "instaGrid__cell";
+      const a = document.createElement("a");
+      a.className = "instaGrid__link";
+      a.href = post.href;
+      a.target = "_blank";
+      a.rel = "noreferrer noopener";
+      a.setAttribute("aria-label", post.label ?? "Ver en Instagram");
+      const img = document.createElement("img");
+      img.className = "instaGrid__img";
+      img.src = post.image;
+      img.alt = "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      a.appendChild(img);
+      li.appendChild(a);
+      instaGrid.appendChild(li);
+    });
+  }
+
+  bindText(fragment, "[data-instagram-sub]", props.sub);
+
+  const instaActions = fragment.querySelector("[data-instagram-actions]");
+  if (instaActions && Array.isArray(props.ctas)) {
+    props.ctas.forEach((cta) => instaActions.appendChild(createButton(cta)));
+  }
+
+  const planGrid = fragment.querySelector("[data-plan-items]");
+  if (planGrid && Array.isArray(props.planItems)) {
+    props.planItems.forEach((item) => {
+      const pc = document.createElement("article");
+      pc.className = "planCard";
+      pc.innerHTML = `
+        <h3 class="planCard__title"></h3>
+        <p class="planCard__body"></p>
+        <a class="planCard__link"></a>`;
+      pc.querySelector(".planCard__title").textContent = item.title;
+      pc.querySelector(".planCard__body").textContent = item.body;
+      const pl = pc.querySelector(".planCard__link");
+      pl.textContent = item.cta;
+      pl.href = item.href;
+      planGrid.appendChild(pc);
+    });
+  }
+
+  bindText(fragment, "[data-hours-tag]", props.hoursTag);
+
+  // Programs (offerings grid)
   const programs = fragment.querySelector("[data-programs]");
   if (programs && Array.isArray(props.items)) {
     props.items.forEach((item) => {
-      const card = document.createElement("article");
-      card.className = "card programCard";
-      card.innerHTML = `<p class="eyebrow">Programa</p><h3 class="programCard__title"></h3><p class="p"></p>`;
-      card.querySelector(".programCard__title").textContent = item.title;
-      card.querySelector(".p").textContent = item.body;
-      programs.appendChild(card);
+      const tone = Math.min(4, Math.max(1, Number(item.tone) || 1));
+      const art = document.createElement("article");
+      art.className = "offering";
+      const href = item.href ?? "#";
+      art.innerHTML = `
+        <a class="offering__link" href="${href}">
+          <div class="offering__media" aria-hidden="true"></div>
+          <div class="offering__body">
+            <h3 class="offering__title"></h3>
+            <p class="offering__desc"></p>
+            <span class="offering__cta">Ver tu grupo</span>
+          </div>
+        </a>`;
+      const media = art.querySelector(".offering__media");
+      if (item.image) {
+        media.classList.add("offering__media--photo");
+        media.style.backgroundImage = `linear-gradient(180deg, transparent 28%, rgba(10,10,9,0.92) 100%), url("${item.image}")`;
+        media.style.backgroundSize = "cover";
+        media.style.backgroundPosition = "center";
+      } else {
+        media.classList.add(`offering__media--${tone}`);
+      }
+      art.querySelector(".offering__title").textContent = item.title;
+      art.querySelector(".offering__desc").textContent = item.body;
+      programs.appendChild(art);
     });
   }
 
@@ -244,7 +611,7 @@ function renderTemplate(templateId, props) {
   if (instructors && Array.isArray(props.people)) {
     props.people.forEach((person) => {
       const card = document.createElement("article");
-      card.className = "card person";
+      card.className = "person";
       card.innerHTML = `
         <div class="person__top">
           <div class="person__avatar" aria-hidden="true"></div>
@@ -288,6 +655,33 @@ function renderTemplate(templateId, props) {
 
   bindText(fragment, "[data-reviews-note]", props.note);
 
+  // Blog
+  const blogPosts = fragment.querySelector("[data-blog-posts]");
+  if (blogPosts && Array.isArray(props.posts)) {
+    blogPosts.innerHTML = "";
+    props.posts.forEach((post) => {
+      const card = document.createElement("article");
+      card.className = "blogPostCard";
+      card.innerHTML = `
+        <h3 class="blogPostCard__title"></h3>
+        <p class="blogPostCard__excerpt p"></p>
+        <div class="blogPostCard__cta"></div>`;
+
+      card.querySelector(".blogPostCard__title").textContent = post.title ?? "";
+      card.querySelector(".blogPostCard__excerpt").textContent = post.excerpt ?? "";
+
+      const cta = createButton({
+        label: post.cta ?? "Leer artículo →",
+        href: post.href ?? "#",
+        variant: "primary",
+      });
+      const ctaWrap = card.querySelector(".blogPostCard__cta");
+      if (ctaWrap && cta) ctaWrap.appendChild(cta);
+
+      blogPosts.appendChild(card);
+    });
+  }
+
   // Location + Schedule
   bindText(fragment, "[data-location-headline]", props.headline);
   bindText(fragment, "[data-address]", props.address);
@@ -302,13 +696,37 @@ function renderTemplate(templateId, props) {
     mapIframe.src = props.mapEmbedSrc || "about:blank";
   }
 
+  const locationSchedule = fragment.querySelector("[data-location-schedule]");
+  if (locationSchedule && Array.isArray(props.schedule)) {
+    locationSchedule.innerHTML = "";
+    props.schedule.forEach((row) => {
+      const line = document.createElement("div");
+      line.className = "schedule__row";
+      line.innerHTML = `<span class="schedule__day"></span><span class="schedule__hours"></span>`;
+      line.querySelector(".schedule__day").textContent = row.day;
+      line.querySelector(".schedule__hours").textContent = row.hours;
+      locationSchedule.appendChild(line);
+    });
+  }
+
+  const locationActions = fragment.querySelector("[data-location-actions]");
+  if (locationActions && props.whatsappHref) {
+    const wa = createButton({
+      label: props.whatsappLabel ?? "WhatsApp →",
+      href: props.whatsappHref,
+      variant: "ghost",
+    });
+    wa.target = "_blank";
+    wa.rel = "noreferrer";
+    locationActions.appendChild(wa);
+  }
 
   // Schedule cards (by age group)
   const scheduleCards = fragment.querySelector("[data-schedule-cards]");
   if (scheduleCards && Array.isArray(props.groups)) {
     props.groups.forEach((group) => {
       const card = document.createElement("article");
-      card.className = "card scheduleCard";
+      card.className = "scheduleCard";
       card.innerHTML = `
         <div class="scheduleCard__top">
           <h3 class="scheduleCard__age"></h3>
@@ -325,7 +743,6 @@ function renderTemplate(templateId, props) {
           </div>
         </div>
         <p class="p scheduleCard__focus"></p>
-        <div class="actions actions--tight scheduleCard__cta"></div>
       `;
 
       card.querySelector(".scheduleCard__age").textContent = group.age;
@@ -341,11 +758,14 @@ function renderTemplate(templateId, props) {
         types.appendChild(chip);
       });
 
-      const ctaWrap = card.querySelector(".scheduleCard__cta");
-      if (ctaWrap && props.cta) ctaWrap.appendChild(createButton(props.cta));
-
       scheduleCards.appendChild(card);
     });
+
+    bindText(fragment, "[data-schedule-note]", props.footerNote);
+    const scheduleCta = fragment.querySelector("[data-schedule-cta]");
+    if (scheduleCta && props.footerCta) {
+      scheduleCta.appendChild(createButton(props.footerCta));
+    }
   }
 
   // Social
@@ -356,32 +776,6 @@ function renderTemplate(templateId, props) {
       a.target = "_blank";
       a.rel = "noreferrer";
       socialActions.appendChild(a);
-    });
-  }
-
-  // Stats banner
-  const stats = fragment.querySelector("[data-stats]");
-  if (stats && Array.isArray(props.items)) {
-    props.items.forEach((item) => {
-      const cell = document.createElement("div");
-      cell.className = "stat";
-      cell.innerHTML = `
-        <div class="stat__value"></div>
-        <div class="stat__label"></div>
-      `;
-      cell.querySelector(".stat__value").textContent = item.value;
-      cell.querySelector(".stat__label").textContent = item.label;
-      stats.appendChild(cell);
-    });
-  }
-
-  const statsSub = fragment.querySelector("[data-stats-sub]");
-  if (statsSub && Array.isArray(props.sub)) {
-    props.sub.forEach((text) => {
-      const span = document.createElement("span");
-      span.className = "statsBanner__subItem";
-      span.textContent = text;
-      statsSub.appendChild(span);
     });
   }
 
@@ -425,6 +819,32 @@ function renderPage() {
   );
 
   nodes.forEach((n) => obs.observe(n));
+
+  // Mobile CTA: esconderlo cuando el "primer feature" (hero) está visible.
+  const mobileCta = document.querySelector(".mobile-bottom-cta");
+  const heroEl = document.getElementById("hero");
+  const isMobile = window.matchMedia("(max-width: 720px)").matches;
+  if (mobileCta && heroEl && isMobile) {
+    const setMobileCtaVisible = (visible) => {
+      mobileCta.classList.toggle("is-visible", visible);
+      document.body.classList.toggle("mobile-bottom-cta-visible", visible);
+    };
+
+    // Al cargar, asumimos que el hero está visible; evitamos un "flicker".
+    setMobileCtaVisible(false);
+
+    const heroObs = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+        // Queremos CTA visible cuando el hero NO está en vista.
+        setMobileCtaVisible(!entry.isIntersecting);
+      },
+      { threshold: [0, 0.15, 0.3], rootMargin: "0px 0px -10% 0px" },
+    );
+
+    heroObs.observe(heroEl);
+  }
 }
 
 renderPage();

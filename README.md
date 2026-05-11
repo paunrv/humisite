@@ -26,8 +26,9 @@ npm run preview
 ## Estructura básica
 
 - `index.html`: entrada principal
-- `assets/`: CSS/JS y recursos del sitio
-- `images/`: imágenes del contenido
+- `assets/`: CSS y JS del sitio (`humi.css`, `humi.js`)
+- `public/images/`: imágenes servidas en `/images/...` (Vite)
+- `blog-*.html`: artículos estáticos del blog (también entradas en `vite.config.ts`)
 - `dist/`: salida del build (generada, no se versiona)
 
 ## Licencia
