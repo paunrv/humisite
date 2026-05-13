@@ -1,0 +1,405 @@
+/* HUMI — landing “Guidde” + paleta y tipografía del sitio editorial (index / humi.css) */
+
+html.gd-hybrid {
+  color-scheme: dark;
+  /* Alineado con humi.css :root */
+  --gd-bg: #0a0a09;
+  --gd-surface: #141413;
+  --gd-ink: #e6e2d9;
+  --gd-muted: #9c968c;
+  --gd-line: rgba(230, 226, 217, 0.14);
+  --gd-accent: #c73e2e;
+  --gd-accent-hover: #df4a3a;
+  --gd-violet: #e6e2d9;
+  --gd-violet-soft: rgba(230, 226, 217, 0.08);
+  --gd-warm-radial: rgba(199, 62, 46, 0.22);
+  --gd-shadow: 0 28px 56px rgba(0, 0, 0, 0.45);
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html.gd-hybrid body {
+  background: var(--gd-bg);
+  color: var(--gd-ink);
+  font-family: var(--font-sans);
+  font-size: clamp(16px, 0.22vw + 15.1px, 18px);
+  line-height: 1.58;
+  letter-spacing: -0.02em;
+}
+
+html.gd-hybrid a:focus-visible,
+html.gd-hybrid button:focus-visible {
+  outline: 2px solid var(--gd-ink);
+  outline-offset: 3px;
+}
+
+html.gd-hybrid .gd-skip:focus {
+  background: var(--gd-ink);
+  color: var(--gd-bg);
+}
+
+/* Hero / velos sobre imagen */
+html.gd-hybrid .gd-feature-bg {
+  background-color: var(--gd-bg);
+  --gd-feature-bg-overlay: rgba(10, 10, 9, 0.82);
+}
+
+html.gd-hybrid .gd-feature-bg--hero {
+  --gd-feature-bg-overlay: linear-gradient(
+    115deg,
+    rgba(10, 10, 9, 0.94) 0%,
+    rgba(10, 10, 9, 0.82) 42%,
+    rgba(10, 10, 9, 0.5) 100%
+  );
+}
+
+/* Barra superior tipo topbar HUMI */
+html.gd-hybrid .gd-top {
+  background: rgba(10, 10, 9, 0.78);
+  backdrop-filter: blur(16px) saturate(1.1);
+  border-bottom-color: var(--gd-line);
+}
+
+html.gd-hybrid .gd-logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+html.gd-hybrid .gd-logo span:last-child {
+  color: rgba(230, 226, 217, 0.55);
+  font-weight: 600;
+}
+
+html.gd-hybrid .gd-nav a {
+  color: rgba(230, 226, 217, 0.62);
+}
+
+html.gd-hybrid .gd-nav a:hover {
+  color: var(--gd-ink);
+  background: rgba(230, 226, 217, 0.08);
+}
+
+/* Titulares editorial */
+html.gd-hybrid .gd-hero h1,
+html.gd-hybrid .gd-compare-intro h2,
+html.gd-hybrid .gd-section__head h2,
+html.gd-hybrid .gd-card__title,
+html.gd-hybrid .gd-sched-intro h2,
+html.gd-hybrid .gd-pickers__group-title,
+html.gd-hybrid .gd-blog-slide__headline,
+html.gd-hybrid .gd-trust h2,
+html.gd-hybrid .gd-cta-final h2,
+html.gd-hybrid #faq-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+html.gd-hybrid .gd-pill {
+  background: rgba(20, 20, 19, 0.85);
+  border-color: var(--gd-line);
+  color: rgba(230, 226, 217, 0.72);
+  box-shadow: none;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+
+html.gd-hybrid .gd-pill__tag {
+  background: rgba(199, 62, 46, 0.2);
+  color: #f0c9c4;
+  border: 1px solid rgba(199, 62, 46, 0.35);
+}
+
+html.gd-hybrid .gd-btn--primary {
+  box-shadow: 0 10px 28px rgba(199, 62, 46, 0.35);
+}
+
+html.gd-hybrid .gd-btn--ghost {
+  background: rgba(20, 20, 19, 0.9);
+  color: var(--gd-ink);
+  border-color: var(--gd-line);
+  box-shadow: none;
+}
+
+html.gd-hybrid .gd-btn--ghost:hover {
+  border-color: rgba(230, 226, 217, 0.35);
+}
+
+html.gd-hybrid .gd-marquee {
+  background: var(--gd-surface);
+  border-color: var(--gd-line);
+}
+
+html.gd-hybrid .gd-marquee__item {
+  background: linear-gradient(180deg, rgba(20, 20, 19, 0.95) 0%, rgba(10, 10, 9, 0.98) 100%);
+  border-color: var(--gd-line);
+  color: var(--gd-ink);
+  box-shadow: none;
+}
+
+/* Comparativa */
+html.gd-hybrid .gd-split__pane--other {
+  background: linear-gradient(165deg, rgba(20, 20, 19, 0.98) 0%, rgba(10, 10, 9, 1) 100%);
+}
+
+html.gd-hybrid .gd-split__pane--other .gd-split__label {
+  color: var(--gd-muted);
+}
+
+html.gd-hybrid .gd-split__pane--other .gd-split__list li {
+  color: rgba(230, 226, 217, 0.72);
+}
+
+html.gd-hybrid .gd-split__pane--other .gd-split__list li::before {
+  background: rgba(230, 226, 217, 0.35);
+}
+
+html.gd-hybrid .gd-split__pane--humi {
+  background: linear-gradient(160deg, rgba(199, 62, 46, 0.14) 0%, rgba(20, 20, 19, 0.98) 100%);
+  border-color: rgba(199, 62, 46, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+html.gd-hybrid .gd-split__pane--humi .gd-split__label {
+  color: #f0c9c4;
+}
+
+html.gd-hybrid .gd-split__list--check li::before {
+  border-color: var(--gd-accent);
+}
+
+/* Tarjetas y programa */
+html.gd-hybrid .gd-section--surface .gd-card {
+  background: rgba(20, 20, 19, 0.92);
+}
+
+html.gd-hybrid .gd-card:hover {
+  border-color: rgba(230, 226, 217, 0.22);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+html.gd-hybrid .gd-card__eyebrow,
+html.gd-hybrid .gd-sched-intro__eyebrow,
+html.gd-hybrid .gd-instructors__kicker {
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  color: rgba(230, 226, 217, 0.55);
+}
+
+html.gd-hybrid .gd-card a {
+  color: #f0c9c4;
+}
+
+html.gd-hybrid .gd-card a:hover {
+  color: var(--gd-ink);
+}
+
+/* Horarios — pestañas y panel */
+html.gd-hybrid .gd-pickers__tab {
+  background: rgba(20, 20, 19, 0.75);
+  border-color: var(--gd-line);
+  color: rgba(230, 226, 217, 0.72);
+}
+
+html.gd-hybrid .gd-pickers__tab:hover {
+  border-color: rgba(230, 226, 217, 0.28);
+  color: var(--gd-ink);
+}
+
+html.gd-hybrid .gd-pickers__tab[aria-selected="true"] {
+  background: linear-gradient(135deg, rgba(199, 62, 46, 0.22) 0%, rgba(20, 20, 19, 0.98) 100%);
+  border-color: rgba(199, 62, 46, 0.45);
+  color: var(--gd-ink);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+html.gd-hybrid .gd-pickers__stage::before {
+  background: radial-gradient(ellipse 70% 55% at 90% 10%, rgba(199, 62, 46, 0.12), transparent 55%);
+}
+
+html.gd-hybrid .gd-pickers__tag {
+  background: rgba(230, 226, 217, 0.06);
+  color: var(--gd-ink);
+  border-color: rgba(230, 226, 217, 0.16);
+}
+
+html.gd-hybrid .gd-pickers__adult-block {
+  background: rgba(10, 10, 9, 0.65);
+}
+
+/* Blog carrusel */
+html.gd-hybrid .gd-blog-section {
+  background: #0e0e0d;
+  border-color: var(--gd-line);
+}
+
+html.gd-hybrid .gd-blog-slide__card {
+  background: var(--gd-surface);
+  border-color: var(--gd-line);
+  box-shadow: var(--gd-shadow);
+}
+
+html.gd-hybrid .gd-blog-slide__headline a {
+  color: var(--gd-ink);
+}
+
+html.gd-hybrid .gd-blog-slide__headline a:hover {
+  color: #f0c9c4;
+}
+
+html.gd-hybrid .gd-blog-slide__role {
+  color: var(--gd-muted);
+}
+
+html.gd-hybrid .gd-blog-slide__body {
+  color: rgba(230, 226, 217, 0.78);
+}
+
+html.gd-hybrid .gd-blog-slide__read {
+  color: #f0c9c4;
+}
+
+html.gd-hybrid .gd-blog-slide__mark {
+  color: rgba(230, 226, 217, 0.12);
+}
+
+html.gd-hybrid .gd-blog-carousel__arrow {
+  background: rgba(20, 20, 19, 0.95);
+  border-color: var(--gd-line);
+  color: var(--gd-ink);
+}
+
+html.gd-hybrid .gd-blog-carousel__arrow:hover {
+  border-color: rgba(199, 62, 46, 0.45);
+  color: #f0c9c4;
+  background: rgba(199, 62, 46, 0.12);
+}
+
+html.gd-hybrid .gd-blog-carousel__viewport:focus-visible {
+  outline-color: var(--gd-ink);
+}
+
+html.gd-hybrid .gd-blog-more a,
+html.gd-hybrid .gd-schedule-foot a {
+  color: #f0c9c4;
+}
+
+/* Manifiesto + pirámide (solo preview con .gd-manifesto): tipografía Guidde / hybrid */
+html.gd-hybrid .gd-manifesto .gd-manifesto__kicker,
+html.gd-hybrid .gd-manifesto .gd-manifesto__pyramid-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(230, 226, 217, 0.55);
+}
+
+html.gd-hybrid .gd-manifesto .gd-manifesto__kicker {
+  margin: 0 0 clamp(10px, 1.8vw, 16px);
+}
+
+html.gd-hybrid .gd-manifesto .gd-manifesto__pyramid-kicker {
+  margin: 0;
+  width: 100%;
+  max-width: min(440px, 100%);
+  text-align: center;
+}
+
+html.gd-hybrid .gd-manifesto .gd-manifesto__quote {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(1.15rem, 2vw + 0.8rem, 1.72rem);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+  color: var(--gd-ink);
+  max-width: min(38rem, 100%);
+  white-space: normal;
+}
+
+html.gd-hybrid .gd-manifesto .gd-manifesto__quote.manifesto--beltView {
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.05vw + 0.75rem, 1.2rem);
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  max-width: min(30rem, 100%);
+}
+
+html.gd-hybrid .gd-manifesto .gd-manifesto__quote.manifesto--pull.manifesto--beltView {
+  padding: 4px 0 2px clamp(16px, 3vw, 22px);
+}
+
+html.gd-hybrid .gd-manifesto .manifesto__beltName {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.2em;
+  opacity: 0.9;
+  color: rgba(230, 226, 217, 0.92);
+}
+
+html.gd-hybrid .gd-manifesto .manifesto__beltPara {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 1em;
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  color: var(--plaster);
+  margin: 0.28em 0 0;
+}
+
+html.gd-hybrid .gd-manifesto .manifesto__beltPara:first-of-type {
+  margin-top: 0.1em;
+}
+
+html.gd-hybrid .gd-manifesto .gd-manifesto__pyramid-foot {
+  font-family: var(--font-sans);
+  font-size: clamp(0.8rem, 0.35vw + 0.76rem, 0.9rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.5;
+  color: var(--gd-muted);
+}
+
+/* Instructores */
+html.gd-hybrid .gd-instructor-card:hover {
+  border-color: rgba(230, 226, 217, 0.18);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.4);
+}
+
+html.gd-hybrid .gd-instructor-card__avatar {
+  background: linear-gradient(135deg, rgba(199, 62, 46, 0.45), rgba(20, 20, 19, 0.9));
+  border-color: var(--gd-line);
+}
+
+/* Trust — refuerzo cálido sobre negro */
+html.gd-hybrid .gd-trust {
+  background: linear-gradient(135deg, #0a0a09 0%, #1a120f 48%, #2a1814 100%);
+  color: var(--gd-ink);
+  border-color: var(--gd-line);
+}
+
+html.gd-hybrid .gd-trust h2 {
+  color: var(--gd-ink);
+}
+
+/* FAQ */
+html.gd-hybrid .gd-faq details {
+  background: rgba(20, 20, 19, 0.85);
+}
+
+/* Footer */
+html.gd-hybrid .gd-footer {
+  background: var(--gd-bg);
+  border-color: var(--gd-line);
+}
+
+html.gd-hybrid .gd-footer a {
+  color: #f0c9c4;
+}

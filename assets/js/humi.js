@@ -61,9 +61,9 @@ const data = {
     kicker: "MANIFIESTO",
     pyramidLabel: "PROGRESIÓN DE GRADOS",
     pyramidFoot:
-      "Cada color se amplía con el cursor; al salir de la pirámide, vuelve el manifiesto.",
+      "Cada cinta muestra su lectura al explorarla; al salir de la pirámide, vuelve el manifiesto.",
     quote:
-      "En HUMI el color cuenta lo que estás aprendiendo a ser, no solo lo que sabes hacer.\nPasa el cursor por la pirámide para leer el significado de cada cinta.",
+      "En HUMI el color cuenta lo que estás aprendiendo a ser, no solo lo que sabes hacer.",
     beltMeanings: {
       black: {
         title: "Cinta Negra",
