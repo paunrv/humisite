@@ -9,6 +9,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
+        previewGuidde: path.resolve(__dirname, "preview-guidde.html"),
         blogTaekwondo: path.resolve(__dirname, "blog-taekwondo-y-su-filosofia.html"),
         blogHistoria: path.resolve(__dirname, "blog-historia-del-taekwondo.html"),
         blogJuramento: path.resolve(__dirname, "blog-juramento-reglas-y-vocabulario-del-taekwondo.html"),
