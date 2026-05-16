@@ -1,37 +1,49 @@
 # HUMI Taekwondo — Ensenada
 
-Sitio web de **HUMI Taekwondo (Ensenada, Baja California)**. Proyecto frontend estático servido con **Vite** para desarrollo y build.
+Sitio web estático de **HUMI Taekwondo** (Ensenada, B.C.). Stack: **HTML + CSS + JS** sin frameworks de UI; tipografía **Geist** y **Geist Mono** (Google Fonts). Desarrollo y build con **Vite**; despliegue recomendado en **Vercel**.
 
 ## Requisitos
 
-- Node.js (recomendado: versión LTS)
+- Node.js (LTS recomendado)
 - npm
 
-## Correr localmente
+## Desarrollo local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Luego abre `http://localhost:5173`.
+Abre `http://localhost:5173`.
 
-### Build y preview
+## Build y preview
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Estructura básica
+La salida va a `dist/` (no versionar).
 
-- `index.html`: entrada principal
-- `assets/`: CSS y JS del sitio (`humi.css`, `humi.js`)
-- `public/images/`: imágenes servidas en `/images/...` (Vite)
-- `blog-*.html`: artículos estáticos del blog (también entradas en `vite.config.ts`)
-- `dist/`: salida del build (generada, no se versiona)
+## Despliegue en Vercel
+
+1. Conecta el repositorio en Vercel; suele detectar **Vite** solo.
+2. Si hace falta forzar rutas de build, el repo incluye `vercel.json` con `npm run build` y salida `dist`.
+3. Raíz del sitio: `index.html`; entradas adicionales están declaradas en `vite.config.ts` para el build multipágina.
+
+## Estructura
+
+| Ruta / carpeta | Uso |
+|----------------|-----|
+| `index.html` | Landing principal (rediseño `hm-*`) |
+| `sitio-editorial.html` | Mapa, calendario por grupo, índice del blog |
+| `blog-*.html` | Artículos del blog |
+| `assets/css/humi-redesign.css` | Estilos del sitio (modo oscuro, paleta HUMI) |
+| `assets/js/humi-redesign.js` | Nav móvil y FAQ |
+| `public/images/` | Imágenes en `/images/...` (Vite) |
+| `vite.config.ts` | Entradas HTML del build multipágina |
+| `vercel.json` | Comando de build y directorio de salida |
 
 ## Licencia
 
 Ver `LICENSE.txt`.
-

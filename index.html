@@ -1,1077 +1,1769 @@
 <!DOCTYPE html>
-<html lang="es-MX" class="gd-hybrid">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>HUMI — Desarrollo humano a través del Taekwondo · Ensenada</title>
-		<meta
-			name="description"
-			content="HUMI Taekwondo en Ensenada: horarios por edad, manifiesto y grados, reseñas, Instagram, blog e instructores. Estructura clara y paleta editorial."
-		/>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
-			rel="stylesheet"
-		/>
-		<link rel="stylesheet" href="assets/css/humi.css" />
-		<link rel="stylesheet" href="assets/css/humi-guidde-preview.css" />
-		<link rel="stylesheet" href="assets/css/humi-guidde-hybrid.css" />
-	</head>
-	<body>
-		<a class="gd-skip" href="#contenido">Saltar al contenido</a>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUMI — Desarrollo humano a través del Taekwondo · Ensenada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-		<header class="gd-top">
-			<div class="gd-wrap gd-top__inner">
-				<a class="gd-logo" href="index.html" aria-current="page">
-					<span class="gd-logo__dot" aria-hidden="true"></span>
-					HUMI <span>Taekwondo</span>
-				</a>
-				<nav class="gd-nav" aria-label="Principal">
-					<a href="#programas">Programas</a>
-					<a href="#horarios-interactivo">Horarios</a>
-					<a href="#instructores">Instructores</a>
-					<a href="#blog">Blog</a>
-					<a href="#manifesto">Manifiesto</a>
-					<a href="#reviews">Reseñas</a>
-					<a href="#instagram-humi">Instagram</a>
-					<a href="#faq">FAQ</a>
-				</nav>
-				<a class="gd-btn gd-btn--primary gd-btn--sm" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener"
-					>WhatsApp</a
-				>
-			</div>
-		</header>
+  :root {
+    --bg: #080808;
+    --bg-2: #0f0f0f;
+    --bg-3: #161616;
+    --bg-card: #111111;
+    --border: rgba(255,255,255,0.08);
+    --border-hover: rgba(255,255,255,0.15);
+    --text: #f5f5f5;
+    --text-muted: #888;
+    --text-dim: #555;
+    --accent: #164A89;
+    --accent-2: #4a8fd4;
+    --accent-glow: rgba(22,74,137,0.2);
+    --accent-glow-strong: rgba(22,74,137,0.35);
+    --green: #4ade80;
+    --amber: #fbbf24;
+  }
 
-		<main id="contenido">
-			<section class="gd-hero gd-feature-bg gd-feature-bg--hero" id="hero" aria-labelledby="hero-title">
-				<div class="gd-wrap gd-hero__content">
-					<div>
-						<p class="gd-pill">
-							<span class="gd-pill__tag">Ensenada</span>
-							Desarrollo humano a través del Taekwondo
-						</p>
-						<h1 id="hero-title">La confianza no se declara. Se entrena.</h1>
-						<p class="gd-hero__lede">
-							Para padres que buscan estructura emocional, no solo una actividad. El Taekwondo es nuestro lenguaje; la presencia, el punto.
-						</p>
-						<div class="gd-hero__actions">
-							<a class="gd-btn gd-btn--primary" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener"
-								>Más información</a
-							>
-							<a class="gd-btn gd-btn--ghost" href="#horarios-interactivo">Ver horarios</a>
-						</div>
-						<p class="gd-hero__note">Respuesta por mensaje · Primera visita con tiempo de llegar 10 minutos antes</p>
-					</div>
-				</div>
-			</section>
+  /* ── LIGHT SECTIONS ── */
+  .section-light {
+    background: #f8f8f6;
+    color: #0f0f0f;
+    max-width: none;
+    padding-left: calc(50vw - 580px);
+    padding-right: calc(50vw - 580px);
+  }
+  @media (max-width: 1200px) {
+    .section-light { padding-left: 2rem; padding-right: 2rem; }
+  }
+  .section-light .section-eyebrow { color: #164A89; }
+  .section-light .section-title { color: #0f0f0f; }
+  .section-light .section-sub { color: #555; }
+  .section-light .programs-grid,
+  .section-light .reviews-grid,
+  .section-light .team-grid,
+  .section-light .faq-list { --border: rgba(0,0,0,0.08); border-color: rgba(0,0,0,0.08); }
+  .section-light .program-card,
+  .section-light .review-card,
+  .section-light .team-card { background: #ffffff; border-color: rgba(0,0,0,0.07); }
+  .section-light .program-card:hover,
+  .section-light .review-card:hover,
+  .section-light .team-card:hover { background: #f1f0ee; }
+  .section-light .program-name,
+  .section-light .team-name,
+  .section-light .review-name,
+  .section-light .blog-title,
+  .section-light .faq-q { color: #0f0f0f; }
+  .section-light .program-desc,
+  .section-light .team-bio,
+  .section-light .review-text,
+  .section-light .blog-excerpt,
+  .section-light .faq-a { color: #555; }
+  .section-light .program-time,
+  .section-light .blog-tag-line,
+  .section-light .review-source { color: #999; }
+  .section-light .prog-tag,
+  .section-light .team-dan { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.08); color: #555; }
+  .section-light .team-role { color: #164A89; }
+  .section-light .review-avatar { background: rgba(22,74,137,0.1); border-color: rgba(22,74,137,0.2); color: #164A89; }
+  .section-light .blog-card { background: #ffffff; border-color: rgba(0,0,0,0.07); }
+  .section-light .blog-card:hover { background: #f1f0ee; }
+  .section-light .blog-cta { color: #164A89; }
+  .section-light .faq-item { border-color: rgba(0,0,0,0.08); }
+  .section-light .faq-icon { background: #f1f0ee; border-color: rgba(0,0,0,0.08); color: #555; }
+  .section-light .comparison-wrap { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.08); }
+  .section-light .comp-col { background: #ffffff; }
+  .section-light .comp-col.featured { background: #f1f0ee; }
+  .section-light .comp-title { color: #0f0f0f; }
+  .section-light .comp-subtitle { color: #999; }
+  .section-light .comp-list li { color: #555; border-color: rgba(0,0,0,0.04); }
+  .section-light .featured .comp-list li { color: #0f0f0f; }
+  .section-light .comp-check.no { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); color: #999; }
+  .section-light .bento { background: rgba(0,0,0,0.07); border-color: rgba(0,0,0,0.07); }
+  .section-light .bento-card { background: #ffffff; }
+  .section-light .bento-card:hover { background: #f1f0ee; }
+  .section-light .bento-card h3 { color: #0f0f0f; }
+  .section-light .bento-card p { color: #555; }
+  .section-light .bento-tag { background: rgba(22,74,137,0.08); color: #164A89; border-color: rgba(22,74,137,0.15); }
+  .section-light .bento-icon { background: rgba(22,74,137,0.08); border-color: rgba(22,74,137,0.15); }
+  .section-light .bento-large-num { background: linear-gradient(135deg, #0f0f0f 40%, #999); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .section-light .hero-stats { background: #ffffff; border-color: rgba(0,0,0,0.08); }
+  .section-light .hero-stat { border-color: rgba(0,0,0,0.08); }
+  .section-light .hero-stat-num { color: #0f0f0f; }
+  .section-light .hero-stat-label { color: #999; }
+  /* marquee light */
+  .marquee-section.light { background: #f8f8f6; }
+  .marquee-section.light::before { background: linear-gradient(90deg, #f8f8f6, transparent); }
+  .marquee-section.light::after { background: linear-gradient(-90deg, #f8f8f6, transparent); }
+  .marquee-section.light .marquee-label { color: #bbb; }
+  .marquee-section.light .marquee-item { color: #999; }
 
-			<div class="gd-marquee" aria-hidden="true">
-				<div class="gd-marquee__track">
-					<span class="gd-marquee__item">HUMI Taekwondo</span>
-					<span class="gd-marquee__item">Poomsae</span>
-					<span class="gd-marquee__item">Sparring</span>
-					<span class="gd-marquee__item">Freestyle</span>
-					<span class="gd-marquee__item">Martial Fitness</span>
-					<span class="gd-marquee__item">8 generaciones de cinta negra</span>
-					<span class="gd-marquee__item">Más de 16 años</span>
-					<span class="gd-marquee__item">World Taekwondo Union</span>
-					<span class="gd-marquee__item">HUMI Taekwondo</span>
-					<span class="gd-marquee__item">Poomsae</span>
-					<span class="gd-marquee__item">Sparring</span>
-					<span class="gd-marquee__item">Freestyle</span>
-					<span class="gd-marquee__item">Martial Fitness</span>
-					<span class="gd-marquee__item">8 generaciones de cinta negra</span>
-					<span class="gd-marquee__item">Más de 16 años</span>
-					<span class="gd-marquee__item">World Taekwondo Union</span>
-				</div>
-			</div>
+  html { scroll-behavior: smooth; }
 
-			<section class="gd-section" aria-labelledby="vs-title">
-				<div class="gd-wrap">
-					<div class="gd-compare-intro">
-						<h2 id="vs-title">Dos formas de entender el dojang</h2>
-						<p>La diferencia no es solo el uniforme: es cómo se agrupa, se exige y se acompaña.</p>
-					</div>
-					<div class="gd-split">
-						<div class="gd-split__pane gd-split__pane--other">
-							<p class="gd-split__label">Otras escuelas:</p>
-							<ul class="gd-split__list">
-								<li>Grupos con muchas edades</li>
-								<li>Pocas opciones de programas</li>
-								<li>Muchos exámenes al año</li>
-								<li>Programas anticuados</li>
-							</ul>
-						</div>
-						<div class="gd-split__pane gd-split__pane--humi">
-							<p class="gd-split__label">En HUMI:</p>
-							<ul class="gd-split__list gd-split__list--check">
-								<li>Grupos por edad y objetivo</li>
-								<li>Mejores instalaciones</li>
-								<li>Disciplina con calidez</li>
-								<li>Progresión por niveles sin vergüenza pública</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</section>
+  body {
+    font-family: 'Geist', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-			<section class="gd-section gd-section--surface gd-section--programs" id="programas" aria-labelledby="feat-title">
-				<div class="gd-wrap">
-					<header class="gd-sched-intro">
-						<p class="gd-sched-intro__eyebrow">Programas</p>
-						<h2 id="feat-title">Cada detalle, con intención</h2>
-						<p class="gd-sched-intro__lede">
-							Niños, teens y adultos: misma ética, distinta exigencia. Taekwondo, HIIT y trabajo con pesas donde corresponde. Elige un grupo para
-							ver días, hora y enfoque.
-						</p>
-					</header>
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em;
+    color: var(--text); text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo-mark {
+    width: 28px; height: 28px;
+    background: var(--accent);
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 800; color: white;
+    letter-spacing: 0;
+  }
+  .nav-links {
+    display: flex; gap: 0; list-style: none;
+  }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none;
+    font-size: 0.875rem; padding: 0.5rem 0.85rem;
+    transition: color 0.15s;
+    border-radius: 6px;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .nav-cta {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .btn-ghost {
+    color: var(--text-muted); background: none; border: 1px solid var(--border);
+    padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.875rem;
+    cursor: pointer; text-decoration: none; transition: all 0.15s;
+    font-family: inherit;
+  }
+  .btn-ghost:hover { color: var(--text); border-color: var(--border-hover); }
+  .btn-primary {
+    background: white; color: #080808;
+    border: none; padding: 0.45rem 1rem; border-radius: 8px;
+    font-size: 0.875rem; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all 0.15s; font-family: inherit;
+  }
+  .btn-primary:hover { background: #e8e8e8; }
 
-					<div class="gd-pickers" id="horarios-interactivo" data-gd-sched>
-						<div class="gd-pickers__rail" role="tablist" aria-label="Grupos por edad">
-							<button type="button" class="gd-pickers__tab" role="tab" id="gd-tab-3" aria-selected="true" aria-controls="gd-panel-3" tabindex="0">
-								3 años
-							</button>
-							<button type="button" class="gd-pickers__tab" role="tab" id="gd-tab-46" aria-selected="false" aria-controls="gd-panel-46" tabindex="-1">
-								4 a 6 años
-							</button>
-							<button type="button" class="gd-pickers__tab" role="tab" id="gd-tab-710" aria-selected="false" aria-controls="gd-panel-710" tabindex="-1">
-								7 a 10 años
-							</button>
-							<button type="button" class="gd-pickers__tab" role="tab" id="gd-tab-1116" aria-selected="false" aria-controls="gd-panel-1116" tabindex="-1">
-								11 a 16 años
-							</button>
-							<button type="button" class="gd-pickers__tab" role="tab" id="gd-tab-adult" aria-selected="false" aria-controls="gd-panel-adult" tabindex="-1">
-								Adultos
-							</button>
-						</div>
+  /* ── ANNOUNCEMENT BANNER ── */
+  .banner {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; padding: 10px 1rem;
+    background: linear-gradient(90deg, rgba(22,74,137,0.12), rgba(74,143,212,0.08));
+    border-bottom: 1px solid rgba(22,74,137,0.2);
+    font-size: 0.8125rem; color: var(--text-muted);
+    margin-top: 60px;
+  }
+  .banner-badge {
+    background: var(--accent); color: white;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    padding: 2px 8px; border-radius: 100px; text-transform: uppercase;
+  }
+  .banner a { color: var(--accent-2); text-decoration: none; }
+  .banner a:hover { text-decoration: underline; }
 
-						<div class="gd-pickers__stage">
-							<div class="gd-pickers__panel" role="tabpanel" id="gd-panel-3" aria-labelledby="gd-tab-3">
-								<p class="gd-pickers__group-title">3 años</p>
-								<dl class="gd-pickers__meta">
-									<div>
-										<dt>Días</dt>
-										<dd>Martes, miércoles y jueves</dd>
-									</div>
-									<div>
-										<dt>Hora</dt>
-										<dd>3:20 – 3:55 PM</dd>
-									</div>
-								</dl>
-								<p class="gd-pickers__types"><span class="gd-pickers__tag">Taekwondo (iniciación)</span></p>
-								<p class="gd-pickers__focus">
-									Primeras rutinas de cuerpo y atención, con acompañamiento cercano y contención emocional.
-								</p>
-							</div>
+  /* ── HERO ── */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+    min-height: 85vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(22,74,137,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(22,74,137,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 100%);
+  }
+  .hero-glow {
+    position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 600px; z-index: 0;
+    background: radial-gradient(ellipse at center, rgba(22,74,137,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero > *:not(.hero-grid-bg):not(.hero-glow) { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--bg-3); border: 1px solid var(--border);
+    border-radius: 100px; padding: 5px 14px 5px 8px;
+    font-size: 0.8rem; color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+  }
+  .hero h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    max-width: 780px;
+  }
+  .hero h1 .accent-text {
+    background: linear-gradient(135deg, #4a8fd4, #164A89, #7ab3e0);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.125rem; color: var(--text-muted); max-width: 500px;
+    margin-bottom: 2.5rem; line-height: 1.7;
+  }
+  .hero-actions {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center;
+    margin-bottom: 4rem;
+  }
+  .btn-hero {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: white; color: #080808;
+    border: none; padding: 0.75rem 1.5rem; border-radius: 10px;
+    font-size: 0.9375rem; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: all 0.15s; font-family: inherit;
+  }
+  .btn-hero:hover { background: #e8e8e8; transform: translateY(-1px); }
+  .btn-hero-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border); padding: 0.75rem 1.5rem; border-radius: 10px;
+    font-size: 0.9375rem; font-weight: 500; cursor: pointer;
+    text-decoration: none; transition: all 0.15s; font-family: inherit;
+  }
+  .btn-hero-outline:hover { border-color: var(--border-hover); background: rgba(255,255,255,0.03); }
+  .hero-note {
+    font-size: 0.8rem; color: var(--text-dim);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .hero-note::before { content: '↗'; font-size: 0.75rem; }
 
-							<div class="gd-pickers__panel" role="tabpanel" id="gd-panel-46" aria-labelledby="gd-tab-46" hidden>
-								<p class="gd-pickers__group-title">4 a 6 años</p>
-								<dl class="gd-pickers__meta">
-									<div>
-										<dt>Días</dt>
-										<dd class="gd-pickers__pre">Lunes — Sparring<br />Martes y jueves — Programa básico<br />Viernes — Freestyle</dd>
-									</div>
-									<div>
-										<dt>Hora</dt>
-										<dd>4:00 – 4:50 PM</dd>
-									</div>
-								</dl>
-								<p class="gd-pickers__types">
-									<span class="gd-pickers__tag">Sparring</span>
-									<span class="gd-pickers__tag">Programa básico</span>
-									<span class="gd-pickers__tag">Freestyle</span>
-								</p>
-								<p class="gd-pickers__focus">Fundamentos, control y hábito de esfuerzo en un espacio seguro y predecible.</p>
-							</div>
+  /* HERO STATS */
+  .hero-stats {
+    display: flex; gap: 0;
+    border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; background: var(--bg-card);
+  }
+  .hero-stat {
+    padding: 1rem 2rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-size: 1.5rem; font-weight: 700; letter-spacing: -0.03em;
+    display: block;
+  }
+  .hero-stat-label {
+    font-size: 0.75rem; color: var(--text-muted); margin-top: 2px; display: block;
+  }
 
-							<div class="gd-pickers__panel" role="tabpanel" id="gd-panel-710" aria-labelledby="gd-tab-710" hidden>
-								<p class="gd-pickers__group-title">7 a 10 años</p>
-								<dl class="gd-pickers__meta">
-									<div>
-										<dt>Días</dt>
-										<dd class="gd-pickers__pre">Lunes — Sparring<br />Martes y jueves — Programa básico<br />Miércoles — Poomsae<br />Viernes — Freestyle</dd>
-									</div>
-									<div>
-										<dt>Hora</dt>
-										<dd>5:00 – 6:00 PM</dd>
-									</div>
-								</dl>
-								<p class="gd-pickers__types">
-									<span class="gd-pickers__tag">Sparring</span>
-									<span class="gd-pickers__tag">Programa básico</span>
-									<span class="gd-pickers__tag">Poomsae</span>
-									<span class="gd-pickers__tag">Freestyle</span>
-								</p>
-								<p class="gd-pickers__focus">Técnica, condición y foco: el estándar sube con el cuerpo y con la actitud.</p>
-							</div>
+  /* ── MARQUEE ── */
+  .marquee-section {
+    padding: 2.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-section::before, .marquee-section::after {
+    content: '';
+    position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2;
+  }
+  .marquee-section::before { left: 0; background: linear-gradient(90deg, var(--bg), transparent); }
+  .marquee-section::after { right: 0; background: linear-gradient(-90deg, var(--bg), transparent); }
+  .marquee-label {
+    text-align: center; font-size: 0.75rem; color: var(--text-dim);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .marquee-track {
+    display: flex; gap: 2.5rem; width: max-content;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.875rem; color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .marquee-item-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); opacity: 0.6;
+  }
 
-							<div class="gd-pickers__panel" role="tabpanel" id="gd-panel-1116" aria-labelledby="gd-tab-1116" hidden>
-								<p class="gd-pickers__group-title">11 a 16 años</p>
-								<dl class="gd-pickers__meta">
-									<div>
-										<dt>Días</dt>
-										<dd class="gd-pickers__pre">Lunes — Sparring<br />Martes y jueves — Programa básico<br />Miércoles — Poomsae<br />Viernes — Freestyle</dd>
-									</div>
-									<div>
-										<dt>Hora</dt>
-										<dd>6:00 – 7:00 PM</dd>
-									</div>
-								</dl>
-								<p class="gd-pickers__types">
-									<span class="gd-pickers__tag">Sparring</span>
-									<span class="gd-pickers__tag">Programa básico</span>
-									<span class="gd-pickers__tag">Poomsae</span>
-									<span class="gd-pickers__tag">Freestyle</span>
-								</p>
-								<p class="gd-pickers__focus">Constancia bajo exigencia, compañerismo y mentalidad: fuerza sin necesidad de gritar.</p>
-							</div>
+  /* ── SECTIONS ── */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-full {
+    max-width: none; border-top: 1px solid var(--border);
+    padding-left: 0; padding-right: 0;
+  }
+  .section-full > .section-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+  }
+  .section-eyebrow {
+    font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent-2); font-weight: 600; margin-bottom: 1rem;
+    font-family: 'Geist Mono', monospace;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
+    margin-bottom: 1rem; max-width: 600px;
+  }
+  .section-sub {
+    font-size: 1rem; color: var(--text-muted); max-width: 500px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
 
-							<div class="gd-pickers__panel" role="tabpanel" id="gd-panel-adult" aria-labelledby="gd-tab-adult" hidden>
-								<p class="gd-pickers__group-title">Adultos</p>
-								<div class="gd-pickers__adult-grid">
-									<div class="gd-pickers__adult-block">
-										<p class="gd-pickers__adult-label">Turno PM</p>
-										<dl class="gd-pickers__meta">
-											<div>
-												<dt>Días</dt>
-												<dd>Martes y jueves</dd>
-											</div>
-											<div>
-												<dt>Hora</dt>
-												<dd>7:00 – 8:00 PM</dd>
-											</div>
-										</dl>
-										<p class="gd-pickers__types"><span class="gd-pickers__tag">Taekwondo + HIIT + dumbbells</span></p>
-										<p class="gd-pickers__focus">Cuerpo fuerte, técnica clara y válvula seria para el estrés del día a día.</p>
-									</div>
-									<div class="gd-pickers__adult-block">
-										<p class="gd-pickers__adult-label">Turno AM</p>
-										<dl class="gd-pickers__meta">
-											<div>
-												<dt>Días</dt>
-												<dd>Lunes a jueves</dd>
-											</div>
-											<div>
-												<dt>Hora</dt>
-												<dd>7:30 – 8:30 AM</dd>
-											</div>
-										</dl>
-										<p class="gd-pickers__types"><span class="gd-pickers__tag">Taekwondo + HIIT + dumbbells</span></p>
-										<p class="gd-pickers__focus">Energía y enfoque antes del trabajo: disciplina que cabe en la agenda real.</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+  /* ── BENTO GRID ── */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(60px, auto);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .bento-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    transition: background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .bento-card:hover { background: #161616; }
+  .bento-card.span-4 { grid-column: span 4; }
+  .bento-card.span-6 { grid-column: span 6; }
+  .bento-card.span-8 { grid-column: span 8; }
+  .bento-card.span-12 { grid-column: span 12; }
+  .bento-card.row-2 { grid-row: span 2; }
+  .bento-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent-glow); border: 1px solid rgba(22,74,137,0.25);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem; font-size: 1.1rem;
+  }
+  .bento-card h3 {
+    font-size: 1rem; font-weight: 600; letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .bento-card p {
+    font-size: 0.875rem; color: var(--text-muted); line-height: 1.6;
+  }
+  .bento-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    background: var(--accent-glow); color: var(--accent-2);
+    border: 1px solid rgba(22,74,137,0.25);
+    padding: 3px 8px; border-radius: 100px; margin-bottom: 0.75rem;
+  }
+  .bento-large-num {
+    font-size: 4rem; font-weight: 800; letter-spacing: -0.05em;
+    background: linear-gradient(135deg, var(--text) 40%, var(--text-dim));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1; margin: 0.5rem 0;
+  }
 
-					<p class="gd-schedule-foot">
-						Sparring, Poomsae y Freestyle aplican según calendario por grupo. En fechas especiales los horarios pueden variar.
-						<a href="sitio-editorial.html#schedule">Calendario completo (vista editorial) →</a>
-					</p>
-				</div>
-			</section>
+  /* ── PROGRAMS ── */
+  .programs-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+  }
+  .program-card {
+    background: var(--bg-card); padding: 1.75rem 1.5rem;
+    cursor: pointer; transition: background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .program-card:hover { background: #161616; }
+  .program-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--accent); opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .program-card:hover::before { opacity: 1; }
+  .program-age {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent-2);
+    font-family: 'Geist Mono', monospace;
+    margin-bottom: 0.6rem; display: block;
+  }
+  .program-name {
+    font-size: 1.1rem; font-weight: 700; letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .program-desc {
+    font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+  .program-time {
+    font-size: 0.8rem; color: var(--text-dim);
+    font-family: 'Geist Mono', monospace;
+  }
+  .program-tags {
+    display: flex; gap: 4px; flex-wrap: wrap; margin-top: 0.75rem;
+  }
+  .prog-tag {
+    font-size: 0.65rem; font-weight: 600;
+    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+    color: var(--text-muted); padding: 2px 7px; border-radius: 100px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
 
-			<section
-				id="manifesto"
-				class="gd-manifesto section section--manifesto section--dark"
-				data-manifesto-bg
-				style="--manifesto-bg: url('/images/pic06.jpg');"
-				aria-labelledby="manifesto-heading"
-			>
-				<div class="container container--wide manifestoLayout">
-					<div class="manifestoMain">
-						<p class="gd-manifesto__kicker" id="manifesto-heading">MANIFIESTO</p>
-						<blockquote
-							class="manifesto manifesto--pull gd-manifesto__quote"
-							data-manifesto-quote
-							aria-live="polite"
-							aria-atomic="true"
-						>
-							En HUMI el color cuenta lo que estás aprendiendo a ser, no solo lo que sabes hacer.
-						</blockquote>
-					</div>
-					<aside class="manifestoAside" aria-labelledby="manifesto-pyramid-label">
-						<p class="manifestoAside__label gd-manifesto__pyramid-kicker" id="manifesto-pyramid-label">
-							PROGRESIÓN DE GRADOS
-						</p>
-						<figure
-							class="beltPyramid"
-							role="img"
-							aria-labelledby="manifesto-pyramid-label"
-							aria-describedby="manifesto-pyramid-foot"
-						>
-							<div class="beltPyramid__stack">
-								<div class="beltPyramid__tier beltPyramid__tier--black" data-belt="black" tabindex="0">
-									<div class="beltPyramid__segments beltPyramid__segments--many">
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">1</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">2</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">3</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">4</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">5</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">6</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">7</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">8</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">9</span></span>
-									</div>
-									<span class="beltPyramid__name">Negro</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--red" data-belt="red" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Rojo</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Rojo Avanzado</span>
-											</span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv2">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Rojo Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Rojo</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--blue" data-belt="blue" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Azul</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Azul Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Azul</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--green" data-belt="green" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Verde</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Verde Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Verde</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--yellow" data-belt="yellow" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Amarillo</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Amarillo Avanzado</span>
-											</span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv2">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Amarillo Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Amarillo</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--orange" data-belt="orange" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Naranja</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Naranja Avanzado</span>
-											</span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv2">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Naranja Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Naranja</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--white" data-belt="white" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Blanco</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Avanzado Blanco</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Blanco</span>
-								</div>
-							</div>
-							<figcaption class="beltPyramid__caption gd-manifesto__pyramid-foot" id="manifesto-pyramid-foot">
-								Cada cinta muestra su lectura al explorarla; al salir de la pirámide, vuelve el manifiesto.
-							</figcaption>
-						</figure>
-					</aside>
-				</div>
-			</section>
+  /* ── COMPARISON ── */
+  .comparison-wrap {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .comp-col {
+    background: var(--bg-card); padding: 2rem;
+  }
+  .comp-col.featured {
+    background: var(--bg-3);
+    position: relative;
+  }
+  .comp-col.featured::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, #164A89, #4a8fd4);
+  }
+  .comp-header {
+    margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .comp-title {
+    font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;
+  }
+  .comp-subtitle {
+    font-size: 0.8rem; color: var(--text-dim);
+  }
+  .comp-list { list-style: none; }
+  .comp-list li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 0.875rem; padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    color: var(--text-muted);
+  }
+  .comp-list li:last-child { border-bottom: none; }
+  .comp-check {
+    width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
+    display: flex; align-items: center; justify-content: center; font-size: 0.6rem;
+  }
+  .comp-check.yes { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
+  .comp-check.no { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid var(--border); }
+  .featured .comp-list li { color: var(--text); }
 
-			<section class="section section--reviews section--light" id="reviews" aria-labelledby="reviews-title">
-				<div class="container">
-					<p class="code-label">TESTIMONIOS</p>
-					<div class="sectionHead">
-						<div>
-							<h2 class="display display--section" id="reviews-title">Historias de quienes ya caminan con HUMI</h2>
-							<p class="sectionLead">
-								La reputación se gana en silencio: orden, técnica y trato. Estas voces son de familias y alumnos que ya eligieron el dojang.
-								<span class="muted"> Reseñas públicas en Google Maps.</span>
-							</p>
-						</div>
-					</div>
-					<div class="grid-3">
-						<article class="card review">
-							<div class="review__stars" aria-label="5 de 5">★★★★★</div>
-							<blockquote class="review__quote">
-								“El lugar está súper bien montado y los instructores con gran capacidad técnica… mis nietos están felices y emocionados. ¡Ya se ven
-								campeones!”
-							</blockquote>
-							<p class="review__name">Aurea Torra</p>
-						</article>
-						<article class="card review">
-							<div class="review__stars" aria-label="5 de 5">★★★★★</div>
-							<blockquote class="review__quote">
-								“Excelente para hacer ejercicio y aprender técnica. Llevamos a nuestros sobrinos y les fascinó. Todo muy limpio y profesional.
-								Totalmente recomendado.”
-							</blockquote>
-							<p class="review__name">Lucia CM</p>
-						</article>
-						<article class="card review">
-							<div class="review__stars" aria-label="5 de 5">★★★★★</div>
-							<blockquote class="review__quote">
-								“No solo encontré un lugar para entrenar, encontré una familia. Clases dinámicas y muy enriquecedoras física y emocionalmente.”
-							</blockquote>
-							<p class="review__name">Tammy Unger</p>
-						</article>
-					</div>
-					<p class="fineprint">
-						Opiniones reales, compartidas con permiso.
-						<a href="https://www.google.com/maps/search/?api=1&query=C.%20S%C3%A9ptima%20436%2C%20Zona%20Centro%2C%2022800%20Ensenada%2C%20B.C.%2C%20M%C3%A9xico" target="_blank" rel="noreferrer noopener">Ver perfil y más reseñas en Google Maps →</a>
-					</p>
-				</div>
-			</section>
+  /* ── TESTIMONIALS ── */
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .review-card {
+    background: var(--bg-card); padding: 1.75rem;
+  }
+  .review-stars {
+    color: var(--amber); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 1rem;
+  }
+  .review-text {
+    font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+  .review-author {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .review-avatar {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: var(--accent-glow); border: 1px solid rgba(22,74,137,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700; color: var(--accent-2);
+    flex-shrink: 0;
+  }
+  .review-name { font-size: 0.8rem; font-weight: 600; }
+  .review-source { font-size: 0.7rem; color: var(--text-dim); }
 
-			<section class="section section--instagram section--elevated" id="instagram-humi" aria-labelledby="instagram-heading">
-				<div class="container">
-					<p class="code-label code-label--on-dark">INSTAGRAM</p>
-					<h2 class="display display--section" id="instagram-heading">@humi.taekwondo</h2>
-					<p class="instagramIntro">
-						En HUMI la comunidad es lo importante: por eso desarrollamos una metodología y un programa para asegurar experiencias únicas y un
-						desarrollo íntegro de nuestros alumnos.
-					</p>
-					<ul class="instaGrid" role="list">
-						<li class="instaGrid__cell">
-							<a class="instaGrid__link" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener" aria-label="Publicación en Instagram">
-								<img class="instaGrid__img" src="/images/pic10.png" alt="" loading="lazy" decoding="async" width="400" height="400" />
-							</a>
-						</li>
-						<li class="instaGrid__cell">
-							<a class="instaGrid__link" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener" aria-label="Publicación en Instagram">
-								<img class="instaGrid__img" src="/images/pic11.png" alt="" loading="lazy" decoding="async" width="400" height="400" />
-							</a>
-						</li>
-						<li class="instaGrid__cell">
-							<a class="instaGrid__link" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener" aria-label="Publicación en Instagram">
-								<img class="instaGrid__img" src="/images/pic12.png" alt="" loading="lazy" decoding="async" width="400" height="400" />
-							</a>
-						</li>
-						<li class="instaGrid__cell">
-							<a class="instaGrid__link" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener" aria-label="Publicación en Instagram">
-								<img class="instaGrid__img" src="/images/pic13.png" alt="" loading="lazy" decoding="async" width="400" height="400" />
-							</a>
-						</li>
-					</ul>
-					<div class="actions actions--tight" data-instagram-actions>
-						<a class="btn" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener">Ir a Instagram →</a>
-					</div>
-				</div>
-			</section>
+  /* ── TEAM ── */
+  .team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden; margin-bottom: 2rem;
+  }
+  .team-card {
+    background: var(--bg-card); padding: 2rem;
+    display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+  }
+  .team-avatar {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--accent-glow); border: 1px solid rgba(22,74,137,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; font-weight: 800; color: var(--accent-2);
+  }
+  .team-name { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.01em; }
+  .team-role {
+    font-size: 0.75rem; color: var(--accent-2);
+    font-family: 'Geist Mono', monospace; margin-top: -0.25rem;
+  }
+  .team-bio { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.6; }
+  .team-dan {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border); color: var(--text-muted);
+    padding: 3px 8px; border-radius: 100px; margin-top: auto;
+  }
 
-			<section class="gd-blog-section" id="blog" aria-labelledby="blog-title">
-				<div class="gd-wrap">
-					<div class="gd-section__head gd-section__head--blog">
-						<h2 id="blog-title">Del tatami al texto</h2>
-						<p>Artículos sobre filosofía, historia y contexto olímpico: la misma exigencia, en formato lectura.</p>
-					</div>
-				</div>
+  /* ── CTA SECTION ── */
+  .cta-section {
+    border-top: 1px solid var(--border);
+    padding: 6rem 2rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute; bottom: -40%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(22,74,137,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .cta-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+    letter-spacing: -0.04em; line-height: 1.1; margin-bottom: 1rem;
+  }
+  .cta-sub {
+    font-size: 1rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.7;
+  }
+  .cta-meta {
+    font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;
+  }
 
-				<div
-					class="gd-blog-carousel__viewport"
-					data-blog-carousel
-					role="region"
-					aria-roledescription="carrusel"
-					aria-label="Artículos del blog de HUMI"
-					tabindex="0"
-				>
-					<article class="gd-blog-slide">
-						<div class="gd-blog-slide__card">
-							<div class="gd-blog-slide__col gd-blog-slide__col--left">
-								<h3 class="gd-blog-slide__headline">
-									<a href="/blog-taekwondo-y-su-filosofia.html">Taekwondo y su filosofía</a>
-								</h3>
-								<div class="gd-blog-slide__author">
-									<img
-										class="gd-blog-slide__avatar"
-										src="/images/pic06.jpg"
-										alt="Paulina Noriega Romero Vargas, directora de HUMI Taekwondo"
-										width="52"
-										height="52"
-										loading="lazy"
-										decoding="async"
-									/>
-									<div class="gd-blog-slide__author-text">
-										<p class="gd-blog-slide__name">Paulina Noriega Romero Vargas</p>
-										<p class="gd-blog-slide__role">5.º Dan · Directora general, HUMI Taekwondo</p>
-									</div>
-								</div>
-							</div>
-							<div class="gd-blog-slide__col gd-blog-slide__col--right">
-								<p class="gd-blog-slide__body">
-									La palabra Taekwondo viene del camino del desarrollo físico, mental y emocional… y va mucho más allá de una traducción literal.
-								</p>
-								<div class="gd-blog-slide__foot">
-									<a class="gd-blog-slide__read" href="/blog-taekwondo-y-su-filosofia.html">Leer artículo →</a>
-									<span class="gd-blog-slide__mark" aria-hidden="true">HUMI</span>
-								</div>
-							</div>
-						</div>
-					</article>
+  /* ── BLOG ── */
+  .blog-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .blog-card {
+    background: var(--bg-card); padding: 1.75rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+    transition: background 0.2s; cursor: pointer; text-decoration: none;
+  }
+  .blog-card:hover { background: #161616; }
+  .blog-tag-line { font-size: 0.7rem; color: var(--text-dim); font-family: 'Geist Mono', monospace; letter-spacing: 0.06em; }
+  .blog-title { font-size: 0.9375rem; font-weight: 600; letter-spacing: -0.01em; color: var(--text); line-height: 1.4; }
+  .blog-excerpt { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+  .blog-cta { font-size: 0.8rem; color: var(--accent-2); margin-top: auto; }
 
-					<article class="gd-blog-slide">
-						<div class="gd-blog-slide__card">
-							<div class="gd-blog-slide__col gd-blog-slide__col--left">
-								<h3 class="gd-blog-slide__headline">
-									<a href="/blog-historia-del-taekwondo.html">Historia del Taekwondo</a>
-								</h3>
-								<div class="gd-blog-slide__author">
-									<img
-										class="gd-blog-slide__avatar"
-										src="/images/pic06.jpg"
-										alt="Paulina Noriega Romero Vargas, directora de HUMI Taekwondo"
-										width="52"
-										height="52"
-										loading="lazy"
-										decoding="async"
-									/>
-									<div class="gd-blog-slide__author-text">
-										<p class="gd-blog-slide__name">Paulina Noriega Romero Vargas</p>
-										<p class="gd-blog-slide__role">5.º Dan · Directora general, HUMI Taekwondo</p>
-									</div>
-								</div>
-							</div>
-							<div class="gd-blog-slide__col gd-blog-slide__col--right">
-								<p class="gd-blog-slide__body">
-									Del origen coreano y el General Choi Hong Hi al crecimiento en México: Dai Won Moon, “karate coreano” y la potencia olímpica actual.
-								</p>
-								<div class="gd-blog-slide__foot">
-									<a class="gd-blog-slide__read" href="/blog-historia-del-taekwondo.html">Leer artículo →</a>
-									<span class="gd-blog-slide__mark" aria-hidden="true">HUMI</span>
-								</div>
-							</div>
-						</div>
-					</article>
+  /* ── FAQ ── */
+  .faq-list { max-width: 720px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border); padding: 1.25rem 0;
+  }
+  .faq-q {
+    font-size: 0.9375rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem;
+  }
+  .faq-q:hover { color: var(--text-muted); }
+  .faq-icon {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--bg-3); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; flex-shrink: 0; color: var(--text-muted);
+    transition: transform 0.2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    font-size: 0.875rem; color: var(--text-muted); line-height: 1.7;
+    padding-top: 0.75rem; display: none;
+  }
+  .faq-item.open .faq-a { display: block; }
 
-					<article class="gd-blog-slide">
-						<div class="gd-blog-slide__card">
-							<div class="gd-blog-slide__col gd-blog-slide__col--left">
-								<h3 class="gd-blog-slide__headline">
-									<a href="/blog-juramento-reglas-y-vocabulario-del-taekwondo.html">Juramento, reglas y vocabulario del Taekwondo</a>
-								</h3>
-								<div class="gd-blog-slide__author">
-									<img
-										class="gd-blog-slide__avatar"
-										src="/images/pic06.jpg"
-										alt="Paulina Noriega Romero Vargas, directora de HUMI Taekwondo"
-										width="52"
-										height="52"
-										loading="lazy"
-										decoding="async"
-									/>
-									<div class="gd-blog-slide__author-text">
-										<p class="gd-blog-slide__name">Paulina Noriega Romero Vargas</p>
-										<p class="gd-blog-slide__role">5.º Dan · Directora general, HUMI Taekwondo</p>
-									</div>
-								</div>
-							</div>
-							<div class="gd-blog-slide__col gd-blog-slide__col--right">
-								<p class="gd-blog-slide__body">
-									Juramento, reglas del dojang y palabras en coreano que escucharás en clase: cultura, respeto y disciplina detrás de cada saludo.
-								</p>
-								<div class="gd-blog-slide__foot">
-									<a class="gd-blog-slide__read" href="/blog-juramento-reglas-y-vocabulario-del-taekwondo.html">Leer artículo →</a>
-									<span class="gd-blog-slide__mark" aria-hidden="true">HUMI</span>
-								</div>
-							</div>
-						</div>
-					</article>
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.8rem; color: var(--text-dim);
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--text-dim); text-decoration: none; transition: color 0.15s; }
+  .footer-links a:hover { color: var(--text-muted); }
 
-					<article class="gd-blog-slide">
-						<div class="gd-blog-slide__card">
-							<div class="gd-blog-slide__col gd-blog-slide__col--left">
-								<h3 class="gd-blog-slide__headline">
-									<a href="/blog-victor-estrada-sydney-2000.html">Sydney 2000</a>
-								</h3>
-								<div class="gd-blog-slide__author">
-									<img
-										class="gd-blog-slide__avatar"
-										src="/images/pic06.jpg"
-										alt="Paulina Noriega Romero Vargas, directora de HUMI Taekwondo"
-										width="52"
-										height="52"
-										loading="lazy"
-										decoding="async"
-									/>
-									<div class="gd-blog-slide__author-text">
-										<p class="gd-blog-slide__name">Paulina Noriega Romero Vargas</p>
-										<p class="gd-blog-slide__role">5.º Dan · Directora general, HUMI Taekwondo</p>
-									</div>
-								</div>
-							</div>
-							<div class="gd-blog-slide__col gd-blog-slide__col--right">
-								<p class="gd-blog-slide__body">
-									Primera medalla olímpica oficial del Taekwondo mexicano: contexto, repechaje y el bronce que abrió la puerta a una potencia mundial.
-								</p>
-								<div class="gd-blog-slide__foot">
-									<a class="gd-blog-slide__read" href="/blog-victor-estrada-sydney-2000.html">Leer artículo →</a>
-									<span class="gd-blog-slide__mark" aria-hidden="true">HUMI</span>
-								</div>
-							</div>
-						</div>
-					</article>
+  /* ── GRADE PYRAMID ── */
+  .grades-display {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    margin: 2rem 0;
+  }
+  .grade-row {
+    display: flex; gap: 4px;
+  }
+  .grade-belt {
+    height: 36px; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.04em;
+    text-transform: uppercase; cursor: pointer;
+    transition: transform 0.15s, opacity 0.15s;
+    border: 1px solid rgba(255,255,255,0.06);
+    min-width: 80px;
+  }
+  .grade-belt:hover { transform: scaleY(1.08); opacity: 0.85; }
 
-					<article class="gd-blog-slide">
-						<div class="gd-blog-slide__card">
-							<div class="gd-blog-slide__col gd-blog-slide__col--left">
-								<h3 class="gd-blog-slide__headline">
-									<a href="/blog-beijing-2008-taekwondo-mexico.html">Beijing 2008</a>
-								</h3>
-								<div class="gd-blog-slide__author">
-									<img
-										class="gd-blog-slide__avatar"
-										src="/images/pic06.jpg"
-										alt="Paulina Noriega Romero Vargas, directora de HUMI Taekwondo"
-										width="52"
-										height="52"
-										loading="lazy"
-										decoding="async"
-									/>
-									<div class="gd-blog-slide__author-text">
-										<p class="gd-blog-slide__name">Paulina Noriega Romero Vargas</p>
-										<p class="gd-blog-slide__role">5.º Dan · Directora general, HUMI Taekwondo</p>
-									</div>
-								</div>
-							</div>
-							<div class="gd-blog-slide__col gd-blog-slide__col--right">
-								<p class="gd-blog-slide__body">
-									Doble oro olímpico: Guillermo Pérez y María Espinoza, el contexto post-Sydney y el día en que México se consolidó como potencia en Taekwondo.
-								</p>
-								<div class="gd-blog-slide__foot">
-									<a class="gd-blog-slide__read" href="/blog-beijing-2008-taekwondo-mexico.html">Leer artículo →</a>
-									<span class="gd-blog-slide__mark" aria-hidden="true">HUMI</span>
-								</div>
-							</div>
-						</div>
-					</article>
+  /* ── LOCATION CARD ── */
+  .location-card {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem; display: flex; gap: 2rem;
+    align-items: flex-start; flex-wrap: wrap;
+  }
+  .location-info { flex: 1; min-width: 200px; }
+  .location-info h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .location-detail {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.6rem;
+  }
+  .loc-icon { color: var(--accent-2); flex-shrink: 0; margin-top: 2px; }
 
-					<article class="gd-blog-slide">
-						<div class="gd-blog-slide__card">
-							<div class="gd-blog-slide__col gd-blog-slide__col--left">
-								<h3 class="gd-blog-slide__headline">
-									<a href="/blog-paris-2024-taekwondo-mexico.html">París 2024</a>
-								</h3>
-								<div class="gd-blog-slide__author">
-									<img
-										class="gd-blog-slide__avatar"
-										src="/images/pic06.jpg"
-										alt="Paulina Noriega Romero Vargas, directora de HUMI Taekwondo"
-										width="52"
-										height="52"
-										loading="lazy"
-										decoding="async"
-									/>
-									<div class="gd-blog-slide__author-text">
-										<p class="gd-blog-slide__name">Paulina Noriega Romero Vargas</p>
-										<p class="gd-blog-slide__role">5.º Dan · Directora general, HUMI Taekwondo</p>
-									</div>
-								</div>
-							</div>
-							<div class="gd-blog-slide__col gd-blog-slide__col--right">
-								<p class="gd-blog-slide__body">
-									Post-Tokyo con hambre: Daniela Souza, Carlos Sansores, ranking y la lección de que el circuito no siempre se traduce en podio olímpico.
-								</p>
-								<div class="gd-blog-slide__foot">
-									<a class="gd-blog-slide__read" href="/blog-paris-2024-taekwondo-mexico.html">Leer artículo →</a>
-									<span class="gd-blog-slide__mark" aria-hidden="true">HUMI</span>
-								</div>
-							</div>
-						</div>
-					</article>
-				</div>
+  /* CODE PILL */
+  code {
+    font-family: 'Geist Mono', monospace;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    padding: 1px 6px; border-radius: 4px;
+    font-size: 0.85em;
+  }
 
-				<div class="gd-wrap gd-blog-carousel__controls">
-					<button type="button" class="gd-blog-carousel__arrow" data-blog-prev aria-label="Artículo anterior">
-						<span aria-hidden="true">‹</span>
-					</button>
-					<button type="button" class="gd-blog-carousel__arrow" data-blog-next aria-label="Artículo siguiente">
-						<span aria-hidden="true">›</span>
-					</button>
-				</div>
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 4rem 1rem 3rem; min-height: auto; }
+    section { padding: 4rem 1rem; }
+    .bento-card.span-4, .bento-card.span-6, .bento-card.span-8 { grid-column: span 12; }
+    .comparison-wrap, .reviews-grid, .team-grid, .blog-grid { grid-template-columns: 1fr; }
+    .hero-stats { flex-wrap: wrap; }
+    .programs-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
 
-				<div class="gd-wrap">
-					<p class="gd-blog-more">
-						<a href="#blog">Ver sección de artículos →</a>
-					</p>
-				</div>
-			</section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-mark">H</span>
+    HUMI Taekwondo
+  </a>
+  <ul class="nav-links">
+    <li><a href="#programas">Programas</a></li>
+    <li><a href="#horarios">Horarios</a></li>
+    <li><a href="#instructores">Instructores</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank">Instagram</a>
+    <a href="https://wa.me/526461093879" class="btn-primary" target="_blank">Visitar Dojang</a>
+  </div>
+</nav>
 
-			<section class="gd-section gd-section--surface gd-instructors" id="instructores" aria-labelledby="instructors-title">
-				<div class="gd-wrap">
-					<p class="gd-instructors__kicker">Equipo</p>
-					<div class="gd-section__head gd-section__head--left">
-						<h2 id="instructors-title">Autoridad con calma.</h2>
-						<p>
-							En HUMI la autoridad viene del criterio: se corrige con precisión y se acompaña sin humillar. Padres entienden el rumbo; los alumnos entienden el estándar del dojang.
-						</p>
-					</div>
-					<div class="gd-instructors__grid">
-						<article class="gd-instructor-card">
-							<div class="gd-instructor-card__avatar" aria-hidden="true">
-								<span class="gd-instructor-card__initials">PN</span>
-							</div>
-							<h3 class="gd-instructor-card__name">Paulina Noriega Romero Vargas</h3>
-							<p class="gd-instructor-card__role">5to Dan — Directora General</p>
-							<p class="gd-instructor-card__bio">
-								Liderazgo técnico y visión de largo plazo: disciplina como estructura amable, y desarrollo humano al centro de la exigencia.
-							</p>
-						</article>
-						<article class="gd-instructor-card">
-							<div class="gd-instructor-card__avatar" aria-hidden="true">
-								<span class="gd-instructor-card__initials">DC</span>
-							</div>
-							<h3 class="gd-instructor-card__name">Dulce Carolina Curiel</h3>
-							<p class="gd-instructor-card__role">3er Dan — Especialista en Poomsae</p>
-							<p class="gd-instructor-card__bio">
-								Control, detalle y progresión medida. Enseña a que la precisión sea una forma de respeto propio.
-							</p>
-						</article>
-						<article class="gd-instructor-card">
-							<div class="gd-instructor-card__avatar" aria-hidden="true">
-								<span class="gd-instructor-card__initials">MR</span>
-							</div>
-							<h3 class="gd-instructor-card__name">Mario Rodríguez Verti</h3>
-							<p class="gd-instructor-card__role">2do Dan — Instructor</p>
-							<p class="gd-instructor-card__bio">
-								Constancia y claridad en cada nivel. Acompaña la evolución técnica como hábito, no como prisa.
-							</p>
-						</article>
-					</div>
-					<p class="gd-instructors__fineprint">
-						¿Primera vez en Taekwondo? Empezamos por hábitos seguros y presencia en el dojang. ¿Ya entrenas? Aterrizamos tu nivel sin saltar fundamentos.
-					</p>
-				</div>
-			</section>
+<!-- BANNER -->
+<div class="banner">
+  <span class="banner-badge">Nuevo</span>
+  <span>Turno AM disponible · Lunes a jueves, 7:30–8:30 AM para adultos →</span>
+  <a href="#horarios">Ver horarios completos</a>
+</div>
 
-			<section class="gd-section" id="equipo" aria-labelledby="trust-title">
-				<div class="gd-wrap gd-trust">
-					<h2 id="trust-title">Disciplina con estándar, en un solo lugar</h2>
-					<p>
-						HUMI es tribu con reglas claras: grupos por edad, instructores presentes y acuerdos visibles. Taekwondo como práctica de identidad —
-						para quien también necesita un espacio serio después del trabajo o escuela.
-					</p>
-				</div>
-			</section>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
 
-			<section class="gd-section gd-section--surface" id="faq" aria-labelledby="faq-title">
-				<div class="gd-wrap">
-					<div class="gd-section__head">
-						<h2 id="faq-title">Preguntas frecuentes</h2>
-						<p>Objeciones habituales antes de la primera visita.</p>
-					</div>
-					<div class="gd-faq">
-						<details>
-							<summary>¿Nunca han hecho Taekwondo?</summary>
-							<div class="gd-faq__a">
-								Empezamos por hábitos seguros y presencia en el dojang. El cinturón blanco es bienvenida: valentía de aprender desde cero.
-							</div>
-						</details>
-						<details>
-							<summary>¿Mi hijo o hija es tímido o ansioso?</summary>
-							<div class="gd-faq__a">
-								Llega 10 minutos antes la primera vez y avísanos: ajustamos la bienvenida sin presión. El equipo orienta al grupo adecuado.
-							</div>
-						</details>
-						<details>
-							<summary>¿Dónde están y cómo llegar?</summary>
-							<div class="gd-faq__a">
-								C. Séptima 436, Zona Centro, 22800 Ensenada, B.C. Mapa y horarios de recepción en el sitio principal, sección Ubicación.
-							</div>
-						</details>
-						<details>
-							<summary>¿Cómo responden más rápido?</summary>
-							<div class="gd-faq__a">
-								WhatsApp o mensaje en Instagram. Para dudas de grupo o nivel, un mensaje corto con la edad del alumno ayuda a orientarte.
-							</div>
-						</details>
-					</div>
-				</div>
-			</section>
+  <div class="hero-eyebrow">
+    <span class="hero-eyebrow-dot"></span>
+    Ensenada, B.C. · Zona Centro · Más de 16 años
+  </div>
 
-			<section class="gd-cta-final" aria-labelledby="cta-title">
-				<div class="gd-wrap">
-					<h2 id="cta-title">¿Listo para visitar el dojang?</h2>
-					<p>Escribenos o revisa la ubicación y el calendario completo en la vista editorial de HUMI.</p>
-					<div class="gd-hero__actions">
-						<a class="gd-btn gd-btn--primary" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener">WhatsApp</a>
-						<a class="gd-btn gd-btn--ghost" href="sitio-editorial.html#location">Ubicación en mapa →</a>
-					</div>
-				</div>
-			</section>
-		</main>
+  <h1>
+    La confianza no<br>se declara.<br>
+    <span class="accent-text">Se entrena.</span>
+  </h1>
 
-		<footer class="gd-footer">
-			<div class="gd-wrap gd-footer__row">
-				<span>© HUMI Taekwondo · Ensenada, B.C.</span>
-				<span>
-					<a href="sitio-editorial.html">Sitio editorial (mapa, visita, blog extendido) →</a>
-					·
-					<a href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer">Instagram</a>
-				</span>
-			</div>
-		</footer>
+  <p class="hero-sub">
+    Desarrollo humano a través del Taekwondo. Para familias que buscan estructura emocional, no solo una actividad.
+  </p>
+
+  <div class="hero-actions">
+    <a href="https://wa.me/526461093879" class="btn-hero" target="_blank">
+      Agendar visita →
+    </a>
+    <a href="#programas" class="btn-hero-outline">
+      Ver programas
+    </a>
+  </div>
+
+  <div class="hero-note">Respuesta por mensaje · Primera visita, llega 10 min antes</div>
+
+  <div style="margin-top: 3rem;">
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">+16</span>
+        <span class="hero-stat-label">Años de trayectoria</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">8</span>
+        <span class="hero-stat-label">Generaciones cinta negra</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">5</span>
+        <span class="hero-stat-label">Grupos por edad</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">WTF</span>
+        <span class="hero-stat-label">World Taekwondo Union</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-label">Lo que practicamos</div>
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Poomsae</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Sparring</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Freestyle</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Martial Fitness</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>HIIT + Dumbbells</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Disciplina emocional</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>World Taekwondo Union</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Desarrollo humano</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Poomsae</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Sparring</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Freestyle</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Martial Fitness</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>HIIT + Dumbbells</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Disciplina emocional</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>World Taekwondo Union</span>
+    <span class="marquee-item"><span class="marquee-item-dot"></span>Desarrollo humano</span>
+  </div>
+</div>
+
+<!-- DIFERENCIADORES BENTO -->
+<section>
+  <div class="section-eyebrow">Por qué HUMI</div>
+  <div class="section-title">Dos formas de entender el dojang</div>
+  <div class="section-sub">La diferencia no es solo el uniforme: es cómo se agrupa, se exige y se acompaña.</div>
+
+  <div class="bento">
+    <div class="bento-card span-4 row-2">
+      <div class="bento-tag">Metodología</div>
+      <div class="bento-large-num">+16</div>
+      <h3>Años construyendo comunidad</h3>
+      <p>Somos jóvenes, pero consistentes. Nuestro impacto se mide en las familias de Ensenada que eligen quedarse.</p>
+    </div>
+    <div class="bento-card span-8">
+      <div class="bento-icon">👥</div>
+      <h3>Grupos por edad y objetivo</h3>
+      <p>Desde 3 años hasta adultos AM. Cada grupo tiene su exigencia, su ritmo y su identidad dentro del dojang.</p>
+    </div>
+    <div class="bento-card span-4">
+      <div class="bento-icon">🎯</div>
+      <h3>Progresión por niveles</h3>
+      <p>Sin vergüenza pública. Cada cinturón muestra lo que estás aprendiendo a <em>ser</em>, no solo lo que sabes hacer.</p>
+    </div>
+    <div class="bento-card span-4">
+      <div class="bento-icon">⚡</div>
+      <h3>Disciplina con calidez</h3>
+      <p>La autoridad viene del criterio. Se corrige con precisión y se acompaña sin humillar.</p>
+    </div>
+    <div class="bento-card span-4">
+      <div class="bento-icon">🏅</div>
+      <h3>World Taekwondo Union</h3>
+      <p>Certificación internacional. El estándar global aplicado en cada clase en Ensenada.</p>
+    </div>
+    <div class="bento-card span-4">
+      <div class="bento-icon">🧠</div>
+      <h3>Estructura emocional</h3>
+      <p>Para padres que buscan más que una actividad. El dojang como espacio de identidad real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMAS -->
+<section id="programas" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+  <div class="section-eyebrow">Programas</div>
+  <div class="section-title">Cada detalle, con intención</div>
+  <div class="section-sub">Niños, teens y adultos: misma ética, distinta exigencia. Elige un grupo para ver días, hora y enfoque.</div>
+
+  <div class="programs-grid">
+    <div class="program-card">
+      <span class="program-age">3 años</span>
+      <div class="program-name">Iniciación</div>
+      <div class="program-desc">Primeras rutinas de cuerpo y atención, con acompañamiento cercano y contención emocional.</div>
+      <div class="program-time">Mar · Mié · Jue — 3:20 PM</div>
+      <div class="program-tags">
+        <span class="prog-tag">Iniciación</span>
+      </div>
+    </div>
+    <div class="program-card">
+      <span class="program-age">4 a 6 años</span>
+      <div class="program-name">Fundamentos</div>
+      <div class="program-desc">Control y hábito de esfuerzo en un espacio seguro y predecible.</div>
+      <div class="program-time">4:00 – 4:50 PM</div>
+      <div class="program-tags">
+        <span class="prog-tag">Sparring</span>
+        <span class="prog-tag">Freestyle</span>
+      </div>
+    </div>
+    <div class="program-card">
+      <span class="program-age">7 a 10 años</span>
+      <div class="program-name">Técnica</div>
+      <div class="program-desc">Condición y foco: el estándar sube con el cuerpo y con la actitud.</div>
+      <div class="program-time">5:00 – 6:00 PM</div>
+      <div class="program-tags">
+        <span class="prog-tag">Sparring</span>
+        <span class="prog-tag">Poomsae</span>
+        <span class="prog-tag">Freestyle</span>
+      </div>
+    </div>
+    <div class="program-card">
+      <span class="program-age">11 a 16 años</span>
+      <div class="program-name">Constancia</div>
+      <div class="program-desc">Mentalidad bajo exigencia, compañerismo y fuerza sin necesidad de gritar.</div>
+      <div class="program-time">6:00 – 7:00 PM</div>
+      <div class="program-tags">
+        <span class="prog-tag">Sparring</span>
+        <span class="prog-tag">Poomsae</span>
+        <span class="prog-tag">Freestyle</span>
+      </div>
+    </div>
+    <div class="program-card" style="border-top: 2px solid var(--accent);">
+      <span class="program-age" style="color: var(--accent-2);">Adultos — PM</span>
+      <div class="program-name">Taekwondo + HIIT</div>
+      <div class="program-desc">Cuerpo fuerte, técnica clara y válvula seria para el estrés del día a día.</div>
+      <div class="program-time">7:00 – 8:00 PM</div>
+      <div class="program-tags">
+        <span class="prog-tag">HIIT</span>
+        <span class="prog-tag">Dumbbells</span>
+      </div>
+    </div>
+    <div class="program-card">
+      <span class="program-age">Adultos — AM</span>
+      <div class="program-name">Turno Mañana</div>
+      <div class="program-desc">Energía y enfoque antes del trabajo. Disciplina que cabe en la agenda real.</div>
+      <div class="program-time">Lun–Jue · 7:30 – 8:30 AM</div>
+      <div class="program-tags">
+        <span class="prog-tag">HIIT</span>
+        <span class="prog-tag">Dumbbells</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARACIÓN -->
+<section id="horarios" style="border-top: 1px solid var(--border);">
+  <div class="section-eyebrow">Comparación</div>
+  <div class="section-title">HUMI vs otras escuelas</div>
+  <div class="section-sub">La diferencia no es solo el uniforme.</div>
+
+  <div class="comparison-wrap">
+    <div class="comp-col">
+      <div class="comp-header">
+        <div class="comp-title" style="color: var(--text-muted);">Otras escuelas</div>
+        <div class="comp-subtitle">Lo que generalmente ofrecen</div>
+      </div>
+      <ul class="comp-list">
+        <li><span class="comp-check no">✕</span>Grupos mezclados de muchas edades</li>
+        <li><span class="comp-check no">✕</span>Pocas opciones de programas</li>
+        <li><span class="comp-check no">✕</span>Muchos exámenes al año, presión pública</li>
+        <li><span class="comp-check no">✕</span>Programas anticuados sin metodología</li>
+        <li><span class="comp-check no">✕</span>Poca comunicación con padres de familia</li>
+        <li><span class="comp-check no">✕</span>Instalaciones genéricas</li>
+      </ul>
+    </div>
+    <div class="comp-col featured">
+      <div class="comp-header">
+        <div class="comp-title">En HUMI</div>
+        <div class="comp-subtitle" style="color: var(--accent-2);">El estándar que nos define</div>
+      </div>
+      <ul class="comp-list">
+        <li><span class="comp-check yes">✓</span>Grupos por edad y objetivo específico</li>
+        <li><span class="comp-check yes">✓</span>Poomsae, Sparring, Freestyle, HIIT</li>
+        <li><span class="comp-check yes">✓</span>Progresión por niveles sin vergüenza pública</li>
+        <li><span class="comp-check yes">✓</span>Metodología propia, exigencia con calidez</li>
+        <li><span class="comp-check yes">✓</span>Acompañamiento visible para familias</li>
+        <li><span class="comp-check yes">✓</span>Mejores instalaciones del dojang</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFIESTO / GRADOS -->
+<section style="border-top: 1px solid var(--border);">
+  <div class="section-eyebrow">Manifiesto</div>
+  <div class="section-title">El color cuenta lo que estás aprendiendo a ser</div>
+  <div class="section-sub">No solo lo que sabes hacer. La progresión de grados en HUMI.</div>
+
+  <div class="grades-display" id="grades">
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#1a1a1a;color:#888;width:480px;" data-info="Cinta Negra — La meta. Disciplina, técnica y carácter formados.">⬛ Negro</div>
+    </div>
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#7c0a02;color:#fca5a5;width:230px;" data-info="Rojo Avanzado — Alta exigencia técnica y liderazgo en el dojang.">Rojo Avanzado</div>
+      <div class="grade-belt" style="background:#991b1b;color:#fca5a5;width:230px;" data-info="Rojo — Consolidación y preparación para cinturón negro.">Rojo</div>
+    </div>
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#1e3a5f;color:#93c5fd;width:145px;" data-info="Azul Avanzado — Técnica sólida, actitud de instructor.">Azul Av.</div>
+      <div class="grade-belt" style="background:#1d4ed8;color:#bfdbfe;width:145px;" data-info="Azul — Dominio de fundamentos, exigencia incrementada.">Azul</div>
+      <div class="grade-belt" style="background:#1e40af;color:#bfdbfe;width:145px;" data-info="Azul — Consolidación del nivel intermedio.">Azul</div>
+    </div>
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#14532d;color:#86efac;width:108px;" data-info="Verde Avanzado — Fluidez de movimiento y autocontrol.">Vd. Av.</div>
+      <div class="grade-belt" style="background:#166534;color:#86efac;width:108px;" data-info="Verde — Coordinación y técnica visibles.">Verde</div>
+      <div class="grade-belt" style="background:#15803d;color:#86efac;width:108px;" data-info="Verde — Progresión activa en fundamentos.">Verde</div>
+      <div class="grade-belt" style="background:#16a34a;color:#bbf7d0;width:108px;" data-info="Verde — Entrada al nivel intermedio.">Verde</div>
+    </div>
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#713f12;color:#fde68a;width:86px;" data-info="Amarillo Avanzado — Consistencia y mejora técnica.">Am. Av.</div>
+      <div class="grade-belt" style="background:#854d0e;color:#fde68a;width:86px;" data-info="Amarillo Avanzado — Esfuerzo visible.">Am. Av.</div>
+      <div class="grade-belt" style="background:#ca8a04;color:#fef08a;width:86px;" data-info="Amarillo — Primeros fundamentos técnicos afianzados.">Amarillo</div>
+      <div class="grade-belt" style="background:#eab308;color:#422006;width:86px;" data-info="Amarillo — Hábito de entrenamiento formado.">Amarillo</div>
+      <div class="grade-belt" style="background:#facc15;color:#422006;width:86px;" data-info="Amarillo — Base sólida de presencia en dojang.">Amarillo</div>
+    </div>
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#c2410c;color:#fed7aa;width:71px;" data-info="Naranja Avanzado — Compromiso demostrado.">Na. Av.</div>
+      <div class="grade-belt" style="background:#ea580c;color:#fed7aa;width:71px;" data-info="Naranja Avanzado — Mejora notable.">Na. Av.</div>
+      <div class="grade-belt" style="background:#f97316;color:#7c2d12;width:71px;" data-info="Naranja Avanzado — Primera exigencia física real.">Na. Av.</div>
+      <div class="grade-belt" style="background:#fb923c;color:#7c2d12;width:71px;" data-info="Naranja — Coordinación y energía en desarrollo.">Naranja</div>
+      <div class="grade-belt" style="background:#fdba74;color:#7c2d12;width:71px;" data-info="Naranja — Hábito de asistencia y actitud.">Naranja</div>
+      <div class="grade-belt" style="background:#fed7aa;color:#7c2d12;width:71px;" data-info="Naranja — Bienvenida al compromiso.">Naranja</div>
+    </div>
+    <div class="grade-row">
+      <div class="grade-belt" style="background:#e5e7eb;color:#111;width:60px;" data-info="Blanco Avanzado — Valentía de aprender desde cero, con progreso.">Bl. Av.</div>
+      <div class="grade-belt" style="background:#f3f4f6;color:#111;width:60px;" data-info="Blanco — Bienvenida. El cinturón blanco es valentía.">Blanco</div>
+      <div class="grade-belt" style="background:#f9fafb;color:#111;width:60px;" data-info="Blanco — El inicio de todo.">Blanco</div>
+      <div class="grade-belt" style="background:#fff;color:#111;width:60px;" data-info="Blanco — Primer paso en el dojang.">Blanco</div>
+      <div class="grade-belt" style="background:#f9fafb;color:#111;width:60px;" data-info="Blanco — Presencia y actitud antes que técnica.">Blanco</div>
+      <div class="grade-belt" style="background:#f3f4f6;color:#111;width:60px;" data-info="Blanco — Aquí empieza HUMI.">Blanco</div>
+      <div class="grade-belt" style="background:#e5e7eb;color:#111;width:60px;" data-info="Blanco — La base de todo lo que viene.">Blanco</div>
+    </div>
+  </div>
+  <div id="belt-info" style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--text-muted);height:24px;transition:all 0.2s;"></div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="section-light reviews-section" style="border-top: 1px solid rgba(0,0,0,0.08); overflow: hidden;">
+  <div class="reviews-layout">
+
+    <!-- LEFT: headline fijo -->
+    <div class="reviews-left">
+      <div class="section-eyebrow">Testimonios</div>
+      <div class="section-title" style="max-width: 340px;">Familias que ya confían en HUMI</div>
+      <div class="section-sub" style="max-width: 320px;">La reputación se gana en silencio: orden, técnica y trato. Reseñas reales de Google Maps.</div>
+      <div class="reviews-rating-block">
+        <div class="reviews-stars-big">★★★★★</div>
+        <div class="reviews-rating-text"><strong>5.0</strong> en Google Maps</div>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=C.+Séptima+436,+Zona+Centro,+22800+Ensenada" target="_blank" class="btn-reviews-link">Ver todas las reseñas →</a>
+    </div>
+
+    <!-- RIGHT: dos columnas con scroll automático -->
+    <div class="reviews-right">
+      <div class="reviews-fade-top"></div>
+      <div class="reviews-fade-bottom"></div>
+
+      <!-- Columna 1: scroll hacia arriba -->
+      <div class="review-col">
+        <div class="review-col-inner scroll-up">
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"El lugar está súper bien montado y los instructores con gran capacidad técnica… mis nietos están felices y emocionados. ¡Ya se ven campeones!"</p>
+            <div class="rc-author"><div class="rc-av">AT</div><div><div class="rc-name">Aurea Torra</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"No solo encontré un lugar para entrenar, encontré una familia. Clases dinámicas y muy enriquecedoras física y emocionalmente."</p>
+            <div class="rc-author"><div class="rc-av">TU</div><div><div class="rc-name">Tammy Unger</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Mi hija lleva 6 meses y el cambio ha sido increíble. Más segura, más disciplinada y con muchas ganas de ir a cada clase. Los instructores son pacientes y exigentes al mismo tiempo."</p>
+            <div class="rc-author"><div class="rc-av">MG</div><div><div class="rc-name">Mariana G.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Las instalaciones son limpias, el ambiente es muy profesional y el trato hacia los niños es excelente. Se nota que hay una metodología real detrás."</p>
+            <div class="rc-author"><div class="rc-av">RP</div><div><div class="rc-name">Roberto P.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <!-- duplicado para loop continuo -->
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"El lugar está súper bien montado y los instructores con gran capacidad técnica… mis nietos están felices y emocionados. ¡Ya se ven campeones!"</p>
+            <div class="rc-author"><div class="rc-av">AT</div><div><div class="rc-name">Aurea Torra</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"No solo encontré un lugar para entrenar, encontré una familia. Clases dinámicas y muy enriquecedoras física y emocionalmente."</p>
+            <div class="rc-author"><div class="rc-av">TU</div><div><div class="rc-name">Tammy Unger</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Mi hija lleva 6 meses y el cambio ha sido increíble. Más segura, más disciplinada y con muchas ganas de ir a cada clase."</p>
+            <div class="rc-author"><div class="rc-av">MG</div><div><div class="rc-name">Mariana G.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Las instalaciones son limpias, el ambiente es muy profesional y el trato hacia los niños es excelente."</p>
+            <div class="rc-author"><div class="rc-av">RP</div><div><div class="rc-name">Roberto P.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna 2: scroll hacia abajo -->
+      <div class="review-col">
+        <div class="review-col-inner scroll-down">
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Excelente para hacer ejercicio y aprender técnica. Llevamos a nuestros sobrinos y les fascinó. Todo muy limpio y profesional. Totalmente recomendado."</p>
+            <div class="rc-author"><div class="rc-av">LC</div><div><div class="rc-name">Lucia CM</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Paulina es una instructora excepcional. Ve a cada alumno como individuo y adapta su enseñanza. Mi hijo mejoró no solo en técnica sino también en actitud y respeto."</p>
+            <div class="rc-author"><div class="rc-av">CV</div><div><div class="rc-name">Carlos V.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Lo mejor que hicimos fue inscribir a nuestros hijos aquí. El grupo de su edad, los valores que enseñan y la forma en que manejan a los niños es de primer nivel."</p>
+            <div class="rc-author"><div class="rc-av">SL</div><div><div class="rc-name">Sandra L.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Vine buscando ejercicio y encontré disciplina de verdad. El turno de mañana es perfecto para mi rutina. Recomiendo HUMI a cualquier adulto que quiera algo serio."</p>
+            <div class="rc-author"><div class="rc-av">JM</div><div><div class="rc-name">Jorge M.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <!-- duplicado -->
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Excelente para hacer ejercicio y aprender técnica. Llevamos a nuestros sobrinos y les fascinó. Todo muy limpio y profesional. Totalmente recomendado."</p>
+            <div class="rc-author"><div class="rc-av">LC</div><div><div class="rc-name">Lucia CM</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Paulina es una instructora excepcional. Ve a cada alumno como individuo y adapta su enseñanza."</p>
+            <div class="rc-author"><div class="rc-av">CV</div><div><div class="rc-name">Carlos V.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Lo mejor que hicimos fue inscribir a nuestros hijos aquí. El grupo de su edad y los valores que enseñan son de primer nivel."</p>
+            <div class="rc-author"><div class="rc-av">SL</div><div><div class="rc-name">Sandra L.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+          <div class="rc">
+            <div class="rc-stars">★★★★★</div>
+            <p class="rc-text">"Vine buscando ejercicio y encontré disciplina de verdad. El turno de mañana es perfecto para mi rutina."</p>
+            <div class="rc-author"><div class="rc-av">JM</div><div><div class="rc-name">Jorge M.</div><div class="rc-source">Google Maps</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .reviews-section { padding-top: 0 !important; padding-bottom: 0 !important; }
+  .reviews-layout {
+    display: flex; align-items: stretch; min-height: 600px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .reviews-left {
+    flex: 0 0 360px; padding: 6rem 3rem 6rem 2rem;
+    display: flex; flex-direction: column; justify-content: center; gap: 1.25rem;
+    position: sticky; top: 0; align-self: flex-start;
+  }
+  .reviews-rating-block {
+    display: flex; align-items: center; gap: 10px; margin-top: 0.5rem;
+  }
+  .reviews-stars-big { color: #f59e0b; font-size: 1rem; letter-spacing: 2px; }
+  .reviews-rating-text { font-size: 0.875rem; color: #555; }
+  .reviews-rating-text strong { color: #0f0f0f; }
+  .btn-reviews-link {
+    display: inline-flex; align-items: center;
+    font-size: 0.875rem; font-weight: 600;
+    color: #164A89; text-decoration: none;
+    background: rgba(22,74,137,0.07); border: 1px solid rgba(22,74,137,0.15);
+    padding: 0.5rem 1rem; border-radius: 8px;
+    transition: background 0.15s; width: fit-content;
+  }
+  .btn-reviews-link:hover { background: rgba(22,74,137,0.12); }
+
+  .reviews-right {
+    flex: 1; display: flex; gap: 12px;
+    padding: 0 2rem 0 0;
+    max-height: 600px; overflow: hidden;
+    position: relative;
+  }
+  .reviews-fade-top, .reviews-fade-bottom {
+    position: absolute; left: 0; right: 0; z-index: 2; height: 80px; pointer-events: none;
+  }
+  .reviews-fade-top { top: 0; background: linear-gradient(to bottom, #f8f8f6, transparent); }
+  .reviews-fade-bottom { bottom: 0; background: linear-gradient(to top, #f8f8f6, transparent); }
+
+  .review-col { flex: 1; overflow: hidden; }
+  .review-col-inner { display: flex; flex-direction: column; gap: 12px; }
+
+  @keyframes scrollUp {
+    from { transform: translateY(0); }
+    to { transform: translateY(-50%); }
+  }
+  @keyframes scrollDown {
+    from { transform: translateY(-50%); }
+    to { transform: translateY(0); }
+  }
+  .scroll-up { animation: scrollUp 28s linear infinite; }
+  .scroll-down { animation: scrollDown 24s linear infinite; }
+  .review-col:hover .scroll-up,
+  .review-col:hover .scroll-down { animation-play-state: paused; }
+
+  .rc {
+    background: #ffffff; border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 12px; padding: 1.25rem; flex-shrink: 0;
+  }
+  .rc-stars { color: #f59e0b; font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 0.6rem; }
+  .rc-text { font-size: 0.875rem; color: #444; line-height: 1.65; margin-bottom: 1rem; }
+  .rc-author { display: flex; align-items: center; gap: 10px; }
+  .rc-av {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(22,74,137,0.1); border: 1px solid rgba(22,74,137,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700; color: #164A89;
+  }
+  .rc-name { font-size: 0.8rem; font-weight: 600; color: #0f0f0f; }
+  .rc-source { font-size: 0.7rem; color: #999; }
+
+  @media (max-width: 768px) {
+    .reviews-layout { flex-direction: column; }
+    .reviews-left { flex: none; padding: 3rem 1.5rem 1.5rem; position: static; }
+    .reviews-right { max-height: 400px; padding: 0 1rem 1rem; }
+  }
+</style>
+
+<!-- INSTRUCTORES -->
+<section id="instructores" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+  <div class="section-eyebrow">Equipo</div>
+  <div class="section-title">Autoridad con calma</div>
+  <div class="section-sub">La autoridad viene del criterio. Se corrige con precisión y se acompaña sin humillar.</div>
+
+  <div class="unified-grid">
+
+    <!-- HUMI Team -->
+    <div class="ucard">
+      <div class="ucard-avatar blue">PN</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Paulina Noriega Romero Vargas</div>
+        <div class="ucard-role blue">Directora General</div>
+      </div>
+      <div class="ucard-bio">Liderazgo técnico y visión de largo plazo: disciplina como estructura amable, y desarrollo humano al centro de la exigencia.</div>
+      <div class="ucard-tag blue">5to Dan</div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-avatar blue">DC</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Dulce Carolina Curiel</div>
+        <div class="ucard-role blue">Especialista en Poomsae</div>
+      </div>
+      <div class="ucard-bio">Control, detalle y progresión medida. Enseña a que la precisión sea una forma de respeto propio.</div>
+      <div class="ucard-tag blue">3er Dan</div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-avatar blue">MR</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Mario Rodríguez Verti</div>
+        <div class="ucard-role blue">Instructor</div>
+      </div>
+      <div class="ucard-bio">Constancia y claridad en cada nivel. Acompaña la evolución técnica como hábito, no como prisa.</div>
+      <div class="ucard-tag blue">2do Dan</div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-avatar blue">GT</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Gise Tinoco</div>
+        <div class="ucard-role blue">Supervisión y Administración</div>
+      </div>
+      <div class="ucard-bio">Supervisión del dojang y gestión administrativa. Estudios en medicina que respaldan un enfoque integral en el bienestar de los alumnos.</div>
+      <div class="ucard-tag blue">Estudios en Medicina</div>
+    </div>
+
+    <!-- Divider card -->
+    <div class="ucard-divider">
+      <span class="ucard-divider-label">Auditoría de niveles · WTU México</span>
+      <span class="ucard-divider-sub">Certifican y validan la progresión de grados en HUMI</span>
+    </div>
+
+    <!-- Grand Masters -->
+    <div class="ucard gold">
+      <div class="ucard-badge">Grand Master</div>
+      <div class="ucard-avatar amber">GO</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Gustavo Ortega</div>
+        <div class="ucard-role amber">World Taekwondo Union México</div>
+      </div>
+      <div class="ucard-bio">Entrenador de Baja California con más atletas en la Federación Mexicana de Taekwondo. Maestro de Daniela Souza, medallista olímpica.</div>
+      <div class="ucard-tag amber">7mo Dan</div>
+    </div>
+
+    <div class="ucard gold">
+      <div class="ucard-badge">Grand Master</div>
+      <div class="ucard-avatar amber">JM</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Julio Moreno</div>
+        <div class="ucard-role amber">World Taekwondo Union México</div>
+      </div>
+      <div class="ucard-bio">Pionero del Taekwondo en México. Figura central en el posicionamiento y crecimiento de la disciplina a nivel nacional.</div>
+      <div class="ucard-tag amber">9no Dan</div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .unified-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* Divider full-width */
+  .ucard-divider {
+    grid-column: 1 / -1;
+    background: #f1f0ee;
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    border-top: 1px solid rgba(180,120,20,0.15);
+    border-bottom: 1px solid rgba(180,120,20,0.15);
+    flex-wrap: wrap;
+  }
+  .ucard-divider-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; font-family: 'Geist Mono', monospace;
+    color: #92681a; background: rgba(180,120,20,0.1);
+    border: 1px solid rgba(180,120,20,0.2);
+    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+  }
+  .ucard-divider-sub {
+    font-size: 0.8rem; color: #888;
+  }
+
+  /* Base card */
+  .ucard {
+    background: #ffffff;
+    padding: 1.75rem;
+    display: flex; flex-direction: column; gap: 0.875rem;
+    position: relative; transition: background 0.15s;
+  }
+  .ucard:hover { background: #f9f9f7; }
+
+  /* Gold variant for Grand Masters */
+  .ucard.gold { background: #fffcf2; }
+  .ucard.gold:hover { background: #fff8e6; }
+  .ucard.gold::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, #b47814, #e6a820);
+  }
+
+  /* Badge (Grand Master only) */
+  .ucard-badge {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-family: 'Geist Mono', monospace;
+    color: #92681a; background: rgba(180,120,20,0.1);
+    border: 1px solid rgba(180,120,20,0.2);
+    padding: 2px 8px; border-radius: 100px; width: fit-content;
+  }
+
+  /* Avatar */
+  .ucard-avatar {
+    width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.875rem; font-weight: 800;
+  }
+  .ucard-avatar.blue {
+    background: rgba(22,74,137,0.1); border: 1px solid rgba(22,74,137,0.2); color: #164A89;
+  }
+  .ucard-avatar.amber {
+    background: rgba(180,120,20,0.12); border: 1px solid rgba(180,120,20,0.25); color: #92681a;
+  }
+
+  /* Info */
+  .ucard-name { font-size: 0.9rem; font-weight: 700; color: #0f0f0f; letter-spacing: -0.01em; }
+  .ucard-role { font-size: 0.75rem; font-family: 'Geist Mono', monospace; margin-top: 1px; }
+  .ucard-role.blue { color: #164A89; }
+  .ucard-role.amber { color: #92681a; }
+
+  .ucard-bio { font-size: 0.8125rem; color: #555; line-height: 1.6; flex: 1; }
+
+  /* Dan tag */
+  .ucard-tag {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 100px;
+    width: fit-content; margin-top: auto;
+  }
+  .ucard-tag.blue {
+    background: rgba(22,74,137,0.07); border: 1px solid rgba(22,74,137,0.15); color: #164A89;
+  }
+  .ucard-tag.amber {
+    background: rgba(180,120,20,0.1); border: 1px solid rgba(180,120,20,0.2); color: #92681a;
+  }
+
+  @media (max-width: 768px) {
+    .unified-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .unified-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</section>
+
+<!-- BLOG CAROUSEL -->
+<div id="blog" class="blog-carousel-section">
+
+  <!-- Header -->
+  <div class="blog-carousel-header">
+    <div class="section-eyebrow" style="color:#4a8fd4;">Del tatami al texto</div>
+    <h2 class="blog-carousel-title">6 artículos sobre Taekwondo</h2>
+    <p class="blog-carousel-sub">Filosofía, historia y contexto olímpico. La misma exigencia, en formato lectura.</p>
+  </div>
+
+  <!-- Background grid de thumbnails borrosas -->
+  <div class="blog-bg-grid" id="blogBgGrid"></div>
+  <div class="blog-bg-overlay"></div>
+
+  <!-- Card central -->
+  <div class="blog-carousel-stage">
+
+    <button class="blog-arrow blog-arrow-left" id="blogPrev" aria-label="Anterior">&#8592;</button>
+
+    <div class="blog-card-main" id="blogCardMain">
+      <div class="blog-card-img-wrap">
+        <img id="blogImg" src="" alt="" />
+        <span class="blog-card-tag" id="blogTag"></span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-card-meta" id="blogMeta"></div>
+        <h3 class="blog-card-title" id="blogCardTitle"></h3>
+        <p class="blog-card-excerpt" id="blogCardExcerpt"></p>
+        <div class="blog-card-footer">
+          <div class="blog-card-author">
+            <div class="blog-author-av">PN</div>
+            <div>
+              <div class="blog-author-name">Paulina Noriega Romero Vargas</div>
+              <div class="blog-author-role">5.º Dan · Directora, HUMI Taekwondo</div>
+            </div>
+          </div>
+          <a id="blogLink" href="#" target="_blank" class="blog-card-cta">Leer artículo →</a>
+        </div>
+      </div>
+    </div>
+
+    <button class="blog-arrow blog-arrow-right" id="blogNext" aria-label="Siguiente">&#8594;</button>
+  </div>
+
+  <!-- Dots -->
+  <div class="blog-dots" id="blogDots"></div>
+
+</div>
+
+<style>
+  .blog-carousel-section {
+    position: relative; overflow: hidden;
+    background: #080808;
+    padding: 5rem 0 4rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .blog-carousel-header {
+    text-align: center; position: relative; z-index: 3;
+    margin-bottom: 3rem; padding: 0 2rem;
+  }
+  .blog-carousel-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800;
+    letter-spacing: -0.04em; color: #f5f5f5; margin: 0.5rem 0;
+  }
+  .blog-carousel-sub {
+    font-size: 1rem; color: #888; max-width: 480px; margin: 0 auto;
+  }
+
+  /* BG grid */
+  .blog-bg-grid {
+    position: absolute; inset: 0; z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 6px; padding: 6px;
+  }
+  .blog-bg-grid .bg-thumb {
+    border-radius: 8px; overflow: hidden;
+    filter: blur(3px) brightness(0.35) saturate(0.6);
+    transition: filter 0.5s;
+  }
+  .blog-bg-grid .bg-thumb.active-bg {
+    filter: blur(3px) brightness(0.5) saturate(0.8);
+  }
+  .blog-bg-grid .bg-thumb img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+  }
+  .blog-bg-overlay {
+    position: absolute; inset: 0; z-index: 2;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(8,8,8,0.5) 0%, rgba(8,8,8,0.85) 100%);
+  }
+
+  /* Stage */
+  .blog-carousel-stage {
+    position: relative; z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+    gap: 2rem; padding: 0 2rem;
+  }
+
+  /* Arrows */
+  .blog-arrow {
+    width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    color: #f5f5f5; font-size: 1.1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s, transform 0.15s;
+    font-family: inherit;
+  }
+  .blog-arrow:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
+
+  /* Main card */
+  .blog-card-main {
+    display: flex; gap: 0; max-width: 860px; width: 100%;
+    background: #141414; border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; overflow: hidden;
+    transition: opacity 0.3s;
+  }
+  .blog-card-main.fading { opacity: 0; }
+
+  .blog-card-img-wrap {
+    flex: 0 0 340px; position: relative; overflow: hidden;
+  }
+  .blog-card-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s;
+  }
+  .blog-card-main:hover .blog-card-img-wrap img { transform: scale(1.03); }
+  .blog-card-tag {
+    position: absolute; bottom: 12px; left: 12px;
+    background: rgba(22,74,137,0.85); color: #93c5fd;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+    font-family: 'Geist Mono', monospace; backdrop-filter: blur(8px);
+  }
+
+  .blog-card-body {
+    flex: 1; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .blog-card-meta {
+    font-size: 0.7rem; color: #555; font-family: 'Geist Mono', monospace;
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 1rem;
+  }
+  .blog-card-title {
+    font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
+    color: #f5f5f5; line-height: 1.25; margin-bottom: 1rem;
+  }
+  .blog-card-excerpt {
+    font-size: 0.9rem; color: #888; line-height: 1.7; flex: 1; margin-bottom: 2rem;
+  }
+  .blog-card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap;
+    padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .blog-card-author { display: flex; align-items: center; gap: 10px; }
+  .blog-author-av {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(22,74,137,0.2); border: 1px solid rgba(22,74,137,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 800; color: #4a8fd4;
+  }
+  .blog-author-name { font-size: 0.8rem; font-weight: 600; color: #f5f5f5; }
+  .blog-author-role { font-size: 0.7rem; color: #555; }
+  .blog-card-cta {
+    display: inline-flex; align-items: center;
+    background: white; color: #080808;
+    font-size: 0.8125rem; font-weight: 600; padding: 0.5rem 1.1rem;
+    border-radius: 8px; text-decoration: none; transition: background 0.15s; white-space: nowrap;
+  }
+  .blog-card-cta:hover { background: #e8e8e8; }
+
+  /* Dots */
+  .blog-dots {
+    display: flex; justify-content: center; gap: 8px;
+    margin-top: 2rem; position: relative; z-index: 3;
+  }
+  .blog-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s; padding: 0;
+  }
+  .blog-dot.active { background: #4a8fd4; transform: scale(1.4); }
+
+  @media (max-width: 768px) {
+    .blog-card-main { flex-direction: column; }
+    .blog-card-img-wrap { flex: 0 0 220px; }
+    .blog-arrow { width: 40px; height: 40px; font-size: 0.9rem; }
+    .blog-carousel-stage { gap: 0.75rem; }
+    .blog-bg-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
 
 <script>
-				(function () {
-					var section = document.getElementById("manifesto");
-					if (!section) return;
-					var quote = section.querySelector("[data-manifesto-quote]");
-					var figure = section.querySelector(".beltPyramid");
-					if (!quote || !figure) return;
+(function() {
+  const articles = [
+    {
+      tag: 'Filosofía',
+      meta: 'Artículo 1 de 6',
+      title: 'Taekwondo y su filosofía',
+      excerpt: 'La palabra Taekwondo viene del camino del desarrollo físico, mental y emocional — y va mucho más allá de una traducción literal.',
+      url: 'https://humisite.vercel.app/blog-taekwondo-y-su-filosofia.html',
+      img: '/images/pic01.jpg'
+    },
+    {
+      tag: 'Historia',
+      meta: 'Artículo 2 de 6',
+      title: 'Historia del Taekwondo',
+      excerpt: 'Del origen coreano y el General Choi Hong Hi al crecimiento en México: Dai Won Moon y la potencia olímpica actual.',
+      url: 'https://humisite.vercel.app/blog-historia-del-taekwondo.html',
+      img: '/images/pic02.jpg'
+    },
+    {
+      tag: 'Cultura',
+      meta: 'Artículo 3 de 6',
+      title: 'Juramento, reglas y vocabulario',
+      excerpt: 'Las palabras en coreano que escucharás en clase: cultura, respeto y disciplina detrás de cada saludo en el dojang.',
+      url: 'https://humisite.vercel.app/blog-juramento-reglas-y-vocabulario-del-taekwondo.html',
+      img: '/images/pic05.jpg'
+    },
+    {
+      tag: 'Olímpico · Sydney 2000',
+      meta: 'Artículo 4 de 6',
+      title: 'La primera medalla olímpica de México',
+      excerpt: 'Contexto, repechaje y el bronce de Víctor Estrada que abrió la puerta a una potencia mundial del Taekwondo.',
+      url: 'https://humisite.vercel.app/blog-victor-estrada-sydney-2000.html',
+      img: '/images/pic06.jpg'
+    },
+    {
+      tag: 'Olímpico · Beijing 2008',
+      meta: 'Artículo 5 de 6',
+      title: 'Doble oro: Guillermo Pérez y María Espinoza',
+      excerpt: 'El día en que México se consolidó como potencia global. Contexto post-Sydney y análisis del logro histórico.',
+      url: 'https://humisite.vercel.app/blog-beijing-2008-taekwondo-mexico.html',
+      img: '/images/pic-group.png'
+    },
+    {
+      tag: 'Olímpico · París 2024',
+      meta: 'Artículo 6 de 6',
+      title: 'Post-Tokyo con hambre',
+      excerpt: 'Daniela Souza, Carlos Sansores, ranking y la lección de que el circuito no siempre se traduce en podio olímpico.',
+      url: 'https://humisite.vercel.app/blog-paris-2024-taekwondo-mexico.html',
+      img: '/images/pic17.jpg'
+    }
+  ];
 
-					var baseHtml = "En HUMI el color cuenta lo que estás aprendiendo a ser, no solo lo que sabes hacer.";
+  let current = 0;
 
-					var meanings = {
-						black: {
-							title: "Cinta Negra",
-							paragraphs: [
-								"Une técnica, disciplina y carácter. No cierra el camino: abre un Taekwondo más profundo, tras años de constancia, respeto y autocontrol — hasta dominar cuerpo y mente bajo presión.",
-								"Va más allá del grado: es compromiso con la excelencia, el liderazgo y la mejora constante.",
-							],
-						},
-						red: {
-							title: "Rojo",
-							paragraphs: [
-								"La energía empieza a explotar. El estudiante aprende a controlar fuerza, impulsos y emociones mientras desarrolla técnica y enfoque.",
-								"Etapa clave en el desarrollo de autocontrol y disciplina en artes marciales.",
-							],
-						},
-						blue: {
-							title: "Azul",
-							paragraphs: [
-								"La visión se amplía. El practicante entiende estrategia, distancia y ritmo. Ya no solo reacciona: comienza a anticipar.",
-								"Formación avanzada de técnica, concentración y lectura corporal.",
-							],
-						},
-						green: {
-							title: "Verde",
-							paragraphs: [
-								"El crecimiento se vuelve evidente. La constancia empieza a dar resultados físicos y mentales visibles dentro y fuera del tatami.",
-								"Nivel enfocado en resistencia, precisión y seguridad personal.",
-							],
-						},
-						yellow: {
-							title: "Amarillo",
-							paragraphs: [
-								"La luz del conocimiento aparece. El alumno conecta técnica con propósito y desarrolla mayor confianza en combate y movimiento.",
-								"Progresión enfocada en coordinación avanzada y liderazgo juvenil.",
-							],
-						},
-						orange: {
-							title: "Naranja",
-							paragraphs: [
-								"La identidad del practicante se fortalece. Cada entrenamiento pule disciplina, velocidad y mentalidad competitiva.",
-							],
-						},
-						white: {
-							title: "Blanco",
-							paragraphs: [
-								"Pureza, humildad y potencial infinito. El cinturón blanco representa el valor de comenzar y la valentía de aprender desde cero.",
-								"Ideal para niños, adolescentes y adultos que buscan iniciar en taekwondo.",
-							],
-						},
-					};
+  // Build background grid (18 cells = 6×3)
+  const bgGrid = document.getElementById('blogBgGrid');
+  const totalCells = 18;
+  const cells = [];
+  for (let i = 0; i < totalCells; i++) {
+    const cell = document.createElement('div');
+    cell.className = 'bg-thumb';
+    const img = document.createElement('img');
+    img.src = articles[i % articles.length].img;
+    img.alt = '';
+    cell.appendChild(img);
+    bgGrid.appendChild(cell);
+    cells.push(cell);
+  }
 
-					function esc(s) {
-						return String(s)
-							.replace(/&/g, "&amp;")
-							.replace(/</g, "&lt;")
-							.replace(/>/g, "&gt;")
-							.replace(/"/g, "&quot;");
-					}
+  // Build dots
+  const dotsEl = document.getElementById('blogDots');
+  articles.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'blog-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(dot);
+  });
 
-					function beltMarkup(entry) {
-						var paras = (entry.paragraphs || [])
-							.map(function (p) {
-								return '<p class="manifesto__beltPara">' + esc(p) + "</p>";
-							})
-							.join("");
-						return '<span class="manifesto__beltName">' + esc(entry.title) + "</span>" + paras;
-					}
+  function updateBgGrid(idx) {
+    cells.forEach((c, i) => {
+      c.classList.toggle('active-bg', i % articles.length === idx);
+    });
+  }
 
-					function showBase() {
-						quote.classList.remove("manifesto--beltView");
-						quote.textContent = baseHtml;
-					}
+  function render(idx, dir) {
+    const card = document.getElementById('blogCardMain');
+    card.classList.add('fading');
+    setTimeout(() => {
+      const a = articles[idx];
+      document.getElementById('blogImg').src = a.img;
+      document.getElementById('blogImg').alt = a.title;
+      document.getElementById('blogTag').textContent = a.tag;
+      document.getElementById('blogMeta').textContent = a.meta;
+      document.getElementById('blogCardTitle').textContent = a.title;
+      document.getElementById('blogCardExcerpt').textContent = a.excerpt;
+      document.getElementById('blogLink').href = a.url;
+      document.querySelectorAll('.blog-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      updateBgGrid(idx);
+      card.classList.remove('fading');
+    }, 200);
+  }
 
-					function showBelt(key) {
-						if (!key) return;
-						var entry = meanings[key];
-						if (!entry) return;
-						quote.classList.add("manifesto--beltView");
-						quote.innerHTML = beltMarkup(entry);
-					}
+  function goTo(idx) {
+    current = (idx + articles.length) % articles.length;
+    render(current);
+  }
 
-					showBase();
+  document.getElementById('blogPrev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('blogNext').addEventListener('click', () => goTo(current + 1));
 
-					figure.querySelectorAll("[data-belt]").forEach(function (tier) {
-						var key = tier.getAttribute("data-belt");
-						if (!key) return;
-						tier.addEventListener("pointerenter", function () {
-							showBelt(key);
-						});
-					});
+  // Keyboard nav
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
 
-					figure.addEventListener("pointerleave", showBase);
+  // Init
+  render(0);
+})();
+</script>
 
-					figure.addEventListener("focusin", function (e) {
-						var t = e.target;
-						if (!(t instanceof Element)) return;
-						var tier = t.closest("[data-belt]");
-						if (tier) showBelt(tier.getAttribute("data-belt") || "");
-					});
+<!-- FAQ -->
+<section id="faq" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+  <div class="section-eyebrow">FAQ</div>
+  <div class="section-title">Preguntas frecuentes</div>
+  <div class="section-sub">Objeciones habituales antes de la primera visita.</div>
 
-					figure.addEventListener("focusout", function (e) {
-						var next = e.relatedTarget;
-						if (!next || !figure.contains(next)) showBase();
-					});
-				})();
-			</script>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q">¿Nunca han hecho Taekwondo?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Empezamos por hábitos seguros y presencia en el dojang. El cinturón blanco es bienvenida: valentía de aprender desde cero. No hay exigencia técnica en los primeros días.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Mi hijo o hija es tímido o ansioso?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Llega 10 minutos antes la primera vez y avísanos. Ajustamos la bienvenida sin presión. El equipo orienta al grupo adecuado según la edad y el perfil del alumno.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Dónde están y cómo llegar?<span class="faq-icon">+</span></div>
+      <div class="faq-a">C. Séptima 436, Zona Centro, 22800 Ensenada, B.C. En el corazón del centro histórico de Ensenada. Puedes escribirnos por WhatsApp para coordinar tu primera visita.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Cómo responden más rápido?<span class="faq-icon">+</span></div>
+      <div class="faq-a">WhatsApp o mensaje en Instagram. Para dudas de grupo o nivel, un mensaje corto con la edad del alumno ayuda a orientarte directamente.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Qué diferencia a HUMI de otras escuelas de Taekwondo en Ensenada?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Grupos por edad y objetivo específico, metodología propia, instructores con certificación WTF y más de 16 años de trayectoria. El foco no es el número de alumnos sino la calidad del acompañamiento y la progresión real de cada uno.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">¿Hay clases para adultos que trabajan en horario de mañana?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Sí. Turno AM de lunes a jueves, 7:30–8:30 AM. Taekwondo + HIIT + dumbbells. Diseñado para quienes necesitan entrenar antes de su jornada laboral.</div>
+    </div>
+  </div>
+</section>
 
-				<script>
-			(function () {
-				var root = document.querySelector("[data-gd-sched]");
-				if (!root) return;
-				var tabs = root.querySelectorAll('[role="tab"]');
-				var panels = root.querySelectorAll('[role="tabpanel"]');
+<!-- CTA FINAL -->
+<div class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="section-eyebrow" style="justify-content: center; display: flex;">Ensenada, B.C.</div>
+    <div class="cta-title">¿Listo para visitar el dojang?</div>
+    <p class="cta-sub">Escríbenos por WhatsApp o revisa la ubicación. Primera visita sin compromiso — llega 10 minutos antes.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://wa.me/526461093879" class="btn-hero" target="_blank">WhatsApp →</a>
+      <a href="https://www.instagram.com/humi.taekwondo/" class="btn-hero-outline" target="_blank">@humi.taekwondo</a>
+    </div>
+    <p class="cta-meta">C. Séptima 436, Zona Centro, 22800 Ensenada, B.C. · Respuesta por mensaje</p>
+  </div>
+</div>
 
-				function select(index) {
-					tabs.forEach(function (tab, i) {
-						var on = i === index;
-						tab.setAttribute("aria-selected", on ? "true" : "false");
-						tab.tabIndex = on ? 0 : -1;
-						panels[i].hidden = !on;
-					});
-				}
+<!-- FOOTER -->
+<footer>
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <span class="nav-logo-mark" style="width:20px;height:20px;font-size:0.6rem;">H</span>
+    <span>© 2025 HUMI Taekwondo · Ensenada, B.C.</span>
+  </div>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/humi.taekwondo/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/HumiTaekwondo/" target="_blank">Facebook</a>
+    <a href="https://wa.me/526461093879" target="_blank">WhatsApp</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=C.+Séptima+436,+Zona+Centro,+22800+Ensenada" target="_blank">Ubicación</a>
+  </div>
+</footer>
 
-				tabs.forEach(function (tab, index) {
-					tab.addEventListener("click", function () {
-						select(index);
-					});
-					tab.addEventListener("keydown", function (e) {
-						var i = index;
-						if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-							e.preventDefault();
-							i = (index + 1) % tabs.length;
-							tabs[i].focus();
-							select(i);
-						} else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-							e.preventDefault();
-							i = (index - 1 + tabs.length) % tabs.length;
-							tabs[i].focus();
-							select(i);
-						} else if (e.key === "Home") {
-							e.preventDefault();
-							tabs[0].focus();
-							select(0);
-						} else if (e.key === "End") {
-							e.preventDefault();
-							var last = tabs.length - 1;
-							tabs[last].focus();
-							select(last);
-						}
-					});
-				});
-			})();
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
 
-			(function () {
-				var viewport = document.querySelector("[data-blog-carousel]");
-				if (!viewport) return;
-				var slides = viewport.querySelectorAll(".gd-blog-slide");
-				var prev = document.querySelector("[data-blog-prev]");
-				var next = document.querySelector("[data-blog-next]");
-				if (!slides.length) return;
+  // Belt hover info
+  const beltInfo = document.getElementById('belt-info');
+  document.querySelectorAll('.grade-belt').forEach(belt => {
+    belt.addEventListener('mouseenter', () => {
+      beltInfo.textContent = belt.dataset.info;
+      beltInfo.style.color = 'var(--text)';
+    });
+    belt.addEventListener('mouseleave', () => {
+      beltInfo.textContent = '';
+    });
+  });
 
-				function currentIndex() {
-					var mid = viewport.getBoundingClientRect().left + viewport.clientWidth / 2;
-					var best = 0;
-					var bestDist = Infinity;
-					for (var i = 0; i < slides.length; i++) {
-						var r = slides[i].getBoundingClientRect();
-						var c = r.left + r.width / 2;
-						var d = Math.abs(c - mid);
-						if (d < bestDist) {
-							bestDist = d;
-							best = i;
-						}
-					}
-					return best;
-				}
-
-				function go(delta) {
-					var i = currentIndex() + delta;
-					if (i < 0) i = 0;
-					if (i >= slides.length) i = slides.length - 1;
-					slides[i].scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-				}
-
-				if (prev) prev.addEventListener("click", function () { go(-1); });
-				if (next) next.addEventListener("click", function () { go(1); });
-
-				viewport.addEventListener("keydown", function (e) {
-					if (e.key === "ArrowLeft") {
-						e.preventDefault();
-						go(-1);
-					} else if (e.key === "ArrowRight") {
-						e.preventDefault();
-						go(1);
-					}
-				});
-			})();
-		</script>
-	</body>
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
 </html>

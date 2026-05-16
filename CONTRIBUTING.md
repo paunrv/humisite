@@ -61,3 +61,20 @@ git push -u origin feat/mi-cambio
 - Al mergear, preferir **Squash and merge** para mantener historial limpio.
 - Después de mergear: borra la rama remota y actualiza tu `dev` local.
 
+## Git antiguo + Cursor (error `unknown option trailer`)
+
+Si al hacer `git commit` ves `error: unknown option trailer`, suele ser porque Cursor añade `--trailer 'Co-authored-by: …'` al comando y **Git de Apple antiguo** (p. ej. 2.32) no lo soporta en `commit`.
+
+**Opción recomendada:** instalar Git reciente (p. ej. `brew install git`) y asegurarte de que `which git` apunte a esa versión.
+
+**Alternativa** (mismo resultado que un commit normal, con el índice ya preparado con `git add`):
+
+```bash
+MSG="tu mensaje de commit"
+TREE=$(git write-tree)
+COMMIT=$(git commit-tree "$TREE" -p HEAD -m "$MSG")
+git update-ref refs/heads/$(git branch --show-current) "$COMMIT"
+```
+
+Luego `git push` como siempre.
+

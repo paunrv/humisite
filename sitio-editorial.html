@@ -1,411 +1,383 @@
-<!DOCTYPE HTML>
-<html lang="es-MX">
+<!DOCTYPE html>
+<html lang="es-MX" class="hm">
 	<head>
-		<title>HUMI — Desarrollo humano a través del Taekwondo · Ensenada</title>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>HUMI — Vista editorial · Mapa, horarios y blog</title>
 		<meta
 			name="description"
-			content="HUMI no vende solo clases: entrena presencia, disciplina y resiliencia emocional. Para familias en Ensenada que buscan estructura con calidez. Taekwondo como práctica de identidad."
+			content="Ubicación en mapa, calendario por grupo y todos los artículos del blog HUMI Taekwondo en Ensenada."
 		/>
-		<meta property="og:title" content="HUMI — Movimiento humano · Ensenada" />
-		<meta
-			property="og:description"
-			content="Confianza que se nota en casa. Comunidad con estándar, no con ruido. Taekwondo con filosofía y método."
-		/>
-		<meta property="og:type" content="website" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@600;700;800&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap"
 			rel="stylesheet"
 		/>
-		<link rel="stylesheet" href="assets/css/humi.css" />
+		<link rel="stylesheet" href="assets/css/humi-redesign.css" />
 	</head>
-	<body>
-		<a class="skip-link" href="#main">Saltar al contenido</a>
+	<body class="hm">
+		<a class="hm-skip" href="#contenido">Saltar al contenido</a>
 
-		<header class="topbar" role="banner">
-			<div class="container topbar__inner">
-				<a class="brand" href="#hero" aria-label="HUMI — desarrollo humano a través del Taekwondo">
-					<span class="brand__mark" aria-hidden="true"></span>
-					<span class="brand__text">HUMI <span class="brand__muted">Taekwondo</span></span>
+		<div class="hm-announce" role="note">
+			<div class="hm-announce__inner">
+				<p class="hm-announce__pill">
+					<span class="hm-announce__tag">Editorial</span>
+					Mapa · horarios completos · blog
+				</p>
+			</div>
+		</div>
+
+		<header class="hm-nav" data-hm-nav>
+			<div class="hm-wrap hm-nav__bar">
+				<a class="hm-logo" href="index.html">
+					<span class="hm-logo__mark" aria-hidden="true"></span>
+					HUMI <span>Taekwondo</span>
 				</a>
-
-				<div class="topbar__right">
-					<nav class="nav" aria-label="Primary">
-						<a href="#programs">Programas</a>
-						<a href="#philosophy">Visita</a>
-						<a href="#schedule">Horarios</a>
-						<a href="#instructors">Equipo</a>
-						<a href="#reviews">Historias</a>
-						<a href="#blog">Blog</a>
-						<a href="#location">Ubicación</a>
-						<a href="#social">Redes</a>
+				<button
+					type="button"
+					class="hm-nav__toggle"
+					data-hm-nav-toggle
+					aria-expanded="false"
+					aria-controls="hm-nav-panel-ed"
+					aria-label="Abrir menú"
+				>
+					<span class="hm-nav__toggle-icon" aria-hidden="true"></span>
+				</button>
+				<div class="hm-nav__panel" id="hm-nav-panel-ed" data-hm-nav-panel>
+					<nav class="hm-nav__links" aria-label="Principal">
+						<a href="index.html">Inicio</a>
+						<a href="#ubicacion">Ubicación</a>
+						<a href="#horarios">Horarios</a>
+						<a href="#blog-index">Blog</a>
 					</nav>
-					<a class="btn btn--sm btn--nav" href="#location">Visitar</a>
+					<div class="hm-nav__cta">
+						<a class="hm-btn hm-btn--primary" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener">WhatsApp</a>
+						<a class="hm-btn hm-btn--ghost" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener">Instagram</a>
+					</div>
 				</div>
 			</div>
 		</header>
 
-		<main id="main" role="main">
-			<div id="app"></div>
+		<main id="contenido">
+			<section class="hm-hero hm-section--tight" style="padding-bottom: 2.5rem" aria-labelledby="ed-title">
+				<div class="hm-hero__grid" aria-hidden="true"></div>
+				<div class="hm-hero__glow" aria-hidden="true"></div>
+				<div class="hm-wrap hm-hero__content">
+					<p class="hm-hero__eyebrow">
+						<span class="hm-hero__eyebrow-dot" aria-hidden="true"></span>
+						Vista editorial
+					</p>
+					<h1 id="ed-title" style="font-size: clamp(1.75rem, 3vw + 0.8rem, 2.6rem); margin-bottom: 14px">
+						Mapa, calendario y lecturas
+					</h1>
+					<p class="hm-hero__lede" style="margin-bottom: 20px">
+						Todo lo operativo en una sola página: cómo llegar, qué día toca qué énfasis por grupo, y el índice del blog.
+					</p>
+					<div class="hm-hero__actions">
+						<a class="hm-btn hm-btn--primary" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener">WhatsApp</a>
+						<a class="hm-btn hm-btn--ghost" href="index.html">Volver al inicio</a>
+					</div>
+				</div>
+			</section>
+
+			<section class="hm-section" id="ubicacion" aria-labelledby="ubicacion-title">
+				<div class="hm-wrap">
+					<header class="hm-section__head">
+						<p class="hm-eyebrow">Ubicación</p>
+						<h2 class="hm-section__title" id="ubicacion-title">C. Séptima 436, Zona Centro</h2>
+						<p class="hm-section__lede">22800 Ensenada, B.C. · llega unos minutos antes la primera vez.</p>
+					</header>
+					<div class="hm-grid-3" style="grid-template-columns: 1fr; max-width: 52rem">
+						<div class="hm-card">
+							<p class="hm-eyebrow" style="margin-bottom: 8px">Dirección</p>
+							<p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6">
+								C. Séptima 436<br />
+								Zona Centro<br />
+								22800 Ensenada, B.C.
+							</p>
+							<div style="display: flex; flex-wrap: wrap; gap: 10px">
+								<a
+									class="hm-btn hm-btn--primary"
+									href="https://www.google.com/maps/search/?api=1&amp;query=C.+S%C3%A9ptima+436,+Zona+Centro,+22800+Ensenada"
+									target="_blank"
+									rel="noreferrer noopener"
+									>Abrir en Google Maps</a
+								>
+								<a class="hm-btn hm-btn--ghost" href="https://www.facebook.com/HumiTaekwondo/" target="_blank" rel="noreferrer noopener">Facebook</a>
+							</div>
+						</div>
+						<div class="hm-map-wrap" style="margin-top: 12px">
+							<iframe
+								title="Google Maps — HUMI Taekwondo"
+								loading="lazy"
+								referrerpolicy="no-referrer-when-downgrade"
+								allowfullscreen
+								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3388.3753201934683!2d-116.62705212444732!3d31.86920987405615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80d893ec6f498c99%3A0x76d0a2c80324fd09!2sHUMI%20%7C%20Taekwondo%2C%20Freestyle%20%26%20Martial%20Fitness!5e0!3m2!1sen!2smx!4v1778012458336!5m2!1sen!2smx"
+							></iframe>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="hm-section" id="horarios" aria-labelledby="horarios-title">
+				<div class="hm-wrap">
+					<header class="hm-section__head">
+						<p class="hm-eyebrow">Calendario</p>
+						<h2 class="hm-section__title" id="horarios-title">Horarios por grupo</h2>
+						<p class="hm-section__lede">
+							Sparring, Poomsae y Freestyle rotan según el día. En fechas especiales puede haber cambios; confirma en sala o por mensaje.
+						</p>
+					</header>
+
+					<h3 class="hm-section__title" style="font-size: 1.15rem; margin-bottom: 12px">Resumen por edad</h3>
+					<div class="hm-table-wrap" style="margin-bottom: 2rem">
+						<table class="hm-table">
+							<thead>
+								<tr>
+									<th>Grupo</th>
+									<th>Días</th>
+									<th>Hora</th>
+									<th>Disciplinas</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>3 años · Iniciación</strong></td>
+									<td>Mar · Mié · Jue</td>
+									<td>3:20–3:55 PM</td>
+									<td>Taekwondo iniciación</td>
+								</tr>
+								<tr>
+									<td><strong>4–6 · Fundamentos</strong></td>
+									<td>Lun–Vie (ver tabla abajo)</td>
+									<td>4:00–4:50 PM</td>
+									<td>Sparring, Freestyle + programa base</td>
+								</tr>
+								<tr>
+									<td><strong>7–10 · Técnica</strong></td>
+									<td>Lun–Vie (ver tabla abajo)</td>
+									<td>5:00–6:00 PM</td>
+									<td>Sparring, Poomsae, Freestyle</td>
+								</tr>
+								<tr>
+									<td><strong>11–16 · Constancia</strong></td>
+									<td>Lun–Vie (ver tabla abajo)</td>
+									<td>6:00–7:00 PM</td>
+									<td>Sparring, Poomsae, Freestyle</td>
+								</tr>
+								<tr>
+									<td><strong>Adultos PM</strong></td>
+									<td>Mar · Jue</td>
+									<td>7:00–8:00 PM</td>
+									<td>Taekwondo + HIIT + dumbbells</td>
+								</tr>
+								<tr>
+									<td><strong>Adultos AM</strong></td>
+									<td>Lun–Jue</td>
+									<td>7:30–8:30 AM</td>
+									<td>HIIT + dumbbells</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3 class="hm-section__title" style="font-size: 1.15rem; margin-bottom: 12px">4–6 años · semana tipo</h3>
+					<div class="hm-table-wrap" style="margin-bottom: 2rem">
+						<table class="hm-table">
+							<thead>
+								<tr>
+									<th>Día</th>
+									<th>Énfasis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Lunes</td>
+									<td>Sparring</td>
+								</tr>
+								<tr>
+									<td>Martes</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Miércoles</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Jueves</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Viernes</td>
+									<td>Freestyle</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3 class="hm-section__title" style="font-size: 1.15rem; margin-bottom: 12px">7–10 años · semana tipo</h3>
+					<div class="hm-table-wrap" style="margin-bottom: 2rem">
+						<table class="hm-table">
+							<thead>
+								<tr>
+									<th>Día</th>
+									<th>Énfasis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Lunes</td>
+									<td>Sparring</td>
+								</tr>
+								<tr>
+									<td>Martes</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Miércoles</td>
+									<td>Poomsae</td>
+								</tr>
+								<tr>
+									<td>Jueves</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Viernes</td>
+									<td>Freestyle</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3 class="hm-section__title" style="font-size: 1.15rem; margin-bottom: 12px">11–16 años · semana tipo</h3>
+					<div class="hm-table-wrap">
+						<table class="hm-table">
+							<thead>
+								<tr>
+									<th>Día</th>
+									<th>Énfasis</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Lunes</td>
+									<td>Sparring</td>
+								</tr>
+								<tr>
+									<td>Martes</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Miércoles</td>
+									<td>Poomsae</td>
+								</tr>
+								<tr>
+									<td>Jueves</td>
+									<td>Programa básico</td>
+								</tr>
+								<tr>
+									<td>Viernes</td>
+									<td>Freestyle</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+
+			<section class="hm-section" id="blog-index" aria-labelledby="blog-index-title">
+				<div class="hm-wrap">
+					<header class="hm-section__head">
+						<p class="hm-eyebrow">Blog</p>
+						<h2 class="hm-section__title" id="blog-index-title">Índice de artículos</h2>
+						<p class="hm-section__lede">Textos de contexto: filosofía, historia y línea olímpica mexicana.</p>
+					</header>
+					<div class="hm-grid-3">
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">Filosofía</p>
+							<h3><a href="blog-taekwondo-y-su-filosofia.html">Taekwondo y su filosofía</a></h3>
+							<p>Significado, valores y práctica cotidiana.</p>
+							<a class="hm-blog-card__link" href="blog-taekwondo-y-su-filosofia.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">Historia</p>
+							<h3><a href="blog-historia-del-taekwondo.html">Historia del Taekwondo</a></h3>
+							<p>Origen coreano y desarrollo en México.</p>
+							<a class="hm-blog-card__link" href="blog-historia-del-taekwondo.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">Dojang</p>
+							<h3><a href="blog-juramento-reglas-y-vocabulario-del-taekwondo.html">Juramento, reglas y vocabulario</a></h3>
+							<p>Cultura y palabras que escucharás en clase.</p>
+							<a class="hm-blog-card__link" href="blog-juramento-reglas-y-vocabulario-del-taekwondo.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · Sydney</p>
+							<h3><a href="blog-victor-estrada-sydney-2000.html">Sydney 2000 — Víctor Estrada</a></h3>
+							<p>Primera medalla olímpica del Taekwondo mexicano.</p>
+							<a class="hm-blog-card__link" href="blog-victor-estrada-sydney-2000.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · Atenas</p>
+							<h3><a href="blog-atenas-2004-hermanos-salazar.html">Atenas 2004 — Hermanos Salazar</a></h3>
+							<p>Óscar Salazar y la plata en -58 kg.</p>
+							<a class="hm-blog-card__link" href="blog-atenas-2004-hermanos-salazar.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · Beijing</p>
+							<h3><a href="blog-beijing-2008-taekwondo-mexico.html">Beijing 2008</a></h3>
+							<p>Doble oro: Guillermo Pérez y María Espinoza.</p>
+							<a class="hm-blog-card__link" href="blog-beijing-2008-taekwondo-mexico.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · Londres</p>
+							<h3><a href="blog-londres-2012-taekwondo-mexico.html">Londres 2012</a></h3>
+							<p>Elite sostenida tras Beijing.</p>
+							<a class="hm-blog-card__link" href="blog-londres-2012-taekwondo-mexico.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · Río</p>
+							<h3><a href="blog-rio-2016-taekwondo-mexico.html">Río 2016</a></h3>
+							<p>Electrónico, presión y plata de María Espinoza.</p>
+							<a class="hm-blog-card__link" href="blog-rio-2016-taekwondo-mexico.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · Tokyo</p>
+							<h3><a href="blog-tokyo-2020-taekwondo-mexico.html">Tokyo 2020</a></h3>
+							<p>Pandemia, debate y ciclo sin medalla.</p>
+							<a class="hm-blog-card__link" href="blog-tokyo-2020-taekwondo-mexico.html">Leer →</a>
+						</article>
+						<article class="hm-blog-card">
+							<p class="hm-blog-card__meta">JJ.OO. · París</p>
+							<h3><a href="blog-paris-2024-taekwondo-mexico.html">París 2024</a></h3>
+							<p>Ranking, hambre post-Tokyo y lecciones de podio.</p>
+							<a class="hm-blog-card__link" href="blog-paris-2024-taekwondo-mexico.html">Leer →</a>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<section class="hm-cta" aria-labelledby="ed-cta">
+				<div class="hm-cta__glow" aria-hidden="true"></div>
+				<div class="hm-wrap">
+					<h2 id="ed-cta">¿Dudas sobre grupo u horario?</h2>
+					<p>Un mensaje con la edad del alumno o tu disponibilidad suele bastar para orientarte.</p>
+					<div class="hm-cta__actions">
+						<a class="hm-btn hm-btn--primary" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener">WhatsApp</a>
+						<a class="hm-btn hm-btn--ghost" href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer noopener">Instagram</a>
+					</div>
+				</div>
+			</section>
 		</main>
 
-		<a
-			class="btn btn--primary mobile-bottom-cta"
-			href="https://wa.me/526461093879"
-			target="_blank"
-			rel="noreferrer noopener"
-			aria-label="Más información por WhatsApp"
-		>
-			Más información
-		</a>
-
-		<footer class="footer" role="contentinfo">
-			<div class="container">
-				<div class="footer__grid">
-					<div class="footer__block">
-						<p class="footer__code">UBICACIÓN</p>
-						<p>HUMI Taekwondo</p>
-						<p class="p p--pre muted">C. Séptima 436, Zona Centro, 22800 Ensenada, B.C.</p>
-					</div>
-					<div class="footer__block">
-						<p class="footer__code">ENLACES</p>
-						<div class="footer__links">
-							<a href="index.html">Inicio (landing)</a>
-							<a href="#schedule">Horarios por edad</a>
-							<a href="#programs">Programas</a>
-							<a href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noreferrer">Instagram</a>
-							<a href="https://www.facebook.com/HumiTaekwondo/" target="_blank" rel="noreferrer">Facebook</a>
-						</div>
-					</div>
-					<div class="footer__block">
-						<p class="footer__code">CONTACTO</p>
-						<p>Visita con cita o escríbenos por redes.</p>
-						<div class="footer__links">
-							<a href="#location">Cómo llegar</a>
-						</div>
-					</div>
-				</div>
-				<div class="footer__bottom">
-					<span>© HUMI Taekwondo</span>
-					<span class="muted">Ensenada, B.C. · Disciplina como arte</span>
-				</div>
+		<footer class="hm-footer">
+			<div class="hm-wrap hm-footer__row">
+				<span>© HUMI Taekwondo · Ensenada</span>
+				<span><a href="index.html">Landing</a> · <a href="https://www.facebook.com/HumiTaekwondo/" target="_blank" rel="noreferrer noopener">Facebook</a></span>
 			</div>
 		</footer>
 
-		<!-- Templates -->
-		<template id="tpl-hero">
-			<section class="section section--hero section--dark" data-hero-bg>
-				<div class="container hero--bath">
-					<p class="code-label code-label--on-dark" data-kicker></p>
-					<h1 class="h1" data-title></h1>
-					<p class="lede lede--hero" data-lede></p>
-					<div class="actions actions--hero" data-actions></div>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-instagram">
-			<section
-				class="section section--instagram section--elevated"
-				aria-labelledby="instagram-heading"
-			>
-				<div class="container">
-					<p class="code-label code-label--on-dark" data-kicker></p>
-					<h2 class="display display--section" id="instagram-heading" data-title></h2>
-					<p class="instagramIntro" data-instagram-sub></p>
-					<ul class="instaGrid" data-instagram-grid role="list"></ul>
-					<div class="actions actions--tight" data-instagram-actions></div>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-manifesto">
-			<section class="section section--manifesto section--dark" data-manifesto-bg>
-				<div class="container container--wide manifestoLayout">
-					<div class="manifestoMain">
-						<p class="code-label code-label--on-dark" data-kicker></p>
-						<blockquote
-							class="manifesto manifesto--pull"
-							data-manifesto-quote
-							aria-live="polite"
-							aria-atomic="true"
-						></blockquote>
-					</div>
-					<aside class="manifestoAside" aria-labelledby="manifesto-pyramid-label">
-						<p
-							class="manifestoAside__label code-label code-label--on-dark"
-							id="manifesto-pyramid-label"
-							data-manifesto-pyramid-label
-						></p>
-						<figure
-							class="beltPyramid"
-							role="img"
-							aria-labelledby="manifesto-pyramid-label"
-							aria-describedby="manifesto-pyramid-foot"
-						>
-							<div class="beltPyramid__stack">
-								<div class="beltPyramid__tier beltPyramid__tier--black" data-belt="black" tabindex="0">
-									<div class="beltPyramid__segments beltPyramid__segments--many">
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">1</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">2</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">3</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">4</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">5</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">6</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">7</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">8</span></span>
-										<span class="beltPyramid__seg beltPyramid__seg--dan"><span class="beltPyramid__segHit"></span><span class="beltPyramid__segLabel beltPyramid__segLabel--dan">9</span></span>
-									</div>
-									<span class="beltPyramid__name">Negro</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--red" data-belt="red" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Rojo</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Rojo Avanzado</span>
-											</span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv2">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Rojo Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Rojo</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--blue" data-belt="blue" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Azul</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Azul Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Azul</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--green" data-belt="green" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Verde</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Verde Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Verde</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--yellow" data-belt="yellow" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Amarillo</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Amarillo Avanzado</span>
-											</span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv2">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Amarillo Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Amarillo</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--orange" data-belt="orange" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Naranja</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Naranja Avanzado</span>
-											</span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv2">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Naranja Avanzado</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Naranja</span>
-								</div>
-								<div class="beltPyramid__tier beltPyramid__tier--white" data-belt="white" tabindex="0">
-									<div class="beltPyramid__segments">
-										<span class="beltPyramid__seg beltPyramid__seg--base">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--name"><span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Blanco</span></span>
-										</span>
-										<span class="beltPyramid__seg beltPyramid__seg--adv beltPyramid__seg--adv1">
-											<span class="beltPyramid__segHit"></span>
-											<span class="beltPyramid__segLabel beltPyramid__segLabel--adv">
-												<span class="beltPyramid__segLabelLine beltPyramid__segLabelLine--name">Avanzado Blanco</span>
-											</span>
-										</span>
-									</div>
-									<span class="beltPyramid__name">Blanco</span>
-								</div>
-							</div>
-							<figcaption class="beltPyramid__caption" id="manifesto-pyramid-foot" data-manifesto-pyramid-foot></figcaption>
-						</figure>
-					</aside>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-programs">
-			<section class="section section--programs section--light">
-				<div class="container">
-					<p class="code-label" data-kicker></p>
-					<h2 class="display display--section" data-title></h2>
-					<p class="sectionLead" data-body></p>
-					<div class="offeringsGrid" data-programs></div>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-philosophy">
-			<section class="section section--philosophy section--light">
-				<div class="container">
-					<p class="code-label" data-kicker></p>
-					<h2 class="display display--section" data-title></h2>
-					<p class="sectionLead sectionLead--narrow" data-body></p>
-					<div class="planGrid" data-plan-items></div>
-					<p class="planFootnote p--pre" data-support></p>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-schedule">
-			<section class="section section--schedule section--elevated" aria-label="Horarios por edad">
-				<div class="container">
-					<div class="scheduleIntro">
-						<p class="code-label" data-kicker></p>
-						<p class="openingHours__tag" data-hours-tag></p>
-						<h2 class="display display--section" data-title></h2>
-						<p class="sectionLead" data-body></p>
-					</div>
-					<div class="scheduleCards" data-schedule-cards></div>
-					<p class="fineprint scheduleSection__note" data-schedule-note></p>
-					<div class="actions actions--tight scheduleSection__cta" data-schedule-cta></div>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-instructors">
-			<section class="section section--instructors section--dark">
-				<div class="container">
-					<p class="code-label code-label--on-dark" data-kicker></p>
-					<h2 class="display display--section" data-title></h2>
-					<p class="sectionLead" data-body></p>
-					<div class="grid-3" data-instructors></div>
-					<p class="fineprint" data-fineprint></p>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-reviews">
-			<section class="section section--reviews section--light">
-				<div class="container">
-					<p class="code-label" data-kicker></p>
-					<div class="sectionHead">
-						<div>
-							<h2 class="display display--section" data-title></h2>
-							<p class="sectionLead" data-body></p>
-						</div>
-					</div>
-					<div class="grid-3" data-reviews></div>
-					<p class="fineprint" data-reviews-note></p>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-blog">
-			<section class="section section--blog section--light" aria-label="Blog">
-				<div class="container">
-					<p class="code-label" data-kicker></p>
-					<h2 class="display display--section" data-title></h2>
-					<p class="sectionLead" data-body></p>
-					<div class="blogPosts" data-blog-posts></div>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-location">
-			<section class="section section--location section--elevated">
-				<div class="container">
-					<p class="code-label code-label--on-dark" data-kicker></p>
-					<h2 class="display display--section" data-title></h2>
-					<div class="locationGrid">
-						<div class="card">
-							<p class="eyebrow" data-location-headline></p>
-							<p class="p p--pre" data-address></p>
-							<div class="actions actions--tight" data-location-actions>
-								<a class="btn btn--primary" data-maps-link target="_blank" rel="noreferrer">Google Maps →</a>
-							</div>
-							<p class="eyebrow eyebrow--tight">Actividad en sala</p>
-							<div class="schedule schedule--tight" data-location-schedule></div>
-							<p class="fineprint" data-location-note></p>
-						</div>
-						<div class="card">
-							<p class="eyebrow">Mapa</p>
-							<div class="map">
-								<iframe
-									data-map-iframe
-									title="Google Maps — HUMI Taekwondo"
-									loading="lazy"
-									referrerpolicy="no-referrer-when-downgrade"
-									allowfullscreen
-								></iframe>
-							</div>
-							<p class="fineprint" data-map-note></p>
-						</div>
-					</div>
-				</div>
-			</section>
-		</template>
-
-		<template id="tpl-social">
-			<section class="section section--social section--dark">
-				<div class="container">
-					<p class="code-label code-label--on-dark" data-kicker></p>
-					<div class="sectionHead">
-						<div>
-							<h2 class="display display--section" data-title></h2>
-							<p class="sectionLead" data-body></p>
-						</div>
-						<div class="sectionHead__aside">
-							<div class="actions actions--flush" data-social-actions></div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</template>
-
-		<script type="module" src="assets/js/humi.js"></script>
+		<script src="assets/js/humi-redesign.js" defer></script>
 	</body>
 </html>
