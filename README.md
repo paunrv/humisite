@@ -14,7 +14,12 @@ npm install
 npm run dev
 ```
 
-Abre `http://localhost:5173`.
+Abre `http://localhost:5173` (o `npm run dev:open` para abrir el navegador).
+
+### Dónde editar el diseño
+
+- **Landing** (`index.html`): CSS en el bloque `<style>` del `<head>`; JS al final del `<body>`.
+- **Editorial y blogs** (`sitio-editorial.html`, `blog-*.html`): `assets/css/humi-redesign.css` y `assets/js/humi-redesign.js` (Vite recarga al guardar).
 
 ## Build y preview
 

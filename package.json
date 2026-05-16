@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:open": "vite --open",
     "build": "vite build",
     "preview": "vite preview --port 5173"
   },
   "devDependencies": {
-    "vite": "latest"
+    "vite": "8.0.10"
   }
 }
 

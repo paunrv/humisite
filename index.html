@@ -163,6 +163,110 @@
   }
   .btn-primary:hover { background: #e8e8e8; }
 
+  /* Anchors: fixed nav + banner */
+  #programas,
+  #horarios,
+  #instructores,
+  #blog,
+  #faq,
+  #comparacion {
+    scroll-margin-top: 6.5rem;
+  }
+
+  /* ── MOBILE NAV (toggle visible ≤768px) ── */
+  .nav-menu-btn {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    margin-left: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    font: inherit;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .nav-menu-btn span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 0 auto;
+    background: var(--text);
+    border-radius: 1px;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  nav.nav-open .nav-menu-btn span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  nav.nav-open .nav-menu-btn span:nth-child(2) { opacity: 0; }
+  nav.nav-open .nav-menu-btn span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+  .nav-menu-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 60px;
+    background: rgba(0,0,0,0.55);
+    z-index: 98;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .nav-menu-panel {
+    display: none;
+    position: fixed;
+    top: 60px;
+    right: 0;
+    width: min(320px, 100vw);
+    bottom: 0;
+    z-index: 99;
+    background: #101010;
+    border-left: 1px solid var(--border);
+    padding: 1rem 1rem 2rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    pointer-events: none;
+  }
+  nav.nav-open .nav-menu-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  nav.nav-open .nav-menu-panel {
+    transform: translateX(0);
+    pointer-events: auto;
+  }
+  .nav-menu-links {
+    list-style: none;
+  }
+  .nav-menu-links a {
+    display: block;
+    padding: 0.875rem 0.75rem;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-menu-links a:hover { color: var(--accent-2); }
+  .nav-menu-footer {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  body.nav-menu-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+
   /* ── ANNOUNCEMENT BANNER ── */
   .banner {
     display: flex; align-items: center; justify-content: center;
@@ -306,6 +410,9 @@
   }
   .marquee-track:hover { animation-play-state: paused; }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none !important; }
+  }
   .marquee-item {
     display: flex; align-items: center; gap: 8px;
     font-size: 0.875rem; color: var(--text-dim);
@@ -635,8 +742,14 @@
     transition: transform 0.15s, opacity 0.15s;
     border: 1px solid rgba(255,255,255,0.06);
     min-width: 80px;
+    position: relative;
   }
   .grade-belt:hover { transform: scaleY(1.08); opacity: 0.85; }
+  .grade-belt:focus-visible {
+    outline: 2px solid var(--accent-2);
+    outline-offset: 2px;
+    z-index: 1;
+  }
 
   /* ── LOCATION CARD ── */
   .location-card {
@@ -664,19 +777,58 @@
   @media (max-width: 768px) {
     nav { padding: 0 1rem; }
     .nav-links { display: none; }
+    .nav-menu-btn { display: flex; }
+    .nav-menu-backdrop,
+    .nav-menu-panel { display: block; }
+    .nav-cta .btn-ghost { display: none; }
     .hero { padding: 4rem 1rem 3rem; min-height: auto; }
     section { padding: 4rem 1rem; }
     .bento-card.span-4, .bento-card.span-6, .bento-card.span-8 { grid-column: span 12; }
     .comparison-wrap, .reviews-grid, .team-grid, .blog-grid { grid-template-columns: 1fr; }
     .hero-stats { flex-wrap: wrap; }
-    .programs-grid { grid-template-columns: 1fr 1fr; }
+    .programs-grid { grid-template-columns: 1fr; }
+    .banner {
+      flex-wrap: wrap;
+      text-align: center;
+      font-size: 0.75rem;
+      gap: 6px;
+      padding: 8px 0.75rem;
+      line-height: 1.35;
+    }
+    .cta-section { padding: 4rem 1.25rem; }
+  }
+
+  /* Pirámide de grados: scroll horizontal en pantallas angostas */
+  .grades-scroll-hint {
+    display: none;
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+  .grades-scroll-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -0.5rem;
+    padding: 0 0.5rem 0.35rem;
+    scrollbar-width: thin;
+  }
+  .grades-scroll-wrap .grades-display {
+    width: max-content;
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 520px) {
+    .grades-scroll-hint { display: block; }
   }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav class="site-nav">
   <a href="#" class="nav-logo">
     <span class="nav-logo-mark">H</span>
     HUMI Taekwondo
@@ -689,8 +841,25 @@
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-cta">
-    <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank">Instagram</a>
-    <a href="https://wa.me/526461093879" class="btn-primary" target="_blank">Visitar Dojang</a>
+    <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://wa.me/526461093879" class="btn-primary" target="_blank" rel="noopener noreferrer">Visitar Dojang</a>
+  </div>
+  <button type="button" class="nav-menu-btn" aria-expanded="false" aria-controls="site-nav-menu" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-menu-backdrop" aria-hidden="true"></div>
+  <div id="site-nav-menu" class="nav-menu-panel" role="dialog" aria-modal="true" aria-label="Menú de navegación" aria-hidden="true">
+    <ul class="nav-menu-links">
+      <li><a href="#programas">Programas</a></li>
+      <li><a href="#horarios">Horarios</a></li>
+      <li><a href="#instructores">Instructores</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-menu-footer">
+      <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://wa.me/526461093879" class="btn-primary" target="_blank" rel="noopener noreferrer" style="text-align:center;">Visitar Dojang</a>
+    </div>
   </div>
 </nav>
 
@@ -819,6 +988,7 @@
 
 <!-- PROGRAMAS -->
 <section id="programas" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+  <div id="horarios" class="scroll-target" aria-label="Programas y horarios"></div>
   <div class="section-eyebrow">Programas</div>
   <div class="section-title">Cada detalle, con intención</div>
   <div class="section-sub">Niños, teens y adultos: misma ética, distinta exigencia. Elige un grupo para ver días, hora y enfoque.</div>
@@ -889,7 +1059,7 @@
 </section>
 
 <!-- COMPARACIÓN -->
-<section id="horarios" style="border-top: 1px solid var(--border);">
+<section id="comparacion" style="border-top: 1px solid var(--border);">
   <div class="section-eyebrow">Comparación</div>
   <div class="section-title">HUMI vs otras escuelas</div>
   <div class="section-sub">La diferencia no es solo el uniforme.</div>
@@ -926,12 +1096,195 @@
   </div>
 </section>
 
+<!-- INSTRUCTORES -->
+<section id="instructores" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+  <div class="section-eyebrow">Equipo</div>
+  <div class="section-title">Autoridad con calma</div>
+  <div class="section-sub">La autoridad viene del criterio. Se corrige con precisión y se acompaña sin humillar.</div>
+
+  <div class="unified-grid">
+
+    <!-- HUMI Team -->
+    <div class="ucard">
+      <div class="ucard-avatar blue">PN</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Paulina Noriega Romero Vargas</div>
+        <div class="ucard-role blue">Directora General</div>
+      </div>
+      <div class="ucard-bio">Liderazgo técnico y visión de largo plazo: disciplina como estructura amable, y desarrollo humano al centro de la exigencia.</div>
+      <div class="ucard-tag blue">5to Dan</div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-avatar blue">DC</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Dulce Carolina Curiel</div>
+        <div class="ucard-role blue">Especialista en Poomsae</div>
+      </div>
+      <div class="ucard-bio">Control, detalle y progresión medida. Enseña a que la precisión sea una forma de respeto propio.</div>
+      <div class="ucard-tag blue">3er Dan</div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-avatar blue">MR</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Mario Rodríguez Verti</div>
+        <div class="ucard-role blue">Instructor</div>
+      </div>
+      <div class="ucard-bio">Constancia y claridad en cada nivel. Acompaña la evolución técnica como hábito, no como prisa.</div>
+      <div class="ucard-tag blue">2do Dan</div>
+    </div>
+
+    <div class="ucard">
+      <div class="ucard-avatar blue">GT</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Gise Tinoco</div>
+        <div class="ucard-role blue">Supervisión y Administración</div>
+      </div>
+      <div class="ucard-bio">Supervisión del dojang y gestión administrativa. Estudios en medicina que respaldan un enfoque integral en el bienestar de los alumnos.</div>
+      <div class="ucard-tag blue">Estudios en Medicina</div>
+    </div>
+
+    <!-- Divider card -->
+    <div class="ucard-divider">
+      <span class="ucard-divider-label">Auditoría de niveles · WTU México</span>
+      <span class="ucard-divider-sub">Certifican y validan la progresión de grados en HUMI</span>
+    </div>
+
+    <!-- Grand Masters -->
+    <div class="ucard gold">
+      <div class="ucard-badge">Grand Master</div>
+      <div class="ucard-avatar amber">GO</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Gustavo Ortega</div>
+        <div class="ucard-role amber">World Taekwondo Union México</div>
+      </div>
+      <div class="ucard-bio">Entrenador de Baja California con más atletas en la Federación Mexicana de Taekwondo. Maestro de Daniela Souza, medallista olímpica.</div>
+      <div class="ucard-tag amber">7mo Dan</div>
+    </div>
+
+    <div class="ucard gold">
+      <div class="ucard-badge">Grand Master</div>
+      <div class="ucard-avatar amber">JM</div>
+      <div class="ucard-info">
+        <div class="ucard-name">Julio Moreno</div>
+        <div class="ucard-role amber">World Taekwondo Union México</div>
+      </div>
+      <div class="ucard-bio">Pionero del Taekwondo en México. Figura central en el posicionamiento y crecimiento de la disciplina a nivel nacional.</div>
+      <div class="ucard-tag amber">9no Dan</div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .unified-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  /* Divider full-width */
+  .ucard-divider {
+    grid-column: 1 / -1;
+    background: #f1f0ee;
+    padding: 1rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    border-top: 1px solid rgba(180,120,20,0.15);
+    border-bottom: 1px solid rgba(180,120,20,0.15);
+    flex-wrap: wrap;
+  }
+  .ucard-divider-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; font-family: 'Geist Mono', monospace;
+    color: #92681a; background: rgba(180,120,20,0.1);
+    border: 1px solid rgba(180,120,20,0.2);
+    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+  }
+  .ucard-divider-sub {
+    font-size: 0.8rem; color: #888;
+  }
+
+  /* Base card */
+  .ucard {
+    background: #ffffff;
+    padding: 1.75rem;
+    display: flex; flex-direction: column; gap: 0.875rem;
+    position: relative; transition: background 0.15s;
+  }
+  .ucard:hover { background: #f9f9f7; }
+
+  /* Gold variant for Grand Masters */
+  .ucard.gold { background: #fffcf2; }
+  .ucard.gold:hover { background: #fff8e6; }
+  .ucard.gold::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, #b47814, #e6a820);
+  }
+
+  /* Badge (Grand Master only) */
+  .ucard-badge {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; font-family: 'Geist Mono', monospace;
+    color: #92681a; background: rgba(180,120,20,0.1);
+    border: 1px solid rgba(180,120,20,0.2);
+    padding: 2px 8px; border-radius: 100px; width: fit-content;
+  }
+
+  /* Avatar */
+  .ucard-avatar {
+    width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.875rem; font-weight: 800;
+  }
+  .ucard-avatar.blue {
+    background: rgba(22,74,137,0.1); border: 1px solid rgba(22,74,137,0.2); color: #164A89;
+  }
+  .ucard-avatar.amber {
+    background: rgba(180,120,20,0.12); border: 1px solid rgba(180,120,20,0.25); color: #92681a;
+  }
+
+  /* Info */
+  .ucard-name { font-size: 0.9rem; font-weight: 700; color: #0f0f0f; letter-spacing: -0.01em; }
+  .ucard-role { font-size: 0.75rem; font-family: 'Geist Mono', monospace; margin-top: 1px; }
+  .ucard-role.blue { color: #164A89; }
+  .ucard-role.amber { color: #92681a; }
+
+  .ucard-bio { font-size: 0.8125rem; color: #555; line-height: 1.6; flex: 1; }
+
+  /* Dan tag */
+  .ucard-tag {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+    text-transform: uppercase; padding: 3px 8px; border-radius: 100px;
+    width: fit-content; margin-top: auto;
+  }
+  .ucard-tag.blue {
+    background: rgba(22,74,137,0.07); border: 1px solid rgba(22,74,137,0.15); color: #164A89;
+  }
+  .ucard-tag.amber {
+    background: rgba(180,120,20,0.1); border: 1px solid rgba(180,120,20,0.2); color: #92681a;
+  }
+
+  @media (max-width: 768px) {
+    .unified-grid { grid-template-columns: 1fr; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .unified-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+
 <!-- MANIFIESTO / GRADOS -->
 <section style="border-top: 1px solid var(--border);">
   <div class="section-eyebrow">Manifiesto</div>
   <div class="section-title">El color cuenta lo que estás aprendiendo a ser</div>
   <div class="section-sub">No solo lo que sabes hacer. La progresión de grados en HUMI.</div>
 
+  <p class="grades-scroll-hint">Desliza horizontalmente para ver toda la pirámide</p>
+  <div class="grades-scroll-wrap">
   <div class="grades-display" id="grades">
     <div class="grade-row">
       <div class="grade-belt" style="background:#1a1a1a;color:#888;width:480px;" data-info="Cinta Negra — La meta. Disciplina, técnica y carácter formados.">⬛ Negro</div>
@@ -976,7 +1329,8 @@
       <div class="grade-belt" style="background:#e5e7eb;color:#111;width:60px;" data-info="Blanco — La base de todo lo que viene.">Blanco</div>
     </div>
   </div>
-  <div id="belt-info" style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--text-muted);height:24px;transition:all 0.2s;"></div>
+  </div>
+  <div id="belt-info" style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--text-muted);min-height:24px;transition:all 0.2s;"></div>
 </section>
 
 <!-- TESTIMONIOS -->
@@ -1171,191 +1525,18 @@
   @media (max-width: 768px) {
     .reviews-layout { flex-direction: column; }
     .reviews-left { flex: none; padding: 3rem 1.5rem 1.5rem; position: static; }
-    .reviews-right { max-height: 400px; padding: 0 1rem 1rem; }
+    .reviews-right {
+      max-height: none;
+      padding: 0 1rem 1.5rem;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .review-col { max-height: 300px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-up, .scroll-down { animation: none !important; }
   }
 </style>
-
-<!-- INSTRUCTORES -->
-<section id="instructores" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
-  <div class="section-eyebrow">Equipo</div>
-  <div class="section-title">Autoridad con calma</div>
-  <div class="section-sub">La autoridad viene del criterio. Se corrige con precisión y se acompaña sin humillar.</div>
-
-  <div class="unified-grid">
-
-    <!-- HUMI Team -->
-    <div class="ucard">
-      <div class="ucard-avatar blue">PN</div>
-      <div class="ucard-info">
-        <div class="ucard-name">Paulina Noriega Romero Vargas</div>
-        <div class="ucard-role blue">Directora General</div>
-      </div>
-      <div class="ucard-bio">Liderazgo técnico y visión de largo plazo: disciplina como estructura amable, y desarrollo humano al centro de la exigencia.</div>
-      <div class="ucard-tag blue">5to Dan</div>
-    </div>
-
-    <div class="ucard">
-      <div class="ucard-avatar blue">DC</div>
-      <div class="ucard-info">
-        <div class="ucard-name">Dulce Carolina Curiel</div>
-        <div class="ucard-role blue">Especialista en Poomsae</div>
-      </div>
-      <div class="ucard-bio">Control, detalle y progresión medida. Enseña a que la precisión sea una forma de respeto propio.</div>
-      <div class="ucard-tag blue">3er Dan</div>
-    </div>
-
-    <div class="ucard">
-      <div class="ucard-avatar blue">MR</div>
-      <div class="ucard-info">
-        <div class="ucard-name">Mario Rodríguez Verti</div>
-        <div class="ucard-role blue">Instructor</div>
-      </div>
-      <div class="ucard-bio">Constancia y claridad en cada nivel. Acompaña la evolución técnica como hábito, no como prisa.</div>
-      <div class="ucard-tag blue">2do Dan</div>
-    </div>
-
-    <div class="ucard">
-      <div class="ucard-avatar blue">GT</div>
-      <div class="ucard-info">
-        <div class="ucard-name">Gise Tinoco</div>
-        <div class="ucard-role blue">Supervisión y Administración</div>
-      </div>
-      <div class="ucard-bio">Supervisión del dojang y gestión administrativa. Estudios en medicina que respaldan un enfoque integral en el bienestar de los alumnos.</div>
-      <div class="ucard-tag blue">Estudios en Medicina</div>
-    </div>
-
-    <!-- Divider card -->
-    <div class="ucard-divider">
-      <span class="ucard-divider-label">Auditoría de niveles · WTU México</span>
-      <span class="ucard-divider-sub">Certifican y validan la progresión de grados en HUMI</span>
-    </div>
-
-    <!-- Grand Masters -->
-    <div class="ucard gold">
-      <div class="ucard-badge">Grand Master</div>
-      <div class="ucard-avatar amber">GO</div>
-      <div class="ucard-info">
-        <div class="ucard-name">Gustavo Ortega</div>
-        <div class="ucard-role amber">World Taekwondo Union México</div>
-      </div>
-      <div class="ucard-bio">Entrenador de Baja California con más atletas en la Federación Mexicana de Taekwondo. Maestro de Daniela Souza, medallista olímpica.</div>
-      <div class="ucard-tag amber">7mo Dan</div>
-    </div>
-
-    <div class="ucard gold">
-      <div class="ucard-badge">Grand Master</div>
-      <div class="ucard-avatar amber">JM</div>
-      <div class="ucard-info">
-        <div class="ucard-name">Julio Moreno</div>
-        <div class="ucard-role amber">World Taekwondo Union México</div>
-      </div>
-      <div class="ucard-bio">Pionero del Taekwondo en México. Figura central en el posicionamiento y crecimiento de la disciplina a nivel nacional.</div>
-      <div class="ucard-tag amber">9no Dan</div>
-    </div>
-
-  </div>
-</section>
-
-<style>
-  .unified-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(0,0,0,0.07);
-    border: 1px solid rgba(0,0,0,0.07);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  /* Divider full-width */
-  .ucard-divider {
-    grid-column: 1 / -1;
-    background: #f1f0ee;
-    padding: 1rem 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-    border-top: 1px solid rgba(180,120,20,0.15);
-    border-bottom: 1px solid rgba(180,120,20,0.15);
-    flex-wrap: wrap;
-  }
-  .ucard-divider-label {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-    text-transform: uppercase; font-family: 'Geist Mono', monospace;
-    color: #92681a; background: rgba(180,120,20,0.1);
-    border: 1px solid rgba(180,120,20,0.2);
-    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
-  }
-  .ucard-divider-sub {
-    font-size: 0.8rem; color: #888;
-  }
-
-  /* Base card */
-  .ucard {
-    background: #ffffff;
-    padding: 1.75rem;
-    display: flex; flex-direction: column; gap: 0.875rem;
-    position: relative; transition: background 0.15s;
-  }
-  .ucard:hover { background: #f9f9f7; }
-
-  /* Gold variant for Grand Masters */
-  .ucard.gold { background: #fffcf2; }
-  .ucard.gold:hover { background: #fff8e6; }
-  .ucard.gold::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: linear-gradient(90deg, #b47814, #e6a820);
-  }
-
-  /* Badge (Grand Master only) */
-  .ucard-badge {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; font-family: 'Geist Mono', monospace;
-    color: #92681a; background: rgba(180,120,20,0.1);
-    border: 1px solid rgba(180,120,20,0.2);
-    padding: 2px 8px; border-radius: 100px; width: fit-content;
-  }
-
-  /* Avatar */
-  .ucard-avatar {
-    width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.875rem; font-weight: 800;
-  }
-  .ucard-avatar.blue {
-    background: rgba(22,74,137,0.1); border: 1px solid rgba(22,74,137,0.2); color: #164A89;
-  }
-  .ucard-avatar.amber {
-    background: rgba(180,120,20,0.12); border: 1px solid rgba(180,120,20,0.25); color: #92681a;
-  }
-
-  /* Info */
-  .ucard-name { font-size: 0.9rem; font-weight: 700; color: #0f0f0f; letter-spacing: -0.01em; }
-  .ucard-role { font-size: 0.75rem; font-family: 'Geist Mono', monospace; margin-top: 1px; }
-  .ucard-role.blue { color: #164A89; }
-  .ucard-role.amber { color: #92681a; }
-
-  .ucard-bio { font-size: 0.8125rem; color: #555; line-height: 1.6; flex: 1; }
-
-  /* Dan tag */
-  .ucard-tag {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
-    text-transform: uppercase; padding: 3px 8px; border-radius: 100px;
-    width: fit-content; margin-top: auto;
-  }
-  .ucard-tag.blue {
-    background: rgba(22,74,137,0.07); border: 1px solid rgba(22,74,137,0.15); color: #164A89;
-  }
-  .ucard-tag.amber {
-    background: rgba(180,120,20,0.1); border: 1px solid rgba(180,120,20,0.2); color: #92681a;
-  }
-
-  @media (max-width: 768px) {
-    .unified-grid { grid-template-columns: 1fr; }
-  }
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .unified-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-</style>
-</section>
 
 <!-- BLOG CAROUSEL -->
 <div id="blog" class="blog-carousel-section">
@@ -1541,11 +1722,29 @@
   .blog-dot.active { background: #4a8fd4; transform: scale(1.4); }
 
   @media (max-width: 768px) {
-    .blog-card-main { flex-direction: column; }
+    .blog-carousel-stage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      align-items: center;
+      justify-items: center;
+      gap: 0.75rem 1rem;
+      padding: 0 1rem;
+    }
+    .blog-card-main {
+      flex-direction: column;
+      grid-column: 1 / -1;
+      grid-row: 1;
+      width: 100%;
+      max-width: 100%;
+    }
     .blog-card-img-wrap { flex: 0 0 220px; }
-    .blog-arrow { width: 40px; height: 40px; font-size: 0.9rem; }
-    .blog-carousel-stage { gap: 0.75rem; }
+    .blog-arrow { width: 44px; height: 44px; font-size: 0.95rem; }
+    .blog-arrow-left { grid-column: 1; grid-row: 2; justify-self: end; margin: 0; }
+    .blog-arrow-right { grid-column: 2; grid-row: 2; justify-self: start; margin: 0; }
     .blog-bg-grid { grid-template-columns: repeat(3, 1fr); }
+    .blog-card-body { padding: 1.5rem 1.25rem; }
+    .blog-card-title { font-size: 1.25rem; }
   }
 </style>
 
@@ -1735,35 +1934,107 @@
 </footer>
 
 <script>
-  // FAQ toggle
-  document.querySelectorAll('.faq-q').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.parentElement;
-      const wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!wasOpen) item.classList.add('open');
+(function () {
+  var nav = document.querySelector('.site-nav');
+  var menuBtn = document.querySelector('.nav-menu-btn');
+  var backdrop = document.querySelector('.nav-menu-backdrop');
+  var panel = document.getElementById('site-nav-menu');
+
+  function setNavOpen(open, silent) {
+    if (!nav || !menuBtn || !panel) return;
+    nav.classList.toggle('nav-open', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.classList.toggle('nav-menu-open', open);
+    if (backdrop) backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (open) {
+      var first = panel.querySelector('a[href]');
+      if (first) first.focus({ preventScroll: true });
+    } else if (!silent) {
+      menuBtn.focus({ preventScroll: true });
+    }
+  }
+
+  function closeNav() {
+    setNavOpen(false);
+  }
+
+  if (menuBtn && nav) {
+    menuBtn.addEventListener('click', function () {
+      setNavOpen(!nav.classList.contains('nav-open'));
     });
+  }
+  if (backdrop) backdrop.addEventListener('click', closeNav);
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav && nav.classList.contains('nav-open')) closeNav();
   });
 
-  // Belt hover info
-  const beltInfo = document.getElementById('belt-info');
-  document.querySelectorAll('.grade-belt').forEach(belt => {
-    belt.addEventListener('mouseenter', () => {
-      beltInfo.textContent = belt.dataset.info;
-      beltInfo.style.color = 'var(--text)';
-    });
-    belt.addEventListener('mouseleave', () => {
-      beltInfo.textContent = '';
-    });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 768 && nav && nav.classList.contains('nav-open')) setNavOpen(false, true);
   });
 
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var raw = a.getAttribute('href');
+      if (!raw || raw === '#' || raw === '#!') return;
+      var target;
+      try {
+        target = document.querySelector(raw);
+      } catch (err) {
+        return;
+      }
+      if (!target) return;
+      e.preventDefault();
+      var wasOpen = nav && nav.classList.contains('nav-open');
+      if (wasOpen) closeNav();
+      var instant = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      requestAnimationFrame(function () {
+        target.scrollIntoView({ behavior: instant ? 'auto' : 'smooth' });
+      });
     });
   });
+})();
+
+// FAQ toggle
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  });
+});
+
+// Belt info (hover / teclado / toque en móvil)
+const beltInfo = document.getElementById('belt-info');
+const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
+document.querySelectorAll('.grade-belt').forEach(belt => {
+  function show() {
+    beltInfo.textContent = belt.dataset.info;
+    beltInfo.style.color = 'var(--text)';
+  }
+  function hide() {
+    beltInfo.textContent = '';
+  }
+  belt.addEventListener('mouseenter', show);
+  belt.addEventListener('mouseleave', hide);
+  belt.addEventListener('focus', show);
+  belt.addEventListener('blur', hide);
+  belt.setAttribute('tabindex', '0');
+  if (coarsePointer) {
+    belt.addEventListener('click', function (e) {
+      e.preventDefault();
+      var on = belt.classList.toggle('belt-tip-on');
+      document.querySelectorAll('.grade-belt').forEach(function (b) {
+        if (b !== belt) b.classList.remove('belt-tip-on');
+      });
+      if (on) show();
+      else hide();
+    });
+  }
+});
 </script>
 </body>
 </html>
