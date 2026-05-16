@@ -19,6 +19,7 @@ node_modules/
 dist/
 .next/
 out/
+tsconfig.tsbuildinfo
 
 # Vite cache
 .vite/

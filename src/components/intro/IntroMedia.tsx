@@ -12,6 +12,7 @@ type IntroMediaProps = {
   overlayBase?: number;
   overlayActive?: number;
   scale?: number;
+  mediaTransitionMs?: number;
   className?: string;
 };
 
@@ -24,8 +25,10 @@ export function IntroMedia({
   overlayBase = 0.52,
   overlayActive = 0.4,
   scale = 1,
+  mediaTransitionMs = 900,
   className = "",
 }: IntroMediaProps) {
+  const mediaEase = [0.22, 1, 0.36, 1] as const;
   const videoRef = useRef<HTMLVideoElement>(null);
   const [usePoster, setUsePoster] = useState(false);
 
@@ -55,7 +58,7 @@ export function IntroMedia({
     <motion.div
       className={`absolute inset-0 overflow-hidden bg-[#050505] ${className}`}
       animate={{ scale }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: mediaTransitionMs / 1000, ease: mediaEase }}
     >
       {!usePoster ? (
         <video
@@ -83,7 +86,7 @@ export function IntroMedia({
       <motion.div
         className="absolute inset-0 bg-black"
         animate={{ opacity: overlayOpacity }}
-        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: mediaTransitionMs / 1000, ease: mediaEase }}
       />
 
       <motion.div

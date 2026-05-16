@@ -25,7 +25,7 @@ El script `sync:legacy` copia `index.html` y las páginas `blog-*.html` a `publi
 - Scroll / toque para “entrar al dojang”
 - `localStorage`: `humi_intro_seen` + timestamp (reaparece tras ~4 h)
 
-Videos del intro: coloca `instagram-reel-01.mp4` … `04.mp4` en `video/` (ver `video/README.md`). Cuatro paneles: Form · Human · Energy · Presence. Sync con `npm run sync:videos` (automático en dev/build).
+Videos: intro (`instagram-reel-01`…`04`) y momentos (`taekwondo-training`, `taekwondo-games`) en `video/` (ver `video/README.md`). Imágenes editoriales pic19+ se sincronizan desde `../humisite/images` con `npm run sync:media`. Sync automático en dev/build.
 
 Para probar de nuevo el intro en consola del navegador:
 
@@ -59,7 +59,7 @@ Vercel detecta Next.js (`vercel.json`). El build ejecuta `sync:legacy` antes de 
 | `src/components/site/` | Montaje del HTML legacy tras el intro |
 | `src/lib/intro-*.ts` | Config y `localStorage` del intro |
 | `index.html` | Fuente de la landing (sincronizada a `public/legacy-landing.html`) |
-| `public/images/` | Imágenes y textura grain |
+| `public/images/` | Imágenes editoriales (semantic IDs, ver `src/lib/media-assets.ts`) y textura grain |
 | `public/videos/intro/` | Loops de video del intro |
 | `blog-*.html`, `sitio-editorial.html` | Artículos y editorial (copiados a `public/` en build) |
 

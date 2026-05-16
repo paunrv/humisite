@@ -1,12 +1,8 @@
+import type { ReelPanelConfig } from "@/lib/reel-panel";
+
 export type IntroPanelId = "form" | "human" | "energy" | "presence";
 
-export type IntroPanelConfig = {
-  id: IntroPanelId;
-  label: string;
-  videoSrc: string;
-  posterSrc: string;
-  sourceHashtagUrl?: string;
-};
+export type IntroPanelConfig = ReelPanelConfig & { id: IntroPanelId };
 
 /** Sources in /video/ — synced to /public/videos/intro/ via npm run sync:videos */
 export const INTRO_PANELS: IntroPanelConfig[] = [

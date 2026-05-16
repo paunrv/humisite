@@ -4,22 +4,41 @@ import { fileURLToPath } from "node:url";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sourceDir = path.join(root, "video");
-const targetDir = path.join(root, "public", "videos", "intro");
 
-const mappings = [
-  { source: "instagram-reel-01.mp4", target: "form.mp4" },
-  { source: "instagram-reel-02.mp4", target: "human.mp4" },
-  { source: "instagram-reel-03.mp4", target: "energy.mp4" },
-  { source: "instagram-reel-04.mp4", target: "presence.mp4" },
+const defaultHumisiteVideo = path.join(root, "..", "humisite", "video");
+
+/** Copy semantic sources from humisite when missing locally */
+const VIDEO_IMPORTS = [
+  { humisite: "instagram-reel-08.mp4", local: "taekwondo-training.mp4" },
+  { humisite: "instagram-reel-09.mp4", local: "taekwondo-games.mp4" },
 ];
 
-mkdirSync(targetDir, { recursive: true });
+for (const { humisite, local } of VIDEO_IMPORTS) {
+  const from = path.join(defaultHumisiteVideo, humisite);
+  const to = path.join(sourceDir, local);
+  if (existsSync(from) && !existsSync(to)) {
+    copyFileSync(from, to);
+    console.log(`sync-videos: imported ${humisite} → video/${local}`);
+  }
+}
+
+const mappings = [
+  { source: "instagram-reel-01.mp4", targetDir: "intro", target: "form.mp4" },
+  { source: "instagram-reel-02.mp4", targetDir: "intro", target: "human.mp4" },
+  { source: "instagram-reel-03.mp4", targetDir: "intro", target: "energy.mp4" },
+  { source: "instagram-reel-04.mp4", targetDir: "intro", target: "presence.mp4" },
+  { source: "taekwondo-training.mp4", targetDir: "moments", target: "taekwondo-training.mp4" },
+  { source: "taekwondo-games.mp4", targetDir: "moments", target: "taekwondo-games.mp4" },
+];
 
 let copied = 0;
 
-for (const { source, target } of mappings) {
+for (const { source, targetDir, target } of mappings) {
   const from = path.join(sourceDir, source);
-  const to = path.join(targetDir, target);
+  const outDir = path.join(root, "public", "videos", targetDir);
+  const to = path.join(outDir, target);
+
+  mkdirSync(outDir, { recursive: true });
 
   if (!existsSync(from)) {
     console.warn(`sync-videos: missing ${source}`);
@@ -28,15 +47,14 @@ for (const { source, target } of mappings) {
 
   copyFileSync(from, to);
   copied += 1;
-  console.log(`sync-videos: ${source} → public/videos/intro/${target}`);
+  console.log(`sync-videos: ${source} → public/videos/${targetDir}/${target}`);
 }
 
 const extras = readdirSync(sourceDir).filter(
   (name) => name.startsWith("instagram-reel-") && name.endsWith(".mp4"),
 );
-const unmapped = extras.filter(
-  (name) => !mappings.some((m) => m.source === name),
-);
+const mappedSources = new Set(mappings.map((m) => m.source));
+const unmapped = extras.filter((name) => !mappedSources.has(name));
 if (unmapped.length > 0) {
   console.warn(`sync-videos: unmapped files in video/: ${unmapped.join(", ")}`);
 }
@@ -46,4 +64,4 @@ if (copied === 0) {
   process.exit(1);
 }
 
-console.log(`sync-videos: ${copied}/${mappings.length} panels ready`);
+console.log(`sync-videos: ${copied}/${mappings.length} videos ready`);

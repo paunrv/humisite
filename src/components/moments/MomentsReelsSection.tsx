@@ -1,18 +1,17 @@
 "use client";
 
-import { INTRO_PANELS, type IntroPanelId } from "@/lib/intro-config";
-import { useCallback, useState } from "react";
+import { INTRO_PANELS } from "@/lib/intro-config";
+import { useFinePointerHover } from "@/lib/use-fine-pointer-hover";
+import { useState } from "react";
 import { MomentsReelCell } from "./MomentsReelCell";
 
+/** Form · Human · Energy — same trio as the cinematic intro */
+const MOMENTOS_PANELS = INTRO_PANELS.slice(0, 3);
+
 export function MomentsReelsSection() {
-  const [hoveredId, setHoveredId] = useState<IntroPanelId | null>(null);
-  const [touchedId, setTouchedId] = useState<IntroPanelId | null>(null);
-
-  const activeId = hoveredId ?? touchedId;
-
-  const handlePointerDown = useCallback((id: IntroPanelId) => {
-    setTouchedId((current) => (current === id ? null : id));
-  }, []);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const finePointerHover = useFinePointerHover();
+  const activeId = finePointerHover ? hoveredId : null;
 
   return (
     <section
@@ -28,19 +27,18 @@ export function MomentsReelsSection() {
           Contacto humano, en movimiento
         </h2>
         <p className="mb-10 max-w-[500px] text-base leading-relaxed text-[#888]">
-          Técnica, vínculo y presencia. Apoyo visual de lo que ocurre en clase.
+          Técnica, vínculo y presencia. Nuestra comunidad es lo más preciado.
         </p>
 
         <div
-          className="grid min-h-[320px] grid-cols-2 gap-px overflow-hidden rounded-[14px] border border-white/[0.08] bg-white/[0.08] md:min-h-[clamp(220px,42vw,440px)] md:grid-cols-4"
+          className="grid min-h-[320px] grid-cols-1 gap-px overflow-hidden rounded-[14px] border border-white/[0.08] bg-white/[0.08] md:min-h-[clamp(220px,42vw,440px)] md:grid-cols-3"
           onMouseLeave={() => setHoveredId(null)}
         >
-          {INTRO_PANELS.map((panel) => (
+          {MOMENTOS_PANELS.map((panel) => (
             <div
               key={panel.id}
               className="relative min-h-[140px] md:min-h-0"
-              onMouseEnter={() => setHoveredId(panel.id)}
-              onPointerDown={() => handlePointerDown(panel.id)}
+              onMouseEnter={() => finePointerHover && setHoveredId(panel.id)}
             >
               <MomentsReelCell
                 panel={panel}
@@ -51,8 +49,8 @@ export function MomentsReelsSection() {
           ))}
         </div>
 
-        <p className="mt-4 text-center font-mono text-[0.65rem] tracking-[0.18em] text-[#555] uppercase md:text-left">
-          Pasa el cursor · Toca en móvil
+        <p className="mt-4 hidden text-center font-mono text-[0.65rem] tracking-[0.18em] text-[#555] uppercase md:block md:text-left">
+          Pasa el cursor
         </p>
       </div>
     </section>

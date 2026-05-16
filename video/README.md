@@ -1,16 +1,21 @@
 # Source videos (Instagram reels)
 
-| File | Intro panel | Output |
-|------|-------------|--------|
-| `instagram-reel-01.mp4` | Form | `public/videos/intro/form.mp4` |
-| `instagram-reel-02.mp4` | Human | `public/videos/intro/human.mp4` |
-| `instagram-reel-03.mp4` | Energy | `public/videos/intro/energy.mp4` |
-| `instagram-reel-04.mp4` | Presence | `public/videos/intro/presence.mp4` |
+## Intro panels (`public/videos/intro/`)
 
-After adding or replacing files:
+| Source in `video/` | Panel | Output |
+| --- | --- | --- |
+| `instagram-reel-01.mp4` | Form | `form.mp4` |
+| `instagram-reel-02.mp4` | Human | `human.mp4` |
+| `instagram-reel-03.mp4` | Energy | `energy.mp4` |
+| `instagram-reel-04.mp4` | Presence | `presence.mp4` |
 
-```bash
-npm run sync:videos
-```
+## Moments (`public/videos/moments/`)
 
-`npm run dev` and `npm run build` run this automatically.
+| Source in `video/` | Context | Output |
+| --- | --- | --- |
+| `taekwondo-training.mp4` | Movement, discipline, rhythm | `taekwondo-training.mp4` |
+| `taekwondo-games.mp4` | Playfulness, community | `taekwondo-games.mp4` |
+
+Legacy names `instagram-reel-08.mp4` / `instagram-reel-09.mp4` are imported from `../humisite/video/` on first sync if the semantic files are not present yet.
+
+Run `npm run sync:videos` (included in `dev` and `build`).

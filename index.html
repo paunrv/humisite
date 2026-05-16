@@ -148,15 +148,6 @@
   .nav-cta {
     display: flex; align-items: center; gap: 10px;
   }
-  .nav-replay-slot {
-    display: flex;
-    align-items: center;
-    min-width: 40px;
-    min-height: 40px;
-  }
-  .nav-replay-slot:empty {
-    display: none;
-  }
   .btn-ghost {
     color: var(--text-muted); background: none; border: 1px solid var(--border);
     padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.875rem;
@@ -881,7 +872,6 @@
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-cta">
-    <span id="humi-intro-replay-slot" class="nav-replay-slot"></span>
     <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a href="https://wa.me/526461093879" class="btn-primary" target="_blank" rel="noopener noreferrer">Visitar Dojang</a>
   </div>
@@ -1008,7 +998,7 @@
     <div class="bento-card span-8">
       <div class="bento-icon">👥</div>
       <h3>Grupos por edad y objetivo</h3>
-      <p>Desde 3 años hasta adultos AM. Cada grupo tiene su exigencia, su ritmo y su identidad dentro del dojang.</p>
+      <p>Desde 3 años hasta adultos. Cada grupo tiene su exigencia, su ritmo y su identidad dentro del dojang.</p>
     </div>
     <div class="bento-card span-4">
       <div class="bento-icon">🎯</div>
@@ -1151,7 +1141,7 @@
 
   <div class="unified-grid">
 
-    <!-- HUMI Team -->
+    <div class="team-primary" aria-label="Equipo HUMI">
     <div class="ucard">
       <div class="ucard-avatar blue">PN</div>
       <div class="ucard-info">
@@ -1192,14 +1182,15 @@
       <div class="ucard-tag blue">Estudios en Medicina</div>
     </div>
 
-    <!-- Divider card -->
-    <div class="ucard-divider">
-      <span class="ucard-divider-label">Auditoría de niveles · WTU México</span>
-      <span class="ucard-divider-sub">Certifican y validan la progresión de grados en HUMI</span>
     </div>
 
-    <!-- Grand Masters -->
-    <div class="ucard gold">
+    <div class="team-institutional" aria-label="Respaldo institucional">
+    <div class="ucard ucard-institutional ucard-wtu">
+      <span class="ucard-divider-label">Auditoría de niveles · WTU México</span>
+      <p class="ucard-wtu-sub">Certifican y validan la progresión de grados en HUMI</p>
+    </div>
+
+    <div class="ucard ucard-institutional gold">
       <div class="ucard-badge">Grand Master</div>
       <div class="ucard-avatar amber">GO</div>
       <div class="ucard-info">
@@ -1210,7 +1201,7 @@
       <div class="ucard-tag amber">7mo Dan</div>
     </div>
 
-    <div class="ucard gold">
+    <div class="ucard ucard-institutional gold">
       <div class="ucard-badge">Grand Master</div>
       <div class="ucard-avatar amber">JM</div>
       <div class="ucard-info">
@@ -1221,39 +1212,49 @@
       <div class="ucard-tag amber">9no Dan</div>
     </div>
 
+    </div>
+
   </div>
 </section>
 
 <style>
   .unified-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: rgba(0,0,0,0.07);
-    border: 1px solid rgba(0,0,0,0.07);
-    border-radius: 16px;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
   }
 
-  /* Divider full-width */
-  .ucard-divider {
-    grid-column: 1 / -1;
-    background: #f1f0ee;
-    padding: 1rem 1.5rem;
-    display: flex; align-items: center; gap: 1rem;
-    border-top: 1px solid rgba(180,120,20,0.15);
-    border-bottom: 1px solid rgba(180,120,20,0.15);
-    flex-wrap: wrap;
+  .team-primary,
+  .team-institutional {
+    display: grid;
+    gap: 1px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.07);
+    background: rgba(0,0,0,0.07);
   }
+
+  .team-primary {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .team-institutional {
+    grid-template-columns: 1.15fr 1fr 1fr;
+    border-color: rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.04);
+    border-radius: 14px;
+  }
+
   .ucard-divider-label {
-    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
     text-transform: uppercase; font-family: 'Geist Mono', monospace;
-    color: #92681a; background: rgba(180,120,20,0.1);
-    border: 1px solid rgba(180,120,20,0.2);
-    padding: 3px 10px; border-radius: 100px; white-space: nowrap;
+    color: #92681a; background: rgba(180,120,20,0.08);
+    border: 1px solid rgba(180,120,20,0.14);
+    padding: 3px 10px; border-radius: 100px; width: fit-content;
   }
-  .ucard-divider-sub {
-    font-size: 0.8rem; color: #888;
+
+  .ucard-wtu-sub {
+    font-size: 0.8rem; color: #777; line-height: 1.55; margin: 0;
   }
 
   /* Base card */
@@ -1265,6 +1266,20 @@
   }
   .ucard:hover { background: #f9f9f7; }
 
+  .ucard-institutional {
+    padding: 1.35rem 1.5rem;
+    gap: 0.65rem;
+    background: #faf9f7;
+  }
+  .ucard-institutional:hover { background: #f6f5f2; }
+
+  .ucard-wtu {
+    justify-content: center;
+    background: #f6f5f2;
+    border-right: 1px solid rgba(180,120,20,0.08);
+  }
+  .ucard-wtu:hover { background: #f3f2ef; }
+
   /* Gold variant for Grand Masters */
   .ucard.gold { background: #fffcf2; }
   .ucard.gold:hover { background: #fff8e6; }
@@ -1273,13 +1288,24 @@
     height: 2px; background: linear-gradient(90deg, #b47814, #e6a820);
   }
 
+  .ucard-institutional.gold { background: #fcfaf4; }
+  .ucard-institutional.gold:hover { background: #faf6eb; }
+  .ucard-institutional.gold::before {
+    height: 1px;
+    opacity: 0.75;
+  }
+
   /* Badge (Grand Master only) */
   .ucard-badge {
-    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em;
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; font-family: 'Geist Mono', monospace;
-    color: #92681a; background: rgba(180,120,20,0.1);
-    border: 1px solid rgba(180,120,20,0.2);
+    color: #92681a; background: rgba(180,120,20,0.08);
+    border: 1px solid rgba(180,120,20,0.14);
     padding: 2px 8px; border-radius: 100px; width: fit-content;
+  }
+
+  .ucard-institutional .ucard-badge {
+    font-size: 0.6rem;
   }
 
   /* Avatar */
@@ -1288,20 +1314,30 @@
     display: flex; align-items: center; justify-content: center;
     font-size: 0.875rem; font-weight: 800;
   }
+  .ucard-institutional .ucard-avatar {
+    width: 40px; height: 40px;
+    font-size: 0.8rem; border-radius: 9px;
+  }
   .ucard-avatar.blue {
     background: rgba(22,74,137,0.1); border: 1px solid rgba(22,74,137,0.2); color: #164A89;
   }
   .ucard-avatar.amber {
-    background: rgba(180,120,20,0.12); border: 1px solid rgba(180,120,20,0.25); color: #92681a;
+    background: rgba(180,120,20,0.1); border: 1px solid rgba(180,120,20,0.18); color: #92681a;
+  }
+  .ucard-institutional .ucard-avatar.amber {
+    background: rgba(180,120,20,0.08); border-color: rgba(180,120,20,0.16);
   }
 
   /* Info */
   .ucard-name { font-size: 0.9rem; font-weight: 700; color: #0f0f0f; letter-spacing: -0.01em; }
+  .ucard-institutional .ucard-name { font-size: 0.86rem; }
   .ucard-role { font-size: 0.75rem; font-family: 'Geist Mono', monospace; margin-top: 1px; }
+  .ucard-institutional .ucard-role { font-size: 0.72rem; }
   .ucard-role.blue { color: #164A89; }
   .ucard-role.amber { color: #92681a; }
 
   .ucard-bio { font-size: 0.8125rem; color: #555; line-height: 1.6; flex: 1; }
+  .ucard-institutional .ucard-bio { font-size: 0.78rem; color: #666; line-height: 1.55; }
 
   /* Dan tag */
   .ucard-tag {
@@ -1309,18 +1345,25 @@
     text-transform: uppercase; padding: 3px 8px; border-radius: 100px;
     width: fit-content; margin-top: auto;
   }
+  .ucard-institutional .ucard-tag {
+    font-size: 0.62rem;
+    padding: 2px 7px;
+  }
   .ucard-tag.blue {
     background: rgba(22,74,137,0.07); border: 1px solid rgba(22,74,137,0.15); color: #164A89;
   }
   .ucard-tag.amber {
-    background: rgba(180,120,20,0.1); border: 1px solid rgba(180,120,20,0.2); color: #92681a;
+    background: rgba(180,120,20,0.08); border: 1px solid rgba(180,120,20,0.14); color: #92681a;
   }
 
   @media (max-width: 768px) {
-    .unified-grid { grid-template-columns: 1fr; }
+    .team-primary,
+    .team-institutional { grid-template-columns: 1fr; }
+    .ucard-wtu { border-right: none; border-bottom: 1px solid rgba(180,120,20,0.08); }
   }
   @media (min-width: 769px) and (max-width: 1024px) {
-    .unified-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-primary { grid-template-columns: repeat(2, 1fr); }
+    .team-institutional { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -1825,7 +1868,7 @@
       title: 'Poomsae: qué es y por qué entrenarlo',
       excerpt: 'Las formas no son coreografía: son técnica, respiración y la base de todo lo demás en el tatami.',
       url: '/blog-poomsae-que-es-y-por-que-entrenarlo.html',
-      img: '/images/pic03.png'
+      img: '/images/poomsae.jpg'
     },
     {
       tag: 'Práctica',
@@ -1860,7 +1903,7 @@
       title: 'Doble oro: Guillermo Pérez y María Espinoza',
       excerpt: 'El día en que México se consolidó como potencia global. Contexto post-Sydney y análisis del logro histórico.',
       url: '/blog-beijing-2008-taekwondo-mexico.html',
-      img: '/images/pic-group.png'
+      img: '/images/beijing.jpg'
     },
     {
       tag: 'Olímpico · Londres 2012',
@@ -1881,14 +1924,14 @@
       title: 'Tokyo 2020 — Pandemia y ciclo',
       excerpt: 'Juegos sin público, debate de reglas y un ciclo olímpico que cerró sin medalla para México.',
       url: '/blog-tokyo-2020-taekwondo-mexico.html',
-      img: '/images/pic15.png'
+      img: '/images/tokyo.jpg'
     },
     {
       tag: 'Olímpico · París 2024',
       title: 'París 2024 — Post-Tokyo con hambre',
       excerpt: 'Daniela Souza, Carlos Sansores, ranking y la lección de que el circuito no siempre se traduce en podio olímpico.',
       url: '/blog-paris-2024-taekwondo-mexico.html',
-      img: '/images/pic17.jpg'
+      img: '/images/paris.jpg'
     },
   ];
 
