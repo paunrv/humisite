@@ -17,6 +17,8 @@ node_modules/
 
 # Build output
 dist/
+.next/
+out/
 
 # Vite cache
 .vite/
@@ -35,3 +37,10 @@ Thumbs.db
 .idea/
 .vscode/
 
+# Synced legacy copies (generated from root HTML / assets)
+public/legacy-landing.html
+public/blog-*.html
+public/sitio-editorial.html
+public/assets/css/
+public/assets/js/
+public/videos/

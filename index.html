@@ -148,6 +148,15 @@
   .nav-cta {
     display: flex; align-items: center; gap: 10px;
   }
+  .nav-replay-slot {
+    display: flex;
+    align-items: center;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  .nav-replay-slot:empty {
+    display: none;
+  }
   .btn-ghost {
     color: var(--text-muted); background: none; border: 1px solid var(--border);
     padding: 0.45rem 1rem; border-radius: 8px; font-size: 0.875rem;
@@ -429,6 +438,8 @@
     width: 5px; height: 5px; border-radius: 50%;
     background: var(--accent); opacity: 0.6;
   }
+
+  .moments-mount-slot:empty { display: block; min-height: 0; }
 
   /* ── SECTIONS ── */
   section {
@@ -867,6 +878,7 @@
     <li><a href="#faq">FAQ</a></li>
   </ul>
   <div class="nav-cta">
+    <span id="humi-intro-replay-slot" class="nav-replay-slot"></span>
     <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a href="https://wa.me/526461093879" class="btn-primary" target="_blank" rel="noopener noreferrer">Visitar Dojang</a>
   </div>
@@ -972,6 +984,9 @@
     <span class="marquee-item"><span class="marquee-item-dot"></span>Desarrollo humano</span>
   </div>
 </div>
+
+<!-- MOMENTOS — reels (React monta aquí) -->
+<div id="humi-moments-mount" class="moments-mount-slot"></div>
 
 <!-- DIFERENCIADORES BENTO -->
 <section>
@@ -1572,7 +1587,7 @@
   <!-- Header -->
   <div class="blog-carousel-header">
     <div class="section-eyebrow" style="color:#4a8fd4;">Del tatami al texto</div>
-    <h2 class="blog-carousel-title">6 artículos sobre Taekwondo</h2>
+    <h2 class="blog-carousel-title">Artículos sobre Taekwondo</h2>
     <p class="blog-carousel-sub">Filosofía, historia y contexto olímpico. La misma exigencia, en formato lectura.</p>
   </div>
 
@@ -1781,42 +1796,58 @@
   const articles = [
     {
       tag: 'Filosofía',
-      meta: 'Artículo 1 de 6',
+      meta: 'Artículo 1 de 8',
       title: 'Taekwondo y su filosofía',
       excerpt: 'La palabra Taekwondo viene del camino del desarrollo físico, mental y emocional — y va mucho más allá de una traducción literal.',
-      url: 'https://humisite.vercel.app/blog-taekwondo-y-su-filosofia.html',
+      url: '/blog-taekwondo-y-su-filosofia.html',
       img: '/images/pic01.jpg'
     },
     {
       tag: 'Historia',
-      meta: 'Artículo 2 de 6',
+      meta: 'Artículo 2 de 8',
       title: 'Historia del Taekwondo',
       excerpt: 'Del origen coreano y el General Choi Hong Hi al crecimiento en México: Dai Won Moon y la potencia olímpica actual.',
-      url: 'https://humisite.vercel.app/blog-historia-del-taekwondo.html',
+      url: '/blog-historia-del-taekwondo.html',
       img: '/images/pic02.jpg'
     },
     {
       tag: 'Cultura',
-      meta: 'Artículo 3 de 6',
+      meta: 'Artículo 3 de 8',
       title: 'Juramento, reglas y vocabulario',
       excerpt: 'Las palabras en coreano que escucharás en clase: cultura, respeto y disciplina detrás de cada saludo en el dojang.',
-      url: 'https://humisite.vercel.app/blog-juramento-reglas-y-vocabulario-del-taekwondo.html',
+      url: '/blog-juramento-reglas-y-vocabulario-del-taekwondo.html',
       img: '/images/pic05.jpg'
     },
     {
+      tag: 'Práctica',
+      meta: 'Artículo 4 de 8',
+      title: 'Poomsae: qué es y por qué entrenarlo',
+      excerpt: 'Las formas no son coreografía: son técnica, respiración y la base de todo lo demás en el tatami.',
+      url: '/blog-poomsae-que-es-y-por-que-entrenarlo.html',
+      img: '/images/pic03.jpg'
+    },
+    {
+      tag: 'Competencia',
+      meta: 'Artículo 5 de 8',
+      title: 'Kyorugi: cómo se puntúa el combate',
+      excerpt: 'Tres rounds, chaleco electrónico y gam-jeom: entiende el marcador cuando México compite en JJ.OO.',
+      url: '/blog-kyorugi-como-se-puntua-el-combate.html',
+      img: '/images/pic04.jpg'
+    },
+    {
       tag: 'Olímpico · Sydney 2000',
-      meta: 'Artículo 4 de 6',
+      meta: 'Artículo 6 de 8',
       title: 'La primera medalla olímpica de México',
       excerpt: 'Contexto, repechaje y el bronce de Víctor Estrada que abrió la puerta a una potencia mundial del Taekwondo.',
-      url: 'https://humisite.vercel.app/blog-victor-estrada-sydney-2000.html',
+      url: '/blog-victor-estrada-sydney-2000.html',
       img: '/images/pic06.jpg'
     },
     {
       tag: 'Olímpico · Beijing 2008',
-      meta: 'Artículo 5 de 6',
+      meta: 'Artículo 7 de 8',
       title: 'Doble oro: Guillermo Pérez y María Espinoza',
       excerpt: 'El día en que México se consolidó como potencia global. Contexto post-Sydney y análisis del logro histórico.',
-      url: 'https://humisite.vercel.app/blog-beijing-2008-taekwondo-mexico.html',
+      url: '/blog-beijing-2008-taekwondo-mexico.html',
       img: '/images/pic-group.png'
     },
     {
