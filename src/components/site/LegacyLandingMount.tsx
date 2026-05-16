@@ -6,7 +6,11 @@ import { useEffect, useRef, useState } from "react";
  * Mounts the static landing HTML into the main document so scroll
  * continues naturally after the intro threshold.
  */
-export function LegacyLandingMount() {
+type LegacyLandingMountProps = {
+  introActive: boolean;
+};
+
+export function LegacyLandingMount({ introActive }: LegacyLandingMountProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
 
@@ -76,7 +80,9 @@ export function LegacyLandingMount() {
   return (
     <div
       ref={rootRef}
-      className={`legacy-landing-root min-h-screen ${status === "loading" ? "opacity-0" : "opacity-100 transition-opacity duration-700"}`}
+      className={`legacy-landing-root min-h-screen transition-opacity duration-700 ${
+        status === "loading" || introActive ? "pointer-events-none opacity-0" : "opacity-100"
+      }`}
     />
   );
 }

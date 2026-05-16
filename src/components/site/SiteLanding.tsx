@@ -13,7 +13,7 @@ export function SiteLanding({ introActive }: SiteLandingProps) {
       aria-hidden={introActive}
       {...(introActive ? { inert: true } : {})}
     >
-      <LegacyLandingMount />
+      <LegacyLandingMount introActive={introActive} />
     </main>
   );
 }

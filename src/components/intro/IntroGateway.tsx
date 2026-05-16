@@ -104,7 +104,7 @@ export function IntroGateway({ onExit }: IntroGatewayProps) {
   return (
     <motion.div
       ref={containerRef}
-      className="fixed inset-0 z-[100] h-[100dvh] w-full touch-none select-none bg-[#050505]"
+      className="fixed inset-0 z-[110] h-[100dvh] w-full touch-none select-none bg-[#050505]"
       style={{ y, opacity, filter }}
       transition={{ duration: INTRO_EXIT_MS / 1000, ease: EXIT_EASE }}
       role="dialog"

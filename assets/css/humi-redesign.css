@@ -15,6 +15,7 @@
   --green: #4ade80;
   --amber: #fbbf24;
   --container: 1120px;
+  --reading-measure: 42rem;
   --gutter: clamp(16px, 4vw, 28px);
   --radius: 10px;
   --ease: ease;
@@ -1229,18 +1230,27 @@ button:focus-visible {
   object-fit: cover;
 }
 
-/* —— Página artículo —— */
+/* —— Página artículo (lectura centrada, cuerpo justificado) —— */
 .hm-main {
   min-height: 40vh;
 }
 
 .hm-article {
-  padding: clamp(2rem, 5vw, 3rem) 0 clamp(3rem, 8vw, 4rem);
+  padding: clamp(2.5rem, 6vw, 4rem) 0 clamp(3.5rem, 9vw, 5rem);
+}
+
+.hm-article .hm-eyebrow {
+  display: block;
 }
 
 .hm-article__head {
-  max-width: 40rem;
-  margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-inline: auto;
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  padding-bottom: clamp(1.25rem, 3vw, 1.75rem);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
 }
 
 .hm-article__head h1 {
@@ -1250,52 +1260,69 @@ button:focus-visible {
   letter-spacing: -0.04em;
   line-height: 1.12;
   color: var(--text);
+  text-wrap: balance;
 }
 
 .hm-article__lede {
-  margin: 0;
+  margin: 0 auto;
+  max-width: 36rem;
   color: var(--text-muted);
-  font-size: 1.05rem;
-  line-height: 1.55;
+  font-size: clamp(1.05rem, 0.4vw + 1rem, 1.15rem);
+  line-height: 1.6;
+  text-align: center;
+  text-wrap: pretty;
 }
 
 .hm-prose {
-  max-width: 40rem;
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-inline: auto;
 }
 
 .hm-prose h2 {
-  margin: clamp(1.75rem, 4vw, 2.25rem) 0 10px;
+  margin: clamp(2rem, 5vw, 2.75rem) 0 12px;
   font-size: clamp(1.2rem, 1.5vw + 0.75rem, 1.45rem);
   font-weight: 600;
   letter-spacing: -0.03em;
   color: var(--text);
+  line-height: 1.25;
+  text-align: left;
+  text-wrap: balance;
 }
 
 .hm-prose h3 {
-  margin: 1.35rem 0 8px;
+  margin: 1.5rem 0 10px;
   font-size: 1.08rem;
   font-weight: 600;
   color: var(--text);
+  text-align: left;
 }
 
 .hm-prose p,
 .hm-prose li {
   color: var(--text-muted);
-  font-size: 0.98rem;
-  line-height: 1.62;
+  font-size: clamp(1rem, 0.25vw + 0.95rem, 1.0625rem);
+  line-height: 1.72;
+  letter-spacing: -0.01em;
 }
 
 .hm-prose p {
-  margin: 0 0 14px;
+  margin: 0 0 1.1em;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: pretty;
 }
 
 .hm-prose ul {
-  margin: 0 0 16px;
-  padding-left: 1.15em;
+  margin: 0 0 1.25em;
+  padding-left: 1.35em;
 }
 
 .hm-prose li {
-  margin: 6px 0;
+  margin: 0.45em 0;
+  text-align: left;
 }
 
 .hm-prose a {
@@ -1306,6 +1333,11 @@ button:focus-visible {
 
 .hm-prose strong {
   color: var(--text);
+}
+
+.hm-prose > p:first-of-type {
+  color: var(--text);
+  font-size: clamp(1.02rem, 0.3vw + 0.98rem, 1.08rem);
 }
 
 .hm-prose .blogArticle__timeline {
@@ -1329,16 +1361,34 @@ button:focus-visible {
   color: var(--text-dim);
 }
 
+@media (max-width: 520px) {
+  .hm-prose p,
+  .hm-editorial__story.hm-prose p,
+  .hm-editorial__belt p {
+    text-align: left;
+    hyphens: none;
+    -webkit-hyphens: none;
+  }
+
+  .hm-editorial__quote,
+  .hm-editorial__reflection p {
+    text-align: left;
+  }
+}
+
 /* —— Serie editorial: cinturones (memoria / tono cinematográfico) —— */
 .hm-editorial {
   --belt-accent: var(--accent-2);
 }
 
 .hm-editorial__head {
-  max-width: 46rem;
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-inline: auto;
   margin-bottom: clamp(2rem, 5vw, 3rem);
   padding-bottom: clamp(1.5rem, 4vw, 2.25rem);
   border-bottom: 1px solid var(--border);
+  text-align: center;
 }
 
 .hm-editorial__head .hm-eyebrow {
@@ -1347,23 +1397,27 @@ button:focus-visible {
 
 .hm-editorial__head h1 {
   margin: 0;
-  font-size: clamp(2rem, 4.5vw + 0.5rem, 3.25rem);
+  font-size: clamp(1.85rem, 4vw + 0.5rem, 2.75rem);
   font-weight: 600;
   letter-spacing: -0.045em;
-  line-height: 1.08;
+  line-height: 1.1;
   color: var(--text);
+  text-wrap: balance;
 }
 
 .hm-editorial__quote {
-  margin: 0 0 clamp(2.25rem, 5vw, 3rem);
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin: 0 auto clamp(2.25rem, 5vw, 3rem);
   padding: 0;
   border: none;
-  max-width: 44rem;
-  font-size: clamp(1.2rem, 2vw + 0.6rem, 1.65rem);
+  font-size: clamp(1.15rem, 1.8vw + 0.55rem, 1.5rem);
   font-weight: 500;
-  line-height: 1.45;
-  letter-spacing: -0.03em;
+  line-height: 1.5;
+  letter-spacing: -0.025em;
   color: var(--text);
+  text-align: center;
+  text-wrap: pretty;
 }
 
 .hm-editorial__quote::before {
@@ -1377,7 +1431,9 @@ button:focus-visible {
 }
 
 .hm-editorial__section {
-  max-width: 40rem;
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-inline: auto;
   margin-bottom: clamp(2.5rem, 6vw, 3.5rem);
 }
 
@@ -1397,14 +1453,36 @@ button:focus-visible {
   color: var(--text-muted);
 }
 
+.hm-editorial__belt p + p {
+  margin-top: 0.85em;
+}
+
+.hm-editorial__story .hm-editorial__section-label {
+  margin-bottom: 1.25rem;
+}
+
+.hm-editorial__reflection strong {
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
 .hm-editorial__story.hm-prose {
-  max-width: 40rem;
+  max-width: var(--reading-measure);
 }
 
 .hm-editorial__story.hm-prose p {
-  font-size: 1.02rem;
+  font-size: clamp(1rem, 0.25vw + 0.95rem, 1.0625rem);
   line-height: 1.72;
   color: var(--text-muted);
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-wrap: pretty;
 }
 
 .hm-editorial__story.hm-prose p:first-of-type {
@@ -1417,7 +1495,9 @@ button:focus-visible {
   border-radius: var(--radius);
   border: 1px solid var(--border);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, transparent 55%);
-  max-width: 40rem;
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-inline: auto;
 }
 
 .hm-editorial__poomsae-name {
@@ -1450,19 +1530,22 @@ button:focus-visible {
 }
 
 .hm-editorial__reflection {
-  max-width: 40rem;
-  margin: 0 0 clamp(2.5rem, 5vw, 3rem);
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin: 0 auto clamp(2.5rem, 5vw, 3rem);
   padding-top: clamp(1.5rem, 4vw, 2rem);
   border-top: 1px solid var(--border);
 }
 
 .hm-editorial__reflection p {
   margin: 0;
-  font-size: clamp(1.05rem, 1.5vw + 0.7rem, 1.25rem);
-  line-height: 1.55;
+  font-size: clamp(1.05rem, 1.5vw + 0.7rem, 1.22rem);
+  line-height: 1.58;
   letter-spacing: -0.02em;
   color: var(--text);
   font-weight: 500;
+  text-align: center;
+  text-wrap: pretty;
 }
 
 .hm-editorial__series {
@@ -1471,7 +1554,9 @@ button:focus-visible {
   gap: 10px 16px;
   align-items: center;
   justify-content: space-between;
-  max-width: 40rem;
+  width: 100%;
+  max-width: var(--reading-measure);
+  margin-inline: auto;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border);
   font-size: 0.88rem;
@@ -1518,6 +1603,35 @@ button:focus-visible {
 
 .hm-editorial[data-belt="red"] {
   --belt-accent: #f87171;
+}
+
+.hm-editorial[data-dan="1"] {
+  --belt-accent: #e5e5e5;
+}
+
+.hm-editorial[data-dan="2"] {
+  --belt-accent: #a3a3a3;
+}
+
+.hm-editorial[data-dan="3"] {
+  --belt-accent: #d4d4d8;
+}
+
+.hm-editorial[data-dan="4"] {
+  --belt-accent: #94a3b8;
+}
+
+.hm-editorial[data-dan="5"] {
+  --belt-accent: #fafafa;
+}
+
+.hm-editorial__story.hm-prose h3 {
+  margin: 1.75rem 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-align: left;
 }
 
 /* —— Blog: carrusel (lógica y estructura alineadas con preview Guidde, clases hm-*) —— */

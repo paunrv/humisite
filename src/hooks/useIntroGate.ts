@@ -8,7 +8,10 @@ export function useIntroGate() {
   const [skipIntro, setSkipIntro] = useState(false);
 
   useEffect(() => {
-    setSkipIntro(shouldSkipIntro());
+    const forceIntro =
+      typeof window !== "undefined" &&
+      new URLSearchParams(window.location.search).get("intro") === "1";
+    setSkipIntro(!forceIntro && shouldSkipIntro());
     setReady(true);
   }, []);
 

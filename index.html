@@ -176,6 +176,7 @@
   #programas,
   #horarios,
   #instructores,
+  #grados,
   #blog,
   #faq,
   #comparacion {
@@ -860,6 +861,7 @@
   @media (max-width: 520px) {
     .grades-scroll-hint { display: block; }
   }
+
 </style>
 </head>
 <body>
@@ -874,6 +876,7 @@
     <li><a href="#programas">Programas</a></li>
     <li><a href="#horarios">Horarios</a></li>
     <li><a href="#instructores">Instructores</a></li>
+    <li><a href="#grados">Grados</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
@@ -891,6 +894,7 @@
       <li><a href="#programas">Programas</a></li>
       <li><a href="#horarios">Horarios</a></li>
       <li><a href="#instructores">Instructores</a></li>
+      <li><a href="#grados">Grados</a></li>
       <li><a href="#blog">Blog</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -1321,7 +1325,7 @@
 </style>
 
 <!-- MANIFIESTO / GRADOS -->
-<section style="border-top: 1px solid var(--border);">
+<section id="grados" style="border-top: 1px solid var(--border);">
   <div class="section-eyebrow">Manifiesto</div>
   <div class="section-title">El color cuenta lo que estás aprendiendo a ser</div>
   <div class="section-sub">No solo lo que sabes hacer. La progresión de grados en HUMI.</div>
@@ -1374,6 +1378,7 @@
   </div>
   </div>
   <div id="belt-info" style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--text-muted);min-height:24px;transition:all 0.2s;"></div>
+
 </section>
 
 <!-- TESTIMONIOS -->
@@ -1617,7 +1622,7 @@
               <div class="blog-author-role">5.º Dan · Directora, HUMI Taekwondo</div>
             </div>
           </div>
-          <a id="blogLink" href="#" target="_blank" class="blog-card-cta">Leer artículo →</a>
+          <a id="blogLink" href="#" class="blog-card-cta">Leer artículo →</a>
         </div>
       </div>
     </div>
@@ -1796,7 +1801,6 @@
   const articles = [
     {
       tag: 'Filosofía',
-      meta: 'Artículo 1 de 8',
       title: 'Taekwondo y su filosofía',
       excerpt: 'La palabra Taekwondo viene del camino del desarrollo físico, mental y emocional — y va mucho más allá de una traducción literal.',
       url: '/blog-taekwondo-y-su-filosofia.html',
@@ -1804,7 +1808,6 @@
     },
     {
       tag: 'Historia',
-      meta: 'Artículo 2 de 8',
       title: 'Historia del Taekwondo',
       excerpt: 'Del origen coreano y el General Choi Hong Hi al crecimiento en México: Dai Won Moon y la potencia olímpica actual.',
       url: '/blog-historia-del-taekwondo.html',
@@ -1812,7 +1815,6 @@
     },
     {
       tag: 'Cultura',
-      meta: 'Artículo 3 de 8',
       title: 'Juramento, reglas y vocabulario',
       excerpt: 'Las palabras en coreano que escucharás en clase: cultura, respeto y disciplina detrás de cada saludo en el dojang.',
       url: '/blog-juramento-reglas-y-vocabulario-del-taekwondo.html',
@@ -1820,44 +1822,74 @@
     },
     {
       tag: 'Práctica',
-      meta: 'Artículo 4 de 8',
       title: 'Poomsae: qué es y por qué entrenarlo',
       excerpt: 'Las formas no son coreografía: son técnica, respiración y la base de todo lo demás en el tatami.',
       url: '/blog-poomsae-que-es-y-por-que-entrenarlo.html',
-      img: '/images/pic03.jpg'
+      img: '/images/pic03.png'
+    },
+    {
+      tag: 'Práctica',
+      title: 'Sistema de cinturones',
+      excerpt: 'Gup, dan y qué evalúa cada examen en la progresión de color en HUMI.',
+      url: '/blog-sistema-de-cinturones-taekwondo.html',
+      img: '/images/pic14.png'
     },
     {
       tag: 'Competencia',
-      meta: 'Artículo 5 de 8',
       title: 'Kyorugi: cómo se puntúa el combate',
       excerpt: 'Tres rounds, chaleco electrónico y gam-jeom: entiende el marcador cuando México compite en JJ.OO.',
       url: '/blog-kyorugi-como-se-puntua-el-combate.html',
-      img: '/images/pic04.jpg'
+      img: '/images/pic04.png'
     },
     {
       tag: 'Olímpico · Sydney 2000',
-      meta: 'Artículo 6 de 8',
       title: 'La primera medalla olímpica de México',
       excerpt: 'Contexto, repechaje y el bronce de Víctor Estrada que abrió la puerta a una potencia mundial del Taekwondo.',
       url: '/blog-victor-estrada-sydney-2000.html',
       img: '/images/pic06.jpg'
     },
     {
+      tag: 'Olímpico · Atenas 2004',
+      title: 'Atenas 2004 — Hermanos Salazar',
+      excerpt: 'Óscar Salazar, la plata en -58 kg y la familia que llevó el Taekwondo mexicano al tatami olímpico.',
+      url: '/blog-atenas-2004-hermanos-salazar.html',
+      img: '/images/pic07.jpg'
+    },
+    {
       tag: 'Olímpico · Beijing 2008',
-      meta: 'Artículo 7 de 8',
       title: 'Doble oro: Guillermo Pérez y María Espinoza',
       excerpt: 'El día en que México se consolidó como potencia global. Contexto post-Sydney y análisis del logro histórico.',
       url: '/blog-beijing-2008-taekwondo-mexico.html',
       img: '/images/pic-group.png'
     },
     {
+      tag: 'Olímpico · Londres 2012',
+      title: 'Londres 2012 — Elite sostenida',
+      excerpt: 'Tras Beijing, México demostró que el podio no fue casualidad: continuidad, presión y nueva generación.',
+      url: '/blog-londres-2012-taekwondo-mexico.html',
+      img: '/images/pic08.png'
+    },
+    {
+      tag: 'Olímpico · Río 2016',
+      title: 'Río 2016 — Electrónico y presión',
+      excerpt: 'Chaleco electrónico, María Espinoza y el Taekwondo mexicano en la era del marcador digital.',
+      url: '/blog-rio-2016-taekwondo-mexico.html',
+      img: '/images/pic16.png'
+    },
+    {
+      tag: 'Olímpico · Tokyo 2020',
+      title: 'Tokyo 2020 — Pandemia y ciclo',
+      excerpt: 'Juegos sin público, debate de reglas y un ciclo olímpico que cerró sin medalla para México.',
+      url: '/blog-tokyo-2020-taekwondo-mexico.html',
+      img: '/images/pic15.png'
+    },
+    {
       tag: 'Olímpico · París 2024',
-      meta: 'Artículo 6 de 6',
-      title: 'Post-Tokyo con hambre',
+      title: 'París 2024 — Post-Tokyo con hambre',
       excerpt: 'Daniela Souza, Carlos Sansores, ranking y la lección de que el circuito no siempre se traduce en podio olímpico.',
-      url: 'https://humisite.vercel.app/blog-paris-2024-taekwondo-mexico.html',
+      url: '/blog-paris-2024-taekwondo-mexico.html',
       img: '/images/pic17.jpg'
-    }
+    },
   ];
 
   let current = 0;
@@ -1900,7 +1932,7 @@
       document.getElementById('blogImg').src = a.img;
       document.getElementById('blogImg').alt = a.title;
       document.getElementById('blogTag').textContent = a.tag;
-      document.getElementById('blogMeta').textContent = a.meta;
+      document.getElementById('blogMeta').textContent = 'Artículo ' + (idx + 1) + ' de ' + articles.length;
       document.getElementById('blogCardTitle').textContent = a.title;
       document.getElementById('blogCardExcerpt').textContent = a.excerpt;
       document.getElementById('blogLink').href = a.url;
