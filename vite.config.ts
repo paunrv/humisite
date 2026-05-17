@@ -25,7 +25,6 @@ export default defineConfig({
         blogTokyo2020: path.resolve(__dirname, "blog-tokyo-2020-taekwondo-mexico.html"),
         blogParis2024: path.resolve(__dirname, "blog-paris-2024-taekwondo-mexico.html"),
         blogPoomsae: path.resolve(__dirname, "blog-poomsae-que-es-y-por-que-entrenarlo.html"),
-        blogCinturones: path.resolve(__dirname, "blog-sistema-de-cinturones-taekwondo.html"),
         blogKyorugi: path.resolve(__dirname, "blog-kyorugi-como-se-puntua-el-combate.html"),
         blogCinturonBlanco: path.resolve(__dirname, "blog-cinturon-blanco-taekwondo.html"),
         blogCinturonNaranja: path.resolve(__dirname, "blog-cinturon-naranja-taekwondo.html"),

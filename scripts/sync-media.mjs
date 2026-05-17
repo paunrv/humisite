@@ -66,9 +66,32 @@ for (const { legacy, id, aliases = [] } of RENAMES) {
   console.log(`sync-media: ${path.basename(from)} → images/${id}${normalizedExt}`);
 }
 
-if (copied === 0) {
+/** pic01–pic46 (+ aliases) → public/images/picNN.jpg */
+const PIC_ALIASES = {
+  23: ["pic.23"],
+  24: ["pic.24"],
+  40: ["40"],
+  43: ["43"],
+  46: ["pic46"],
+};
+
+let picCopied = 0;
+for (let n = 1; n <= 46; n++) {
+  const padded = String(n).padStart(2, "0");
+  const stems = [`pic${padded}`, `pic${n}`, ...(PIC_ALIASES[n] ?? [])];
+  const from = resolveLegacySource(stems);
+  if (!from) continue;
+  const extRaw = path.extname(from).toLowerCase();
+  const ext = extRaw === ".jpeg" ? ".jpg" : extRaw === ".png" || extRaw === ".webp" ? extRaw : ".jpg";
+  const to = path.join(targetDir, `pic${padded}${ext}`);
+  copyFileSync(from, to);
+  picCopied += 1;
+  console.log(`sync-media: ${path.basename(from)} → images/pic${padded}${ext}`);
+}
+
+if (copied === 0 && picCopied === 0) {
   console.warn(`sync-media: no files copied — add sources to ${sourceDir}`);
   process.exit(1);
 }
 
-console.log(`sync-media: ${copied}/${RENAMES.length} editorial images ready`);
+console.log(`sync-media: ${copied} semantic + ${picCopied} pic editorial images ready`);

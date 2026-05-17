@@ -1,103 +1,114 @@
 /**
- * Belt / dan editorial articles — one image, one poomsae, optional YouTube per article.
- * Patched into HTML via scripts/patch-blog-belt-articles.mjs
+ * Belt / dan editorial articles — memoir chapters inside /blog.
+ * Images map to public/images/* after sync:media (legacy pic19–39).
  */
 
-/** @type {Record<string, { imageId: string, alt: string, poomsae: string, youtube: string | null, poomsaeSectionId: string }>} */
+/** @type {Record<string, { imageId: string, alt: string, poomsae: string, youtube: string | null, poomsaeSectionId: string, themes?: string[] }>} */
 export const BELT_BLOG_ARTICLES = {
   "blog-cinturon-blanco-taekwondo": {
-    imageId: "white-belt",
-    alt: "Cinturón blanco — primeros pasos en el dojang",
+    imageId: "pic11",
+    alt: "Cinturón blanco — inocencia y primeros pasos",
     poomsae: "Kicho 1",
     youtube: null,
     poomsaeSectionId: "poomsae-white",
+    themes: ["inocencia", "inicio", "infancia", "curiosidad"],
   },
   "blog-cinturon-naranja-taekwondo": {
-    imageId: "orange-belt",
-    alt: "Cinturón naranja — progresión y repetición",
+    imageId: "pic07",
+    alt: "Cinturón naranja — perseverancia y repetición",
     poomsae: "Kicho 2",
     youtube: null,
     poomsaeSectionId: "poomsae-orange",
+    themes: ["perseverancia", "repetición", "primeros avances"],
   },
   "blog-cinturon-amarillo-taekwondo": {
-    imageId: "poomsae",
-    alt: "Poomsae — precisión y disciplina del movimiento",
+    imageId: "pic23",
+    alt: "Cinturón amarillo — raíces y confianza",
     poomsae: "Taeguk 1",
-    youtube: "https://www.youtube.com/watch?v=WhkjRruCBTo",
+    youtube: null,
     poomsaeSectionId: "poomsae-yellow",
+    themes: ["raíces", "confianza", "crecimiento"],
   },
   "blog-cinturon-verde-taekwondo": {
-    imageId: "poomsae",
-    alt: "Poomsae — precisión y disciplina del movimiento",
+    imageId: "pic16",
+    alt: "Cinturón verde — identidad y pertenencia",
     poomsae: "Taeguk 2",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=taegeuk+2jang",
+    youtube: null,
     poomsaeSectionId: "poomsae-green",
+    themes: ["identidad", "pertenencia", "comunidad"],
   },
   "blog-cinturon-azul-taekwondo": {
-    imageId: "blue-belt",
-    alt: "Cinturón azul — permanencia y madurez",
+    imageId: "pic01",
+    alt: "Cinturón azul — miedo y permanencia",
     poomsae: "Taeguk 4",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=taegeuk+4jang",
+    youtube: null,
     poomsaeSectionId: "poomsae-blue",
+    themes: ["miedo", "permanencia", "madurez"],
   },
   "blog-cinturon-rojo-taekwondo": {
-    imageId: "red-belt",
-    alt: "Cinturón rojo — madurez y control emocional",
+    imageId: "pic33",
+    alt: "Cinturón rojo — control emocional bajo presión",
     poomsae: "Taeguk 6",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=taegeuk+6jang",
+    youtube: null,
     poomsaeSectionId: "poomsae-red",
+    themes: ["control emocional", "disciplina", "presión"],
   },
   "blog-cinta-negra-taekwondo": {
-    imageId: "dan-02",
-    alt: "Segundo dan — hito de maestría",
+    imageId: "pic24",
+    alt: "Cinta negra — conciencia e identidad",
     poomsae: "Koryo",
-    youtube: "https://www.youtube.com/watch?v=mGa60JDtWmg",
+    youtube: null,
     poomsaeSectionId: "poom-1",
+    themes: ["conciencia", "identidad", "alto rendimiento"],
   },
   "blog-segundo-dan-taekwondo": {
-    imageId: "dan-02",
-    alt: "Segundo dan — hito de maestría",
+    imageId: "pic03",
+    alt: "Segundo dan — estabilidad y consolidación",
     poomsae: "Keumgang",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=keumgang",
+    youtube: null,
     poomsaeSectionId: "poom-2",
+    themes: ["estabilidad", "consolidación", "permanencia"],
   },
   "blog-tercer-dan-taekwondo": {
-    imageId: "dan-03",
-    alt: "Tercer dan — hito de maestría",
+    imageId: "pic27",
+    alt: "Tercer dan — liderazgo y nacimiento de HUMI",
     poomsae: "Taebaek",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=taebaek",
+    youtube: null,
     poomsaeSectionId: "poom-3",
+    themes: ["liderazgo", "enseñanza", "nacimiento de HUMI"],
   },
   "blog-cuarto-dan-taekwondo": {
-    imageId: "dan-04",
-    alt: "Cuarto dan — hito de maestría",
+    imageId: "pic28",
+    alt: "Cuarto dan — comunidad y largo plazo",
     poomsae: "Pyongwon",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=pyongwon",
+    youtube: null,
     poomsaeSectionId: "poom-4",
+    themes: ["comunidad", "estructura", "largo plazo"],
   },
   "blog-quinto-dan-taekwondo": {
-    imageId: "dan-05",
-    alt: "Quinto dan — hito de maestría",
+    imageId: "pic36",
+    alt: "Quinto dan — legado y generaciones",
     poomsae: "Sipjin",
-    youtube: "https://www.youtube.com/@kukkiwonpr/search?query=sipjin",
+    youtube: null,
     poomsaeSectionId: "poom-5",
+    themes: ["legado", "generaciones", "madurez"],
   },
 };
 
 export const KUKKIWON_CTA = "Ver poomsae oficial de Kukkiwon";
 
-/**
- * Hero crop tuning — aspect + object-position after visual review.
- * @type {Record<string, { aspect: "portrait" | "square" | "landscape" | "wide", focus: string }>}
- */
+/** @type {Record<string, { aspect: "portrait" | "square" | "landscape" | "wide", focus: string }>} */
 export const HERO_FRAMING = {
-  "white-belt": { aspect: "portrait", focus: "54% 32%" },
-  "orange-belt": { aspect: "square", focus: "50% 38%" },
-  poomsae: { aspect: "square", focus: "50% 40%" },
-  "blue-belt": { aspect: "square", focus: "50% 42%" },
-  "red-belt": { aspect: "portrait", focus: "50% 46%" },
-  "dan-02": { aspect: "wide", focus: "50% 36%" },
-  "dan-03": { aspect: "landscape", focus: "50% 48%" },
-  "dan-04": { aspect: "landscape", focus: "50% 40%" },
-  "dan-05": { aspect: "square", focus: "50% 36%" },
+  pic11: { aspect: "portrait", focus: "54% 32%" },
+  pic07: { aspect: "square", focus: "50% 38%" },
+  pic23: { aspect: "square", focus: "50% 40%" },
+  pic16: { aspect: "landscape", focus: "50% 42%" },
+  pic03: { aspect: "landscape", focus: "50% 40%" },
+  pic06: { aspect: "landscape", focus: "50% 40%" },
+  pic01: { aspect: "square", focus: "50% 42%" },
+  pic33: { aspect: "portrait", focus: "50% 46%" },
+  pic24: { aspect: "landscape", focus: "50% 48%" },
+  pic28: { aspect: "wide", focus: "50% 36%" },
+  pic27: { aspect: "landscape", focus: "50% 44%" },
+  pic36: { aspect: "square", focus: "50% 36%" },
 };

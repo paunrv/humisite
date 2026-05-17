@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HUMI — Desarrollo humano a través del Taekwondo · Ensenada</title>
+<title>Taekwondo en Ensenada · HUMI</title>
+<meta name="description" content="Escuela de Taekwondo en Ensenada, B.C.: Tiny Tigers, Kids, Teens y Adultos. Primera visita sin compromiso. Agenda por WhatsApp — Zona Centro.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="/">
+<meta property="og:title" content="Taekwondo en Ensenada · HUMI">
+<meta property="og:description" content="Escuela de Taekwondo en Ensenada, B.C.: Tiny Tigers, Kids, Teens y Adultos. Primera visita sin compromiso.">
+<meta property="og:image" content="/images/pic11.jpg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800;900&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -164,13 +172,16 @@
   .btn-primary:hover { background: #e8e8e8; }
 
   /* Anchors: fixed nav + banner */
+  #filosofia,
+  #movimiento,
+  #experiencia,
   #programas,
   #horarios,
-  #instructores,
-  #grados,
+  #equipo,
   #blog,
   #faq,
-  #comparacion {
+  #comparacion,
+  #contacto {
     scroll-margin-top: 6.5rem;
   }
 
@@ -864,12 +875,13 @@
     HUMI Taekwondo
   </a>
   <ul class="nav-links">
-    <li><a href="#programas">Programas</a></li>
-    <li><a href="#horarios">Horarios</a></li>
-    <li><a href="#instructores">Instructores</a></li>
-    <li><a href="#grados">Grados</a></li>
-    <li><a href="#blog">Blog</a></li>
-    <li><a href="#faq">FAQ</a></li>
+    <li><a href="/">Inicio</a></li>
+    <li><a href="/filosofia">Filosofía</a></li>
+    <li><a href="/experiencia">Experiencia</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/comunidad">Comunidad</a></li>
+    <li><a href="/equipo">Equipo</a></li>
+    <li><a href="/contacto">Contacto</a></li>
   </ul>
   <div class="nav-cta">
     <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -881,12 +893,13 @@
   <div class="nav-menu-backdrop" aria-hidden="true"></div>
   <div id="site-nav-menu" class="nav-menu-panel" role="dialog" aria-modal="true" aria-label="Menú de navegación" aria-hidden="true">
     <ul class="nav-menu-links">
-      <li><a href="#programas">Programas</a></li>
-      <li><a href="#horarios">Horarios</a></li>
-      <li><a href="#instructores">Instructores</a></li>
-      <li><a href="#grados">Grados</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#faq">FAQ</a></li>
+      <li><a href="/">Inicio</a></li>
+      <li><a href="/filosofia">Filosofía</a></li>
+      <li><a href="/experiencia">Experiencia</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/comunidad">Comunidad</a></li>
+      <li><a href="/equipo">Equipo</a></li>
+      <li><a href="/contacto">Contacto</a></li>
     </ul>
     <div class="nav-menu-footer">
       <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -980,11 +993,11 @@
 </div>
 
 <!-- MOMENTOS — reels (React monta aquí) -->
-<div id="humi-moments-mount" class="moments-mount-slot"></div>
+<div id="movimiento" class="moments-mount-slot"><div id="humi-moments-mount"></div></div>
 
 <!-- DIFERENCIADORES BENTO -->
-<section>
-  <div class="section-eyebrow">Por qué HUMI</div>
+<section id="filosofia">
+  <div class="section-eyebrow">Filosofía HUMI</div>
   <div class="section-title">Dos formas de entender el dojang</div>
   <div class="section-sub">La diferencia no es solo el uniforme: es cómo se agrupa, se exige y se acompaña.</div>
 
@@ -1024,7 +1037,8 @@
 </section>
 
 <!-- PROGRAMAS -->
-<section id="programas" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+<section id="experiencia" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+  <div id="programas" class="scroll-target" aria-hidden="true"></div>
   <div id="horarios" class="scroll-target" aria-label="Programas y horarios"></div>
   <div class="section-eyebrow">Programas</div>
   <div class="section-title">Cada detalle, con intención</div>
@@ -1084,7 +1098,7 @@
     </div>
     <div class="program-card">
       <span class="program-age">Adultos — AM</span>
-      <div class="program-name">Turno Mañana</div>
+      <div class="program-name">HIIT + Patadas</div>
       <div class="program-desc">Energía y enfoque antes del trabajo. Disciplina que cabe en la agenda real.</div>
       <div class="program-time">Lun–Jue · 7:30 – 8:30 AM</div>
       <div class="program-tags">
@@ -1134,7 +1148,7 @@
 </section>
 
 <!-- INSTRUCTORES -->
-<section id="instructores" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
+<section id="equipo" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
   <div class="section-eyebrow">Equipo</div>
   <div class="section-title">Autoridad con calma</div>
   <div class="section-sub">La autoridad viene del criterio. Se corrige con precisión y se acompaña sin humillar.</div>
@@ -1175,7 +1189,7 @@
     <div class="ucard">
       <div class="ucard-avatar blue">GT</div>
       <div class="ucard-info">
-        <div class="ucard-name">Gise Tinoco</div>
+        <div class="ucard-name">Gisel Tinoco</div>
         <div class="ucard-role blue">Supervisión y Administración</div>
       </div>
       <div class="ucard-bio">Supervisión del dojang y gestión administrativa. Estudios en medicina que respaldan un enfoque integral en el bienestar de los alumnos.</div>
@@ -1367,62 +1381,6 @@
   }
 </style>
 
-<!-- MANIFIESTO / GRADOS -->
-<section id="grados" style="border-top: 1px solid var(--border);">
-  <div class="section-eyebrow">Manifiesto</div>
-  <div class="section-title">El color cuenta lo que estás aprendiendo a ser</div>
-  <div class="section-sub">No solo lo que sabes hacer. La progresión de grados en HUMI.</div>
-
-  <p class="grades-scroll-hint">Desliza horizontalmente para ver toda la pirámide</p>
-  <div class="grades-scroll-wrap">
-  <div class="grades-display" id="grades">
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#1a1a1a;color:#888;width:480px;" data-info="Cinta Negra — La meta. Disciplina, técnica y carácter formados.">⬛ Negro</div>
-    </div>
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#7c0a02;color:#fca5a5;width:230px;" data-info="Rojo Avanzado — Alta exigencia técnica y liderazgo en el dojang.">Rojo Avanzado</div>
-      <div class="grade-belt" style="background:#991b1b;color:#fca5a5;width:230px;" data-info="Rojo — Consolidación y preparación para cinturón negro.">Rojo</div>
-    </div>
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#1e3a5f;color:#93c5fd;width:145px;" data-info="Azul Avanzado — Técnica sólida, actitud de instructor.">Azul Av.</div>
-      <div class="grade-belt" style="background:#1d4ed8;color:#bfdbfe;width:145px;" data-info="Azul — Dominio de fundamentos, exigencia incrementada.">Azul</div>
-      <div class="grade-belt" style="background:#1e40af;color:#bfdbfe;width:145px;" data-info="Azul — Consolidación del nivel intermedio.">Azul</div>
-    </div>
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#14532d;color:#86efac;width:108px;" data-info="Verde Avanzado — Fluidez de movimiento y autocontrol.">Vd. Av.</div>
-      <div class="grade-belt" style="background:#166534;color:#86efac;width:108px;" data-info="Verde — Coordinación y técnica visibles.">Verde</div>
-      <div class="grade-belt" style="background:#15803d;color:#86efac;width:108px;" data-info="Verde — Progresión activa en fundamentos.">Verde</div>
-      <div class="grade-belt" style="background:#16a34a;color:#bbf7d0;width:108px;" data-info="Verde — Entrada al nivel intermedio.">Verde</div>
-    </div>
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#713f12;color:#fde68a;width:86px;" data-info="Amarillo Avanzado — Consistencia y mejora técnica.">Am. Av.</div>
-      <div class="grade-belt" style="background:#854d0e;color:#fde68a;width:86px;" data-info="Amarillo Avanzado — Esfuerzo visible.">Am. Av.</div>
-      <div class="grade-belt" style="background:#ca8a04;color:#fef08a;width:86px;" data-info="Amarillo — Primeros fundamentos técnicos afianzados.">Amarillo</div>
-      <div class="grade-belt" style="background:#eab308;color:#422006;width:86px;" data-info="Amarillo — Hábito de entrenamiento formado.">Amarillo</div>
-      <div class="grade-belt" style="background:#facc15;color:#422006;width:86px;" data-info="Amarillo — Base sólida de presencia en dojang.">Amarillo</div>
-    </div>
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#c2410c;color:#fed7aa;width:71px;" data-info="Naranja Avanzado — Compromiso demostrado.">Na. Av.</div>
-      <div class="grade-belt" style="background:#ea580c;color:#fed7aa;width:71px;" data-info="Naranja Avanzado — Mejora notable.">Na. Av.</div>
-      <div class="grade-belt" style="background:#f97316;color:#7c2d12;width:71px;" data-info="Naranja Avanzado — Primera exigencia física real.">Na. Av.</div>
-      <div class="grade-belt" style="background:#fb923c;color:#7c2d12;width:71px;" data-info="Naranja — Coordinación y energía en desarrollo.">Naranja</div>
-      <div class="grade-belt" style="background:#fdba74;color:#7c2d12;width:71px;" data-info="Naranja — Hábito de asistencia y actitud.">Naranja</div>
-      <div class="grade-belt" style="background:#fed7aa;color:#7c2d12;width:71px;" data-info="Naranja — Bienvenida al compromiso.">Naranja</div>
-    </div>
-    <div class="grade-row">
-      <div class="grade-belt" style="background:#e5e7eb;color:#111;width:60px;" data-info="Blanco Avanzado — Valentía de aprender desde cero, con progreso.">Bl. Av.</div>
-      <div class="grade-belt" style="background:#f3f4f6;color:#111;width:60px;" data-info="Blanco — Bienvenida. El cinturón blanco es valentía.">Blanco</div>
-      <div class="grade-belt" style="background:#f9fafb;color:#111;width:60px;" data-info="Blanco — El inicio de todo.">Blanco</div>
-      <div class="grade-belt" style="background:#fff;color:#111;width:60px;" data-info="Blanco — Primer paso en el dojang.">Blanco</div>
-      <div class="grade-belt" style="background:#f9fafb;color:#111;width:60px;" data-info="Blanco — Presencia y actitud antes que técnica.">Blanco</div>
-      <div class="grade-belt" style="background:#f3f4f6;color:#111;width:60px;" data-info="Blanco — Aquí empieza HUMI.">Blanco</div>
-      <div class="grade-belt" style="background:#e5e7eb;color:#111;width:60px;" data-info="Blanco — La base de todo lo que viene.">Blanco</div>
-    </div>
-  </div>
-  </div>
-  <div id="belt-info" style="text-align:center;margin-top:1.5rem;font-size:0.875rem;color:var(--text-muted);min-height:24px;transition:all 0.2s;"></div>
-
-</section>
 
 <!-- TESTIMONIOS -->
 <section class="section-light reviews-section" style="border-top: 1px solid rgba(0,0,0,0.08); overflow: hidden;">
@@ -1636,7 +1594,11 @@
   <div class="blog-carousel-header">
     <div class="section-eyebrow" style="color:#4a8fd4;">Del tatami al texto</div>
     <h2 class="blog-carousel-title">Artículos sobre Taekwondo</h2>
-    <p class="blog-carousel-sub">Filosofía, historia y contexto olímpico. La misma exigencia, en formato lectura.</p>
+    <p class="blog-carousel-sub">Memoria, movimiento y comunidad. Capítulos de cinturón que se leen como relato — no como manual de grados.</p>
+    <div class="blog-carousel-actions">
+      <a href="/blog" class="blog-hub-cta">Ver todos los artículos →</a>
+      <a href="/blog/categoria/cinturones" class="blog-hub-cta blog-hub-cta--ghost">Serie de cinturones</a>
+    </div>
   </div>
 
   <!-- Background grid de thumbnails borrosas -->
@@ -1648,7 +1610,7 @@
 
     <button class="blog-arrow blog-arrow-left" id="blogPrev" aria-label="Anterior">&#8592;</button>
 
-    <div class="blog-card-main" id="blogCardMain">
+    <a class="blog-card-main" id="blogCardMain" href="/blog">
       <div class="blog-card-img-wrap">
         <img id="blogImg" src="" alt="" />
         <span class="blog-card-tag" id="blogTag"></span>
@@ -1665,10 +1627,10 @@
               <div class="blog-author-role">5.º Dan · Directora, HUMI Taekwondo</div>
             </div>
           </div>
-          <a id="blogLink" href="#" class="blog-card-cta">Leer artículo →</a>
+          <span class="blog-card-cta">Leer artículo →</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <button class="blog-arrow blog-arrow-right" id="blogNext" aria-label="Siguiente">&#8594;</button>
   </div>
@@ -1696,6 +1658,24 @@
   .blog-carousel-sub {
     font-size: 1rem; color: #888; max-width: 480px; margin: 0 auto;
   }
+  .blog-carousel-actions {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-top: 1.5rem;
+  }
+  .blog-hub-cta {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 12px 20px; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+    text-transform: uppercase; text-decoration: none;
+    background: #f5f5f5; color: #080808;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .blog-hub-cta:hover { background: #e8e8e8; transform: translateY(-1px); }
+  .blog-hub-cta--ghost {
+    background: transparent; color: #f5f5f5;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+  .blog-hub-cta--ghost:hover { background: rgba(255,255,255,0.08); }
 
   /* BG grid */
   .blog-bg-grid {
@@ -1744,7 +1724,12 @@
     display: flex; gap: 0; max-width: 860px; width: 100%;
     background: #141414; border: 1px solid rgba(255,255,255,0.1);
     border-radius: 20px; overflow: hidden;
-    transition: opacity 0.3s;
+    transition: opacity 0.3s, transform 0.2s, border-color 0.15s;
+    text-decoration: none; color: inherit; cursor: pointer;
+  }
+  .blog-card-main:hover {
+    border-color: rgba(255,255,255,0.18);
+    transform: translateY(-2px);
   }
   .blog-card-main.fading { opacity: 0; }
 
@@ -1846,133 +1831,126 @@
       tag: 'Filosofía',
       title: 'Taekwondo y su filosofía',
       excerpt: 'La palabra Taekwondo viene del camino del desarrollo físico, mental y emocional — y va mucho más allá de una traducción literal.',
-      url: '/blog-taekwondo-y-su-filosofia.html',
+      url: '/blog/taekwondo-y-su-filosofia',
       img: '/images/pic01.jpg'
     },
     {
       tag: 'Historia',
       title: 'Historia del Taekwondo',
       excerpt: 'Del origen coreano y el General Choi Hong Hi al crecimiento en México: Dai Won Moon y la potencia olímpica actual.',
-      url: '/blog-historia-del-taekwondo.html',
+      url: '/blog/historia-del-taekwondo',
       img: '/images/pic02.jpg'
     },
     {
       tag: 'Cultura',
       title: 'Juramento, reglas y vocabulario',
       excerpt: 'Las palabras en coreano que escucharás en clase: cultura, respeto y disciplina detrás de cada saludo en el dojang.',
-      url: '/blog-juramento-reglas-y-vocabulario-del-taekwondo.html',
+      url: '/blog/juramento-reglas-y-vocabulario',
       img: '/images/pic05.jpg'
     },
     {
       tag: 'Práctica',
       title: 'Poomsae: qué es y por qué entrenarlo',
       excerpt: 'Las formas no son coreografía: son técnica, respiración y la base de todo lo demás en el tatami.',
-      url: '/blog-poomsae-que-es-y-por-que-entrenarlo.html',
+      url: '/blog/poomsae-que-es-y-por-que-entrenarlo',
       img: '/images/poomsae.jpg'
-    },
-    {
-      tag: 'Práctica',
-      title: 'Sistema de cinturones',
-      excerpt: 'Gup, dan y qué evalúa cada examen en la progresión de color en HUMI.',
-      url: '/blog-sistema-de-cinturones-taekwondo.html',
-      img: '/images/pic14.png'
     },
     {
       tag: 'Serie · Cinta blanca',
       title: 'El inicio nunca necesita explicación',
       excerpt: 'Inocencia, curiosidad y la niña que entró descalza sin imaginar lo que vendría.',
-      url: '/blog-cinturon-blanco-taekwondo.html',
+      url: '/blog/cinturon-blanco',
       img: '/images/white-belt.jpg'
     },
     {
       tag: 'Serie · Cinta naranja',
       title: 'Descubrir que avanzar también se aprende',
       excerpt: 'Perseverancia, el primer examen y la primera tabla rota.',
-      url: '/blog-cinturon-naranja-taekwondo.html',
+      url: '/blog/cinturon-naranja',
       img: '/images/orange-belt.jpg'
     },
     {
       tag: 'Serie · Cinta amarilla',
       title: 'El momento donde entiendes que puedes mejorar',
       excerpt: 'La tierra, el esfuerzo con consecuencias y el primer sentido de pertenencia.',
-      url: '/blog-cinturon-amarillo-taekwondo.html',
+      url: '/blog/cinturon-amarillo',
       img: '/images/poomsae.jpg'
     },
     {
       tag: 'Serie · Cinta verde',
       title: 'Crecer también significa echar raíces',
       excerpt: 'Cuando el dojang deja de ser actividad y se vuelve estilo de vida.',
-      url: '/blog-cinturon-verde-taekwondo.html',
+      url: '/blog/cinturon-verde',
       img: '/images/poomsae.jpg'
     },
     {
       tag: 'Serie · Cinta azul',
       title: 'El día que descubrí el miedo',
       excerpt: 'Permanencia, golpes de verdad y aprender a moverte con el miedo.',
-      url: '/blog-cinturon-azul-taekwondo.html',
+      url: '/blog/cinturon-azul',
       img: '/images/blue-belt.jpg'
     },
     {
       tag: 'Serie · Cinta roja',
       title: 'Aprender a controlar la fuerza',
       excerpt: 'Nervios, madurez y las batallas que se ganan antes del combate.',
-      url: '/blog-cinturon-rojo-taekwondo.html',
+      url: '/blog/cinturon-rojo',
       img: '/images/red-belt.jpg'
     },
     {
       tag: 'Competencia',
       title: 'Kyorugi: cómo se puntúa el combate',
       excerpt: 'Tres rounds, chaleco electrónico y gam-jeom: entiende el marcador cuando México compite en JJ.OO.',
-      url: '/blog-kyorugi-como-se-puntua-el-combate.html',
+      url: '/blog/kyorugi-como-se-puntua',
       img: '/images/pic04.png'
     },
     {
       tag: 'Olímpico · Sydney 2000',
       title: 'La primera medalla olímpica de México',
       excerpt: 'Contexto, repechaje y el bronce de Víctor Estrada que abrió la puerta a una potencia mundial del Taekwondo.',
-      url: '/blog-victor-estrada-sydney-2000.html',
+      url: '/blog/victor-estrada-sydney-2000',
       img: '/images/pic06.jpg'
     },
     {
       tag: 'Olímpico · Atenas 2004',
       title: 'Atenas 2004 — Hermanos Salazar',
       excerpt: 'Óscar Salazar, la plata en -58 kg y la familia que llevó el Taekwondo mexicano al tatami olímpico.',
-      url: '/blog-atenas-2004-hermanos-salazar.html',
+      url: '/blog/atenas-2004-hermanos-salazar',
       img: '/images/pic07.jpg'
     },
     {
       tag: 'Olímpico · Beijing 2008',
       title: 'Doble oro: Guillermo Pérez y María Espinoza',
       excerpt: 'El día en que México se consolidó como potencia global. Contexto post-Sydney y análisis del logro histórico.',
-      url: '/blog-beijing-2008-taekwondo-mexico.html',
+      url: '/blog/beijing-2008-taekwondo-mexico',
       img: '/images/beijing.jpg'
     },
     {
       tag: 'Olímpico · Londres 2012',
       title: 'Londres 2012 — Elite sostenida',
       excerpt: 'Tras Beijing, México demostró que el podio no fue casualidad: continuidad, presión y nueva generación.',
-      url: '/blog-londres-2012-taekwondo-mexico.html',
+      url: '/blog/londres-2012-taekwondo-mexico',
       img: '/images/pic08.png'
     },
     {
       tag: 'Olímpico · Río 2016',
       title: 'Río 2016 — Electrónico y presión',
       excerpt: 'Chaleco electrónico, María Espinoza y el Taekwondo mexicano en la era del marcador digital.',
-      url: '/blog-rio-2016-taekwondo-mexico.html',
+      url: '/blog/rio-2016-taekwondo-mexico',
       img: '/images/pic16.png'
     },
     {
       tag: 'Olímpico · Tokyo 2020',
       title: 'Tokyo 2020 — Pandemia y ciclo',
       excerpt: 'Juegos sin público, debate de reglas y un ciclo olímpico que cerró sin medalla para México.',
-      url: '/blog-tokyo-2020-taekwondo-mexico.html',
+      url: '/blog/tokyo-2020-taekwondo-mexico',
       img: '/images/tokyo.jpg'
     },
     {
       tag: 'Olímpico · París 2024',
       title: 'París 2024 — Post-Tokyo con hambre',
       excerpt: 'Daniela Souza, Carlos Sansores, ranking y la lección de que el circuito no siempre se traduce en podio olímpico.',
-      url: '/blog-paris-2024-taekwondo-mexico.html',
+      url: '/blog/paris-2024-taekwondo-mexico',
       img: '/images/paris.jpg'
     },
   ];
@@ -2020,7 +1998,7 @@
       document.getElementById('blogMeta').textContent = 'Artículo ' + (idx + 1) + ' de ' + articles.length;
       document.getElementById('blogCardTitle').textContent = a.title;
       document.getElementById('blogCardExcerpt').textContent = a.excerpt;
-      document.getElementById('blogLink').href = a.url;
+      document.getElementById('blogCardMain').href = a.url;
       document.querySelectorAll('.blog-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
       updateBgGrid(idx);
       card.classList.remove('fading');
@@ -2081,7 +2059,7 @@
 </section>
 
 <!-- CTA FINAL -->
-<div class="cta-section">
+<div id="contacto" class="cta-section">
   <div class="cta-glow"></div>
   <div class="cta-inner">
     <div class="section-eyebrow" style="justify-content: center; display: flex;">Ensenada, B.C.</div>
@@ -2102,10 +2080,12 @@
     <span>© 2025 HUMI Taekwondo · Ensenada, B.C.</span>
   </div>
   <div class="footer-links">
-    <a href="https://www.instagram.com/humi.taekwondo/" target="_blank">Instagram</a>
-    <a href="https://www.facebook.com/HumiTaekwondo/" target="_blank">Facebook</a>
-    <a href="https://wa.me/526461093879" target="_blank">WhatsApp</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=C.+Séptima+436,+Zona+Centro,+22800+Ensenada" target="_blank">Ubicación</a>
+    <a href="/sitemap">Mapa del sitio</a>
+    <a href="/sitemap.xml">Sitemap XML</a>
+    <a href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="https://www.facebook.com/HumiTaekwondo/" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a href="https://wa.me/526461093879" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+    <a href="https://www.google.com/maps/search/?api=1&query=C.+Séptima+436,+Zona+Centro,+22800+Ensenada" target="_blank" rel="noopener noreferrer">Ubicación</a>
   </div>
 </footer>
 
@@ -2183,34 +2163,6 @@ document.querySelectorAll('.faq-q').forEach(q => {
   });
 });
 
-// Belt info (hover / teclado / toque en móvil)
-const beltInfo = document.getElementById('belt-info');
-const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-document.querySelectorAll('.grade-belt').forEach(belt => {
-  function show() {
-    beltInfo.textContent = belt.dataset.info;
-    beltInfo.style.color = 'var(--text)';
-  }
-  function hide() {
-    beltInfo.textContent = '';
-  }
-  belt.addEventListener('mouseenter', show);
-  belt.addEventListener('mouseleave', hide);
-  belt.addEventListener('focus', show);
-  belt.addEventListener('blur', hide);
-  belt.setAttribute('tabindex', '0');
-  if (coarsePointer) {
-    belt.addEventListener('click', function (e) {
-      e.preventDefault();
-      var on = belt.classList.toggle('belt-tip-on');
-      document.querySelectorAll('.grade-belt').forEach(function (b) {
-        if (b !== belt) b.classList.remove('belt-tip-on');
-      });
-      if (on) show();
-      else hide();
-    });
-  }
-});
 </script>
 </body>
 </html>

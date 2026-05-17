@@ -1,8 +1,14 @@
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { BLOG_ARTICLES, articlePath, categoryPath } from "./blog-config.mjs";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+
+function routeForLegacySlug(legacySlug) {
+  const found = BLOG_ARTICLES.find((a) => a.source === `${legacySlug}.html`);
+  return found?.slug ?? legacySlug;
+}
 
 const SERIES = [
   {
@@ -277,16 +283,16 @@ Es no dejarse gobernar por lo que sientes.`,
 
 function renderNav(post) {
   const prev = post.prev
-    ? `<a href="${post.prev}.html">← Anterior</a>`
+    ? `<a href="${articlePath(routeForLegacySlug(post.prev))}">← Anterior</a>`
     : `<span aria-hidden="true"></span>`;
   const next = post.next
-    ? `<a href="${post.next}.html">Siguiente →</a>`
+    ? `<a href="${articlePath(routeForLegacySlug(post.next))}">Siguiente →</a>`
     : `<span aria-hidden="true"></span>`;
   return `
-\t\t\t\t<nav class="hm-editorial__series" aria-label="Serie Los cinturones">
-\t\t\t\t\t<p class="hm-editorial__series-index">Serie editorial · Los cinturones</p>
+\t\t\t\t<nav class="hm-editorial__series" aria-label="Serie Cinturones">
+\t\t\t\t\t<p class="hm-editorial__series-index">Cinturones · Memoria editorial</p>
 \t\t\t\t\t${prev}
-\t\t\t\t\t<a href="sitio-editorial.html#blog-cinturones">Índice de la serie</a>
+\t\t\t\t\t<a href="${categoryPath("cinturones")}">Más capítulos</a>
 \t\t\t\t\t${next}
 \t\t\t\t</nav>`;
 }
@@ -310,7 +316,7 @@ function renderPost(post) {
 \t\t\trel="stylesheet"
 \t\t/>
 \t\t<link rel="stylesheet" href="assets/css/humi-redesign.css" />
-\t\t<link rel="canonical" href="/${post.slug}.html" />
+\t\t<link rel="canonical" href="${articlePath(routeForLegacySlug(post.slug))}" />
 \t\t<script type="application/ld+json">
 \t\t\t{
 \t\t\t\t"@context": "https://schema.org",
@@ -319,7 +325,7 @@ function renderPost(post) {
 \t\t\t\t"description": ${JSON.stringify(post.seoDescription)},
 \t\t\t\t"author": { "@type": "Organization", "name": "HUMI Taekwondo" },
 \t\t\t\t"datePublished": "2026-05-16",
-\t\t\t\t"articleSection": "Serie editorial · Los cinturones"
+\t\t\t\t"articleSection": "Cinturones"
 \t\t\t}
 \t\t</script>
 \t</head>
@@ -328,7 +334,7 @@ function renderPost(post) {
 
 \t\t<header class="hm-nav" data-hm-nav>
 \t\t\t<div class="hm-wrap hm-nav__bar">
-\t\t\t\t<a class="hm-logo" href="index.html">
+\t\t\t\t<a class="hm-logo" href="/">
 \t\t\t\t\t<span class="hm-logo__mark" aria-hidden="true"></span>
 \t\t\t\t\tHUMI <span>Taekwondo</span>
 \t\t\t\t</a>
@@ -344,10 +350,13 @@ function renderPost(post) {
 \t\t\t\t</button>
 \t\t\t\t<div class="hm-nav__panel" id="hm-nav-panel-blog" data-hm-nav-panel>
 \t\t\t\t\t<nav class="hm-nav__links" aria-label="Principal">
-\t\t\t\t\t\t<a href="index.html">Inicio</a>
-\t\t\t\t\t\t<a href="sitio-editorial.html#ubicacion">Ubicación</a>
-\t\t\t\t\t\t<a href="sitio-editorial.html#horarios">Horarios</a>
-\t\t\t\t\t\t<a href="sitio-editorial.html#blog-cinturones">Blog</a>
+\t\t\t\t\t\t<a href="/">Inicio</a>
+\t\t\t\t\t\t<a href="/blog/categoria/disciplina">Filosofía</a>
+\t\t\t\t\t\t<a href="/#programas">Experiencia</a>
+\t\t\t\t\t\t<a href="/blog">Blog</a>
+\t\t\t\t\t\t<a href="/blog/categoria/comunidad">Comunidad</a>
+\t\t\t\t\t\t<a href="/#instructores">Equipo</a>
+\t\t\t\t\t\t<a href="/#contacto">Contacto</a>
 \t\t\t\t\t</nav>
 \t\t\t\t\t<div class="hm-nav__cta">
 \t\t\t\t\t\t<a class="hm-btn hm-btn--primary" href="https://wa.me/526461093879" target="_blank" rel="noreferrer noopener">WhatsApp</a>
@@ -400,9 +409,9 @@ ${renderNav(post)}
 \t\t\t<div class="hm-wrap hm-footer__row">
 \t\t\t\t<span>© HUMI Taekwondo · Ensenada</span>
 \t\t\t\t<span>
-\t\t\t\t\t<a href="index.html">Inicio</a>
+\t\t\t\t\t<a href="/">Inicio</a>
 \t\t\t\t\t·
-\t\t\t\t\t<a href="sitio-editorial.html#blog-cinturones">Serie cinturones</a>
+\t\t\t\t\t<a href="${categoryPath("cinturones")}">Serie · Cinturones</a>
 \t\t\t\t\t·
 \t\t\t\t\t<a href="https://www.facebook.com/HumiTaekwondo/" target="_blank" rel="noreferrer noopener">Facebook</a>
 \t\t\t\t</span>
@@ -417,8 +426,6 @@ ${renderNav(post)}
 
 for (const post of SERIES) {
   const file = path.join(root, `${post.slug}.html`);
-  let html = renderPost(post);
-  html = html.replace(/<\/motion>/g, "</motion>").replace(/<\/motion>/g, "</div>");
-  writeFileSync(file, html.replace(/<\/motion>/g, "</div>"));
+  writeFileSync(file, renderPost(post));
   console.log("wrote", file);
 }

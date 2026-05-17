@@ -1,20 +1,23 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { BLOG_ARTICLES, articleImageSrc } from "./blog-config.mjs";
 import { BELT_BLOG_ARTICLES, HERO_FRAMING, KUKKIWON_CTA } from "./blog-belt-articles.mjs";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const OG_RE = /<meta\s+property="og:image"[^>]*>\s*/i;
-const HERO_RE = /\s*<figure class="hm-editorial__hero">[\s\S]*?<\/figure>\s*/;
+const ALL_HERO_RE = /<figure class="hm-editorial__hero[\s\S]*?<\/figure>\s*/g;
 const POOMSAE_RE =
   /<section class="hm-editorial__section hm-editorial__poomsae"[\s\S]*?<\/section>/;
 
-function imagePath(imageId) {
+function imagePath(blogFileSlug, imageId) {
+  const article = BLOG_ARTICLES.find((a) => a.source === `${blogFileSlug}.html`);
+  if (article) return articleImageSrc(article.slug, imageId);
   return `/images/${imageId}.jpg`;
 }
 
-function heroMarkup({ imageId, alt }) {
-  const src = imagePath(imageId);
+function heroMarkup(blogFileSlug, { imageId, alt }) {
+  const src = imagePath(blogFileSlug, imageId);
   const frame = HERO_FRAMING[imageId] ?? { aspect: "landscape", focus: "50% 50%" };
   return `
 				<figure class="hm-editorial__hero hm-editorial__hero--${frame.aspect}" style="--hero-focus: ${frame.focus}">
@@ -43,8 +46,8 @@ function poomsaeMarkup({ poomsae, youtube, poomsaeSectionId }) {
 				</section>`;
 }
 
-function upsertOgImage(html, imageId) {
-  const tag = `<meta property="og:image" content="${imagePath(imageId)}" />\n\t\t`;
+function upsertOgImage(html, blogFileSlug, imageId) {
+  const tag = `<meta property="og:image" content="${imagePath(blogFileSlug, imageId)}" />\n\t\t`;
   if (OG_RE.test(html)) return html.replace(OG_RE, tag);
   return html.replace(
     /(<meta\s+property="og:description"[^>]*\/>)/i,
@@ -52,10 +55,10 @@ function upsertOgImage(html, imageId) {
   );
 }
 
-function upsertHero(html, config) {
-  const hero = heroMarkup(config);
-  if (HERO_RE.test(html)) return html.replace(HERO_RE, hero);
-  return html.replace(/(<article class="hm-article hm-editorial hm-wrap"[^>]*>)/, `$1${hero}`);
+function upsertHero(html, blogFileSlug, config) {
+  const hero = heroMarkup(blogFileSlug, config);
+  const stripped = html.replace(ALL_HERO_RE, "");
+  return stripped.replace(/(<article class="hm-article hm-editorial hm-wrap"[^>]*>)/, `$1${hero}`);
 }
 
 for (const [slug, config] of Object.entries(BELT_BLOG_ARTICLES)) {
@@ -67,8 +70,8 @@ for (const [slug, config] of Object.entries(BELT_BLOG_ARTICLES)) {
     continue;
   }
 
-  html = upsertOgImage(html, config.imageId);
-  html = upsertHero(html, config);
+  html = upsertOgImage(html, slug, config.imageId);
+  html = upsertHero(html, slug, config);
   html = html.replace(POOMSAE_RE, poomsaeMarkup(config));
 
   writeFileSync(file, html);
