@@ -82,7 +82,6 @@
   .section-light .blog-cta { color: #164A89; }
   .section-light .faq-item { border-color: rgba(0,0,0,0.08); }
   .section-light .faq-icon { background: #f1f0ee; border-color: rgba(0,0,0,0.08); color: #555; }
-  .section-light .comparison-wrap { border-color: rgba(0,0,0,0.08); background: rgba(0,0,0,0.08); }
   .section-light .comp-col { background: #ffffff; }
   .section-light .comp-col.featured { background: #f1f0ee; }
   .section-light .comp-title { color: #0f0f0f; }
@@ -108,6 +107,18 @@
   .marquee-section.light::after { background: linear-gradient(-90deg, #f8f8f6, transparent); }
   .marquee-section.light .marquee-label { color: #bbb; }
   .marquee-section.light .marquee-item { color: #999; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
 
   html { scroll-behavior: smooth; }
 
@@ -557,6 +568,63 @@
     font-size: 0.8rem; color: var(--text-dim);
     font-family: 'Geist Mono', monospace;
   }
+  .program-schedule {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .program-schedule > li {
+    display: grid;
+    grid-template-columns: 3.1rem 1fr;
+    gap: 0.35rem 0.65rem;
+    align-items: start;
+  }
+  .program-schedule__day {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent-2);
+    padding-top: 0.15rem;
+  }
+  .program-schedule__detail {
+    font-size: 0.78rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+  }
+  .program-schedule__detail p {
+    margin: 0;
+  }
+  .program-schedule__detail p + p {
+    margin-top: 0.35rem;
+  }
+  .program-schedule__level {
+    display: block;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #164A89;
+    margin-bottom: 0.12rem;
+  }
+  .program-card--schedule {
+    grid-column: 1 / -1;
+  }
+  @media (min-width: 720px) {
+    .program-card--schedule {
+      grid-column: span 1;
+    }
+    .programs-grid--detailed {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .section-light .program-schedule__detail {
+    color: #555;
+  }
   .program-tags {
     display: flex; gap: 4px; flex-wrap: wrap; margin-top: 0.75rem;
   }
@@ -567,48 +635,149 @@
     letter-spacing: 0.04em; text-transform: uppercase;
   }
 
-  /* ── COMPARISON ── */
-  .comparison-wrap {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-    background: var(--border); border: 1px solid var(--border);
-    border-radius: 16px; overflow: hidden;
+  /* ── COMPARISON (editorial manifesto) ── */
+  .compare-section {
+    background: var(--bg);
+    padding: 100px 24px;
+    border-top: 1px solid var(--border);
+    max-width: none;
   }
-  .comp-col {
-    background: var(--bg-card); padding: 2rem;
+
+  .compare-manifesto {
+    max-width: 1120px;
+    margin: 0 auto;
   }
-  .comp-col.featured {
-    background: var(--bg-3);
-    position: relative;
+
+  .compare-manifesto__pairs {
+    display: flex;
+    flex-direction: column;
+    gap: 6.5rem;
   }
-  .comp-col.featured::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 2px; background: linear-gradient(90deg, #164A89, #4a8fd4);
+
+  .compare-manifesto__split {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
-  .comp-header {
-    margin-bottom: 1.5rem; padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
+
+  .compare-manifesto__panel {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 1.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .comp-title {
-    font-size: 0.875rem; font-weight: 600; margin-bottom: 0.25rem;
+
+  .compare-manifesto__panel.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
-  .comp-subtitle {
-    font-size: 0.8rem; color: var(--text-dim);
+
+  .compare-manifesto__panel--other {
+    padding-bottom: 4.5rem;
   }
-  .comp-list { list-style: none; }
-  .comp-list li {
-    display: flex; align-items: flex-start; gap: 10px;
-    font-size: 0.875rem; padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
-    color: var(--text-muted);
+
+  .compare-manifesto__panel--humi {
+    padding-top: 4.5rem;
   }
-  .comp-list li:last-child { border-bottom: none; }
-  .comp-check {
-    width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; margin-top: 2px;
-    display: flex; align-items: center; justify-content: center; font-size: 0.6rem;
+
+  .compare-manifesto__label {
+    margin: 0 0 2rem;
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(136, 136, 136, 0.92);
   }
-  .comp-check.yes { background: rgba(74,222,128,0.12); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
-  .comp-check.no { background: rgba(255,255,255,0.04); color: var(--text-dim); border: 1px solid var(--border); }
-  .featured .comp-list li { color: var(--text); }
+
+  .compare-manifesto__statement {
+    margin: 0;
+    max-width: 14ch;
+    font-family: 'Geist', ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(1.75rem, 6.2vw, 2.35rem);
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+  }
+
+  .compare-manifesto__statement--other {
+    color: rgba(245, 245, 245, 0.48);
+    font-weight: 400;
+  }
+
+  .compare-manifesto__statement--humi {
+    color: rgba(245, 245, 245, 0.96);
+    font-weight: 600;
+    max-width: 18ch;
+  }
+
+  .compare-manifesto__divider {
+    flex-shrink: 0;
+    height: 1px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 0;
+    margin: 0;
+  }
+
+  @media (min-width: 921px) {
+    .compare-section {
+      padding: 120px 48px;
+    }
+
+    .compare-manifesto__pairs {
+      gap: 8rem;
+    }
+
+    .compare-manifesto__split {
+      flex-direction: row;
+      align-items: stretch;
+      min-height: min(36vh, 320px);
+    }
+
+    .compare-manifesto__panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .compare-manifesto__panel--other {
+      padding: 0 3.5rem 0 0;
+    }
+
+    .compare-manifesto__panel--humi {
+      padding: 0 0 0 3.5rem;
+    }
+
+    .compare-manifesto__divider {
+      width: 1px;
+      height: auto;
+      align-self: stretch;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .compare-manifesto__statement {
+      font-size: clamp(2rem, 2.8vw, 2.65rem);
+    }
+
+    .compare-manifesto__statement--other {
+      max-width: 12ch;
+    }
+
+    .compare-manifesto__statement--humi {
+      max-width: 16ch;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .compare-manifesto__panel {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 
   /* ── TESTIMONIALS ── */
   .reviews-grid {
@@ -805,7 +974,7 @@
     .hero { padding: 4rem 1rem 3rem; min-height: auto; }
     section { padding: 4rem 1rem; }
     .bento-card.span-4, .bento-card.span-6, .bento-card.span-8 { grid-column: span 12; }
-    .comparison-wrap, .reviews-grid, .team-grid, .blog-grid { grid-template-columns: 1fr; }
+    .reviews-grid, .team-grid, .blog-grid { grid-template-columns: 1fr; }
     .hero-stats-wrap { margin-top: 2rem; }
     .hero-stats {
       display: grid;
@@ -911,7 +1080,7 @@
 <!-- BANNER -->
 <div class="banner">
   <span class="banner-badge">Nuevo</span>
-  <span>Turno AM disponible · Lunes a jueves, 7:30–8:30 AM para adultos →</span>
+  <span>Turno AM disponible · Lunes a jueves, 7:30 AM y 8:30 AM para adultos →</span>
   <a href="#horarios">Ver horarios completos</a>
 </div>
 
@@ -1042,9 +1211,9 @@
   <div id="horarios" class="scroll-target" aria-label="Programas y horarios"></div>
   <div class="section-eyebrow">Programas</div>
   <div class="section-title">Cada detalle, con intención</div>
-  <div class="section-sub">Niños, teens y adultos: misma ética, distinta exigencia. Elige un grupo para ver días, hora y enfoque.</div>
+  <div class="section-sub">Sparring y Poomsae se dividen por nivel. Cada programa tiene su semana tipo — horarios y disciplina por día.</div>
 
-  <div class="programs-grid">
+  <div class="programs-grid programs-grid--detailed">
     <div class="program-card">
       <span class="program-age">3 años</span>
       <div class="program-name">Iniciación</div>
@@ -1054,36 +1223,90 @@
         <span class="prog-tag">Iniciación</span>
       </div>
     </div>
-    <div class="program-card">
+    <div class="program-card program-card--schedule">
       <span class="program-age">4 a 6 años</span>
       <div class="program-name">Fundamentos</div>
       <div class="program-desc">Control y hábito de esfuerzo en un espacio seguro y predecible.</div>
-      <div class="program-time">4:00 – 4:50 PM</div>
+      <ul class="program-schedule" aria-label="Horario Fundamentos">
+        <li>
+          <span class="program-schedule__day">Lun</span>
+          <span class="program-schedule__detail">Sparring · 4:00 PM</span>
+        </li>
+        <li>
+          <span class="program-schedule__day">Mar · Jue</span>
+          <span class="program-schedule__detail">P.T. TKD · 4:00 PM</span>
+        </li>
+        <li>
+          <span class="program-schedule__day">Vie</span>
+          <span class="program-schedule__detail">Freestyle · 4:00 PM</span>
+        </li>
+      </ul>
       <div class="program-tags">
         <span class="prog-tag">Sparring</span>
+        <span class="prog-tag">P.T. TKD</span>
         <span class="prog-tag">Freestyle</span>
       </div>
     </div>
-    <div class="program-card">
+    <div class="program-card program-card--schedule">
       <span class="program-age">7 a 10 años</span>
       <div class="program-name">Técnica</div>
-      <div class="program-desc">Condición y foco: el estándar sube con el cuerpo y con la actitud.</div>
-      <div class="program-time">5:00 – 6:00 PM</div>
+      <div class="program-desc">Condición y foco: el estándar sube con el cuerpo y con la actitud. Sparring y Poomsae por nivel.</div>
+      <ul class="program-schedule" aria-label="Horario Técnica">
+        <li>
+          <span class="program-schedule__day">Lun</span>
+          <div class="program-schedule__detail">
+            <p><span class="program-schedule__level">Principiantes</span> Sparring · 4:00 PM</p>
+            <p><span class="program-schedule__level">Avanzados</span> Sparring · 5:00 – 6:30 PM</p>
+          </div>
+        </li>
+        <li>
+          <span class="program-schedule__day">Mar · Jue</span>
+          <span class="program-schedule__detail">P.T. TKD · 5:00 PM</span>
+        </li>
+        <li>
+          <span class="program-schedule__day">Mié</span>
+          <div class="program-schedule__detail">
+            <p><span class="program-schedule__level">Principiantes</span> Poomsae · 4:00 PM</p>
+            <p><span class="program-schedule__level">Intermedios</span> Poomsae · 5:00 PM</p>
+            <p><span class="program-schedule__level">Cintas negras</span> Poomsae · 6:00 PM</p>
+          </div>
+        </li>
+        <li>
+          <span class="program-schedule__day">Vie</span>
+          <span class="program-schedule__detail">Freestyle · 5:00 PM</span>
+        </li>
+      </ul>
       <div class="program-tags">
         <span class="prog-tag">Sparring</span>
         <span class="prog-tag">Poomsae</span>
         <span class="prog-tag">Freestyle</span>
       </div>
     </div>
-    <div class="program-card">
+    <div class="program-card program-card--schedule">
       <span class="program-age">11 a 16 años</span>
       <div class="program-name">Constancia</div>
       <div class="program-desc">Mentalidad bajo exigencia, compañerismo y fuerza sin necesidad de gritar.</div>
-      <div class="program-time">6:00 – 7:00 PM</div>
+      <ul class="program-schedule" aria-label="Horario Constancia">
+        <li>
+          <span class="program-schedule__day">Lun</span>
+          <span class="program-schedule__detail">Sparring · 5:00 – 6:30 PM</span>
+        </li>
+        <li>
+          <span class="program-schedule__day">Mar · Jue</span>
+          <span class="program-schedule__detail">P.T. TKD · 6:00 PM</span>
+        </li>
+        <li>
+          <span class="program-schedule__day">Mié</span>
+          <div class="program-schedule__detail">
+            <p><span class="program-schedule__level">Principiantes e intermedios</span> Poomsae · 5:00 PM</p>
+            <p><span class="program-schedule__level">Cintas negras</span> Poomsae · 6:00 PM</p>
+          </div>
+        </li>
+      </ul>
       <div class="program-tags">
         <span class="prog-tag">Sparring</span>
         <span class="prog-tag">Poomsae</span>
-        <span class="prog-tag">Freestyle</span>
+        <span class="prog-tag">P.T. TKD</span>
       </div>
     </div>
     <div class="program-card" style="border-top: 2px solid var(--accent);">
@@ -1100,7 +1323,16 @@
       <span class="program-age">Adultos — AM</span>
       <div class="program-name">HIIT + Patadas</div>
       <div class="program-desc">Energía y enfoque antes del trabajo. Disciplina que cabe en la agenda real.</div>
-      <div class="program-time">Lun–Jue · 7:30 – 8:30 AM</div>
+      <ul class="program-schedule" aria-label="Horario Adultos AM">
+        <li>
+          <span class="program-schedule__day">Lun–Jue</span>
+          <span class="program-schedule__detail">7:30 AM</span>
+        </li>
+        <li>
+          <span class="program-schedule__day">Lun–Jue</span>
+          <span class="program-schedule__detail">8:30 AM</span>
+        </li>
+      </ul>
       <div class="program-tags">
         <span class="prog-tag">HIIT</span>
         <span class="prog-tag">Dumbbells</span>
@@ -1110,42 +1342,89 @@
 </section>
 
 <!-- COMPARACIÓN -->
-<section id="comparacion" style="border-top: 1px solid var(--border);">
-  <div class="section-eyebrow">Comparación</div>
-  <div class="section-title">HUMI vs otras escuelas</div>
-  <div class="section-sub">La diferencia no es solo el uniforme.</div>
+<section id="comparacion" class="compare-section" aria-labelledby="comparacion-heading">
+  <div class="compare-manifesto">
+    <h2 id="comparacion-heading" class="visually-hidden">Comparación</h2>
+    <div class="compare-manifesto__pairs">
+      <article class="compare-manifesto__pair">
+        <div class="compare-manifesto__split">
+          <div class="compare-manifesto__panel compare-manifesto__panel--other" data-compare-reveal>
+            <p class="compare-manifesto__label">Otras escuelas</p>
+            <p class="compare-manifesto__statement compare-manifesto__statement--other">
+              Entrenar significa repetir.
+            </p>
+          </div>
+          <hr class="compare-manifesto__divider" aria-hidden="true">
+          <div class="compare-manifesto__panel compare-manifesto__panel--humi" data-compare-reveal>
+            <p class="compare-manifesto__label">En HUMI</p>
+            <p class="compare-manifesto__statement compare-manifesto__statement--humi">
+              Entrenar significa comprender.
+            </p>
+          </div>
+        </div>
+      </article>
 
-  <div class="comparison-wrap">
-    <div class="comp-col">
-      <div class="comp-header">
-        <div class="comp-title" style="color: var(--text-muted);">Otras escuelas</div>
-        <div class="comp-subtitle">Lo que generalmente ofrecen</div>
-      </div>
-      <ul class="comp-list">
-        <li><span class="comp-check no">✕</span>Grupos mezclados de muchas edades</li>
-        <li><span class="comp-check no">✕</span>Pocas opciones de programas</li>
-        <li><span class="comp-check no">✕</span>Muchos exámenes al año, presión pública</li>
-        <li><span class="comp-check no">✕</span>Programas anticuados sin metodología</li>
-        <li><span class="comp-check no">✕</span>Poca comunicación con padres de familia</li>
-        <li><span class="comp-check no">✕</span>Instalaciones genéricas</li>
-      </ul>
-    </div>
-    <div class="comp-col featured">
-      <div class="comp-header">
-        <div class="comp-title">En HUMI</div>
-        <div class="comp-subtitle" style="color: var(--accent-2);">El estándar que nos define</div>
-      </div>
-      <ul class="comp-list">
-        <li><span class="comp-check yes">✓</span>Grupos por edad y objetivo específico</li>
-        <li><span class="comp-check yes">✓</span>Poomsae, Sparring, Freestyle, HIIT</li>
-        <li><span class="comp-check yes">✓</span>Progresión por niveles sin vergüenza pública</li>
-        <li><span class="comp-check yes">✓</span>Metodología propia, exigencia con calidez</li>
-        <li><span class="comp-check yes">✓</span>Acompañamiento visible para familias</li>
-        <li><span class="comp-check yes">✓</span>Mejores instalaciones del dojang</li>
-      </ul>
+      <article class="compare-manifesto__pair">
+        <div class="compare-manifesto__split">
+          <div class="compare-manifesto__panel compare-manifesto__panel--other" data-compare-reveal>
+            <p class="compare-manifesto__label">Otras escuelas</p>
+            <p class="compare-manifesto__statement compare-manifesto__statement--other">
+              Los alumnos esperan instrucciones.
+            </p>
+          </div>
+          <hr class="compare-manifesto__divider" aria-hidden="true">
+          <div class="compare-manifesto__panel compare-manifesto__panel--humi" data-compare-reveal>
+            <p class="compare-manifesto__label">En HUMI</p>
+            <p class="compare-manifesto__statement compare-manifesto__statement--humi">
+              Los alumnos aprenden<br>a sostener responsabilidad.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <article class="compare-manifesto__pair">
+        <div class="compare-manifesto__split">
+          <div class="compare-manifesto__panel compare-manifesto__panel--other" data-compare-reveal>
+            <p class="compare-manifesto__label">Otras escuelas</p>
+            <p class="compare-manifesto__statement compare-manifesto__statement--other">
+              Todo gira alrededor<br>de reglas.
+            </p>
+          </div>
+          <hr class="compare-manifesto__divider" aria-hidden="true">
+          <div class="compare-manifesto__panel compare-manifesto__panel--humi" data-compare-reveal>
+            <p class="compare-manifesto__label">En HUMI</p>
+            <p class="compare-manifesto__statement compare-manifesto__statement--humi">
+              Los valores se practican<br>todos los días.
+            </p>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
+<script>
+(function () {
+  var section = document.getElementById('comparacion');
+  if (!section) return;
+  var panels = section.querySelectorAll('[data-compare-reveal]');
+  if (!panels.length) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    panels.forEach(function (el) { el.classList.add('is-visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -6% 0px' });
+  panels.forEach(function (el, i) {
+    el.style.transitionDelay = (i * 0.18) + 's';
+    observer.observe(el);
+  });
+})();
+</script>
 
 <!-- INSTRUCTORES -->
 <section id="equipo" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
@@ -2053,7 +2332,7 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">¿Hay clases para adultos que trabajan en horario de mañana?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Sí. Turno AM de lunes a jueves, 7:30–8:30 AM. Taekwondo + HIIT + dumbbells. Diseñado para quienes necesitan entrenar antes de su jornada laboral.</div>
+      <div class="faq-a">Sí. Turno AM de lunes a jueves: 7:30 AM y 8:30 AM (dos horarios). Taekwondo + HIIT + dumbbells. Diseñado para quienes necesitan entrenar antes de su jornada laboral.</div>
     </div>
   </div>
 </section>

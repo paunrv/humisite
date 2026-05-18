@@ -22,11 +22,23 @@ for (const { humisite, local } of VIDEO_IMPORTS) {
   }
 }
 
+/** All .mp4 from ../humisite/video → humi/video/ when missing locally */
+if (existsSync(defaultHumisiteVideo)) {
+  for (const name of readdirSync(defaultHumisiteVideo)) {
+    if (!name.endsWith(".mp4")) continue;
+    const from = path.join(defaultHumisiteVideo, name);
+    const to = path.join(sourceDir, name);
+    if (!existsSync(to)) {
+      copyFileSync(from, to);
+      console.log(`sync-videos: imported ${name} from humisite/video`);
+    }
+  }
+}
+
 const mappings = [
-  { source: "instagram-reel-01.mp4", targetDir: "intro", target: "form.mp4" },
-  { source: "instagram-reel-02.mp4", targetDir: "intro", target: "human.mp4" },
-  { source: "instagram-reel-03.mp4", targetDir: "intro", target: "energy.mp4" },
-  { source: "instagram-reel-04.mp4", targetDir: "intro", target: "presence.mp4" },
+  { source: "instagram-reel-04.mp4", targetDir: "intro", target: "form.mp4" },
+  { source: "instagram-reel-05.mp4", targetDir: "intro", target: "human.mp4" },
+  { source: "instagram-reel-01.mp4", targetDir: "intro", target: "energy.mp4" },
   { source: "taekwondo-training.mp4", targetDir: "moments", target: "taekwondo-training.mp4" },
   { source: "taekwondo-games.mp4", targetDir: "moments", target: "taekwondo-games.mp4" },
 ];

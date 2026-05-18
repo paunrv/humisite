@@ -115,33 +115,36 @@ La mayor parte del tiempo simplemente parece presentarse otra vez.`,
     quote: "La confianza crece en silencio antes de que alguien la note.",
     beltMeaning: `El cinturón amarillo representa la tierra y las raíces del crecimiento.
 El alumno empieza a construir confianza y a comprender que el esfuerzo genera progreso — incluso cuando nadie aplaude.`,
-    story: `Un solo año se siente como toda una vida cuando tienes seis años.
+    story: `Un año puede sentirse como toda una vida cuando tienes seis años.
 
-De pronto ya no era una de las alumnas más nuevas en la fila.
+De pronto ya no eres de los últimos en la fila. Ya sabes cómo empieza la clase. Reconoces algunas palabras en coreano. Y en casa empiezan a aparecer las primeras medallas, diplomas y trofeos.
 
-En casa ya tenía una medalla de tercer lugar en poomsae y una de segundo en combate.
+La cinta amarilla fue uno de los primeros momentos en que entendí que el esfuerzo tenía consecuencias reales.
 
-Para un niño, esas victorias pequeñas se sienten enormes.
-
-Fue el primer momento en que entendí de verdad que el esfuerzo crea resultados.
-
-Si atacaba primero, probablemente ganaba.
-Si practicaba mis formas, podía avanzar.
+Si golpeaba primero, tenía oportunidad de ganar.
+Si practicaba mis formas, podía avanzar de cinta.
 Si entrenaba más, podía mejorar.
 
-Ideas simples.
+Pero también entendías algo importante: no bastaba con presentarte.
 
-Pero descubrirlas tan joven cambia la manera en que te ves a ti misma.
+"Podía" no significaba "iba a pasar".
 
-El cinturón amarillo fue donde la identidad empezó a formarse en silencio.
+Podía ganar… si entrenaba mejor.
+Podía avanzar… si corregía más.
+Podía mejorar… si era mejor que ayer.
 
-Empecé a sentir que pertenecía a ese lugar.
+Y a esa edad yo le competía hasta a mi propia sombra.
 
-No por las medallas en la pared.
-Sino porque el cuerpo ya sabía qué hacer cuando el maestro daba una orden.
-Porque dejar de ir se sentía, por primera vez, como perder algo.`,
+Parece algo sencillo, pero descubrir eso tan joven cambia muchas cosas.
+
+Porque empiezas a entender que crecer no ocurre por accidente. Se construye.
+
+Y aunque todavía existe mucha inocencia, aparece algo nuevo: una sensación de identidad.
+
+Empiezas a sentir que perteneces ahí.`,
     poomsae: "Taegeuk 1",
     poomsaeQuery: "Kukkiwon Taegeuk 1 poomsae",
+    youtube: "https://www.youtube.com/watch?v=WhkjRruCBTo&t=93s",
     reflection:
       "La confianza no nace de un día para otro. Crece lento, bajo tierra, antes de volverse visible.",
     prev: "blog-cinturon-naranja-taekwondo",

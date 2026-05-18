@@ -1,6 +1,6 @@
 import type { ReelPanelConfig } from "@/lib/reel-panel";
 
-export type IntroPanelId = "form" | "human" | "energy" | "presence";
+export type IntroPanelId = "form" | "human" | "energy";
 
 export type IntroPanelConfig = ReelPanelConfig & { id: IntroPanelId };
 
@@ -27,15 +27,10 @@ export const INTRO_PANELS: IntroPanelConfig[] = [
     posterSrc: "/images/pic06.jpg",
     sourceHashtagUrl: "https://www.instagram.com/explore/tags/entrenaconconciencia/",
   },
-  {
-    id: "presence",
-    label: "Presence",
-    videoSrc: "/videos/intro/presence.mp4",
-    posterSrc: "/images/pic12.png",
-    sourceHashtagUrl: "https://www.instagram.com/explore/tags/entrenaconconciencia/",
-  },
 ];
 
 export const INTRO_EXIT_MS = 900;
-export const MOBILE_ROTATE_MIN_MS = 5500;
-export const MOBILE_ROTATE_MAX_MS = 7500;
+/** Tiempo entre videos en el grid intro (móvil) */
+export const INTRO_GRID_DURATION_MS = 5000;
+export const MOBILE_ROTATE_MIN_MS = INTRO_GRID_DURATION_MS;
+export const MOBILE_ROTATE_MAX_MS = INTRO_GRID_DURATION_MS;

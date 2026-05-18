@@ -25,7 +25,7 @@ export function LegacyLandingMount({ introActive }: LegacyLandingMountProps) {
       if (!mountRoot) return;
 
       try {
-        const response = await fetch("/legacy-landing.html", { cache: "no-store" });
+        const response = await fetch(`/legacy-landing.html?v=${Date.now()}`, { cache: "no-store" });
         if (!response.ok) throw new Error("legacy html missing");
         const html = await response.text();
         if (cancelled) return;

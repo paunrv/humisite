@@ -1,4 +1,4 @@
-import { copyFileSync, existsSync, mkdirSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -89,9 +89,30 @@ for (let n = 1; n <= 46; n++) {
   console.log(`sync-media: ${path.basename(from)} → images/pic${padded}${ext}`);
 }
 
-if (copied === 0 && picCopied === 0) {
+/** Any remaining image in humisite/images → public/images (same basename, lowercased ext) */
+let extraCopied = 0;
+if (existsSync(sourceDir)) {
+  for (const name of readdirSync(sourceDir)) {
+    if (!/\.(jpe?g|png|webp)$/i.test(name)) continue;
+    const from = path.join(sourceDir, name);
+    const extRaw = path.extname(name).toLowerCase();
+    const ext = extRaw === ".jpeg" ? ".jpg" : extRaw;
+    const base = path.basename(name, path.extname(name)).toLowerCase();
+    const destName = `${base}${ext}`;
+    const to = path.join(targetDir, destName);
+    if (!existsSync(to)) {
+      copyFileSync(from, to);
+      extraCopied += 1;
+      console.log(`sync-media: ${name} → images/${destName} (from humisite)`);
+    }
+  }
+}
+
+if (copied === 0 && picCopied === 0 && extraCopied === 0) {
   console.warn(`sync-media: no files copied — add sources to ${sourceDir}`);
   process.exit(1);
 }
 
-console.log(`sync-media: ${copied} semantic + ${picCopied} pic editorial images ready`);
+console.log(
+  `sync-media: ${copied} semantic + ${picCopied} pic + ${extraCopied} extra from humisite/images`,
+);

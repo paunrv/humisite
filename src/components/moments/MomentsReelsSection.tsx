@@ -5,8 +5,8 @@ import { useFinePointerHover } from "@/lib/use-fine-pointer-hover";
 import { useState } from "react";
 import { MomentsReelCell } from "./MomentsReelCell";
 
-/** Form · Human · Energy — same trio as the cinematic intro */
-const MOMENTOS_PANELS = INTRO_PANELS.slice(0, 3);
+/** Form · Human · Energy — mismo trío que el intro */
+const MOMENTOS_PANELS = INTRO_PANELS;
 
 export function MomentsReelsSection() {
   const [hoveredId, setHoveredId] = useState<string | null>(null);

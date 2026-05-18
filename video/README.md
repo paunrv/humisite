@@ -4,10 +4,9 @@
 
 | Source in `video/` | Panel | Output |
 | --- | --- | --- |
-| `instagram-reel-01.mp4` | Form | `form.mp4` |
-| `instagram-reel-02.mp4` | Human | `human.mp4` |
-| `instagram-reel-03.mp4` | Energy | `energy.mp4` |
-| `instagram-reel-04.mp4` | Presence | `presence.mp4` |
+| `instagram-reel-04.mp4` | Form (col. 1) | `form.mp4` |
+| `instagram-reel-05.mp4` | Human (col. 2) | `human.mp4` |
+| `instagram-reel-01.mp4` | Energy (col. 3) | `energy.mp4` |
 
 ## Moments (`public/videos/moments/`)
 
