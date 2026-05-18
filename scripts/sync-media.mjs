@@ -3,11 +3,13 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
-const targetDir = path.join(root, "public", "images");
 
-/** Default: sibling humisite/images — override with HUMI_MEDIA_SOURCE */
-const defaultSource = path.join(root, "..", "humisite", "images");
+/** Repo images/ first; sibling ../humisite/images for local monorepo — override with HUMI_MEDIA_SOURCE */
+const repoImages = path.join(root, "images");
+const siblingImages = path.join(root, "..", "humisite", "images");
+const defaultSource = existsSync(repoImages) ? repoImages : siblingImages;
 const sourceDir = process.env.HUMI_MEDIA_SOURCE ?? defaultSource;
+const targetDir = path.join(root, "public", "images");
 
 /** legacy filename (any ext) → semantic basename */
 const RENAMES = [
@@ -109,8 +111,15 @@ if (existsSync(sourceDir)) {
 }
 
 if (copied === 0 && picCopied === 0 && extraCopied === 0) {
-  console.warn(`sync-media: no files copied — add sources to ${sourceDir}`);
-  process.exit(1);
+  const existing =
+    existsSync(targetDir) &&
+    readdirSync(targetDir).some((name) => /\.(jpe?g|png|webp)$/i.test(name));
+  if (existing) {
+    console.log(`sync-media: no new copies — using existing public/images/`);
+  } else {
+    console.warn(`sync-media: no files copied — add sources to ${sourceDir}`);
+    process.exit(1);
+  }
 }
 
 console.log(
