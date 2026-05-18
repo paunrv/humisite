@@ -1039,6 +1039,38 @@
     .hero { padding: 4rem 1rem 3rem; min-height: auto; }
     section { padding: 4rem 1rem; }
     .bento-card.span-4, .bento-card.span-6, .bento-card.span-8 { grid-column: span 12; }
+    .bento-card { padding: 1.25rem; }
+    .bento-card:has(.bento-icon) {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 0.65rem;
+      row-gap: 0.45rem;
+      align-items: center;
+    }
+    .bento-card:has(.bento-icon) .bento-icon {
+      grid-column: 1;
+      grid-row: 1;
+      margin-bottom: 0;
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+    .bento-card:has(.bento-icon) h3 {
+      grid-column: 2;
+      grid-row: 1;
+      margin-bottom: 0;
+      align-self: center;
+      font-size: 0.9375rem;
+      line-height: 1.25;
+    }
+    .bento-card:has(.bento-icon) p {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      margin-bottom: 0;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
     .reviews-grid, .team-grid, .blog-grid { grid-template-columns: 1fr; }
     .hero-stats-wrap { margin-top: 2rem; }
     .hero-stats {
