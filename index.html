@@ -570,6 +570,8 @@
     transition: opacity 0.2s;
   }
   .program-card:hover::before { opacity: 1; }
+  .program-card--featured::before { opacity: 1; }
+  .program-card--featured .program-age { color: var(--accent-2); }
   .program-age {
     font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--accent-2);
@@ -1400,8 +1402,8 @@
         <span class="prog-tag">P.T. TKD</span>
       </div>
     </div>
-    <div class="program-card" style="border-top: 2px solid var(--accent);">
-      <span class="program-age" style="color: var(--accent-2);">Adultos — PM</span>
+    <div class="program-card program-card--featured">
+      <span class="program-age">Adultos — PM</span>
       <div class="program-name">Taekwondo + HIIT</div>
       <div class="program-desc">Cuerpo fuerte, técnica clara y válvula seria para el estrés del día a día.</div>
       <div class="program-time">7:00 – 8:00 PM</div>
