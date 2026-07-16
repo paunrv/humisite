@@ -4,9 +4,14 @@ import { IntroGateway } from "@/components/intro";
 import { MomentsReelsMount } from "@/components/moments/MomentsReelsMount";
 import { SiteLanding } from "@/components/site/SiteLanding";
 import { useIntroGate } from "@/hooks/useIntroGate";
+import type { LegacyLandingPayload } from "@/lib/legacy-landing";
 import { useCallback, useState } from "react";
 
-export function HomePage() {
+type HomePageProps = {
+  legacy: LegacyLandingPayload;
+};
+
+export function HomePage({ legacy }: HomePageProps) {
   const { ready, skipIntro } = useIntroGate();
   const [introVisible, setIntroVisible] = useState(true);
 
@@ -17,18 +22,17 @@ export function HomePage() {
   }, []);
 
   const showIntro = ready && !skipIntro && introVisible;
-
-  if (!ready) {
-    return (
-      <div className="fixed inset-0 z-[100] bg-[#050505]" aria-busy="true" aria-label="Cargando" />
-    );
-  }
+  // Keep landing in the DOM from the first paint (SEO). Cover only visually while the gate resolves.
+  const introActive = !ready || showIntro;
 
   return (
     <>
+      {!ready && (
+        <div className="fixed inset-0 z-[100] bg-[#050505]" aria-busy="true" aria-label="Cargando" />
+      )}
       {showIntro && <IntroGateway onExit={handleIntroExit} />}
 
-      <SiteLanding introActive={showIntro} />
+      <SiteLanding legacy={legacy} introActive={introActive} />
       <MomentsReelsMount />
     </>
   );
