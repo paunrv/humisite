@@ -488,6 +488,7 @@
     max-width: 1200px; margin: 0 auto; padding: 0 2rem;
   }
   .section-eyebrow {
+    display: block;
     font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--accent-2); font-weight: 600; margin-bottom: 1rem;
     font-family: 'Geist Mono', monospace;
@@ -495,8 +496,9 @@
   .section-title {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 700; letter-spacing: -0.03em; line-height: 1.15;
-    margin-bottom: 1rem; max-width: 600px;
+    margin: 0 0 1rem; max-width: 600px;
   }
+  h2.section-title { display: block; }
   .section-sub {
     font-size: 1rem; color: var(--text-muted); max-width: 500px; line-height: 1.7;
     margin-bottom: 3rem;
@@ -1334,8 +1336,8 @@
 <section id="experiencia" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
   <div id="programas" class="scroll-target" aria-hidden="true"></div>
   <div id="horarios" class="scroll-target" aria-label="Programas y horarios"></div>
-  <div class="section-eyebrow">Programas</div>
-  <div class="section-title">Cada detalle, con intención</div>
+  <span class="section-eyebrow">Programas</span>
+  <h2 class="section-title">Cada detalle, con intención</h2>
   <div class="section-sub">Sparring y Poomsae se dividen por nivel. Cada programa tiene su semana tipo — horarios y disciplina por día.</div>
 
   <div class="programs-grid programs-grid--detailed">
@@ -1470,7 +1472,7 @@
 <section id="comparacion" class="compare-section" aria-labelledby="comparacion-heading">
   <div class="compare-table compare-table--desktop">
     <div class="compare-table__inner">
-      <div class="section-eyebrow">Comparación</div>
+      <span class="section-eyebrow">Comparación</span>
       <h2 id="comparacion-heading" class="section-title">HUMI vs otras escuelas</h2>
       <p class="section-sub">La diferencia no es solo el uniforme.</p>
       <div class="comparison-wrap">
@@ -1507,7 +1509,6 @@
   </div>
 
   <div class="compare-manifesto compare-manifesto--mobile">
-    <h2 class="visually-hidden">Comparación</h2>
     <div class="compare-manifesto__pairs">
       <article class="compare-manifesto__pair">
         <div class="compare-manifesto__split">
@@ -1591,8 +1592,8 @@
 
 <!-- INSTRUCTORES -->
 <section id="equipo" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
-  <div class="section-eyebrow">Equipo</div>
-  <div class="section-title">Autoridad con calma</div>
+  <span class="section-eyebrow">Equipo</span>
+  <h2 class="section-title">Autoridad con calma</h2>
   <div class="section-sub">La autoridad viene del criterio. Se corrige con precisión y se acompaña sin humillar.</div>
 
   <div class="unified-grid">
@@ -1830,8 +1831,8 @@
 
     <!-- LEFT: headline fijo -->
     <div class="reviews-left">
-      <div class="section-eyebrow">Testimonios</div>
-      <div class="section-title" style="max-width: 340px;">Familias que ya confían en HUMI</div>
+      <span class="section-eyebrow">Testimonios</span>
+      <h2 class="section-title" style="max-width: 340px;">Familias que ya confían en HUMI</h2>
       <div class="section-sub" style="max-width: 320px;">La reputación se gana en silencio: orden, técnica y trato. Reseñas reales de Google Maps.</div>
       <div class="reviews-rating-block">
         <div class="reviews-stars-big">★★★★★</div>
@@ -2460,8 +2461,8 @@
 
 <!-- FAQ -->
 <section id="faq" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
-  <div class="section-eyebrow">FAQ</div>
-  <div class="section-title">Preguntas frecuentes</div>
+  <span class="section-eyebrow">FAQ</span>
+  <h2 class="section-title">Preguntas frecuentes</h2>
   <div class="section-sub">Objeciones habituales antes de la primera visita.</div>
 
   <div class="faq-list">
