@@ -69,14 +69,14 @@ export const POOMSAE_FORMS = [
 ];
 
 export const GENERACIONES = [
-  { slug: "primera-generacion", label: "Primera generación", image: "first-generation-black-belts" },
-  { slug: "segunda-generacion", label: "Segunda generación", image: "second-generation-black-belts" },
-  { slug: "tercera-generacion", label: "Tercera generación", image: "third-generation-black-belts" },
-  { slug: "cuarta-generacion", label: "Cuarta generación", image: "fourth-generation-black-belts" },
-  { slug: "quinta-generacion", label: "Quinta generación", image: "fifth-generation-black-belts" },
-  { slug: "sexta-generacion", label: "Sexta generación", image: "sixth-generation-black-belts" },
-  { slug: "septima-generacion", label: "Séptima generación", image: "seventh-generation-black-belts" },
-  { slug: "octava-generacion", label: "Octava generación", image: "eighth-generation-black-belts" },
+  { slug: "primera-generacion", label: "Primera generación", image: "pic25" },
+  { slug: "segunda-generacion", label: "Segunda generación", image: "pic26" },
+  { slug: "tercera-generacion", label: "Tercera generación", image: "pic27" },
+  { slug: "cuarta-generacion", label: "Cuarta generación", image: "pic35" },
+  { slug: "quinta-generacion", label: "Quinta generación", image: "pic30" },
+  { slug: "sexta-generacion", label: "Sexta generación", image: "pic31" },
+  { slug: "septima-generacion", label: "Séptima generación", image: "pic32" },
+  { slug: "octava-generacion", label: "Octava generación", image: "pic34" },
 ];
 
 export const EQUIPO_HUMI = [
@@ -92,9 +92,9 @@ export const EQUIPO_WTU = [
 ];
 
 export const INTERNACIONAL = [
-  { slug: "beijing", label: "Beijing 2008", image: "beijing", lede: "Doble oro olímpico — el día en que México se consolidó como potencia." },
-  { slug: "tokyo", label: "Tokyo 2020", image: "tokyo", lede: "Pandemia, debate y un ciclo que cerró sin medalla." },
-  { slug: "paris", label: "París 2024", image: "paris", lede: "Ranking, hambre post-Tokyo y lecciones de podio." },
+  { slug: "beijing", label: "Beijing 2008", image: "pic20", lede: "Doble oro olímpico — el día en que México se consolidó como potencia." },
+  { slug: "tokyo", label: "Tokyo 2020", image: "pic39", lede: "Pandemia, debate y un ciclo que cerró sin medalla." },
+  { slug: "paris", label: "París 2024", image: "pic38", lede: "Ranking, hambre post-Tokyo y lecciones de podio." },
 ];
 
 export const COMUNIDAD_SECTIONS = [

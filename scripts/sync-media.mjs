@@ -11,31 +11,7 @@ const defaultSource = existsSync(repoImages) ? repoImages : siblingImages;
 const sourceDir = process.env.HUMI_MEDIA_SOURCE ?? defaultSource;
 const targetDir = path.join(root, "public", "images");
 
-/** legacy filename (any ext) → semantic basename */
-const RENAMES = [
-  { legacy: "pic19", id: "tkdo-beginning" },
-  { legacy: "pic20", id: "beijing" },
-  { legacy: "pic21", id: "dan-02" },
-  { legacy: "pic22", id: "orange-belt" },
-  { legacy: "pic23", id: "white-belt", aliases: ["pic.23"] },
-  { legacy: "pic24", id: "dan-03", aliases: ["pic.24"] },
-  { legacy: "pic25", id: "first-generation-black-belts" },
-  { legacy: "pic26", id: "second-generation-black-belts" },
-  { legacy: "pic27", id: "third-generation-black-belts" },
-  { legacy: "pic28", id: "dan-04" },
-  { legacy: "pic29", id: "poomsae" },
-  { legacy: "pic30", id: "fifth-generation-black-belts" },
-  { legacy: "pic31", id: "sixth-generation-black-belts" },
-  { legacy: "pic32", id: "seventh-generation-black-belts" },
-  { legacy: "pic33", id: "red-belt" },
-  { legacy: "pic34", id: "eighth-generation-black-belts" },
-  { legacy: "pic35", id: "fourth-generation-black-belts" },
-  { legacy: "pic36", id: "dan-05" },
-  { legacy: "pic37", id: "blue-belt" },
-  { legacy: "pic38", id: "paris" },
-  { legacy: "pic39", id: "tokyo" },
-];
-
+/** Canonical names are padded picNN — no semantic duplicate copies. */
 const IMAGE_EXTS = [".jpg", ".jpeg", ".png", ".webp", ".JPG", ".JPEG", ".PNG"];
 
 function resolveLegacySource(stems) {
@@ -49,24 +25,6 @@ function resolveLegacySource(stems) {
 }
 
 mkdirSync(targetDir, { recursive: true });
-
-let copied = 0;
-
-for (const { legacy, id, aliases = [] } of RENAMES) {
-  const from = resolveLegacySource([legacy, ...aliases]);
-  if (!from) {
-    console.warn(`sync-media: missing ${legacy} (checked ${[legacy, ...aliases].join(", ")})`);
-    continue;
-  }
-
-  const ext = path.extname(from).toLowerCase() === ".jpeg" ? ".jpg" : path.extname(from).toLowerCase();
-  const normalizedExt = ext === ".png" || ext === ".webp" ? ext : ".jpg";
-  const to = path.join(targetDir, `${id}${normalizedExt}`);
-
-  copyFileSync(from, to);
-  copied += 1;
-  console.log(`sync-media: ${path.basename(from)} → images/${id}${normalizedExt}`);
-}
 
 /** pic01–pic46 (+ aliases) → public/images/picNN.jpg */
 const PIC_ALIASES = {
@@ -91,8 +49,11 @@ for (let n = 1; n <= 46; n++) {
   console.log(`sync-media: ${path.basename(from)} → images/pic${padded}${ext}`);
 }
 
-/** Any remaining image in humisite/images → public/images (same basename, lowercased ext) */
+/** Any remaining image in humisite/images → public/images (same basename, lowercased ext).
+ *  Skip unpadded picN when pic0N already exists (avoids md5 duplicates). */
 let extraCopied = 0;
+const UNPADDED_PIC = /^pic(\d)$/i;
+const DOT_PIC = /^pic\.(\d+)$/i;
 if (existsSync(sourceDir)) {
   for (const name of readdirSync(sourceDir)) {
     if (!/\.(jpe?g|png|webp)$/i.test(name)) continue;
@@ -100,6 +61,18 @@ if (existsSync(sourceDir)) {
     const extRaw = path.extname(name).toLowerCase();
     const ext = extRaw === ".jpeg" ? ".jpg" : extRaw;
     const base = path.basename(name, path.extname(name)).toLowerCase();
+
+    const unpadded = base.match(UNPADDED_PIC) || base.match(DOT_PIC);
+    if (unpadded) {
+      const padded = `pic${String(Number(unpadded[1])).padStart(2, "0")}${ext}`;
+      if (existsSync(path.join(targetDir, padded))) continue;
+    }
+    // Bare numeric aliases (40.jpg, 43.jpg)
+    if (/^\d+$/.test(base)) {
+      const padded = `pic${base.padStart(2, "0")}${ext}`;
+      if (existsSync(path.join(targetDir, padded))) continue;
+    }
+
     const destName = `${base}${ext}`;
     const to = path.join(targetDir, destName);
     if (!existsSync(to)) {
@@ -110,7 +83,7 @@ if (existsSync(sourceDir)) {
   }
 }
 
-if (copied === 0 && picCopied === 0 && extraCopied === 0) {
+if (picCopied === 0 && extraCopied === 0) {
   const existing =
     existsSync(targetDir) &&
     readdirSync(targetDir).some((name) => /\.(jpe?g|png|webp)$/i.test(name));
@@ -123,5 +96,5 @@ if (copied === 0 && picCopied === 0 && extraCopied === 0) {
 }
 
 console.log(
-  `sync-media: ${copied} semantic + ${picCopied} pic + ${extraCopied} extra from humisite/images`,
+  `sync-media: ${picCopied} pic + ${extraCopied} extra from humisite/images`,
 );

@@ -87,7 +87,7 @@ export const HUB_SEO = {
     title: "Generaciones de cintas negras",
     description:
       "Ocho generaciones de cintas negras HUMI: archivo fotográfico y memoria de quienes eligieron quedarse. Ensenada, B.C.",
-    ogImage: "/images/first-generation-black-belts.jpg",
+    ogImage: "/images/pic25.jpg",
   },
   internacional: {
     title: "Taekwondo olímpico · México",
