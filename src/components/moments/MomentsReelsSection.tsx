@@ -24,10 +24,10 @@ export function MomentsReelsSection() {
           En el dojang
         </p>
         <h2 className="mb-4 max-w-[600px] text-[clamp(1.8rem,4vw,2.8rem)] font-bold leading-[1.15] tracking-[-0.03em] text-[#f5f5f5]">
-          El movimiento y la comunidad es nuestro core.
+          El movimiento y la comunidad son nuestro centro.
         </h2>
         <p className="mb-10 max-w-[500px] text-base leading-relaxed text-[#888]">
-          Técnica, vinculo y presencia caracterizan nuestra metodología.
+          Técnica, vínculo y presencia caracterizan nuestra metodología.
         </p>
 
         <div
