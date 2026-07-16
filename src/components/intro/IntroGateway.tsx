@@ -37,12 +37,29 @@ export function IntroGateway({ onExit }: IntroGatewayProps) {
     exitStarted.current = true;
     setExiting(true);
     progress.set(1);
+    // Persist for this tab session (sessionStorage) + cooldown (localStorage).
     markIntroSeen();
+    try {
+      sessionStorage.setItem("humi_intro_seen_session", "true");
+    } catch {
+      /* private browsing / quota */
+    }
 
     window.setTimeout(() => {
       onExit();
     }, INTRO_EXIT_MS);
   }, [onExit, progress]);
+
+  // If this session already saw the intro, skip without remounting the experience.
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem("humi_intro_seen_session") === "true") {
+        beginExit();
+      }
+    } catch {
+      /* noop */
+    }
+  }, [beginExit]);
 
   useEffect(() => {
     const node = containerRef.current;

@@ -1,6 +1,8 @@
 const INTRO_KEY = "humi_intro_seen";
 const INTRO_TIMESTAMP_KEY = "humi_intro_timestamp";
-/** Re-show intro after this many hours */
+/** Session flag — skip intro for the rest of this browser tab session */
+const INTRO_SESSION_KEY = "humi_intro_seen_session";
+/** Re-show intro after this many hours (across sessions) */
 export const INTRO_COOLDOWN_HOURS = 4;
 
 export type IntroStoragePayload = {
@@ -30,6 +32,14 @@ export function readIntroState(): IntroStoragePayload | null {
 }
 
 export function shouldSkipIntro(now = Date.now()): boolean {
+  if (!isBrowser()) return false;
+
+  try {
+    if (sessionStorage.getItem(INTRO_SESSION_KEY) === "true") return true;
+  } catch {
+    /* private browsing / quota */
+  }
+
   const state = readIntroState();
   if (!state?.seen) return false;
 
@@ -40,6 +50,12 @@ export function shouldSkipIntro(now = Date.now()): boolean {
 
 export function markIntroSeen(now = Date.now()): void {
   if (!isBrowser()) return;
+
+  try {
+    sessionStorage.setItem(INTRO_SESSION_KEY, "true");
+  } catch {
+    /* private browsing / quota */
+  }
 
   try {
     localStorage.setItem(INTRO_KEY, "true");

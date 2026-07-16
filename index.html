@@ -592,6 +592,60 @@
     font-size: 0.8rem; color: var(--text-dim);
     font-family: 'Geist Mono', monospace;
   }
+  .program-wa {
+    display: inline-flex; align-items: center; gap: 0.35rem;
+    margin-top: 1.15rem; font-size: 0.8rem; font-weight: 600;
+    color: var(--accent-2); text-decoration: none;
+    transition: color 0.15s;
+  }
+  .program-wa:hover { color: #7eb6ef; }
+  .section-light .program-wa { color: #164A89; }
+  .section-light .program-wa:hover { color: #0f3a6e; }
+
+  /* ── CÓMO EMPEZAR ── */
+  .how-section {
+    border-top: 1px solid var(--border);
+    padding: 5rem 2rem;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .how-step {
+    background: var(--bg-card);
+    padding: 2rem 1.5rem;
+  }
+  .how-num {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--accent-2);
+    margin-bottom: 1rem;
+    font-family: 'Geist Mono', monospace;
+  }
+  .how-step h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .how-step p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+  }
+  @media (max-width: 768px) {
+    .how-grid { grid-template-columns: 1fr; }
+    .how-section { padding: 4rem 1.25rem; }
+  }
   .program-schedule {
     list-style: none;
     margin: 0;
@@ -1204,7 +1258,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="https://wa.me/526461093879" class="btn-hero" target="_blank">
+    <a href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20conocer%20HUMI%20Taekwondo.%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" class="btn-hero" target="_blank" rel="noopener noreferrer">
       Agendar visita →
     </a>
     <a href="#programas" class="btn-hero-outline">
@@ -1349,6 +1403,7 @@
       <div class="program-tags">
         <span class="prog-tag">Iniciación</span>
       </div>
+      <a class="program-wa" href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20el%20programa%20Iniciaci%C3%B3n%20(3%20a%C3%B1os).%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
     </div>
     <div class="program-card program-card--schedule">
       <span class="program-age">4 a 6 años</span>
@@ -1373,6 +1428,7 @@
         <span class="prog-tag">P.T. TKD</span>
         <span class="prog-tag">Freestyle</span>
       </div>
+      <a class="program-wa" href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20el%20programa%20Fundamentos%20(4%20a%206%20a%C3%B1os).%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
     </div>
     <div class="program-card program-card--schedule">
       <span class="program-age">7 a 10 años</span>
@@ -1408,6 +1464,7 @@
         <span class="prog-tag">Poomsae</span>
         <span class="prog-tag">Freestyle</span>
       </div>
+      <a class="program-wa" href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20el%20programa%20T%C3%A9cnica%20(7%20a%2010%20a%C3%B1os).%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
     </div>
     <div class="program-card program-card--schedule">
       <span class="program-age">11 a 16 años</span>
@@ -1435,6 +1492,7 @@
         <span class="prog-tag">Poomsae</span>
         <span class="prog-tag">P.T. TKD</span>
       </div>
+      <a class="program-wa" href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20el%20programa%20Constancia%20(11%20a%2016%20a%C3%B1os).%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
     </div>
     <div class="program-card program-card--featured">
       <span class="program-age">Adultos — PM</span>
@@ -1445,6 +1503,7 @@
         <span class="prog-tag">HIIT</span>
         <span class="prog-tag">Dumbbells</span>
       </div>
+      <a class="program-wa" href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20el%20programa%20Taekwondo%20%2B%20HIIT%20(Adultos%20%E2%80%94%20PM).%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
     </div>
     <div class="program-card">
       <span class="program-age">Adultos — AM</span>
@@ -1464,6 +1523,7 @@
         <span class="prog-tag">HIIT</span>
         <span class="prog-tag">Dumbbells</span>
       </div>
+      <a class="program-wa" href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20el%20programa%20HIIT%20%2B%20Patadas%20(Adultos%20%E2%80%94%20AM).%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
     </div>
   </div>
 </section>
@@ -2493,6 +2553,30 @@
   </div>
 </section>
 
+<!-- CÓMO EMPEZAR -->
+<section id="como-empezar" class="how-section" aria-labelledby="como-empezar-heading">
+  <span class="section-eyebrow">Primeros pasos</span>
+  <h2 id="como-empezar-heading" class="section-title">Cómo empezar</h2>
+  <p class="section-sub">Tres pasos. Sin fricción. Primera clase sin compromiso.</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">01</div>
+      <h3>Escríbenos por WhatsApp</h3>
+      <p>Cuéntanos la edad del alumno. Te orientamos al grupo y horario que mejor encajan.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">02</div>
+      <h3>Agenda tu visita</h3>
+      <p>Elige el día y llega 10 minutos antes. Te recibimos en el dojang sin prisa.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">03</div>
+      <h3>Primera clase sin compromiso</h3>
+      <p>Pruebas el ambiente, la metodología y el grupo. Decides con calma después.</p>
+    </div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <div id="contacto" class="cta-section">
   <div class="cta-glow"></div>
@@ -2501,8 +2585,8 @@
     <div class="cta-title">¿Listo para visitar el dojang?</div>
     <p class="cta-sub">Escríbenos por WhatsApp o revisa la ubicación. Primera visita sin compromiso — llega 10 minutos antes.</p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://wa.me/526461093879" class="btn-hero" target="_blank">WhatsApp →</a>
-      <a href="https://www.instagram.com/humi.taekwondo/" class="btn-hero-outline" target="_blank">@humi.taekwondo</a>
+      <a href="https://wa.me/526461093879?text=Hola%2C%20me%20interesa%20conocer%20HUMI%20Taekwondo.%20%C2%BFCu%C3%A1ndo%20puedo%20agendar%20la%20primera%20visita%3F" class="btn-hero" target="_blank" rel="noopener noreferrer">WhatsApp →</a>
+      <a href="https://www.instagram.com/humi.taekwondo/" class="btn-hero-outline" target="_blank" rel="noopener noreferrer">@humi.taekwondo</a>
     </div>
     <p class="cta-meta">C. Séptima 436, Zona Centro, 22800 Ensenada, B.C. · Respuesta por mensaje</p>
   </div>
