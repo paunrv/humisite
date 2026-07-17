@@ -19,6 +19,8 @@
     "preview": "next start --port 5173"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.7",
     "framer-motion": "^12.23.12",
     "next": "^15.5.4",
     "react": "^19.1.1",

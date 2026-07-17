@@ -24,9 +24,10 @@ tsconfig.tsbuildinfo
 # Vite cache
 .vite/
 
-# Env files (secrets)
+# Env files (secrets) — keep .env.example tracked
 .env
 .env.*
+!.env.example
 
 # OS / Editor
 .DS_Store

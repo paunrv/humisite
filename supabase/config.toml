@@ -1,0 +1,20 @@
+# Linked project: humi-sistema (cxqvhyirjuudvjhubhgq)
+# CLI `supabase link` cannot run on this machine (binary aborts on older macOS).
+# Use Dashboard SQL / MCP for migrations until CLI works elsewhere.
+# https://supabase.com/docs/guides/local-development/cli/config
+
+project_id = "cxqvhyirjuudvjhubhgq"
+
+[api]
+enabled = true
+
+[db]
+major_version = 15
+
+[auth]
+enabled = true
+site_url = "http://localhost:3000"
+additional_redirect_urls = [
+  "http://localhost:3000/auth/callback",
+  "https://*.vercel.app/auth/callback",
+]
