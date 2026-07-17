@@ -1,16 +1,47 @@
--- M1 / #13 — schools, memberships, roles, RLS (canonical, for fresh DBs).
--- If you already have a broken/partial apply, run instead:
---   20260717152000_schools_clean_reset.sql
+-- =============================================================================
+-- CLEAN RESET: schools domain (M1 / #13)
+-- Use this on a fresh/empty project after partial failed migrations.
+-- Drops ONLY school-related objects, then recreates a consistent schema.
+-- =============================================================================
 
+-- 1) Tear down (order: RPC → helpers → tables → types)
+drop function if exists public.create_school(text, text) cascade;
+drop function if exists private.create_school(text, text) cascade;
+drop function if exists private.has_school_role(uuid, public.school_role[]) cascade;
+drop function if exists private.is_school_member(uuid) cascade;
+
+-- has_school_role may exist with different signatures from failed runs
+do $$
+declare r record;
+begin
+  for r in
+    select n.nspname, p.proname, pg_get_function_identity_arguments(p.oid) as args
+    from pg_proc p
+    join pg_namespace n on n.oid = p.pronamespace
+    where n.nspname in ('public', 'private')
+      and p.proname in ('create_school', 'has_school_role', 'is_school_member')
+  loop
+    execute format('drop function if exists %I.%I(%s) cascade', r.nspname, r.proname, r.args);
+  end loop;
+end $$;
+
+drop table if exists public.school_members cascade;
+drop table if exists public.schools cascade;
+
+drop type if exists public.school_role cascade;
+drop type if exists public.school_status cascade;
+
+-- 2) Private schema for security-definer helpers
 create schema if not exists private;
-
 revoke all on schema private from public;
 revoke all on schema private from anon;
 grant usage on schema private to postgres, service_role, authenticated;
 
+-- 3) Types
 create type public.school_status as enum ('active', 'inactive');
 create type public.school_role as enum ('school_admin', 'coach');
 
+-- 4) Tables (role/status are enums from day one — no text→enum migration)
 create table public.schools (
   id uuid primary key default gen_random_uuid(),
   name text not null check (char_length(trim(name)) >= 2),
@@ -32,6 +63,7 @@ create table public.school_members (
 create index school_members_user_id_idx on public.school_members (user_id);
 create index school_members_school_id_idx on public.school_members (school_id);
 
+-- 5) Helpers (private) — compare enum to enum only
 create or replace function private.is_school_member(p_school_id uuid)
 returns boolean
 language sql
@@ -115,6 +147,7 @@ $$;
 revoke all on function public.create_school(text, text) from public;
 grant execute on function public.create_school(text, text) to authenticated;
 
+-- 6) RLS
 alter table public.schools enable row level security;
 alter table public.school_members enable row level security;
 
@@ -139,3 +172,17 @@ create policy school_members_select_member
   for select
   to authenticated
   using (private.is_school_member(school_id));
+
+-- 7) Sanity check (returns one row if OK)
+select
+  'schools.role_col' as check_name,
+  (
+    select c.udt_name
+    from information_schema.columns c
+    where c.table_schema = 'public'
+      and c.table_name = 'school_members'
+      and c.column_name = 'role'
+  ) as role_udt,
+  (
+    select to_regprocedure('public.create_school(text,text)') is not null
+  ) as create_school_exists;
