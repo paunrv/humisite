@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { createClient } from "@/lib/supabase/server";
+import { getPrimaryMembership } from "@/lib/schools/queries";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -7,17 +7,20 @@ export const metadata: Metadata = {
 };
 
 export default async function AppHomePage() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  const membership = await getPrimaryMembership();
+
+  // Layout already redirects if missing; narrow for TS.
+  if (!membership) {
+    return null;
+  }
 
   return (
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
         <p className="mt-1 text-sm text-humi-muted">
-          Sesión activa. Siguiente: escuelas, alumnos y asistencia (M2).
+          {membership.school.name}
+          {membership.school.city ? ` · ${membership.school.city}` : ""}
         </p>
       </div>
 
@@ -41,12 +44,13 @@ export default async function AppHomePage() {
 
       <div className="rounded-xl border border-dashed border-white/15 p-4 text-sm text-humi-muted">
         <p>
-          Conectado como{" "}
-          <span className="text-humi-off-white">{user?.email}</span>
+          Rol:{" "}
+          <span className="text-humi-off-white">
+            {membership.role === "school_admin" ? "Admin escuela" : "Coach"}
+          </span>
         </p>
         <p className="mt-2">
-          Proyecto Supabase:{" "}
-          <span className="text-humi-off-white">humi-sistema</span>
+          Siguiente en el roadmap: clases y alumnos (M2 / #15–#16).
         </p>
       </div>
     </div>

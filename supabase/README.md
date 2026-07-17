@@ -21,4 +21,10 @@ The bundled Supabase CLI binary may not run on older macOS. Prefer:
 
 1. Create a Supabase project
 2. Copy `.env.example` → `.env.local` and set URL + publishable (or anon) key
-3. `npm run dev` — marketing site works even before keys are set; `/app` needs keys once Auth lands
+3. Apply migrations in order via **Dashboard → SQL Editor** (paste file contents)
+4. `npm run dev` → `/signup` → `/app/onboarding` → create school
+
+### Current project
+
+- Ref: `cxqvhyirjuudvjhubhgq` (`humi-sistema`)
+- First migration: `migrations/20260717145200_schools_and_members.sql`
