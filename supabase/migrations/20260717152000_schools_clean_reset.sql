@@ -154,24 +154,48 @@ alter table public.school_members enable row level security;
 grant select, update on public.schools to authenticated;
 grant select on public.school_members to authenticated;
 
+-- Non-recursive RLS (do not call helpers that re-query the same tables)
+create policy school_members_select_own
+  on public.school_members
+  for select
+  to authenticated
+  using (user_id = auth.uid());
+
 create policy schools_select_member
   on public.schools
   for select
   to authenticated
-  using (private.is_school_member(id));
+  using (
+    exists (
+      select 1
+      from public.school_members m
+      where m.school_id = schools.id
+        and m.user_id = auth.uid()
+    )
+  );
 
 create policy schools_update_admin
   on public.schools
   for update
   to authenticated
-  using (private.has_school_role(id, array['school_admin'::public.school_role]))
-  with check (private.has_school_role(id, array['school_admin'::public.school_role]));
-
-create policy school_members_select_member
-  on public.school_members
-  for select
-  to authenticated
-  using (private.is_school_member(school_id));
+  using (
+    exists (
+      select 1
+      from public.school_members m
+      where m.school_id = schools.id
+        and m.user_id = auth.uid()
+        and m.role = 'school_admin'::public.school_role
+    )
+  )
+  with check (
+    exists (
+      select 1
+      from public.school_members m
+      where m.school_id = schools.id
+        and m.user_id = auth.uid()
+        and m.role = 'school_admin'::public.school_role
+    )
+  );
 
 -- 7) Sanity check (returns one row if OK)
 select
