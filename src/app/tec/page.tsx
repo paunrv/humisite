@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     absolute: TEC_META.title,
   },
   description: TEC_META.description,
+  keywords: [...TEC_META.keywords],
   alternates: {
     canonical: `${siteUrl}/tec`,
   },
