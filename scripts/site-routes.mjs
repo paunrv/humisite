@@ -43,10 +43,16 @@ function collectRoutes(dir, urlPath = "") {
   return routes;
 }
 
+/** Next.js app routes that are public/indexable (not under public/). */
+const APP_ROUTES = ["/tec"];
+
 /** @returns {string[]} sorted unique paths including / */
 export function getSiteRoutes() {
   const routes = collectRoutes(publicDir);
   if (!routes.includes("/")) routes.unshift("/");
+  for (const route of APP_ROUTES) {
+    if (!routes.includes(route)) routes.push(route);
+  }
   return [...new Set(routes)].sort((a, b) => a.localeCompare(b, "es"));
 }
 

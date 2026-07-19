@@ -101,12 +101,71 @@
   .section-light .hero-stat { border-color: rgba(0,0,0,0.08); }
   .section-light .hero-stat-num { color: #0f0f0f; }
   .section-light .hero-stat-label { color: #999; }
-  /* marquee light */
-  .marquee-section.light { background: #f8f8f6; }
-  .marquee-section.light::before { background: linear-gradient(90deg, #f8f8f6, transparent); }
-  .marquee-section.light::after { background: linear-gradient(-90deg, #f8f8f6, transparent); }
-  .marquee-section.light .marquee-label { color: #bbb; }
-  .marquee-section.light .marquee-item { color: #999; }
+  /* Filosofía — fondo blanco (después del hero / donde iba el marquee) */
+  #filosofia.section-light {
+    background: #ffffff;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* Banner fino HUMI-tec */
+  .tec-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem 1.25rem;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: none;
+    padding: 0.7rem 1.25rem;
+    background: linear-gradient(90deg, #071018 0%, #0d2138 50%, #071018 100%);
+    border-top: 1px solid rgba(74, 143, 212, 0.28);
+    border-bottom: 1px solid rgba(74, 143, 212, 0.28);
+    color: #e8eef6;
+    text-decoration: none;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+  .tec-strip:hover {
+    background: linear-gradient(90deg, #0a1824 0%, #133052 50%, #0a1824 100%);
+    border-color: rgba(74, 143, 212, 0.5);
+  }
+  .tec-strip__mark {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #4a8fd4;
+    flex-shrink: 0;
+  }
+  .tec-strip__text {
+    color: rgba(232, 238, 246, 0.88);
+    text-align: center;
+  }
+  .tec-strip__text strong {
+    color: #f5f0e8;
+    font-weight: 600;
+  }
+  .tec-strip__cta {
+    font-family: 'Geist Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #4a8fd4;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+  @media (max-width: 640px) {
+    .tec-strip {
+      flex-direction: column;
+      gap: 0.35rem;
+      padding: 0.85rem 1rem;
+      text-align: center;
+    }
+  }
 
   .visually-hidden {
     position: absolute;
@@ -602,24 +661,35 @@
   .section-light .program-wa { color: #164A89; }
   .section-light .program-wa:hover { color: #0f3a6e; }
 
-  /* ── CÓMO EMPEZAR ── */
+  /* ── CÓMO EMPEZAR (tras Equipo, zona clara) ── */
   .how-section {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid rgba(0,0,0,0.08);
     padding: 5rem 2rem;
-    max-width: 1160px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
+    background: #ffffff;
+    color: #0f0f0f;
+    padding-left: calc(50vw - 580px);
+    padding-right: calc(50vw - 580px);
   }
+  @media (max-width: 1200px) {
+    .how-section { padding-left: 2rem; padding-right: 2rem; }
+  }
+  .how-section .section-eyebrow { color: #164A89; }
+  .how-section .section-title { color: #0f0f0f; }
+  .how-section .section-sub { color: #555; }
   .how-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
+    background: rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.08);
     border-radius: 16px;
     overflow: hidden;
+    max-width: 1160px;
   }
   .how-step {
-    background: var(--bg-card);
+    background: #f8f8f6;
     padding: 2rem 1.5rem;
   }
   .how-num {
@@ -627,7 +697,7 @@
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1;
-    color: var(--accent-2);
+    color: #164A89;
     margin-bottom: 1rem;
     font-family: 'Geist Mono', monospace;
   }
@@ -636,15 +706,16 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     margin-bottom: 0.6rem;
+    color: #0f0f0f;
   }
   .how-step p {
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: #555;
     line-height: 1.65;
   }
   @media (max-width: 768px) {
     .how-grid { grid-template-columns: 1fr; }
-    .how-section { padding: 4rem 1.25rem; }
+    .how-section { padding-top: 4rem; padding-bottom: 4rem; }
   }
   .program-schedule {
     list-style: none;
@@ -1206,6 +1277,8 @@
     <li><a href="/contacto">Contacto</a></li>
   </ul>
   <div class="nav-cta">
+    <a href="/tec" class="btn-ghost">HUMI-tec</a>
+    <a href="/login" class="btn-ghost">Plataforma</a>
     <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
     <a href="https://wa.me/526461093879" class="btn-primary" target="_blank" rel="noopener noreferrer">Visitar Dojang</a>
   </div>
@@ -1224,6 +1297,8 @@
       <li><a href="/contacto">Contacto</a></li>
     </ul>
     <div class="nav-menu-footer">
+      <a href="/tec" class="btn-ghost">HUMI-tec</a>
+      <a href="/login" class="btn-ghost">Plataforma</a>
       <a href="https://www.instagram.com/humi.taekwondo/" class="btn-ghost" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="https://wa.me/526461093879" class="btn-primary" target="_blank" rel="noopener noreferrer" style="text-align:center;">Visitar Dojang</a>
     </div>
@@ -1319,34 +1394,18 @@
 })();
 </script>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-label">Lo que practicamos</div>
-  <div class="marquee-track" id="marquee">
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Poomsae</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Sparring</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Freestyle</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Martial Fitness</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>HIIT + Dumbbells</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Disciplina emocional</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Combate olímpico</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Desarrollo humano</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Poomsae</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Sparring</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Freestyle</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Martial Fitness</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>HIIT + Dumbbells</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Disciplina emocional</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Combate olímpico</span>
-    <span class="marquee-item"><span class="marquee-item-dot"></span>Desarrollo humano</span>
-  </div>
-</div>
+<!-- HUMI-tec — banner fino (maestros / academias) -->
+<a href="/tec" class="tec-strip" aria-label="Conocer HUMI-tec: plataforma y website para academias">
+  <span class="tec-strip__mark">HUMI-tec</span>
+  <span class="tec-strip__text">
+    <strong>¿Diriges una academia?</strong>
+    Plataforma de operación y tu propio website / landing — hecho y probado en HUMI.
+  </span>
+  <span class="tec-strip__cta">Ver HUMI-tec →</span>
+</a>
 
-<!-- MOMENTOS — reels (React monta aquí) -->
-<div id="movimiento" class="moments-mount-slot"><div id="humi-moments-mount"></div></div>
-
-<!-- DIFERENCIADORES BENTO -->
-<section id="filosofia">
+<!-- DIFERENCIADORES BENTO (fondo blanco, tras el hero) -->
+<section id="filosofia" class="section-light">
   <div class="section-eyebrow">Filosofía HUMI</div>
   <div class="section-title">Dos formas de entender el dojang</div>
   <div class="section-sub">La diferencia no es solo el uniforme: es cómo se agrupa, se exige y se acompaña.</div>
@@ -1385,6 +1444,9 @@
     </div>
   </div>
 </section>
+
+<!-- MOMENTOS — reels (React monta aquí) -->
+<div id="movimiento" class="moments-mount-slot"><div id="humi-moments-mount"></div></div>
 
 <!-- PROGRAMAS -->
 <section id="experiencia" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
@@ -1731,6 +1793,30 @@
 
     </div>
 
+  </div>
+</section>
+
+<!-- CÓMO EMPEZAR (enseguida de Equipo) -->
+<section id="como-empezar" class="how-section" aria-labelledby="como-empezar-heading">
+  <span class="section-eyebrow">Primeros pasos</span>
+  <h2 id="como-empezar-heading" class="section-title">Cómo empezar</h2>
+  <p class="section-sub">Tres pasos. Sin fricción. Primera clase sin compromiso.</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">01</div>
+      <h3>Escríbenos por WhatsApp</h3>
+      <p>Cuéntanos la edad del alumno. Te orientamos al grupo y horario que mejor encajan.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">02</div>
+      <h3>Agenda tu visita</h3>
+      <p>Elige el día y llega 10 minutos antes. Te recibimos en el dojang sin prisa.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">03</div>
+      <h3>Primera clase sin compromiso</h3>
+      <p>Pruebas el ambiente, la metodología y el grupo. Decides con calma después.</p>
+    </div>
   </div>
 </section>
 
@@ -2553,30 +2639,6 @@
   </div>
 </section>
 
-<!-- CÓMO EMPEZAR -->
-<section id="como-empezar" class="how-section" aria-labelledby="como-empezar-heading">
-  <span class="section-eyebrow">Primeros pasos</span>
-  <h2 id="como-empezar-heading" class="section-title">Cómo empezar</h2>
-  <p class="section-sub">Tres pasos. Sin fricción. Primera clase sin compromiso.</p>
-  <div class="how-grid">
-    <div class="how-step">
-      <div class="how-num" aria-hidden="true">01</div>
-      <h3>Escríbenos por WhatsApp</h3>
-      <p>Cuéntanos la edad del alumno. Te orientamos al grupo y horario que mejor encajan.</p>
-    </div>
-    <div class="how-step">
-      <div class="how-num" aria-hidden="true">02</div>
-      <h3>Agenda tu visita</h3>
-      <p>Elige el día y llega 10 minutos antes. Te recibimos en el dojang sin prisa.</p>
-    </div>
-    <div class="how-step">
-      <div class="how-num" aria-hidden="true">03</div>
-      <h3>Primera clase sin compromiso</h3>
-      <p>Pruebas el ambiente, la metodología y el grupo. Decides con calma después.</p>
-    </div>
-  </div>
-</section>
-
 <!-- CTA FINAL -->
 <div id="contacto" class="cta-section">
   <div class="cta-glow"></div>
@@ -2599,6 +2661,8 @@
     <span>© 2025 HUMI Taekwondo · Ensenada, B.C.</span>
   </div>
   <div class="footer-links">
+    <a href="/tec">HUMI-tec</a>
+    <a href="/login">Portal</a>
     <a href="/sitemap">Mapa del sitio</a>
     <a href="/sitemap.xml">Sitemap XML</a>
     <a href="https://www.instagram.com/humi.taekwondo/" target="_blank" rel="noopener noreferrer">Instagram</a>

@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      {
+        source: "/humi-tec",
+        destination: "/tec",
+        permanent: true,
+      },
       ...LEGACY_REDIRECTS,
     ];
   },

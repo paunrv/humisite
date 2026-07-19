@@ -22,6 +22,7 @@ const today = new Date().toISOString().slice(0, 10);
 
 function priorityFor(route) {
   if (route === "/") return "1.0";
+  if (route === "/tec") return "0.95";
   if (route === "/blog" || route === "/sitemap") return "0.9";
   if (route.startsWith("/blog/categoria/")) return "0.75";
   if (route.startsWith("/blog/")) return "0.65";
@@ -103,7 +104,13 @@ function buildHtmlSitemap() {
 			<div class="hm-wrap hm-sitemap">
 				<div class="hm-sitemap__col">
 					<h2 class="hm-sitemap__heading">Principal</h2>
-					${linkList([...main, ...secondary, { href: "/internacional", label: "Internacional" }])}
+					${linkList([
+            ...main,
+            ...secondary,
+            { href: "/internacional", label: "Internacional" },
+            { href: "/tec", label: "HUMI-tec" },
+            { href: "/login", label: "Portal / Login" },
+          ])}
 				</div>
 				<div class="hm-sitemap__col">
 					<h2 class="hm-sitemap__heading">Programas</h2>

@@ -93,8 +93,12 @@ export function AuthForm({ mode, action, next = "/app" }: AuthFormProps) {
         ) : (
           <>
             ¿Nueva escuela?{" "}
-            <Link href="/signup" className="text-humi-accent-soft hover:underline">
+            <Link href="/signup?plan=escuela" className="text-humi-accent-soft hover:underline">
               Crear cuenta
+            </Link>
+            {" · "}
+            <Link href="/tec" className="text-humi-accent-soft hover:underline">
+              Planes
             </Link>
           </>
         )}
