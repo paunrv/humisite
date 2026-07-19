@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
     };
   },
   async redirects() {
+    const product = (
+      process.env.NEXT_PUBLIC_PRODUCT_URL || "https://app.humi.mx"
+    ).replace(/\/$/, "");
     return [
       {
         source: "/index.html",
@@ -25,6 +28,32 @@ const nextConfig: NextConfig = {
         source: "/humi-tec",
         destination: "/tec",
         permanent: true,
+      },
+      // Stub auth/app → product (humi-sistema)
+      {
+        source: "/login",
+        destination: `${product}/login?next=/workspace`,
+        permanent: false,
+      },
+      {
+        source: "/signup",
+        destination: `${product}/login?next=/workspace`,
+        permanent: false,
+      },
+      {
+        source: "/signup/:path*",
+        destination: `${product}/login?next=/workspace`,
+        permanent: false,
+      },
+      {
+        source: "/app",
+        destination: `${product}/workspace`,
+        permanent: false,
+      },
+      {
+        source: "/app/:path*",
+        destination: `${product}/workspace`,
+        permanent: false,
       },
       ...LEGACY_REDIRECTS,
     ];

@@ -12,6 +12,7 @@ import {
   TEC_VERTICALS_NOTE,
   TEC_WEBSITE,
   TEC_WHATSAPP_ENTERPRISE,
+  TEC_WHATSAPP_ESCUELA,
   TEC_WHATSAPP_WEBSITE,
 } from "@/lib/humi-tec/copy";
 import {
@@ -21,6 +22,7 @@ import {
   type BillingInterval,
   yearlySavingsEscuela,
 } from "@/lib/humi-tec/pricing";
+import { productLoginUrl } from "@/lib/humi-tec/product";
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
@@ -103,12 +105,12 @@ export function TecLanding() {
           <Link href="/" className="text-[#8a8580] transition hover:text-[#f5f0e8]">
             HUMI
           </Link>
-          <Link
-            href="/login"
+          <a
+            href={productLoginUrl()}
             className="rounded-md border border-white/15 px-3 py-1.5 transition hover:border-[#4a8fd4]/50 hover:bg-white/5"
           >
             Entrar
-          </Link>
+          </a>
         </nav>
       </header>
 
@@ -155,12 +157,12 @@ export function TecLanding() {
               >
                 {TEC_HERO.primaryCta.label}
               </a>
-              <Link
-                href={TEC_HERO.secondaryCta.href}
+              <a
+                href={productLoginUrl()}
                 className="inline-flex items-center rounded-md border border-white/25 px-5 py-3 text-sm transition hover:border-white/50"
               >
                 {TEC_HERO.secondaryCta.label}
-              </Link>
+              </a>
             </motion.div>
             <p className="mt-10 text-[0.7rem] tracking-[0.14em] text-[#6a6560] uppercase">
               {TEC_HERO.proof}
@@ -329,7 +331,7 @@ export function TecLanding() {
                 const isEnterprise = plan.id === "enterprise";
                 const href = isEnterprise
                   ? TEC_WHATSAPP_ENTERPRISE
-                  : `/signup?plan=${plan.signupPlan}&interval=${interval}`;
+                  : TEC_WHATSAPP_ESCUELA;
 
                 return (
                   <article
@@ -362,23 +364,14 @@ export function TecLanding() {
                         </li>
                       ))}
                     </ul>
-                    {isEnterprise ? (
-                      <a
-                        href={href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-8 inline-flex justify-center rounded-md bg-[#164a89] px-4 py-3 text-sm font-medium transition hover:bg-[#4a8fd4]"
-                      >
-                        {plan.ctaLabel}
-                      </a>
-                    ) : (
-                      <Link
-                        href={href}
-                        className="mt-8 inline-flex justify-center rounded-md bg-[#164a89] px-4 py-3 text-sm font-medium transition hover:bg-[#4a8fd4]"
-                      >
-                        {plan.ctaLabel}
-                      </Link>
-                    )}
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-8 inline-flex justify-center rounded-md bg-[#164a89] px-4 py-3 text-sm font-medium transition hover:bg-[#4a8fd4]"
+                    >
+                      {plan.ctaLabel}
+                    </a>
                   </article>
                 );
               })}
@@ -400,18 +393,20 @@ export function TecLanding() {
               <p className="mt-2 max-w-md text-sm text-[#8a8580]">{TEC_ACCESS.body}</p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <Link
-                href="/login"
+              <a
+                href={productLoginUrl()}
                 className="rounded-md bg-[#164a89] px-5 py-3 text-sm font-medium transition hover:bg-[#4a8fd4]"
               >
                 Iniciar sesión
-              </Link>
-              <Link
-                href="/signup?plan=escuela"
+              </a>
+              <a
+                href={TEC_WHATSAPP_ESCUELA}
+                target="_blank"
+                rel="noreferrer"
                 className="rounded-md border border-white/20 px-5 py-3 text-sm transition hover:border-white/40"
               >
-                Crear cuenta Escuela
-              </Link>
+                Solicitar acceso Escuela
+              </a>
             </div>
           </div>
         </section>
@@ -433,9 +428,9 @@ export function TecLanding() {
             <a href="#website" className="hover:text-[#f5f0e8]">
               Solicitar website
             </a>
-            <Link href="/login" className="hover:text-[#f5f0e8]">
+            <a href={productLoginUrl()} className="hover:text-[#f5f0e8]">
               Login
-            </Link>
+            </a>
           </div>
         </div>
       </footer>

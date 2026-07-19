@@ -27,7 +27,8 @@
 
 ## Importante
 
-- Las rutas `/app`, `/login`, `/signup` y carpetas `supabase/migrations` experimentales en este repo **no** son la fuente de verdad del producto.
+- Las rutas `/app`, `/login`, `/signup` redirigen a **humi-sistema** (`NEXT_PUBLIC_PRODUCT_URL`, default `https://app.humi.mx`). El stub local no es la fuente de verdad.
+- Carpetas `supabase/migrations` experimentales en este repo **no** son la fuente de verdad del producto.
 - Arquitectura validada: [`HUMI_TEC_ARCHITECTURE.md`](./HUMI_TEC_ARCHITECTURE.md)
 - EPICs: [`HUMI_TEC_EPICS.md`](./HUMI_TEC_EPICS.md)
 - Precios: [`HUMI_TEC_PRICING.md`](./HUMI_TEC_PRICING.md)
