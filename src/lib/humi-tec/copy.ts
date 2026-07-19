@@ -20,10 +20,30 @@ export const TEC_HERO = {
   brand: "HUMI-tec",
   headline: "La academia se entrena.\nLa operación también.",
   support:
-    "Software para academias deportivas: alumnos, asistencia y control en un solo lugar. Nacido en HUMI, listo para más escuelas.",
+    "Plataforma SaaS para escuelas y agrupaciones: alumnos, asistencia, operación y —si lo necesitas— tu propio website. Nacida en HUMI, lista para más academias.",
   primaryCta: { label: "Ver planes", href: "#planes" },
   secondaryCta: { label: "Iniciar sesión", href: "/login" },
   proof: "Hecho y probado en HUMI · Ensenada, B.C.",
+} as const;
+
+export const TEC_PRODUCT = {
+  eyebrow: "La plataforma",
+  title: "Un sistema para operar tu academia",
+  body: "HUMI-tec es el software que desarrollamos para administrar escuelas deportivas: del día a día de una academia al control de una federación o agrupación.",
+  pillars: [
+    {
+      title: "Escuela",
+      body: "Admin de alumnos, grupos, asistencia y cobranza del alumno. Roles para dueño, admin e instructores. Portal para familias cuando esté activo.",
+    },
+    {
+      title: "Enterprise",
+      body: "Cuenta master para afiliar escuelas (mínimo 10). Billing centralizado, invites limpios y vista de toda la agrupación — pensado para WTU y redes similares.",
+    },
+    {
+      title: "Website / landing",
+      body: "Además de la plataforma, puedes solicitar tu propio sitio o landing para tu academia — la misma calidad con la que posicionamos HUMI.",
+    },
+  ],
 } as const;
 
 export const TEC_SECTIONS = {
@@ -41,8 +61,8 @@ export const TEC_SECTIONS = {
   },
   plans: {
     eyebrow: "Planes",
-    title: "Elige cómo creces",
-    body: "Escuela para una academia. Enterprise para federaciones y agrupaciones a partir de 10 escuelas.",
+    title: "Escuela o Enterprise",
+    body: "Suscripción para una academia, o cuenta master para federaciones y agrupaciones a partir de 10 escuelas.",
   },
   enterprise: {
     eyebrow: "Enterprise",

@@ -4,6 +4,7 @@ import {
   TEC_BRAND,
   TEC_FOOTER,
   TEC_HERO,
+  TEC_PRODUCT,
   TEC_SECTIONS,
   TEC_VERTICALS_NOTE,
   TEC_WHATSAPP_ENTERPRISE,
@@ -149,6 +150,33 @@ export function TecLanding() {
           <p className="mt-8 text-xs tracking-wide text-humi-dim uppercase">
             {TEC_HERO.proof}
           </p>
+        </section>
+
+        <section className="border-t border-white/8 py-20" aria-labelledby="tec-product-title">
+          <div className="mx-auto max-w-6xl px-5 sm:px-8">
+            <p className="text-xs tracking-[0.22em] text-humi-accent-soft uppercase">
+              {TEC_PRODUCT.eyebrow}
+            </p>
+            <h2
+              id="tec-product-title"
+              className="mt-3 max-w-2xl font-[family-name:var(--font-tec-display)] text-3xl tracking-tight sm:text-4xl"
+            >
+              {TEC_PRODUCT.title}
+            </h2>
+            <p className="mt-4 max-w-2xl leading-relaxed text-humi-muted">
+              {TEC_PRODUCT.body}
+            </p>
+            <div className="mt-10 grid gap-8 sm:grid-cols-3">
+              {TEC_PRODUCT.pillars.map((pillar) => (
+                <div key={pillar.title}>
+                  <h3 className="font-[family-name:var(--font-tec-display)] text-xl tracking-tight">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-humi-muted">{pillar.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </section>
 
         <section className="border-t border-white/8 bg-black/20 py-20">

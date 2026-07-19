@@ -43,8 +43,11 @@ function collectRoutes(dir, urlPath = "") {
   return routes;
 }
 
-/** Next.js app routes that are public/indexable (not under public/). */
-const APP_ROUTES = ["/tec"];
+/**
+ * Next.js App Router routes that are public/indexable (not under public/).
+ * Must NOT be rewritten to static HTML under public/ — see static-html-rewrites.mjs.
+ */
+export const APP_ROUTES = ["/tec"];
 
 /** @returns {string[]} sorted unique paths including / */
 export function getSiteRoutes() {
