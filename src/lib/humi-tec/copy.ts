@@ -120,7 +120,7 @@ export const TEC_PLANS_COPY = {
 export const TEC_ACCESS = {
   eyebrow: "Acceso",
   title: "Entra a la plataforma",
-  body: "Admin, instructores y —cuando esté activo— portal de familias. Un login. Tu escuela o tu agrupación.",
+  body: "Staff con su cuenta. Alumnos y familias con el correo de inscripción y la contraseña que define la academia en oficina. Un login; cada quien ve lo suyo.",
 } as const;
 
 export const TEC_VERTICALS_NOTE =

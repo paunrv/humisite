@@ -19,7 +19,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   return (
     <AuthShell
       title="Entrar a tu escuela"
-      subtitle="Control de alumnos, asistencia y pagos."
+      subtitle="Staff, o alumno/familia con el correo y contraseña de inscripción."
     >
       {params.error === "auth_callback" ? (
         <p className="mb-4 rounded-md border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200">

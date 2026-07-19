@@ -69,8 +69,15 @@ Criterios de aceptación (DoD) anclados al timeline piloto. Issues de implementa
 
 ### Scope
 - Portal mínimo: login alumno/tutor, ver asistencias, aviso, estado de pago alumno (si existe).
+- **Acceso:** la academia define contraseña; el alumno/familia entra con el correo de inscripción (oficina).
+
+### Flujo de acceso
+1. En expediente admin: email de inscripción + contraseña (o generar).
+2. Sistema crea/actualiza usuario Auth + `student_access`.
+3. Login en `/login` → workspace → Portal alumno (`/alumno`).
 
 ### DoD
+- [x] Academia puede provisionar email + password desde expediente.
 - [ ] Alumno/guardian entra sin ver admin de escuela.
 - [ ] Ve historial de asistencia reciente.
 - [ ] Feedback de ≥5 familias documentado (qué falta para agosto).
