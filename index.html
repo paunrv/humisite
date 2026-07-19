@@ -661,35 +661,26 @@
   .section-light .program-wa { color: #164A89; }
   .section-light .program-wa:hover { color: #0f3a6e; }
 
-  /* ── CÓMO EMPEZAR (tras Equipo, zona clara) ── */
+  /* ── CÓMO EMPEZAR (fondo negro, tras Filosofía) ── */
   .how-section {
-    border-top: 1px solid rgba(0,0,0,0.08);
+    border-top: 1px solid var(--border);
     padding: 5rem 2rem;
-    max-width: none;
-    margin: 0;
-    background: #ffffff;
-    color: #0f0f0f;
-    padding-left: calc(50vw - 580px);
-    padding-right: calc(50vw - 580px);
+    max-width: 1160px;
+    margin: 0 auto;
+    background: var(--bg);
+    color: var(--text);
   }
-  @media (max-width: 1200px) {
-    .how-section { padding-left: 2rem; padding-right: 2rem; }
-  }
-  .how-section .section-eyebrow { color: #164A89; }
-  .how-section .section-title { color: #0f0f0f; }
-  .how-section .section-sub { color: #555; }
   .how-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1px;
-    background: rgba(0,0,0,0.08);
-    border: 1px solid rgba(0,0,0,0.08);
+    background: var(--border);
+    border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
-    max-width: 1160px;
   }
   .how-step {
-    background: #f8f8f6;
+    background: var(--bg-card);
     padding: 2rem 1.5rem;
   }
   .how-num {
@@ -697,7 +688,7 @@
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1;
-    color: #164A89;
+    color: var(--accent-2);
     margin-bottom: 1rem;
     font-family: 'Geist Mono', monospace;
   }
@@ -706,16 +697,16 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     margin-bottom: 0.6rem;
-    color: #0f0f0f;
+    color: var(--text);
   }
   .how-step p {
     font-size: 0.875rem;
-    color: #555;
+    color: var(--text-muted);
     line-height: 1.65;
   }
   @media (max-width: 768px) {
     .how-grid { grid-template-columns: 1fr; }
-    .how-section { padding-top: 4rem; padding-bottom: 4rem; }
+    .how-section { padding: 4rem 1.25rem; }
   }
   .program-schedule {
     list-style: none;
@@ -1404,7 +1395,10 @@
   <span class="tec-strip__cta">Ver HUMI-tec →</span>
 </a>
 
-<!-- DIFERENCIADORES BENTO (fondo blanco, tras el hero) -->
+<!-- MOMENTOS — En el dojang (arriba de Filosofía) -->
+<div id="movimiento" class="moments-mount-slot"><div id="humi-moments-mount"></div></div>
+
+<!-- DIFERENCIADORES BENTO (fondo blanco) -->
 <section id="filosofia" class="section-light">
   <div class="section-eyebrow">Filosofía HUMI</div>
   <div class="section-title">Dos formas de entender el dojang</div>
@@ -1445,8 +1439,29 @@
   </div>
 </section>
 
-<!-- MOMENTOS — reels (React monta aquí) -->
-<div id="movimiento" class="moments-mount-slot"><div id="humi-moments-mount"></div></div>
+<!-- CÓMO EMPEZAR (enseguida de Filosofía, fondo negro) -->
+<section id="como-empezar" class="how-section" aria-labelledby="como-empezar-heading">
+  <span class="section-eyebrow">Primeros pasos</span>
+  <h2 id="como-empezar-heading" class="section-title">Cómo empezar</h2>
+  <p class="section-sub">Tres pasos. Sin fricción. Primera clase sin compromiso.</p>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">01</div>
+      <h3>Escríbenos por WhatsApp</h3>
+      <p>Cuéntanos la edad del alumno. Te orientamos al grupo y horario que mejor encajan.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">02</div>
+      <h3>Agenda tu visita</h3>
+      <p>Elige el día y llega 10 minutos antes. Te recibimos en el dojang sin prisa.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num" aria-hidden="true">03</div>
+      <h3>Primera clase sin compromiso</h3>
+      <p>Pruebas el ambiente, la metodología y el grupo. Decides con calma después.</p>
+    </div>
+  </div>
+</section>
 
 <!-- PROGRAMAS -->
 <section id="experiencia" class="section-light" style="border-top: 1px solid rgba(0,0,0,0.08);">
@@ -1793,30 +1808,6 @@
 
     </div>
 
-  </div>
-</section>
-
-<!-- CÓMO EMPEZAR (enseguida de Equipo) -->
-<section id="como-empezar" class="how-section" aria-labelledby="como-empezar-heading">
-  <span class="section-eyebrow">Primeros pasos</span>
-  <h2 id="como-empezar-heading" class="section-title">Cómo empezar</h2>
-  <p class="section-sub">Tres pasos. Sin fricción. Primera clase sin compromiso.</p>
-  <div class="how-grid">
-    <div class="how-step">
-      <div class="how-num" aria-hidden="true">01</div>
-      <h3>Escríbenos por WhatsApp</h3>
-      <p>Cuéntanos la edad del alumno. Te orientamos al grupo y horario que mejor encajan.</p>
-    </div>
-    <div class="how-step">
-      <div class="how-num" aria-hidden="true">02</div>
-      <h3>Agenda tu visita</h3>
-      <p>Elige el día y llega 10 minutos antes. Te recibimos en el dojang sin prisa.</p>
-    </div>
-    <div class="how-step">
-      <div class="how-num" aria-hidden="true">03</div>
-      <h3>Primera clase sin compromiso</h3>
-      <p>Pruebas el ambiente, la metodología y el grupo. Decides con calma después.</p>
-    </div>
   </div>
 </section>
 
