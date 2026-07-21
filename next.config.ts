@@ -15,8 +15,9 @@ const nextConfig: NextConfig = {
     };
   },
   async redirects() {
+    // Pilot default: live Vercel deploy. Switch env to https://app.humi.mx when DNS is ready.
     const product = (
-      process.env.NEXT_PUBLIC_PRODUCT_URL || "https://app.humi.mx"
+      process.env.NEXT_PUBLIC_PRODUCT_URL || "https://humi-sistema.vercel.app"
     ).replace(/\/$/, "");
     return [
       {

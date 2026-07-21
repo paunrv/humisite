@@ -27,7 +27,8 @@
 
 ## Importante
 
-- Las rutas `/app`, `/login`, `/signup` redirigen a **humi-sistema** (`NEXT_PUBLIC_PRODUCT_URL`, default `https://app.humi.mx`). El stub local no es la fuente de verdad.
+- Las rutas `/app`, `/login`, `/signup` redirigen a **humi-sistema** (`NEXT_PUBLIC_PRODUCT_URL`, default piloto `https://humi-sistema.vercel.app`; marca `https://app.humi.mx` cuando DNS esté listo). El stub local no es la fuente de verdad.
+- Puerta piloto + 49 alumnos: [`PILOTO_PUERTA_SAAS.md`](./PILOTO_PUERTA_SAAS.md).
 - Carpetas `supabase/migrations` experimentales en este repo **no** son la fuente de verdad del producto.
 - Arquitectura validada: [`HUMI_TEC_ARCHITECTURE.md`](./HUMI_TEC_ARCHITECTURE.md)
 - EPICs: [`HUMI_TEC_EPICS.md`](./HUMI_TEC_EPICS.md)

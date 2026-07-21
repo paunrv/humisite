@@ -4,10 +4,12 @@ Sitio web público de **HUMI Taekwondo** (Ensenada, B.C.). Stack: **Next.js**, *
 
 > **Producto (admin / cobranza / alumnos):** vive en [`paunrv/humi-sistema`](https://github.com/paunrv/humi-sistema)  
 > Remote: `git@github.com:paunrv/humi-sistema.git`  
+> Deploy piloto: https://humi-sistema.vercel.app  
 > Issues / roadmap: https://github.com/paunrv/humi-sistema/issues  
-> Detalle de la separación: [`docs/REPO_SPLIT.md`](docs/REPO_SPLIT.md)
+> Detalle de la separación: [`docs/REPO_SPLIT.md`](docs/REPO_SPLIT.md)  
+> Piloto puerta + 49 alumnos: [`docs/PILOTO_PUERTA_SAAS.md`](docs/PILOTO_PUERTA_SAAS.md)
 
-Este repo es **solo marketing** (landing, blog, SEO). No es la fuente de verdad de Supabase ni del SaaS.
+Este repo es **solo marketing** (landing, blog, SEO). No es la fuente de verdad de Supabase ni del SaaS. El CTA **Plataforma** redirige al producto (`NEXT_PUBLIC_PRODUCT_URL`, default `https://humi-sistema.vercel.app`).
 
 ## Requisitos
 
