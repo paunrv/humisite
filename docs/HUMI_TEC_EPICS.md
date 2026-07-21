@@ -76,6 +76,7 @@ Criterios de aceptación (DoD) anclados al timeline piloto. Issues de implementa
 **Ventana:** antes del 29 jul (paralelo a EP-3)
 
 #### DoD
+- [ ] **Logout** en portal alumno y admin (hoy ausente — blocker; cuentas de prueba quedan atrapadas).
 - [ ] Alumno/guardian entra sin ver admin de escuela.
 - [ ] Ve historial de asistencia reciente.
 - [ ] RLS: solo school + student link.

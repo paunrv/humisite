@@ -127,12 +127,26 @@ Incluir:
 **Repo:** humi-sistema · **Paralelo a EP-3** · antes del handoff masivo
 
 ### Smoke test (≥3 cuentas reales)
-- [ ] Login alumno/tutor → cae en `/alumno` (no ve admin escuela).
+- [x] Login alumno/tutor → cae en `/alumno` (no ve admin escuela). — probado `pau.norv@gmail.com` (Paulina)
 - [ ] Ve historial de asistencia reciente.
 - [ ] Alumno A no ve datos de alumno B (RLS).
 - [ ] Documentar 3–5 hallazgos internos antes del 29 jul.
 
+### Cuentas piloto conocidas
+| Email | Rol |
+|-------|-----|
+| `humi.tkd@gmail.com` | admin / owner |
+| `pau.norv@gmail.com` | alumno (Paulina) |
+| `phsho007@gmail.com` | alumno (“salado”) |
+
+### Blocker: logout ausente (jul 2026)
+- En humi-sistema **no hay** UI ni rutas `/logout` / `/auth/signout` (404).
+- Sin botón de cerrar sesión el alumno queda atrapado en la sesión del navegador.
+- **Fix requerido en `humi-sistema`:** botón “Cerrar sesión” en portal `/alumno` (y chrome admin) → `supabase.auth.signOut()` + redirect a `/login`.
+- Workaround mientras tanto: borrar cookies / “Clear site data” de `humi-sistema.vercel.app`, o ventana de incógnito para otra cuenta.
+
 ### DoD abierto (producto)
+- [ ] **Logout visible** en portal alumno y admin (bloqueante antes de handoff papás).
 - [ ] Alumno/guardian entra sin ver admin.
 - [ ] Asistencia reciente visible.
 - [ ] RLS school + student link.
