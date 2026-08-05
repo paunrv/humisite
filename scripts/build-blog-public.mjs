@@ -8,9 +8,140 @@ import { articleSeo } from "./seo-meta.mjs";
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const publicBlog = path.join(root, "public", "blog");
 
+function estimateReadingMinutes(html) {
+  const text = html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const words = text ? text.split(" ").length : 0;
+  return Math.max(1, Math.round(words / 200));
+}
+
+function continueReadingLinks(article, limit = 3) {
+  const idx = BLOG_ARTICLES.findIndex((a) => a.slug === article.slug);
+  const picked = [];
+  const seen = new Set([article.slug]);
+
+  const push = (candidate) => {
+    if (!candidate || seen.has(candidate.slug) || picked.length >= limit) return;
+    seen.add(candidate.slug);
+    picked.push(candidate);
+  };
+
+  // Next/previous in the same category (series continuity)
+  for (let i = idx + 1; i < BLOG_ARTICLES.length && picked.length < limit; i++) {
+    if (BLOG_ARTICLES[i].category === article.category) push(BLOG_ARTICLES[i]);
+  }
+  for (let i = idx - 1; i >= 0 && picked.length < limit; i--) {
+    if (BLOG_ARTICLES[i].category === article.category) push(BLOG_ARTICLES[i]);
+  }
+
+  // Prefer adjacent thematic categories before falling back to the full archive
+  const preferredCategories = {
+    movimiento: ["journal", "poomsae", "disciplina"],
+    journal: ["movimiento", "disciplina"],
+    disciplina: ["poomsae", "movimiento", "cinturones"],
+    poomsae: ["disciplina", "movimiento"],
+    cinturones: ["disciplina", "comunidad"],
+    comunidad: ["cinturones", "disciplina"],
+  }[article.category] ?? ["journal", "disciplina", "movimiento"];
+
+  for (const category of preferredCategories) {
+    for (const candidate of BLOG_ARTICLES) {
+      if (picked.length >= limit) break;
+      if (candidate.category === category) push(candidate);
+    }
+  }
+
+  for (const candidate of BLOG_ARTICLES) {
+    if (picked.length >= limit) break;
+    push(candidate);
+  }
+
+  return picked;
+}
+
+function renderContinueReading(article) {
+  const links = continueReadingLinks(article);
+  if (!links.length) return "";
+  const items = links
+    .map(
+      (a) =>
+        `<li><a href="${articlePath(a.slug)}">${escapeHtml(a.seriesLabel ?? a.title)}</a></li>`,
+    )
+    .join("\n\t\t\t\t\t");
+  return `
+				<nav class="hm-continue" aria-label="Continuar leyendo">
+					<p class="hm-continue__label">Continuar leyendo</p>
+					<ul class="hm-continue__list">
+					${items}
+					</ul>
+				</nav>`;
+}
+
+function renderArticleMeta(_article, minutes) {
+  return `<p class="hm-article__meta"><span>${escapeHtml(String(minutes))} min de lectura</span><span class="hm-article__meta-sep" aria-hidden="true">·</span><span>HUMI Taekwondo</span></p>`;
+}
+
+function enhanceArticleMarkup(html, article) {
+  const minutes = estimateReadingMinutes(html);
+  const meta = renderArticleMeta(article, minutes);
+  let out = html;
+
+  // Reading body class — separates article immersion from expressive blog index
+  if (!/\bhm-reading\b/.test(out.match(/<body[^>]*>/)?.[0] ?? "")) {
+    out = out.replace(/<body class="([^"]*)"/, '<body class="$1 hm-reading"');
+  }
+
+  // Drop cap on story/prose opening paragraph
+  out = out.replace(
+    /class="([^"]*\bhm-editorial__story\b[^"]*\bhm-prose\b[^"]*)"/,
+    (match, classes) => {
+      if (classes.includes("hm-prose--dropcap")) return match;
+      return `class="${classes} hm-prose--dropcap"`;
+    },
+  );
+  out = out.replace(
+    /<div class="hm-prose">/,
+    '<div class="hm-prose hm-prose--dropcap">',
+  );
+
+  // Inject reading meta into article headers
+  if (out.includes('class="hm-article__head"')) {
+    if (out.includes("hm-article__lede")) {
+      out = out.replace(
+        /(<p class="hm-article__lede">[\s\S]*?<\/p>)/,
+        `$1\n\t\t\t\t\t${meta}`,
+      );
+    } else {
+      out = out.replace(/(<\/h1>)/, `$1\n\t\t\t\t\t${meta}`);
+    }
+  } else if (out.includes('class="hm-editorial__head"')) {
+    out = out.replace(
+      /(<header class="hm-editorial__head">[\s\S]*?<\/h1>)/,
+      `$1\n\t\t\t\t\t${meta}`,
+    );
+  }
+
+  // Prefer continue-reading over legacy series nav; keep series as fallback if injection fails
+  const continueBlock = renderContinueReading(article);
+  if (out.includes('class="hm-editorial__series"')) {
+    out = out.replace(
+      /<nav class="hm-editorial__series"[\s\S]*?<\/nav>/,
+      continueBlock.trim(),
+    );
+  } else {
+    out = out.replace(/<\/article>/, `${continueBlock}\n\t\t\t</article>`);
+  }
+
+  return out;
+}
+
 function patchArticleHtml(html, article) {
   const canonical = articlePath(article.slug);
-  let out = html;
+  let out = enhanceArticleMarkup(html, article);
 
   out = out.replace(/href="assets\//g, 'href="/assets/');
   out = out.replace(/src="assets\//g, 'src="/assets/');
