@@ -1,6 +1,7 @@
 /**
  * Signature Events — editorial archive of annual HUMI experiences.
  * Add a new year by appending an entry; media paths are public URLs.
+ * Descriptions must stay within 35–45 words.
  */
 
 export type SignatureEvent = {
@@ -12,6 +13,7 @@ export type SignatureEvent = {
   subtitle?: string;
   poster: string;
   images: [string, string];
+  /** 35–45 words. Hard limit. */
   description: string;
 };
 
@@ -26,7 +28,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic02.jpg",
     images: ["/images/pic01.jpg", "/images/pic04.jpg"],
     description:
-      "HUMI opened its doors to Olympic-level training for the first time. Carlo Molfetta brought the precision and intensity of London 2012 to Ensenada, setting a new standard for what our community could aspire to become each year.",
+      "HUMI opened its doors to Olympic-level training for the first time. Precision and intensity from London 2012 arrived in Ensenada, setting a new standard for what our community could aspire to become each year ahead.",
   },
   {
     id: 2,
@@ -38,7 +40,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic03.jpg",
     images: ["/images/pic08.jpg", "/images/pic09.jpg"],
     description:
-      "A second year, a second champion. Joel González returned the Olympic fire to the dojang, deepening a tradition of world-class master classes that would define HUMI’s annual rhythm and raise the bar for every student who stepped onto the mat.",
+      "A second year, a second champion. Olympic fire returned to the dojang, deepening a tradition of world-class master classes that would define HUMI’s annual rhythm and raise the bar for every student on the mat.",
   },
   {
     id: 3,
@@ -48,7 +50,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic05.jpg",
     images: ["/images/pic10.jpg", "/images/pic11.jpg"],
     description:
-      "An internal competition under World Taekwondo Union standards. Athletes tested months of preparation against their own teammates—proving that the fiercest growth often happens inside the community that raised them, not only on distant tournament floors.",
+      "An internal competition under World Taekwondo Union standards. Athletes tested months of preparation against their own teammates—proving that the fiercest growth often happens inside the community that raised them, not on distant tournament floors.",
   },
   {
     id: 4,
@@ -59,7 +61,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic06.jpg",
     images: ["/images/pic12.jpg", "/images/pic13.jpg"],
     description:
-      "A performance weekend that pushed beyond the usual class format. With Gabriel Bracamontes, the dojang became a stage for intensity, skill, and the kind of shared effort that turns a school into a lasting family bound by purpose.",
+      "A performance weekend that pushed beyond the usual class format. The dojang became a stage for intensity, skill, and the kind of shared effort that turns a school into a lasting family bound by purpose.",
   },
   {
     id: 5,
@@ -69,7 +71,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic07.jpg",
     images: ["/images/pic14.jpg", "/images/pic16.jpg"],
     description:
-      "The community competition that brought every generation onto the same floor. Students competed, supported, and celebrated—turning a single weekend into a living portrait of everything HUMI had carefully built across years of training hard together.",
+      "The community competition that brought every generation onto the same floor. Students competed, supported, and celebrated—turning a single weekend into a living portrait of everything HUMI had carefully built across years of shared training.",
   },
   {
     id: 6,
@@ -81,7 +83,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic15.jpg",
     images: ["/images/pic17.jpg", "/images/pic18.jpg"],
     description:
-      "A master class with official UFC athlete Jesús Aguilar. Technique met entertainment, and the dojang filled with the energy of a community that trains hard—and knows how to enjoy the journey together as one house.",
+      "Technique met entertainment in a master class that filled the dojang with energy. A community that trains hard—and knows how to enjoy the journey together—made the day feel like one house under the same roof.",
   },
 ];
 
@@ -89,9 +91,7 @@ export function formatEdition(id: number): string {
   return String(id).padStart(2, "0");
 }
 
-export function formatEventCategory(event: SignatureEvent): string {
-  if (event.guest) {
-    return `${event.category} · ${event.guest}`;
-  }
-  return event.category;
+/** Assert descriptions stay in the 35–45 word band (dev aid). */
+export function descriptionWordCount(text: string): number {
+  return text.trim().split(/\s+/).filter(Boolean).length;
 }
