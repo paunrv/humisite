@@ -2,6 +2,7 @@
 
 import { IntroGateway } from "@/components/intro";
 import { MomentsReelsMount } from "@/components/moments/MomentsReelsMount";
+import { SignatureEventsMount } from "@/components/signature-events/SignatureEventsMount";
 import { SiteLanding } from "@/components/site/SiteLanding";
 import { useIntroGate } from "@/hooks/useIntroGate";
 import type { LegacyLandingPayload } from "@/lib/legacy-landing";
@@ -34,6 +35,7 @@ export function HomePage({ legacy }: HomePageProps) {
 
       <SiteLanding legacy={legacy} introActive={introActive} />
       <MomentsReelsMount />
+      <SignatureEventsMount />
     </>
   );
 }
