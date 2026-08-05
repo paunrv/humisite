@@ -50,7 +50,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic05.jpg",
     images: ["/images/pic10.jpg", "/images/pic11.jpg"],
     description:
-      "An internal competition under World Taekwondo Union standards. Athletes tested months of preparation against their own teammates—proving that the fiercest growth often happens inside the community that raised them, not on distant tournament floors.",
+      "An internal competition under World Taekwondo Union standards. Athletes tested months of preparation against their own teammates, proving that the fiercest growth often happens inside the community that raised them, not on distant tournament floors.",
   },
   {
     id: 4,
@@ -71,7 +71,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic07.jpg",
     images: ["/images/pic14.jpg", "/images/pic16.jpg"],
     description:
-      "The community competition that brought every generation onto the same floor. Students competed, supported, and celebrated—turning a single weekend into a living portrait of everything HUMI had carefully built across years of shared training.",
+      "The community competition that brought every generation onto the same floor. Students competed, supported, and celebrated, turning a single weekend into a living portrait of everything HUMI had carefully built across years of shared training.",
   },
   {
     id: 6,
@@ -83,7 +83,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     poster: "/images/pic15.jpg",
     images: ["/images/pic17.jpg", "/images/pic18.jpg"],
     description:
-      "Technique met entertainment in a master class that filled the dojang with energy. A community that trains hard—and knows how to enjoy the journey together—made the day feel like one house under the same roof.",
+      "Technique met entertainment in a master class that filled the dojang with energy. A community that trains hard, and knows how to enjoy the journey together, made the day feel like one house under the same roof.",
   },
 ];
 
