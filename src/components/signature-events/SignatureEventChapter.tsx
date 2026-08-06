@@ -1,6 +1,7 @@
 "use client";
 
 import { formatEdition, type SignatureEvent } from "@/lib/signature-events";
+import { SignatureEventRecap } from "@/components/signature-events/SignatureEventRecap";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
@@ -86,6 +87,14 @@ export function SignatureEventChapter({
         <p className="mt-8 max-w-[34rem] text-[0.95rem] leading-[1.75] text-[#555] md:mt-10 md:text-base">
           {event.description}
         </p>
+
+        {event.recapVideo ? (
+          <SignatureEventRecap
+            title={event.title}
+            videoSrc={event.recapVideo}
+            thumbnailSrc={event.recapThumbnail ?? event.poster}
+          />
+        ) : null}
 
         <div className="mt-8 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-3 md:mt-10">
           {[event.photo1, event.photo2].map((src) => (
