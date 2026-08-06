@@ -80,20 +80,21 @@ export function SignatureEventsSection() {
           className="mx-auto max-w-[1100px] px-5 pb-4 pt-20 md:px-10 md:pb-6 md:pt-24"
         >
           <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-[#164A89]">
-            Signature Events
+            Eventos Emblemáticos
           </p>
           <h2
             id="signature-events-heading"
             className="text-[clamp(2.15rem,5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[#0f0f0f]"
           >
-            A decade of shared experiences.
+            Una década de experiencias compartidas.
           </h2>
           <p className="mt-6 max-w-[34rem] text-[clamp(1.15rem,2.2vw,1.4rem)] font-medium leading-[1.45] tracking-[-0.02em] text-[#1a1a1a]">
-            For over a decade, HUMI has created experiences that bring athletes,
-            families, and champions together.
+            Durante más de una década, HUMI ha creado experiencias que unen a
+            atletas, familias y campeones.
           </p>
           <p className="mt-4 max-w-[30rem] text-base leading-relaxed text-[#666]">
-            Each edition becomes part of our story. Scroll to walk through them.
+            Cada año creamos una experiencia que deja huella. Desplázate para
+            recorrerlas.
           </p>
         </motion.header>
 
@@ -114,13 +115,13 @@ export function SignatureEventsSection() {
           className="mx-auto max-w-[420px] border-t border-black/[0.06] px-5 pb-20 pt-14 text-center md:pb-24 md:pt-16"
         >
           <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-[#164A89]">
-            What&apos;s Next?
+            ¿Qué sigue?
           </p>
           <p className="mt-5 text-[clamp(1.25rem,2.4vw,1.55rem)] font-semibold leading-snug tracking-[-0.025em] text-[#0f0f0f]">
-            Every year brings a new chapter.
+            Cada año llega un nuevo capítulo.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[#666]">
-            We&apos;re already working on the next Signature Event.
+            Ya estamos trabajando en el próximo Evento Emblemático.
           </p>
         </motion.footer>
       </div>
@@ -191,7 +192,7 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
         <ChapterProgress
           activeIndex={activeIndex}
           onSelect={goToChapter}
-          hint="Scroll to continue"
+          hint="Desplázate para continuar"
         />
 
         <motion.div
@@ -199,7 +200,7 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
           className="flex min-h-0 flex-1 will-change-transform"
           role="region"
           aria-roledescription="timeline"
-          aria-label="Signature Events journey"
+          aria-label="Recorrido de Eventos Emblemáticos"
         >
           {SIGNATURE_EVENTS.map((event, index) => (
             <div
@@ -280,7 +281,7 @@ function StackTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
         ref={trackRef}
         className="flex flex-col"
         role="region"
-        aria-label="Signature Events archive"
+        aria-label="Archivo de Eventos Emblemáticos"
       >
         {SIGNATURE_EVENTS.map((event, index) => (
           <SignatureEventChapter
@@ -316,7 +317,7 @@ function ChapterProgress({
       */}
       <div
         role="navigation"
-        aria-label="Chapters"
+        aria-label="Capítulos"
         className="flex flex-wrap items-center gap-x-0.5 font-mono text-[0.7rem] font-medium tracking-[0.1em] md:text-xs md:tracking-[0.12em]"
       >
         {SIGNATURE_EVENTS.map((event, index) => {
@@ -335,7 +336,7 @@ function ChapterProgress({
                 type="button"
                 onClick={() => onSelect(index)}
                 aria-current={active ? "true" : undefined}
-                aria-label={`Chapter ${formatEdition(event.id)} · ${event.title} · ${event.year}`}
+                aria-label={`Capítulo ${formatEdition(event.id)} · ${event.title} · ${event.year}`}
                 className={
                   active
                     ? "text-[#164A89] transition-colors duration-300"

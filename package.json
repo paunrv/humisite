@@ -8,7 +8,7 @@
     "dev:vite": "vite",
     "sync:legacy": "node scripts/sync-legacy.mjs",
     "sync:videos": "node scripts/sync-videos.mjs",
-    "sync:signature-media": "node scripts/sync-signature-media.mjs",
+    "sync:signature-media": "node scripts/sync-signature-media.mjs && node scripts/sync-signature-recaps.mjs",
     "sync:media": "node scripts/sync-media.mjs && node scripts/patch-blog-article-images.mjs && node scripts/patch-blog-belt-articles.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "build:blog": "npm run sync:media && node scripts/build-blog-public.mjs",
