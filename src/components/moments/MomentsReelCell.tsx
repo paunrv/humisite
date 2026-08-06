@@ -34,7 +34,7 @@ export function MomentsReelCell({ panel, isHovered, isDimmed }: MomentsReelCellP
   return (
     <article
       ref={ref}
-      className="group relative h-full min-h-[140px] overflow-hidden bg-[#050505] md:min-h-0"
+      className="group relative h-full min-h-[200px] overflow-hidden bg-[#050505] md:min-h-0"
       aria-label={panel.label}
     >
       <motion.div
@@ -68,7 +68,7 @@ export function MomentsReelCell({ panel, isHovered, isDimmed }: MomentsReelCellP
       />
 
       <span
-        className="pointer-events-none absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-[0.62rem] font-medium uppercase tracking-[0.32em] text-[#f5f0e8]/0 transition-colors duration-700 group-hover:text-[#f5f0e8]/40"
+        className="pointer-events-none absolute bottom-4 left-1/2 z-10 -translate-x-1/2 text-[0.62rem] font-medium uppercase tracking-[0.32em] text-[#f5f0e8]/45 transition-colors duration-700 md:text-[#f5f0e8]/0 md:group-hover:text-[#f5f0e8]/40"
         aria-hidden
       >
         {panel.label}
