@@ -30,9 +30,13 @@ export function SignatureEventChapter({
   const prioritize = index === 0;
   const isJourney = variant === "journey";
 
+  const poster = presentMedia(event.poster)[0];
   const photos = presentMedia(event.photo1, event.photo2);
+  const hasPoster = Boolean(poster);
   const hasRecap = Boolean(event.recapVideo);
-  const hasSecondary = hasRecap || photos.length > 0;
+  const hasPhotos = photos.length > 0;
+  const hasSecondary = (hasPoster && (hasRecap || hasPhotos)) || (!hasPoster && hasPhotos);
+  const recapThumbnail = event.recapThumbnail ?? poster;
 
   const reveal = reduceMotion
     ? {}
@@ -88,6 +92,35 @@ export function SignatureEventChapter({
           </figure>
         ))}
       </div>
+    ) : null;
+
+  const recap = (compact: boolean) =>
+    hasRecap && event.recapVideo ? (
+      <SignatureEventRecap
+        title={event.title}
+        videoSrc={event.recapVideo}
+        thumbnailSrc={recapThumbnail}
+        compact={compact}
+      />
+    ) : null;
+
+  const posterFigure = (opts: {
+    className: string;
+    sizes: string;
+    imageClassName: string;
+  }) =>
+    poster ? (
+      <figure className={opts.className}>
+        <Image
+          src={poster}
+          alt={`${event.title} — ${event.year}`}
+          width={720}
+          height={960}
+          sizes={opts.sizes}
+          priority={prioritize}
+          className={opts.imageClassName}
+        />
+      </figure>
     ) : null;
 
   return (
@@ -155,19 +188,15 @@ export function SignatureEventChapter({
           {meta}
 
           {/* Stack: poster before body copy */}
-          {!isJourney ? (
-            <figure className="group relative mt-10 w-full max-w-[360px] overflow-hidden bg-[#ebebe8] md:mt-12">
-              <Image
-                src={event.poster}
-                alt={`${event.title} — ${event.year}`}
-                width={720}
-                height={960}
-                sizes="(max-width: 768px) 90vw, 360px"
-                priority={prioritize}
-                className="aspect-[3/4] h-auto w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
-              />
-            </figure>
-          ) : null}
+          {!isJourney
+            ? posterFigure({
+                className:
+                  "group relative mt-10 w-full max-w-[360px] overflow-hidden bg-[#ebebe8] md:mt-12",
+                sizes: "(max-width: 768px) 90vw, 360px",
+                imageClassName:
+                  "aspect-[3/4] h-auto w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]",
+              })
+            : null}
 
           <p
             className={
@@ -179,54 +208,45 @@ export function SignatureEventChapter({
             {event.description}
           </p>
 
-          {!isJourney && hasRecap && event.recapVideo ? (
-            <SignatureEventRecap
-              title={event.title}
-              videoSrc={event.recapVideo}
-              thumbnailSrc={event.recapThumbnail ?? event.poster}
-            />
-          ) : null}
+          {!isJourney ? recap(false) : null}
 
           {!isJourney ? photoFigures("stack") : null}
         </div>
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
-        {isJourney ? (
+        {isJourney && (hasPoster || hasRecap || hasPhotos) ? (
           <div
             className={
-              hasSecondary
+              hasPoster && hasSecondary
                 ? "col-span-7 flex min-h-0 items-end gap-5 xl:gap-6"
                 : "col-span-7 flex min-h-0 items-end"
             }
           >
-            <figure
-              className={
-                hasSecondary
-                  ? "group relative w-[min(100%,340px)] shrink-0 overflow-hidden bg-[#ebebe8] xl:w-[min(100%,380px)]"
-                  : "group relative w-[min(100%,380px)] overflow-hidden bg-[#ebebe8] xl:w-[min(100%,420px)]"
-              }
-            >
-              <Image
-                src={event.poster}
-                alt={`${event.title} — ${event.year}`}
-                width={720}
-                height={960}
-                sizes="(max-width: 1280px) 340px, 420px"
-                priority={prioritize}
-                className="aspect-[3/4] max-h-[min(56vh,500px)] w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
-              />
-            </figure>
+            {hasPoster
+              ? posterFigure({
+                  className: hasSecondary
+                    ? "group relative w-[min(100%,340px)] shrink-0 overflow-hidden bg-[#ebebe8] xl:w-[min(100%,380px)]"
+                    : "group relative w-[min(100%,380px)] overflow-hidden bg-[#ebebe8] xl:w-[min(100%,420px)]",
+                  sizes: "(max-width: 1280px) 340px, 420px",
+                  imageClassName:
+                    "aspect-[3/4] max-h-[min(56vh,500px)] w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]",
+                })
+              : null}
 
-            {hasSecondary ? (
+            {/* Video-only (or poster-less): recap is the primary visual */}
+            {!hasPoster && hasRecap ? (
+              <div className="w-full max-w-[560px]">{recap(false)}</div>
+            ) : null}
+
+            {hasPoster && hasSecondary ? (
               <div className="flex min-w-0 flex-1 flex-col justify-end gap-3 pb-0.5">
-                {hasRecap && event.recapVideo ? (
-                  <SignatureEventRecap
-                    title={event.title}
-                    videoSrc={event.recapVideo}
-                    thumbnailSrc={event.recapThumbnail ?? event.poster}
-                    compact
-                  />
-                ) : null}
+                {recap(true)}
+                {photoFigures("journey")}
+              </div>
+            ) : null}
+
+            {!hasPoster && hasPhotos ? (
+              <div className="flex min-w-0 flex-1 flex-col justify-end gap-3 pb-0.5">
                 {photoFigures("journey")}
               </div>
             ) : null}

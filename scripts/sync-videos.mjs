@@ -45,15 +45,43 @@ const mappings = [
 
 /**
  * Signature Events recaps → public/signature-events/{year}/recap.mp4
- * Prefer a dedicated file in video/signature-events/{year}/recap.mp4 when present;
- * otherwise use the optional `fallback` from video/.
+ *
+ * Resolution order per year:
+ * 1. video/signature-events/{year}/recap.mp4
+ * 2. Any of `sources` in video/signature-events/{year}/, video/, or media/signature-events/
+ * 3. Optional `fallback` filename in video/
  */
 const signatureRecaps = [
   {
+    year: "2022",
+    sources: ["Ruumble Humi.mp4", "Rumble Humi.mp4", "rumble-humi.mp4"],
+  },
+  {
+    year: "2023",
+    sources: ["ki games.mp4", "ki-games.mp4", "KI Games.mp4"],
+  },
+  {
     year: "2024",
+    sources: ["Taekwondo Games.mp4", "taekwondo-games.mp4"],
     fallback: "taekwondo-games.mp4",
   },
 ];
+
+const mediaSignatureDir = path.join(root, "media", "signature-events");
+
+/** Case-insensitive file lookup across candidate directories. */
+function findVideo(dirs, names) {
+  for (const dir of dirs) {
+    if (!existsSync(dir)) continue;
+    const entries = readdirSync(dir);
+    const lowerMap = new Map(entries.map((n) => [n.toLowerCase(), n]));
+    for (const name of names) {
+      const hit = lowerMap.get(name.toLowerCase());
+      if (hit) return path.join(dir, hit);
+    }
+  }
+  return null;
+}
 
 let copied = 0;
 
@@ -74,14 +102,19 @@ for (const { source, targetDir, target } of mappings) {
   console.log(`sync-videos: ${source} → public/videos/${targetDir}/${target}`);
 }
 
-for (const { year, fallback } of signatureRecaps) {
-  const dedicated = path.join(sourceDir, "signature-events", year, "recap.mp4");
-  const fromFallback = fallback ? path.join(sourceDir, fallback) : null;
-  const from = existsSync(dedicated)
-    ? dedicated
-    : fromFallback && existsSync(fromFallback)
-      ? fromFallback
-      : null;
+for (const { year, sources = [], fallback } of signatureRecaps) {
+  const yearDir = path.join(sourceDir, "signature-events", year);
+  const dedicated = path.join(yearDir, "recap.mp4");
+  const from =
+    (existsSync(dedicated) ? dedicated : null) ||
+    findVideo(
+      [yearDir, sourceDir, mediaSignatureDir],
+      sources,
+    ) ||
+    (fallback && existsSync(path.join(sourceDir, fallback))
+      ? path.join(sourceDir, fallback)
+      : null);
+
   const outDir = path.join(root, "public", "signature-events", year);
   const to = path.join(outDir, "recap.mp4");
 
