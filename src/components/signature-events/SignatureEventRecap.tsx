@@ -11,7 +11,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 type SignatureEventRecapProps = {
   title: string;
   videoSrc: string;
-  thumbnailSrc: string;
+  /** Optional poster frame. When omitted, a dark play surface is shown. */
+  thumbnailSrc?: string | null;
   /** Tighter spacing for journey layout beside highlight photos. */
   compact?: boolean;
 };
@@ -27,6 +28,7 @@ export function SignatureEventRecap({
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const kind = getRecapVideoKind(videoSrc);
+  const hasThumb = Boolean(thumbnailSrc);
 
   const start = useCallback(() => {
     setPlaying(true);
@@ -56,14 +58,26 @@ export function SignatureEventRecap({
             className="group absolute inset-0 z-10 flex w-full flex-col items-center justify-center text-left"
             aria-label={`${CTA} — ${title}`}
           >
-            <Image
-              src={thumbnailSrc}
-              alt=""
-              fill
-              sizes={compact ? "(max-width: 768px) 90vw, 280px" : "(max-width: 768px) 90vw, 520px"}
-              className="object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
+            {hasThumb && thumbnailSrc ? (
+              <Image
+                src={thumbnailSrc}
+                alt=""
+                fill
+                sizes={
+                  compact
+                    ? "(max-width: 768px) 90vw, 280px"
+                    : "(max-width: 768px) 90vw, 520px"
+                }
+                className="object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
+              />
+            ) : null}
+            <span
+              className={
+                hasThumb
+                  ? "absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/28"
+                  : "absolute inset-0 bg-black/20"
+              }
             />
-            <span className="absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/28" />
             <span className="relative z-10 flex flex-col items-center gap-2 px-3 sm:gap-3 sm:px-4">
               <span
                 className={
@@ -73,7 +87,11 @@ export function SignatureEventRecap({
                 }
                 aria-hidden="true"
               >
-                <span className={compact ? "ml-0.5 text-sm leading-none" : "ml-0.5 text-lg leading-none"}>
+                <span
+                  className={
+                    compact ? "ml-0.5 text-sm leading-none" : "ml-0.5 text-lg leading-none"
+                  }
+                >
                   ▶
                 </span>
               </span>
@@ -89,7 +107,7 @@ export function SignatureEventRecap({
             controls
             playsInline
             preload="metadata"
-            poster={thumbnailSrc}
+            poster={thumbnailSrc ?? undefined}
             src={videoSrc}
           />
         ) : kind === "youtube" && youtubeId ? (

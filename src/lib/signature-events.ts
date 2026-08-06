@@ -1,19 +1,17 @@
 /**
  * Signature Events — editorial archive of annual HUMI experiences.
  *
- * Assets live in /public/signature-events/{year}/
- *   poster.jpg       · 3:4 · required
+ * Curated sources live in media/signature-events/ and video/
+ * (see scripts/sync-signature-media.mjs and scripts/sync-videos.mjs).
+ * Public paths under /public/signature-events/{year}/:
+ *   poster.jpg       · 3:4 · optional
  *   photo-1.jpg      · 4:3 · optional
  *   photo-2.jpg      · 4:3 · optional
  *   recap.mp4        · optional local recap
  *   thumbnail.jpg    · optional video poster frame
  *
- * Media hierarchy: poster (required) → recap (optional) → photos (optional).
- * Omit or set `photo1` / `photo2` / `recapVideo` to null to hide that media —
- * the chapter layout adapts with no empty gaps.
- *
- * To update visuals: replace those files (or change the paths below).
- * To add a recap: set `recapVideo` (local path or YouTube/Vimeo URL).
+ * Media order: poster → description → recap → photos.
+ * Omit any field (or set null) to hide that media — no empty gaps.
  */
 
 export type SignatureEvent = {
@@ -23,21 +21,21 @@ export type SignatureEvent = {
   category: string;
   guest?: string;
   subtitle?: string;
-  /** Required visual anchor (3:4). */
-  poster: string;
+  /** Optional visual anchor (3:4). Omit / null → not rendered. */
+  poster?: string | null;
   /** Optional highlight. Omit / null → not rendered. */
   photo1?: string | null;
   /** Optional highlight. Omit / null → not rendered. */
   photo2?: string | null;
   /** Local mp4 path or YouTube/Vimeo URL. Omit / null → hide the player. */
   recapVideo?: string | null;
-  /** Poster frame shown before play (local image). Falls back to `poster`. */
+  /** Poster frame shown before play. Falls back to `poster` when present. */
   recapThumbnail?: string | null;
   /** 35–45 words. Hard limit. */
   description: string;
 };
 
-/** Required poster path for a year folder. */
+/** Poster path for a year folder. */
 function eventPoster(year: string) {
   return { poster: `/signature-events/${year}/poster.jpg` };
 }
@@ -51,7 +49,7 @@ function eventPhotos(year: string) {
   };
 }
 
-/** Poster + both highlight photos (events that have the full still set). */
+/** Poster + both highlight photos. */
 function eventImages(year: string) {
   return {
     ...eventPoster(year),
@@ -61,8 +59,7 @@ function eventImages(year: string) {
 
 /**
  * Optional recap media for a year folder.
- * Thumbnail defaults to poster when `recapThumbnail` is omitted.
- * Local mp4s are synced via `npm run sync:videos` (see scripts/sync-videos.mjs).
+ * Local mp4s are synced via `npm run sync:videos`.
  */
 function eventRecap(year: string, thumbnail?: string) {
   const base = `/signature-events/${year}`;
@@ -87,6 +84,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Master Class",
     guest: "Carlo Molfetta",
     subtitle: "Olympic Champion · London 2012",
+    // Sources: 1st-tkdolympicbootcamp.jpg · -01.jpg · -02.jpg (not -03)
     ...eventImages("2018"),
     description:
       "HUMI opened its doors to Olympic-level training for the first time. Precision and intensity from London 2012 arrived in Ensenada, setting a new standard for what our community could aspire to become each year ahead.",
@@ -98,6 +96,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Master Class",
     guest: "Joel González",
     subtitle: "Olympic Champion · London 2012",
+    // Sources: 2nd-tkdolympicbootcamp.jpg · -01.jpg · -02.jpg (not -03)
     ...eventImages("2019"),
     description:
       "A second year, a second champion. Olympic fire returned to the dojang, deepening a tradition of world-class master classes that would define HUMI’s annual rhythm and raise the bar for every student on the mat.",
@@ -107,7 +106,8 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2022",
     title: "Rumble HUMI Interno WTU",
     category: "Internal Competition",
-    ...eventImages("2022"),
+    // Video only — source: Ruumble Humi.mp4
+    ...eventRecap("2022"),
     description:
       "An internal competition under World Taekwondo Union standards. Athletes tested months of preparation against their own teammates, proving that the fiercest growth often happens inside the community that raised them, not on distant tournament floors.",
   },
@@ -117,7 +117,9 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "KI Games",
     category: "Performance Weekend",
     guest: "Gabriel Bracamontes",
-    ...eventImages("2023"),
+    // Poster + video — sources: ki-games.jpg · ki games.mp4 · no highlight photos
+    ...eventPoster("2023"),
+    ...eventRecap("2023"),
     description:
       "A performance weekend that pushed beyond the usual class format. The dojang became a stage for intensity, skill, and the kind of shared effort that turns a school into a lasting family bound by purpose.",
   },
@@ -126,7 +128,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2024",
     title: "Taekwondo Games",
     category: "Community Competition",
-    ...eventImages("2024"),
+    // Video only — source: Taekwondo Games.mp4
     ...eventRecap("2024"),
     description:
       "The community competition that brought every generation onto the same floor. Students competed, supported, and celebrated, turning a single weekend into a living portrait of everything HUMI had carefully built across years of shared training.",
