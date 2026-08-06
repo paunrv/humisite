@@ -1,5 +1,5 @@
 /**
- * Eventos Emblemáticos — archivo editorial de experiencias anuales de HUMI.
+ * Experiencias HUMI — archivo editorial de experiencias anuales de HUMI.
  *
  * Media: ONLY exact curated files from media/signature-events/ (and video/),
  * synced by scripts/sync-signature-media.mjs + sync-signature-recaps.mjs.

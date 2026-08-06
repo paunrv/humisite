@@ -15,7 +15,7 @@
 | `taekwondo-training.mp4` | Movement, discipline, rhythm | `taekwondo-training.mp4` |
 | `taekwondo-games.mp4` | Playfulness, community | `taekwondo-games.mp4` |
 
-## Eventos Emblemáticos (`public/signature-events/{year}/`)
+## Experiencias HUMI (`public/signature-events/{year}/`)
 
 Exact filenames only (no fallbacks). Drop in `video/`, `video/signature-events/`, or `media/signature-events/`:
 
