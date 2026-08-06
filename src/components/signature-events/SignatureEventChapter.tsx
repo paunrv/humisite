@@ -5,62 +5,56 @@ import { motion, useReducedMotion } from "framer-motion";
 
 type SignatureEventChapterProps = {
   event: SignatureEvent;
+  index: number;
+  total: number;
 };
 
-export function SignatureEventChapter({ event }: SignatureEventChapterProps) {
+export function SignatureEventChapter({
+  event,
+  index,
+  total,
+}: SignatureEventChapterProps) {
   const reduceMotion = useReducedMotion();
   const edition = formatEdition(event.id);
 
   const reveal = reduceMotion
     ? {}
     : {
-        initial: { opacity: 0, y: 28 },
+        initial: { opacity: 0, y: 20 },
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.18 },
-        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+        viewport: { once: true, amount: 0.35 },
+        transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
       };
-
-  const imageReveal = (delay: number) =>
-    reduceMotion
-      ? {}
-      : {
-          initial: { opacity: 0, y: 16 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true, amount: 0.2 },
-          transition: {
-            duration: 0.65,
-            delay,
-            ease: [0.22, 1, 0.36, 1] as const,
-          },
-        };
 
   return (
     <article
-      className="signature-event border-t border-black/[0.06] py-20 md:py-28"
+      data-signature-panel
+      data-index={index}
+      className="signature-event flex w-full shrink-0 snap-center flex-col px-5 max-md:border-t max-md:border-black/[0.06] max-md:py-16 md:h-full md:w-[min(88vw,640px)] md:snap-start md:px-8 lg:w-[min(72vw,600px)] lg:px-10"
       aria-labelledby={`signature-event-${event.id}-title`}
+      aria-setsize={total}
+      aria-posinset={index + 1}
     >
-      <motion.div {...reveal} className="mx-auto max-w-[720px]">
-        {/* Edition dominates the chapter */}
+      <motion.div {...reveal} className="mx-auto flex h-full w-full max-w-[520px] flex-col md:mx-0">
         <p
-          className="font-mono text-[clamp(5.5rem,16vw,8.5rem)] font-light leading-[0.85] tracking-[-0.06em] text-black/[0.12]"
+          className="font-mono text-[clamp(4.5rem,14vw,7rem)] font-light leading-[0.85] tracking-[-0.06em] text-black/[0.12]"
           aria-hidden="true"
         >
           {edition}
         </p>
 
-        <p className="mt-8 font-mono text-xs font-medium uppercase tracking-[0.16em] text-[#164A89]">
+        <p className="mt-6 font-mono text-xs font-medium uppercase tracking-[0.16em] text-[#164A89] md:mt-8">
           {event.year}
         </p>
 
         <h3
           id={`signature-event-${event.id}-title`}
-          className="mt-3 max-w-[20ch] text-[clamp(2rem,5vw,3rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#0f0f0f]"
+          className="mt-3 max-w-[18ch] text-[clamp(1.85rem,4vw,2.65rem)] font-semibold leading-[1.08] tracking-[-0.035em] text-[#0f0f0f]"
         >
           {event.title}
         </h3>
 
-        {/* Category / guest as supporting meta — never louder than the title */}
-        <div className="mt-7 space-y-1.5">
+        <div className="mt-6 space-y-1.5">
           <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[#888]">
             {event.category}
           </p>
@@ -74,11 +68,7 @@ export function SignatureEventChapter({ event }: SignatureEventChapterProps) {
           ) : null}
         </div>
 
-        {/* Poster — the artifact. Breathing room above and below. */}
-        <motion.figure
-          {...imageReveal(0.06)}
-          className="group mx-auto mt-16 w-full max-w-[400px] overflow-hidden bg-[#ebebe8] md:mt-20"
-        >
+        <figure className="group mt-10 w-full max-w-[360px] overflow-hidden bg-[#ebebe8] md:mt-12">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={event.poster}
@@ -87,19 +77,17 @@ export function SignatureEventChapter({ event }: SignatureEventChapterProps) {
             loading="lazy"
             decoding="async"
           />
-        </motion.figure>
+        </figure>
 
-        <p className="mx-auto mt-14 max-w-[34rem] text-[0.95rem] leading-[1.75] text-[#555] md:mt-16 md:text-base">
+        <p className="mt-8 max-w-[34rem] text-[0.95rem] leading-[1.75] text-[#555] md:mt-10 md:text-base">
           {event.description}
         </p>
 
-        {/* Photos — memories. Secondary to the poster. */}
-        <div className="mx-auto mt-14 flex max-w-[460px] flex-col items-center justify-center gap-3 sm:mt-16 sm:flex-row sm:items-start sm:gap-4">
-          {event.images.map((src, index) => (
-            <motion.figure
+        <div className="mt-8 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-3 md:mt-10">
+          {event.images.map((src) => (
+            <figure
               key={src}
-              {...imageReveal(0.1 + index * 0.06)}
-              className="w-full max-w-[220px] overflow-hidden bg-[#ebebe8] opacity-90"
+              className="w-full max-w-[200px] overflow-hidden bg-[#ebebe8] opacity-90"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -109,7 +97,7 @@ export function SignatureEventChapter({ event }: SignatureEventChapterProps) {
                 loading="lazy"
                 decoding="async"
               />
-            </motion.figure>
+            </figure>
           ))}
         </div>
       </motion.div>
