@@ -1,34 +1,34 @@
-# Curated Signature Events media (source drop)
+# Media curada — Eventos Emblemáticos
 
-Place original curated files here. Sync maps them to stable public paths.
+Coloca aquí **exactamente** estos archivos (nombres literales).  
+El sync no usa imágenes parecidas ni placeholders.
 
 ```bash
-npm run sync:signature-media   # stills → public/signature-events/{year}/
-npm run sync:videos            # recaps → public/signature-events/{year}/recap.mp4
+npm run sync:signature-media
 ```
 
 ## Stills
 
-| Drop this file | Becomes |
-| --- | --- |
-| `1st-tkdolympicbootcamp.jpg` | `2018/poster.jpg` |
-| `1st-tkdolympicbootcamp-01.jpg` | `2018/photo-1.jpg` |
-| `1st-tkdolympicbootcamp-02.jpg` | `2018/photo-2.jpg` |
-| `2nd-tkdolympicbootcamp.jpg` | `2019/poster.jpg` |
-| `2nd-tkdolympicbootcamp-01.jpg` | `2019/photo-1.jpg` |
-| `2nd-tkdolympicbootcamp-02.jpg` | `2019/photo-2.jpg` |
-| `ki-games.jpg` | `2023/poster.jpg` |
+| Archivo exacto | Año | Uso |
+| --- | --- | --- |
+| `1st-tkdolympicbootcamp.jpg` | 2018 | Poster |
+| `1st-tkdolympicbootcamp-01.jpg` | 2018 | Foto 1 |
+| `1st-tkdolympicbootcamp-02.jpg` | 2018 | Foto 2 |
+| `2nd-tkdolympicbootcamp.jpg` | 2019 | Poster |
+| `2nd-tkdolympicbootcamp-01.jpg` | 2019 | Foto 1 |
+| `2nd-tkdolympicbootcamp-02.jpg` | 2019 | Foto 2 |
+| `ki-games.jpg` | 2023 | Poster |
 
-Do **not** include `*-03.jpg` — unused by design.
+**No usar** `*-03.jpg`.
 
-## Recap videos
+## Videos
 
-Also accepted here (or in `video/` / `video/signature-events/{year}/`):
+También en esta carpeta, o en `video/` / `video/signature-events/{year}/`:
 
-| Drop this file | Year |
+| Archivo exacto | Año |
 | --- | --- |
 | `Ruumble Humi.mp4` | 2022 |
 | `ki games.mp4` | 2023 |
 | `Taekwondo Games.mp4` | 2024 |
 
-Filenames are matched case-insensitively. Spaces are fine.
+Sin estos archivos, el evento se muestra **sin** media (nunca con assets aleatorios).

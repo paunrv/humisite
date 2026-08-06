@@ -17,7 +17,7 @@ type SignatureEventRecapProps = {
   compact?: boolean;
 };
 
-const CTA = "Relive the Experience";
+const CTA = "Revive la experiencia";
 
 export function SignatureEventRecap({
   title,
@@ -47,7 +47,7 @@ export function SignatureEventRecap({
   return (
     <div className={compact ? "w-full" : "mt-10 w-full max-w-[520px] md:mt-12"}>
       <p className="mb-3 font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[#888]">
-        Recap
+        Resumen
       </p>
 
       <div className="relative aspect-video w-full overflow-hidden bg-[#111]">
@@ -112,7 +112,7 @@ export function SignatureEventRecap({
           />
         ) : kind === "youtube" && youtubeId ? (
           <iframe
-            title={`${title} recap`}
+            title={`Resumen de ${title}`}
             className="h-full w-full border-0"
             src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -121,7 +121,7 @@ export function SignatureEventRecap({
           />
         ) : kind === "vimeo" && vimeoId ? (
           <iframe
-            title={`${title} recap`}
+            title={`Resumen de ${title}`}
             className="h-full w-full border-0"
             src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1`}
             allow="autoplay; fullscreen; picture-in-picture"
@@ -130,7 +130,7 @@ export function SignatureEventRecap({
           />
         ) : (
           <p className="flex h-full items-center justify-center px-4 text-center text-sm text-[#999]">
-            Unable to play this recap.
+            No se puede reproducir este resumen.
           </p>
         )}
       </div>

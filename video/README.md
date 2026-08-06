@@ -15,17 +15,17 @@
 | `taekwondo-training.mp4` | Movement, discipline, rhythm | `taekwondo-training.mp4` |
 | `taekwondo-games.mp4` | Playfulness, community | `taekwondo-games.mp4` |
 
-## Signature Events (`public/signature-events/{year}/`)
+## Eventos Emblemáticos (`public/signature-events/{year}/`)
 
-Prefer `video/signature-events/{year}/recap.mp4`, or drop curated names in `video/` / `media/signature-events/`:
+Exact filenames only (no fallbacks). Drop in `video/`, `video/signature-events/`, or `media/signature-events/`:
 
-| Source | Year |
+| Exact source | Year |
 | --- | --- |
 | `Ruumble Humi.mp4` | 2022 |
 | `ki games.mp4` | 2023 |
-| `Taekwondo Games.mp4` (fallback: `taekwondo-games.mp4`) | 2024 |
+| `Taekwondo Games.mp4` | 2024 |
 
-Output: `public/signature-events/{year}/recap.mp4` (gitignored).
+Synced via `npm run sync:signature-media` (gitignored under `public/signature-events/**/*.mp4`).
 
 Legacy names `instagram-reel-08.mp4` / `instagram-reel-09.mp4` are imported from `../humisite/video/` on first sync if the semantic files are not present yet.
 
