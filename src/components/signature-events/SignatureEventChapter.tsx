@@ -1,6 +1,10 @@
 "use client";
 
-import { formatEdition, type SignatureEvent } from "@/lib/signature-events";
+import {
+  formatEdition,
+  presentMedia,
+  type SignatureEvent,
+} from "@/lib/signature-events";
 import { SignatureEventRecap } from "@/components/signature-events/SignatureEventRecap";
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
@@ -26,6 +30,10 @@ export function SignatureEventChapter({
   const prioritize = index === 0;
   const isJourney = variant === "journey";
 
+  const photos = presentMedia(event.photo1, event.photo2);
+  const hasRecap = Boolean(event.recapVideo);
+  const hasSecondary = hasRecap || photos.length > 0;
+
   const reveal = reduceMotion
     ? {}
     : {
@@ -49,6 +57,38 @@ export function SignatureEventChapter({
       ) : null}
     </div>
   );
+
+  const photoFigures = (size: "stack" | "journey") =>
+    photos.length > 0 ? (
+      <div
+        className={
+          size === "journey"
+            ? "flex gap-2.5"
+            : "mt-8 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-3 md:mt-10"
+        }
+      >
+        {photos.map((src) => (
+          <figure
+            key={src}
+            className={
+              size === "journey"
+                ? "relative w-[min(100%,128px)] overflow-hidden bg-[#ebebe8]"
+                : "relative w-full max-w-[200px] overflow-hidden bg-[#ebebe8]"
+            }
+          >
+            <Image
+              src={src}
+              alt=""
+              width={400}
+              height={300}
+              sizes={size === "journey" ? "128px" : "200px"}
+              loading="lazy"
+              className="aspect-[4/3] h-auto w-full object-cover"
+            />
+          </figure>
+        ))}
+      </div>
+    ) : null;
 
   return (
     <article
@@ -139,7 +179,7 @@ export function SignatureEventChapter({
             {event.description}
           </p>
 
-          {!isJourney && event.recapVideo ? (
+          {!isJourney && hasRecap && event.recapVideo ? (
             <SignatureEventRecap
               title={event.title}
               videoSrc={event.recapVideo}
@@ -147,72 +187,49 @@ export function SignatureEventChapter({
             />
           ) : null}
 
-          {!isJourney ? (
-            <div className="mt-8 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-3 md:mt-10">
-              {[event.photo1, event.photo2].map((src) => (
-                <figure
-                  key={src}
-                  className="relative w-full max-w-[200px] overflow-hidden bg-[#ebebe8]"
-                >
-                  <Image
-                    src={src}
-                    alt=""
-                    width={400}
-                    height={300}
-                    sizes="200px"
-                    loading="lazy"
-                    className="aspect-[4/3] h-auto w-full object-cover"
-                  />
-                </figure>
-              ))}
-            </div>
-          ) : null}
+          {!isJourney ? photoFigures("stack") : null}
         </div>
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
         {isJourney ? (
-          <div className="col-span-7 flex min-h-0 items-end gap-5 xl:gap-6">
-            <figure className="group relative w-[min(100%,340px)] shrink-0 overflow-hidden bg-[#ebebe8] xl:w-[min(100%,380px)]">
+          <div
+            className={
+              hasSecondary
+                ? "col-span-7 flex min-h-0 items-end gap-5 xl:gap-6"
+                : "col-span-7 flex min-h-0 items-end"
+            }
+          >
+            <figure
+              className={
+                hasSecondary
+                  ? "group relative w-[min(100%,340px)] shrink-0 overflow-hidden bg-[#ebebe8] xl:w-[min(100%,380px)]"
+                  : "group relative w-[min(100%,380px)] overflow-hidden bg-[#ebebe8] xl:w-[min(100%,420px)]"
+              }
+            >
               <Image
                 src={event.poster}
                 alt={`${event.title} — ${event.year}`}
                 width={720}
                 height={960}
-                sizes="(max-width: 1280px) 340px, 380px"
+                sizes="(max-width: 1280px) 340px, 420px"
                 priority={prioritize}
                 className="aspect-[3/4] max-h-[min(56vh,500px)] w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
               />
             </figure>
 
-            <div className="flex min-w-0 flex-1 flex-col justify-end gap-3 pb-0.5">
-              {event.recapVideo ? (
-                <SignatureEventRecap
-                  title={event.title}
-                  videoSrc={event.recapVideo}
-                  thumbnailSrc={event.recapThumbnail ?? event.poster}
-                  compact
-                />
-              ) : null}
-
-              <div className="flex gap-2.5">
-                {[event.photo1, event.photo2].map((src) => (
-                  <figure
-                    key={src}
-                    className="relative w-[min(100%,128px)] overflow-hidden bg-[#ebebe8]"
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      width={400}
-                      height={300}
-                      sizes="128px"
-                      loading="lazy"
-                      className="aspect-[4/3] h-auto w-full object-cover"
-                    />
-                  </figure>
-                ))}
+            {hasSecondary ? (
+              <div className="flex min-w-0 flex-1 flex-col justify-end gap-3 pb-0.5">
+                {hasRecap && event.recapVideo ? (
+                  <SignatureEventRecap
+                    title={event.title}
+                    videoSrc={event.recapVideo}
+                    thumbnailSrc={event.recapThumbnail ?? event.poster}
+                    compact
+                  />
+                ) : null}
+                {photoFigures("journey")}
               </div>
-            </div>
+            ) : null}
           </div>
         ) : null}
       </motion.div>
