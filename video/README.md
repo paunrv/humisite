@@ -15,6 +15,10 @@
 | `taekwondo-training.mp4` | Movement, discipline, rhythm | `taekwondo-training.mp4` |
 | `taekwondo-games.mp4` | Playfulness, community | `taekwondo-games.mp4` |
 
+## Signature Events (`public/signature-events/{year}/`)
+
+Prefer `video/signature-events/{year}/recap.mp4`. Until a dedicated file exists, sync may fall back (e.g. 2024 → `taekwondo-games.mp4`). Output: `public/signature-events/{year}/recap.mp4` (gitignored).
+
 Legacy names `instagram-reel-08.mp4` / `instagram-reel-09.mp4` are imported from `../humisite/video/` on first sync if the semantic files are not present yet.
 
 Run `npm run sync:videos` (included in `dev` and `build`).

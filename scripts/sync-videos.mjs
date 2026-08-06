@@ -43,6 +43,18 @@ const mappings = [
   { source: "taekwondo-games.mp4", targetDir: "moments", target: "taekwondo-games.mp4" },
 ];
 
+/**
+ * Signature Events recaps → public/signature-events/{year}/recap.mp4
+ * Prefer a dedicated file in video/signature-events/{year}/recap.mp4 when present;
+ * otherwise use the optional `fallback` from video/.
+ */
+const signatureRecaps = [
+  {
+    year: "2024",
+    fallback: "taekwondo-games.mp4",
+  },
+];
+
 let copied = 0;
 
 for (const { source, targetDir, target } of mappings) {
@@ -62,6 +74,31 @@ for (const { source, targetDir, target } of mappings) {
   console.log(`sync-videos: ${source} → public/videos/${targetDir}/${target}`);
 }
 
+for (const { year, fallback } of signatureRecaps) {
+  const dedicated = path.join(sourceDir, "signature-events", year, "recap.mp4");
+  const fromFallback = fallback ? path.join(sourceDir, fallback) : null;
+  const from = existsSync(dedicated)
+    ? dedicated
+    : fromFallback && existsSync(fromFallback)
+      ? fromFallback
+      : null;
+  const outDir = path.join(root, "public", "signature-events", year);
+  const to = path.join(outDir, "recap.mp4");
+
+  mkdirSync(outDir, { recursive: true });
+
+  if (!from) {
+    console.warn(`sync-videos: missing signature recap for ${year}`);
+    continue;
+  }
+
+  copyFileSync(from, to);
+  copied += 1;
+  console.log(
+    `sync-videos: ${path.relative(root, from)} → public/signature-events/${year}/recap.mp4`,
+  );
+}
+
 const extras = readdirSync(sourceDir).filter(
   (name) => name.startsWith("instagram-reel-") && name.endsWith(".mp4"),
 );
@@ -76,4 +113,4 @@ if (copied === 0) {
   process.exit(1);
 }
 
-console.log(`sync-videos: ${copied}/${mappings.length} videos ready`);
+console.log(`sync-videos: ${copied} videos ready`);
