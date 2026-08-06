@@ -77,22 +77,22 @@ export function SignatureEventsSection() {
       <div className="relative">
         <motion.header
           {...headerReveal}
-          className="mx-auto max-w-[1100px] px-5 pb-4 pt-20 md:px-10 md:pb-6 md:pt-24"
+          className="mx-auto max-w-[1100px] px-5 pb-6 pt-16 md:px-10 md:pb-6 md:pt-24"
         >
-          <p className="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-[#164A89]">
+          <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-[#164A89] md:mb-4">
             Eventos Emblemáticos
           </p>
           <h2
             id="signature-events-heading"
-            className="text-[clamp(2.15rem,5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[#0f0f0f]"
+            className="max-w-[14ch] text-[clamp(1.85rem,7.5vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[#0f0f0f] md:max-w-none"
           >
             Una década de experiencias compartidas.
           </h2>
-          <p className="mt-6 max-w-[34rem] text-[clamp(1.15rem,2.2vw,1.4rem)] font-medium leading-[1.45] tracking-[-0.02em] text-[#1a1a1a]">
+          <p className="mt-5 max-w-[34ch] text-[clamp(1.05rem,3.8vw,1.4rem)] font-medium leading-[1.5] tracking-[-0.02em] text-[#1a1a1a] md:mt-6 md:max-w-[34rem]">
             Durante más de una década, HUMI ha creado experiencias que unen a
             atletas, familias y campeones.
           </p>
-          <p className="mt-4 max-w-[30rem] text-base leading-relaxed text-[#666]">
+          <p className="mt-3.5 max-w-[34ch] text-[0.975rem] leading-relaxed text-[#666] md:mt-4 md:max-w-[30rem] md:text-base">
             Cada año creamos una experiencia que deja huella. Desplázate para
             recorrerlas.
           </p>
@@ -112,7 +112,7 @@ export function SignatureEventsSection() {
 
         <motion.footer
           {...closingReveal}
-          className="mx-auto max-w-[420px] border-t border-black/[0.06] px-5 pb-20 pt-14 text-center md:pb-24 md:pt-16"
+          className="mx-auto max-w-[420px] border-t border-black/[0.06] px-5 pb-16 pt-12 text-center md:pb-24 md:pt-16"
         >
           <p className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-[#164A89]">
             ¿Qué sigue?
@@ -270,7 +270,7 @@ function StackTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
 
   return (
     <div className="relative">
-      <div className="sticky top-[60px] z-10 border-b border-black/[0.04] bg-[#f7f7f5]/92 backdrop-blur-sm">
+      <div className="sticky top-[60px] z-10 border-b border-black/[0.04] bg-[#f7f7f5]/95 backdrop-blur-md supports-[padding:max(0px)]:top-[max(60px,env(safe-area-inset-top))]">
         <ChapterProgress
           activeIndex={activeIndex}
           onSelect={goToChapter}
@@ -279,7 +279,7 @@ function StackTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
 
       <div
         ref={trackRef}
-        className="flex flex-col"
+        className="flex flex-col gap-0"
         role="region"
         aria-label="Archivo de Eventos Emblemáticos"
       >
@@ -310,7 +310,7 @@ function ChapterProgress({
   hint?: string;
 }) {
   return (
-    <div className="relative z-20 flex shrink-0 items-center justify-between gap-4 border-b border-black/[0.04] px-5 py-3.5 md:px-10 lg:px-16 xl:px-20">
+    <div className="relative z-20 flex shrink-0 items-center justify-between gap-3 border-b border-black/[0.04] px-4 py-2.5 md:gap-4 md:px-10 md:py-3.5 lg:px-16 xl:px-20">
       {/*
         Use role="navigation" — NOT <nav>. Legacy landing CSS targets bare `nav`
         (fixed header), which would swallow this progress control.
@@ -318,15 +318,15 @@ function ChapterProgress({
       <div
         role="navigation"
         aria-label="Capítulos"
-        className="flex flex-wrap items-center gap-x-0.5 font-mono text-[0.7rem] font-medium tracking-[0.1em] md:text-xs md:tracking-[0.12em]"
+        className="-mx-1 flex max-w-[min(100%,20rem)] items-center gap-0 overflow-x-auto overscroll-x-contain px-1 font-mono text-[0.7rem] font-medium tracking-[0.1em] [-ms-overflow-style:none] [scrollbar-width:none] md:max-w-none md:flex-wrap md:overflow-visible md:text-xs md:tracking-[0.12em] [&::-webkit-scrollbar]:hidden"
       >
         {SIGNATURE_EVENTS.map((event, index) => {
           const active = index === activeIndex;
           return (
-            <span key={event.id} className="inline-flex items-center">
+            <span key={event.id} className="inline-flex shrink-0 items-center">
               {index > 0 ? (
                 <span
-                  className="mx-1.5 text-black/15 md:mx-2"
+                  className="mx-0.5 text-black/15 md:mx-2"
                   aria-hidden="true"
                 >
                   →
@@ -339,8 +339,8 @@ function ChapterProgress({
                 aria-label={`Capítulo ${formatEdition(event.id)} · ${event.title} · ${event.year}`}
                 className={
                   active
-                    ? "text-[#164A89] transition-colors duration-300"
-                    : "text-[#999] transition-colors duration-300 hover:text-[#555]"
+                    ? "flex min-h-11 min-w-11 items-center justify-center px-1.5 text-[#164A89] transition-colors duration-300 md:min-h-0 md:min-w-0 md:px-0"
+                    : "flex min-h-11 min-w-11 items-center justify-center px-1.5 text-[#999] transition-colors duration-300 hover:text-[#555] md:min-h-0 md:min-w-0 md:px-0"
                 }
               >
                 {formatEdition(event.id)}
@@ -350,7 +350,7 @@ function ChapterProgress({
         })}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex shrink-0 items-center gap-4">
         <p
           className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-[#999]"
           aria-live="polite"

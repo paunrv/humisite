@@ -45,12 +45,12 @@ export function SignatureEventRecap({
   const vimeoId = kind === "vimeo" ? getVimeoEmbedId(videoSrc) : null;
 
   return (
-    <div className={compact ? "w-full" : "mt-10 w-full max-w-[520px] md:mt-12"}>
-      <p className="mb-3 font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-[#888]">
+    <div className={compact ? "w-full" : "mt-8 w-full max-w-[520px] md:mt-12"}>
+      <p className="mb-2.5 font-mono text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[#888] md:mb-3 md:text-[0.7rem]">
         Resumen
       </p>
 
-      <div className="relative aspect-video w-full overflow-hidden bg-[#111]">
+      <div className="relative aspect-video w-full overflow-hidden rounded-[2px] bg-[#111] md:rounded-none">
         {!playing ? (
           <button
             type="button"
