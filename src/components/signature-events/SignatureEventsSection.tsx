@@ -18,8 +18,13 @@ const TOTAL = SIGNATURE_EVENTS.length;
 export function SignatureEventsSection() {
   const reduceMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
+  const activeIndexRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    activeIndexRef.current = activeIndex;
+  }, [activeIndex]);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
@@ -33,7 +38,9 @@ export function SignatureEventsSection() {
     const track = trackRef.current;
     if (!track) return;
 
-    const panels = [...track.querySelectorAll<HTMLElement>("[data-signature-panel]")];
+    const panels = [
+      ...track.querySelectorAll<HTMLElement>("[data-signature-panel]"),
+    ];
     if (!panels.length) return;
 
     const observer = new IntersectionObserver(
@@ -53,7 +60,7 @@ export function SignatureEventsSection() {
       },
       {
         root: isDesktop ? track : null,
-        threshold: [0.35, 0.55, 0.7],
+        threshold: [0.4, 0.6, 0.75],
       },
     );
 
@@ -69,11 +76,23 @@ export function SignatureEventsSection() {
         `[data-signature-panel][data-index="${index}"]`,
       );
       if (!panel) return;
+
+      if (isDesktop) {
+        const delta =
+          panel.getBoundingClientRect().left - track.getBoundingClientRect().left;
+        track.scrollBy({
+          left: delta,
+          behavior: reduceMotion ? "auto" : "smooth",
+        });
+        setActiveIndex(index);
+        return;
+      }
+
       panel.scrollIntoView({
         behavior: reduceMotion ? "auto" : "smooth",
-        inline: "start",
-        block: isDesktop ? "nearest" : "nearest",
+        block: "nearest",
       });
+      setActiveIndex(index);
     },
     [isDesktop, reduceMotion],
   );
@@ -83,21 +102,24 @@ export function SignatureEventsSection() {
     if (!track || !isDesktop) return;
 
     const onKey = (e: KeyboardEvent) => {
-      if (!track.contains(document.activeElement) && document.activeElement !== track) {
-        return;
-      }
+      const focused =
+        document.activeElement === track || track.contains(document.activeElement);
+      if (!focused) return;
+
       if (e.key === "ArrowRight") {
         e.preventDefault();
-        scrollToIndex(Math.min(activeIndex + 1, TOTAL - 1));
+        e.stopPropagation();
+        scrollToIndex(Math.min(activeIndexRef.current + 1, TOTAL - 1));
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
-        scrollToIndex(Math.max(activeIndex - 1, 0));
+        e.stopPropagation();
+        scrollToIndex(Math.max(activeIndexRef.current - 1, 0));
       }
     };
 
     track.addEventListener("keydown", onKey);
     return () => track.removeEventListener("keydown", onKey);
-  }, [activeIndex, isDesktop, scrollToIndex]);
+  }, [isDesktop, scrollToIndex]);
 
   const headerReveal = reduceMotion
     ? {}
