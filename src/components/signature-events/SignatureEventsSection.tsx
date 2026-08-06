@@ -62,7 +62,7 @@ export function SignatureEventsSection() {
   return (
     <section
       id="signature-events"
-      className="signature-events relative overflow-hidden border-t border-black/[0.06] bg-[#f7f7f5]"
+      className="signature-events relative border-t border-black/[0.06] bg-[#f7f7f5]"
       aria-labelledby="signature-events-heading"
     >
       <div
@@ -140,8 +140,8 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
 
   const { scrollYProgress } = useScroll({
     target: pinRef,
-    // Align with sticky top:0 — progress spans the full pin scroll range.
-    offset: ["start start", "end end"],
+    // Sticky engages at NAV_OFFSET_PX — start progress when the pin reaches that line.
+    offset: [`start ${NAV_OFFSET_PX}px`, "end end"],
   });
 
   // translateX % is relative to the track itself (width = TOTAL * 100% of viewport).
@@ -164,9 +164,13 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
     if (!pin) return;
     const rect = pin.getBoundingClientRect();
     const pinTop = window.scrollY + rect.top;
-    const scrollable = Math.max(1, pin.offsetHeight - window.innerHeight);
+    // Match sticky top offset so chapter 0 aligns when pin reaches the nav edge.
+    const scrollable = Math.max(
+      1,
+      pin.offsetHeight - (window.innerHeight - NAV_OFFSET_PX),
+    );
     const target =
-      pinTop + (index / Math.max(1, TOTAL - 1)) * scrollable;
+      pinTop - NAV_OFFSET_PX + (index / Math.max(1, TOTAL - 1)) * scrollable;
     window.scrollTo({ top: target, behavior: "smooth" });
   }, []);
 
@@ -176,42 +180,43 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
       className="relative"
       style={{ height: `${TOTAL * VH_PER_CHAPTER}vh` }}
     >
-      <div className="sticky top-0 h-dvh overflow-hidden">
-        {/* Clears the fixed site nav without shifting sticky math */}
-        <div
-          className="flex h-full flex-col"
-          style={{ paddingTop: NAV_OFFSET_PX }}
-        >
-          <ChapterProgress
-            activeIndex={activeIndex}
-            onSelect={goToChapter}
-            hint="Scroll to continue"
-          />
+      {/* Sit below the fixed 60px site nav so chapter progress stays visible */}
+      <div
+        className="sticky flex flex-col overflow-hidden"
+        style={{
+          top: NAV_OFFSET_PX,
+          height: `calc(100dvh - ${NAV_OFFSET_PX}px)`,
+        }}
+      >
+        <ChapterProgress
+          activeIndex={activeIndex}
+          onSelect={goToChapter}
+          hint="Scroll to continue"
+        />
 
-          <motion.div
-            style={{ x, width: `${TOTAL * 100}%` }}
-            className="flex min-h-0 flex-1 will-change-transform"
-            role="region"
-            aria-roledescription="timeline"
-            aria-label="Signature Events journey"
-          >
-            {SIGNATURE_EVENTS.map((event, index) => (
-              <div
-                key={event.id}
-                className="h-full shrink-0"
-                style={{ width: `${100 / TOTAL}%` }}
-              >
-                <SignatureEventChapter
-                  event={event}
-                  index={index}
-                  total={TOTAL}
-                  variant="journey"
-                  isActive={index === activeIndex}
-                />
-              </div>
-            ))}
-          </motion.div>
-        </div>
+        <motion.div
+          style={{ x, width: `${TOTAL * 100}%` }}
+          className="flex min-h-0 flex-1 will-change-transform"
+          role="region"
+          aria-roledescription="timeline"
+          aria-label="Signature Events journey"
+        >
+          {SIGNATURE_EVENTS.map((event, index) => (
+            <div
+              key={event.id}
+              className="h-full shrink-0"
+              style={{ width: `${100 / TOTAL}%` }}
+            >
+              <SignatureEventChapter
+                event={event}
+                index={index}
+                total={TOTAL}
+                variant="journey"
+                isActive={index === activeIndex}
+              />
+            </div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );
@@ -305,7 +310,12 @@ function ChapterProgress({
 }) {
   return (
     <div className="relative z-20 flex shrink-0 items-center justify-between gap-4 border-b border-black/[0.04] px-5 py-3.5 md:px-10 lg:px-16 xl:px-20">
-      <nav
+      {/*
+        Use role="navigation" — NOT <nav>. Legacy landing CSS targets bare `nav`
+        (fixed header), which would swallow this progress control.
+      */}
+      <div
+        role="navigation"
         aria-label="Chapters"
         className="flex flex-wrap items-center gap-x-0.5 font-mono text-[0.7rem] font-medium tracking-[0.1em] md:text-xs md:tracking-[0.12em]"
       >
@@ -337,7 +347,7 @@ function ChapterProgress({
             </span>
           );
         })}
-      </nav>
+      </div>
 
       <div className="flex items-center gap-4">
         <p
