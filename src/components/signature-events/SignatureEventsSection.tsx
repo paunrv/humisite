@@ -19,6 +19,7 @@ export function SignatureEventsSection() {
   const reduceMotion = useReducedMotion();
   const trackRef = useRef<HTMLDivElement>(null);
   const activeIndexRef = useRef(0);
+  const navLockRef = useRef(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -45,6 +46,7 @@ export function SignatureEventsSection() {
 
     const observer = new IntersectionObserver(
       (entries) => {
+        if (navLockRef.current) return;
         let best: { index: number; ratio: number } | null = null;
         for (const entry of entries) {
           if (!entry.isIntersecting) continue;
@@ -60,7 +62,7 @@ export function SignatureEventsSection() {
       },
       {
         root: isDesktop ? track : null,
-        threshold: [0.4, 0.6, 0.75],
+        threshold: [0.45, 0.65, 0.8],
       },
     );
 
@@ -78,13 +80,19 @@ export function SignatureEventsSection() {
       if (!panel) return;
 
       if (isDesktop) {
-        const delta =
-          panel.getBoundingClientRect().left - track.getBoundingClientRect().left;
-        track.scrollBy({
-          left: delta,
+        const left =
+          panel.getBoundingClientRect().left -
+          track.getBoundingClientRect().left +
+          track.scrollLeft;
+        navLockRef.current = true;
+        track.scrollTo({
+          left,
           behavior: reduceMotion ? "auto" : "smooth",
         });
         setActiveIndex(index);
+        window.setTimeout(() => {
+          navLockRef.current = false;
+        }, reduceMotion ? 50 : 450);
         return;
       }
 
@@ -103,8 +111,13 @@ export function SignatureEventsSection() {
 
     const onKey = (e: KeyboardEvent) => {
       const focused =
-        document.activeElement === track || track.contains(document.activeElement);
+        document.activeElement === track ||
+        track.contains(document.activeElement);
       if (!focused) return;
+      if (navLockRef.current) {
+        e.preventDefault();
+        return;
+      }
 
       if (e.key === "ArrowRight") {
         e.preventDefault();

@@ -30,7 +30,7 @@ export function SignatureEventChapter({
     <article
       data-signature-panel
       data-index={index}
-      className="signature-event flex w-full shrink-0 snap-center flex-col px-5 max-md:border-t max-md:border-black/[0.06] max-md:py-16 md:h-full md:w-[min(88vw,640px)] md:snap-start md:px-8 lg:w-[min(72vw,600px)] lg:px-10"
+      className="signature-event flex w-full shrink-0 snap-center flex-col px-5 max-md:border-t max-md:border-black/[0.06] max-md:py-16 md:h-full md:w-[min(88vw,640px)] md:snap-start md:snap-always md:px-8 lg:w-[min(72vw,600px)] lg:px-10"
       aria-labelledby={`signature-event-${event.id}-title`}
       aria-setsize={total}
       aria-posinset={index + 1}
