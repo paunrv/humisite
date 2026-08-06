@@ -304,17 +304,20 @@ function ChapterProgress({
   hint?: string;
 }) {
   return (
-    <div className="relative z-20 flex items-center justify-between gap-4 px-5 py-4 md:px-10 lg:px-16 xl:px-20">
+    <div className="relative z-20 flex shrink-0 items-center justify-between gap-4 border-b border-black/[0.04] px-5 py-3.5 md:px-10 lg:px-16 xl:px-20">
       <nav
         aria-label="Chapters"
-        className="flex flex-wrap items-center gap-x-1 gap-y-1 font-mono text-[0.7rem] font-medium tracking-[0.08em] text-[#bbb] md:text-xs md:tracking-[0.1em]"
+        className="flex flex-wrap items-center gap-x-0.5 font-mono text-[0.7rem] font-medium tracking-[0.1em] md:text-xs md:tracking-[0.12em]"
       >
         {SIGNATURE_EVENTS.map((event, index) => {
           const active = index === activeIndex;
           return (
             <span key={event.id} className="inline-flex items-center">
               {index > 0 ? (
-                <span className="mx-1.5 text-[#ddd] md:mx-2" aria-hidden="true">
+                <span
+                  className="mx-1.5 text-black/15 md:mx-2"
+                  aria-hidden="true"
+                >
                   →
                 </span>
               ) : null}
@@ -325,8 +328,8 @@ function ChapterProgress({
                 aria-label={`Chapter ${formatEdition(event.id)} · ${event.title} · ${event.year}`}
                 className={
                   active
-                    ? "text-[#0f0f0f] transition-colors duration-300"
-                    : "text-[#bbb] transition-colors duration-300 hover:text-[#666]"
+                    ? "text-[#164A89] transition-colors duration-300"
+                    : "text-[#999] transition-colors duration-300 hover:text-[#555]"
                 }
               >
                 {formatEdition(event.id)}
@@ -336,9 +339,9 @@ function ChapterProgress({
         })}
       </nav>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         <p
-          className="hidden font-mono text-[0.65rem] uppercase tracking-[0.12em] text-[#bbb] sm:block"
+          className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-[#999]"
           aria-live="polite"
         >
           {SIGNATURE_EVENTS[activeIndex]?.year}
