@@ -1,7 +1,13 @@
 /**
  * Signature Events — editorial archive of annual HUMI experiences.
- * Add a new year by appending an entry; media paths are public URLs.
- * Descriptions must stay within 35–45 words.
+ *
+ * Images live in /public/signature-events/{year}/
+ *   poster.jpg   · 3:4
+ *   photo-1.jpg  · 4:3
+ *   photo-2.jpg  · 4:3
+ *
+ * To update visuals: replace those files (or change the paths below).
+ * No component changes required.
  */
 
 export type SignatureEvent = {
@@ -12,10 +18,21 @@ export type SignatureEvent = {
   guest?: string;
   subtitle?: string;
   poster: string;
-  images: [string, string];
+  photo1: string;
+  photo2: string;
   /** 35–45 words. Hard limit. */
   description: string;
 };
+
+/** Helper — keeps paths consistent and easy to scan. */
+function eventImages(year: string) {
+  const base = `/signature-events/${year}`;
+  return {
+    poster: `${base}/poster.jpg`,
+    photo1: `${base}/photo-1.jpg`,
+    photo2: `${base}/photo-2.jpg`,
+  };
+}
 
 export const SIGNATURE_EVENTS: SignatureEvent[] = [
   {
@@ -25,8 +42,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Master Class",
     guest: "Carlo Molfetta",
     subtitle: "Olympic Champion · London 2012",
-    poster: "/images/pic02.jpg",
-    images: ["/images/pic01.jpg", "/images/pic04.jpg"],
+    ...eventImages("2018"),
     description:
       "HUMI opened its doors to Olympic-level training for the first time. Precision and intensity from London 2012 arrived in Ensenada, setting a new standard for what our community could aspire to become each year ahead.",
   },
@@ -37,8 +53,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Master Class",
     guest: "Joel González",
     subtitle: "Olympic Champion · London 2012",
-    poster: "/images/pic03.jpg",
-    images: ["/images/pic08.jpg", "/images/pic09.jpg"],
+    ...eventImages("2019"),
     description:
       "A second year, a second champion. Olympic fire returned to the dojang, deepening a tradition of world-class master classes that would define HUMI’s annual rhythm and raise the bar for every student on the mat.",
   },
@@ -47,8 +62,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2022",
     title: "Rumble HUMI Interno WTU",
     category: "Internal Competition",
-    poster: "/images/pic05.jpg",
-    images: ["/images/pic10.jpg", "/images/pic11.jpg"],
+    ...eventImages("2022"),
     description:
       "An internal competition under World Taekwondo Union standards. Athletes tested months of preparation against their own teammates, proving that the fiercest growth often happens inside the community that raised them, not on distant tournament floors.",
   },
@@ -58,8 +72,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "KI Games",
     category: "Performance Weekend",
     guest: "Gabriel Bracamontes",
-    poster: "/images/pic06.jpg",
-    images: ["/images/pic12.jpg", "/images/pic13.jpg"],
+    ...eventImages("2023"),
     description:
       "A performance weekend that pushed beyond the usual class format. The dojang became a stage for intensity, skill, and the kind of shared effort that turns a school into a lasting family bound by purpose.",
   },
@@ -68,8 +81,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2024",
     title: "Taekwondo Games",
     category: "Community Competition",
-    poster: "/images/pic07.jpg",
-    images: ["/images/pic14.jpg", "/images/pic16.jpg"],
+    ...eventImages("2024"),
     description:
       "The community competition that brought every generation onto the same floor. Students competed, supported, and celebrated, turning a single weekend into a living portrait of everything HUMI had carefully built across years of shared training.",
   },
@@ -80,8 +92,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Master Class",
     guest: "Jesús Aguilar",
     subtitle: "Official UFC Athlete",
-    poster: "/images/pic15.jpg",
-    images: ["/images/pic17.jpg", "/images/pic18.jpg"],
+    ...eventImages("2025"),
     description:
       "Technique met entertainment in a master class that filled the dojang with energy. A community that trains hard, and knows how to enjoy the journey together, made the day feel like one house under the same roof.",
   },

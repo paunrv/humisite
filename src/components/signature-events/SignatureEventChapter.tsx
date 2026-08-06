@@ -2,6 +2,7 @@
 
 import { formatEdition, type SignatureEvent } from "@/lib/signature-events";
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 
 type SignatureEventChapterProps = {
   event: SignatureEvent;
@@ -16,6 +17,8 @@ export function SignatureEventChapter({
 }: SignatureEventChapterProps) {
   const reduceMotion = useReducedMotion();
   const edition = formatEdition(event.id);
+  /** First panel is above-the-fold once the section is reached */
+  const prioritize = index === 0;
 
   const reveal = reduceMotion
     ? {}
@@ -68,14 +71,15 @@ export function SignatureEventChapter({
           ) : null}
         </div>
 
-        <figure className="group mt-10 w-full max-w-[360px] overflow-hidden bg-[#ebebe8] md:mt-12">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+        <figure className="group relative mt-10 w-full max-w-[360px] overflow-hidden bg-[#ebebe8] md:mt-12">
+          <Image
             src={event.poster}
             alt={`${event.title} — ${event.year}`}
-            className="aspect-[3/4] w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
-            loading="lazy"
-            decoding="async"
+            width={720}
+            height={960}
+            sizes="(max-width: 768px) 90vw, 360px"
+            priority={prioritize}
+            className="aspect-[3/4] h-auto w-full object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
           />
         </figure>
 
@@ -84,18 +88,19 @@ export function SignatureEventChapter({
         </p>
 
         <div className="mt-8 flex max-w-[420px] flex-col gap-3 sm:flex-row sm:gap-3 md:mt-10">
-          {event.images.map((src) => (
+          {[event.photo1, event.photo2].map((src) => (
             <figure
               key={src}
-              className="w-full max-w-[200px] overflow-hidden bg-[#ebebe8] opacity-90"
+              className="relative w-full max-w-[200px] overflow-hidden bg-[#ebebe8] opacity-90"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={src}
                 alt=""
-                className="aspect-[4/3] w-full object-cover"
+                width={400}
+                height={300}
+                sizes="200px"
                 loading="lazy"
-                decoding="async"
+                className="aspect-[4/3] h-auto w-full object-cover"
               />
             </figure>
           ))}
