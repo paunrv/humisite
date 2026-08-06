@@ -2,15 +2,18 @@
  * Signature Events — editorial archive of annual HUMI experiences.
  *
  * Assets live in /public/signature-events/{year}/
- *   poster.jpg       · 3:4
- *   photo-1.jpg      · 4:3
- *   photo-2.jpg      · 4:3
+ *   poster.jpg       · 3:4 · required
+ *   photo-1.jpg      · 4:3 · optional
+ *   photo-2.jpg      · 4:3 · optional
  *   recap.mp4        · optional local recap
  *   thumbnail.jpg    · optional video poster frame
  *
+ * Media hierarchy: poster (required) → recap (optional) → photos (optional).
+ * Omit or set `photo1` / `photo2` / `recapVideo` to null to hide that media —
+ * the chapter layout adapts with no empty gaps.
+ *
  * To update visuals: replace those files (or change the paths below).
  * To add a recap: set `recapVideo` (local path or YouTube/Vimeo URL).
- * No component changes required.
  */
 
 export type SignatureEvent = {
@@ -20,24 +23,39 @@ export type SignatureEvent = {
   category: string;
   guest?: string;
   subtitle?: string;
+  /** Required visual anchor (3:4). */
   poster: string;
-  photo1: string;
-  photo2: string;
-  /** Local mp4 path or YouTube/Vimeo URL. Omit to hide the player. */
-  recapVideo?: string;
+  /** Optional highlight. Omit / null → not rendered. */
+  photo1?: string | null;
+  /** Optional highlight. Omit / null → not rendered. */
+  photo2?: string | null;
+  /** Local mp4 path or YouTube/Vimeo URL. Omit / null → hide the player. */
+  recapVideo?: string | null;
   /** Poster frame shown before play (local image). Falls back to `poster`. */
-  recapThumbnail?: string;
+  recapThumbnail?: string | null;
   /** 35–45 words. Hard limit. */
   description: string;
 };
 
-/** Still imagery — always present. */
-function eventImages(year: string) {
+/** Required poster path for a year folder. */
+function eventPoster(year: string) {
+  return { poster: `/signature-events/${year}/poster.jpg` };
+}
+
+/** Optional highlight photos for a year folder. */
+function eventPhotos(year: string) {
   const base = `/signature-events/${year}`;
   return {
-    poster: `${base}/poster.jpg`,
     photo1: `${base}/photo-1.jpg`,
     photo2: `${base}/photo-2.jpg`,
+  };
+}
+
+/** Poster + both highlight photos (events that have the full still set). */
+function eventImages(year: string) {
+  return {
+    ...eventPoster(year),
+    ...eventPhotos(year),
   };
 }
 
@@ -52,6 +70,13 @@ function eventRecap(year: string, thumbnail?: string) {
     recapVideo: `${base}/recap.mp4`,
     ...(thumbnail ? { recapThumbnail: thumbnail } : {}),
   };
+}
+
+/** Non-empty media paths only — use before rendering. */
+export function presentMedia(
+  ...srcs: Array<string | null | undefined>
+): string[] {
+  return srcs.filter((src): src is string => typeof src === "string" && src.length > 0);
 }
 
 export const SIGNATURE_EVENTS: SignatureEvent[] = [
