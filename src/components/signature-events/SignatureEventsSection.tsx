@@ -80,7 +80,7 @@ export function SignatureEventsSection() {
           className="mx-auto max-w-[1100px] px-5 pb-6 pt-16 md:px-10 md:pb-6 md:pt-24"
         >
           <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-[#164A89] md:mb-4">
-            Eventos Emblemáticos
+            Experiencias HUMI
           </p>
           <h2
             id="signature-events-heading"
@@ -121,7 +121,7 @@ export function SignatureEventsSection() {
             Cada año llega un nuevo capítulo.
           </p>
           <p className="mt-4 text-base leading-relaxed text-[#666]">
-            Ya estamos trabajando en el próximo Evento Emblemático.
+            Ya estamos trabajando en la próxima Experiencia HUMI.
           </p>
         </motion.footer>
       </div>
@@ -200,7 +200,7 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
           className="flex min-h-0 flex-1 will-change-transform"
           role="region"
           aria-roledescription="timeline"
-          aria-label="Recorrido de Eventos Emblemáticos"
+          aria-label="Recorrido de Experiencias HUMI"
         >
           {SIGNATURE_EVENTS.map((event, index) => (
             <div
@@ -281,7 +281,7 @@ function StackTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
         ref={trackRef}
         className="flex flex-col gap-0"
         role="region"
-        aria-label="Archivo de Eventos Emblemáticos"
+        aria-label="Archivo de Experiencias HUMI"
       >
         {SIGNATURE_EVENTS.map((event, index) => (
           <SignatureEventChapter
@@ -317,7 +317,7 @@ function ChapterProgress({
       */}
       <div
         role="navigation"
-        aria-label="Capítulos"
+        aria-label="Experiencias"
         className="-mx-1 flex max-w-[min(100%,20rem)] items-center gap-0 overflow-x-auto overscroll-x-contain px-1 font-mono text-[0.7rem] font-medium tracking-[0.1em] [-ms-overflow-style:none] [scrollbar-width:none] md:max-w-none md:flex-wrap md:overflow-visible md:text-xs md:tracking-[0.12em] [&::-webkit-scrollbar]:hidden"
       >
         {SIGNATURE_EVENTS.map((event, index) => {
@@ -336,7 +336,7 @@ function ChapterProgress({
                 type="button"
                 onClick={() => onSelect(index)}
                 aria-current={active ? "true" : undefined}
-                aria-label={`Capítulo ${formatEdition(event.id)} · ${event.title} · ${event.year}`}
+                aria-label={`${formatEdition(event.id)} / ${formatEdition(TOTAL)} · ${event.title} · ${event.year}`}
                 className={
                   active
                     ? "flex min-h-11 min-w-11 items-center justify-center px-1.5 text-[#164A89] transition-colors duration-300 md:min-h-0 md:min-w-0 md:px-0"
@@ -352,10 +352,10 @@ function ChapterProgress({
 
       <div className="flex shrink-0 items-center gap-4">
         <p
-          className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-[#999]"
+          className="font-mono text-[0.65rem] tracking-[0.14em] text-black/30"
           aria-live="polite"
         >
-          {SIGNATURE_EVENTS[activeIndex]?.year}
+          {formatEdition(activeIndex + 1)} / {formatEdition(TOTAL)}
         </p>
         {hint ? (
           <p className="hidden font-mono text-[0.65rem] uppercase tracking-[0.12em] text-[#ccc] lg:block">

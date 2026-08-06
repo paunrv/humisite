@@ -1,4 +1,4 @@
-# Media curada — Eventos Emblemáticos
+# Media curada — Experiencias HUMI
 
 Coloca aquí **exactamente** estos archivos (nombres literales).  
 El sync no usa imágenes parecidas ni placeholders.
