@@ -7,17 +7,23 @@ El sync no usa imágenes parecidas ni placeholders.
 npm run sync:signature-media
 ```
 
+La sección se muestra de **más reciente a más antigua** (2025 → 2018).
+
 ## Stills
 
 | Archivo exacto | Año | Uso |
 | --- | --- | --- |
-| `1st-tkdolympicbootcamp.jpg` | 2018 | Poster |
-| `1st-tkdolympicbootcamp-01.jpg` | 2018 | Foto 1 |
-| `1st-tkdolympicbootcamp-02.jpg` | 2018 | Foto 2 |
+| `sunday-funday.jpg` | 2025 | Poster |
+| `sunday-funday-01.jpg` | 2025 | Foto 1 |
+| `sunday-funday-02.jpg` | 2025 | Foto 2 |
+| `taekwondo-games.jpg` | 2024 | Poster |
+| `ki-games.jpg` | 2023 | Poster |
 | `2nd-tkdolympicbootcamp.jpg` | 2019 | Poster |
 | `2nd-tkdolympicbootcamp-01.jpg` | 2019 | Foto 1 |
 | `2nd-tkdolympicbootcamp-02.jpg` | 2019 | Foto 2 |
-| `ki-games.jpg` | 2023 | Poster |
+| `1st-tkdolympicbootcamp.jpg` | 2018 | Poster |
+| `1st-tkdolympicbootcamp-01.jpg` | 2018 | Foto 1 |
+| `1st-tkdolympicbootcamp-02.jpg` | 2018 | Foto 2 |
 
 **No usar** `*-03.jpg`.
 
@@ -25,10 +31,21 @@ npm run sync:signature-media
 
 También en esta carpeta, o en `video/` / `video/signature-events/{year}/`:
 
-| Archivo exacto | Año |
-| --- | --- |
-| `Ruumble Humi.mp4` | 2022 |
-| `ki games.mp4` | 2023 |
-| `Taekwondo Games.mp4` | 2024 |
+| Archivo exacto | Año | Notas |
+| --- | --- | --- |
+| `Ruumble Humi.mp4` | 2022 | Solo video (sin poster ni fotos) |
+| `ki games.mp4` | 2023 | Con poster `ki-games.jpg` |
+| `Taekwondo Games.mp4` | 2024 | Alias aceptado: `taekwondo-games.mp4` |
 
-Sin estos archivos, el evento se muestra **sin** media (nunca con assets aleatorios).
+## Combinaciones por año
+
+| Año | Media |
+| --- | --- |
+| 2025 | Poster + fotos |
+| 2024 | Poster + video |
+| 2023 | Poster + video |
+| 2022 | Solo video |
+| 2019 | Poster + fotos |
+| 2018 | Poster + fotos |
+
+Sin el archivo curado exacto, ese slot no se renderiza (nunca con assets aleatorios).

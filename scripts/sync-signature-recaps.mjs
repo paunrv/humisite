@@ -30,14 +30,19 @@ const searchDirs = [
   path.join(root, "video"),
 ];
 
+/** Exact curated recaps. `aliases` are alternate exact filenames (same asset). */
 const RECAP_MAPPINGS = [
   { year: "2022", source: "Ruumble Humi.mp4" },
   { year: "2023", source: "ki games.mp4" },
-  { year: "2024", source: "Taekwondo Games.mp4" },
+  {
+    year: "2024",
+    source: "Taekwondo Games.mp4",
+    aliases: ["taekwondo-games.mp4"],
+  },
 ];
 
-function findExact(filename) {
-  const lower = filename.toLowerCase();
+function findExact(filename, aliases = []) {
+  const candidates = [filename, ...aliases].map((n) => n.toLowerCase());
   const dirs = [];
   for (const dir of searchDirs) {
     if (!existsSync(dir)) continue;
@@ -49,7 +54,8 @@ function findExact(filename) {
   for (const d of dirs) {
     if (!existsSync(d)) continue;
     for (const entry of readdirSync(d)) {
-      if (entry.toLowerCase() === lower && entry.endsWith(".mp4")) {
+      if (!entry.toLowerCase().endsWith(".mp4")) continue;
+      if (candidates.includes(entry.toLowerCase())) {
         return path.join(d, entry);
       }
     }
@@ -98,9 +104,10 @@ if (existsSync(generatedPath)) {
 let copied = 0;
 let missing = 0;
 
-for (const { year, source } of RECAP_MAPPINGS) {
-  const from = findExact(source);
+for (const { year, source, aliases = [] } of RECAP_MAPPINGS) {
+  const from = findExact(source, aliases);
   const outDir = path.join(root, "public", "signature-events", year);
+  // Always publish under the canonical curated filename.
   const to = path.join(outDir, source);
   mkdirSync(outDir, { recursive: true });
 
@@ -113,6 +120,9 @@ for (const { year, source } of RECAP_MAPPINGS) {
   copyFileSync(from, to);
   mediaByYear[year] ??= {};
   mediaByYear[year].recapVideo = publicUrl(year, source);
+  if (mediaByYear[year].poster) {
+    mediaByYear[year].recapThumbnail = mediaByYear[year].poster;
+  }
   copied += 1;
   console.log(
     `sync-signature-recaps: ${path.relative(root, from)} → public/signature-events/${year}/${source}`,
