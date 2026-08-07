@@ -336,14 +336,14 @@ function ChapterProgress({
                 type="button"
                 onClick={() => onSelect(index)}
                 aria-current={active ? "true" : undefined}
-                aria-label={`${formatEdition(event.id)} / ${formatEdition(TOTAL)} · ${event.title} · ${event.year}`}
+                aria-label={`${formatEdition(index + 1)} / ${formatEdition(TOTAL)} · ${event.title} · ${event.year}`}
                 className={
                   active
                     ? "flex min-h-11 min-w-11 items-center justify-center px-1.5 text-[#164A89] transition-colors duration-300 md:min-h-0 md:min-w-0 md:px-0"
                     : "flex min-h-11 min-w-11 items-center justify-center px-1.5 text-[#999] transition-colors duration-300 hover:text-[#555] md:min-h-0 md:min-w-0 md:px-0"
                 }
               >
-                {formatEdition(event.id)}
+                {formatEdition(index + 1)}
               </button>
             </span>
           );

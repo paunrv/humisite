@@ -36,22 +36,37 @@ function findExact(dir, filename) {
   return null;
 }
 
-/** Exact curated stills only. Do NOT map *-03.jpg. */
+/**
+ * Exact curated stills only.
+ * Do NOT map *-03.jpg.
+ * Timeline display order is newest→oldest in signature-events.ts;
+ * year keys here stay chronological for folder layout.
+ */
 const STILL_MAPPINGS = [
   {
-    year: "2018",
-    source: "1st-tkdolympicbootcamp.jpg",
+    year: "2025",
+    source: "sunday-funday.jpg",
     field: "poster",
   },
   {
-    year: "2018",
-    source: "1st-tkdolympicbootcamp-01.jpg",
+    year: "2025",
+    source: "sunday-funday-01.jpg",
     field: "photo1",
   },
   {
-    year: "2018",
-    source: "1st-tkdolympicbootcamp-02.jpg",
+    year: "2025",
+    source: "sunday-funday-02.jpg",
     field: "photo2",
+  },
+  {
+    year: "2024",
+    source: "taekwondo-games.jpg",
+    field: "poster",
+  },
+  {
+    year: "2023",
+    source: "ki-games.jpg",
+    field: "poster",
   },
   {
     year: "2019",
@@ -69,9 +84,19 @@ const STILL_MAPPINGS = [
     field: "photo2",
   },
   {
-    year: "2023",
-    source: "ki-games.jpg",
+    year: "2018",
+    source: "1st-tkdolympicbootcamp.jpg",
     field: "poster",
+  },
+  {
+    year: "2018",
+    source: "1st-tkdolympicbootcamp-01.jpg",
+    field: "photo1",
+  },
+  {
+    year: "2018",
+    source: "1st-tkdolympicbootcamp-02.jpg",
+    field: "photo2",
   },
 ];
 

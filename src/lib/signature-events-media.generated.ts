@@ -11,4 +11,15 @@ export type CuratedEventMedia = {
   recapThumbnail?: string;
 };
 
-export const CURATED_EVENT_MEDIA: Record<string, CuratedEventMedia> = {};
+export const CURATED_EVENT_MEDIA: Record<string, CuratedEventMedia> = {
+  "2024": {
+    "poster": "/signature-events/2024/taekwondo-games.jpg",
+    "recapVideo": "/signature-events/2024/Taekwondo%20Games.mp4",
+    "recapThumbnail": "/signature-events/2024/taekwondo-games.jpg"
+  },
+  "2025": {
+    "poster": "/signature-events/2025/sunday-funday.jpg",
+    "photo1": "/signature-events/2025/sunday-funday-01.jpg",
+    "photo2": "/signature-events/2025/sunday-funday-02.jpg"
+  }
+};
