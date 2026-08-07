@@ -13,7 +13,7 @@ La sección se muestra de **más reciente a más antigua** (2025 → 2018).
 
 | Archivo exacto | Año | Uso |
 | --- | --- | --- |
-| `sunday-funday.jpg` | 2025 | Poster |
+| `sunday-funday.jpg` | 2025 | Poster. Preferido si existe: `Sunday Funday 03.jpg` / `sunday-funday-03.jpg` |
 | `sunday-funday-01.jpg` | 2025 | Foto 1 |
 | `sunday-funday-02.jpg` | 2025 | Foto 2 |
 | `taekwondo-games.jpg` | 2024 | Poster |
@@ -33,7 +33,7 @@ También en esta carpeta, o en `video/` / `video/signature-events/{year}/`:
 
 | Archivo exacto | Año | Notas |
 | --- | --- | --- |
-| `Ruumble Humi.mp4` | 2022 | Solo video (sin poster ni fotos) |
+| `Ruumble Humi.mp4` | 2022 | Solo video (sin poster ni fotos). Alias: `Rumble Humi.mp4` |
 | `ki games.mp4` | 2023 | Con poster `ki-games.jpg` |
 | `Taekwondo Games.mp4` | 2024 | Alias aceptado: `taekwondo-games.mp4` |
 

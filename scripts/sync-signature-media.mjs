@@ -26,26 +26,33 @@ const generatedPath = path.join(
   "signature-events-media.generated.ts",
 );
 
-/** Case-insensitive exact filename lookup. */
-function findExact(dir, filename) {
+/** Case-insensitive exact filename lookup (first match wins). */
+function findExact(dir, filenames) {
   if (!existsSync(dir)) return null;
-  const lower = filename.toLowerCase();
-  for (const entry of readdirSync(dir)) {
-    if (entry.toLowerCase() === lower) return path.join(dir, entry);
+  const names = Array.isArray(filenames) ? filenames : [filenames];
+  const entries = readdirSync(dir);
+  for (const filename of names) {
+    const lower = filename.toLowerCase();
+    for (const entry of entries) {
+      if (entry.toLowerCase() === lower) return path.join(dir, entry);
+    }
   }
   return null;
 }
 
 /**
  * Exact curated stills only.
- * Do NOT map *-03.jpg.
+ * Do NOT map bootcamp *-03.jpg extras.
+ * Sunday Funday poster may come from "Sunday Funday 03.jpg".
  * Timeline display order is newest→oldest in signature-events.ts;
  * year keys here stay chronological for folder layout.
  */
 const STILL_MAPPINGS = [
   {
     year: "2025",
+    // Prefer the curated “03” still as the chapter poster when present.
     source: "sunday-funday.jpg",
+    aliases: ["Sunday Funday 03.jpg", "sunday-funday-03.jpg"],
     field: "poster",
   },
   {
@@ -108,9 +115,11 @@ mkdirSync(mediaDir, { recursive: true });
 let copied = 0;
 let missing = 0;
 
-for (const { year, source, field } of STILL_MAPPINGS) {
-  const from = findExact(mediaDir, source);
+for (const { year, source, aliases = [], field } of STILL_MAPPINGS) {
+  // Alias names are preferred when listed first in the lookup order.
+  const from = findExact(mediaDir, [...aliases, source]);
   const outDir = path.join(root, "public", "signature-events", year);
+  // Always publish under the canonical curated filename.
   const to = path.join(outDir, source);
   mkdirSync(outDir, { recursive: true });
 
@@ -124,8 +133,11 @@ for (const { year, source, field } of STILL_MAPPINGS) {
   mediaByYear[year] ??= {};
   mediaByYear[year][field] = `/signature-events/${year}/${source}`;
   copied += 1;
+  const fromName = path.basename(from);
   console.log(
-    `sync-signature-media: ${source} → public/signature-events/${year}/${source}`,
+    fromName === source
+      ? `sync-signature-media: ${source} → public/signature-events/${year}/${source}`
+      : `sync-signature-media: ${fromName} → public/signature-events/${year}/${source}`,
   );
 }
 
