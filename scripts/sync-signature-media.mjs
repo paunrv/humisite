@@ -43,16 +43,13 @@ function findExact(dir, filenames) {
 /**
  * Exact curated stills only.
  * Do NOT map bootcamp *-03.jpg extras.
- * Sunday Funday poster may come from "Sunday Funday 03.jpg".
  * Timeline display order is newest→oldest in signature-events.ts;
  * year keys here stay chronological for folder layout.
  */
 const STILL_MAPPINGS = [
   {
     year: "2025",
-    // Prefer the curated “03” still as the chapter poster when present.
-    source: "sunday-funday.jpg",
-    aliases: ["Sunday Funday 03.jpg", "sunday-funday-03.jpg"],
+    source: "sunday-funday-poster.jpg",
     field: "poster",
   },
   {
@@ -62,7 +59,7 @@ const STILL_MAPPINGS = [
   },
   {
     year: "2025",
-    source: "sunday-funday-02.jpg",
+    source: "sunday-funday-03.jpg",
     field: "photo2",
   },
   {

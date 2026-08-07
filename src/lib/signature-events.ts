@@ -47,12 +47,11 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     id: 1,
     year: "2025",
     title: "Sunday Funday",
-    category: "Clase Magistral",
-    guest: "Jesús Aguilar",
-    subtitle: "Atleta oficial de UFC",
+    category: "Master Class · Jesús Aguilar",
+    subtitle: "Official UFC Athlete",
     ...mediaFor("2025"),
     description:
-      "La técnica se encontró con el entretenimiento en una clase magistral que llenó el dojang de energía. Una comunidad que entrena duro y sabe disfrutar el camino juntos hizo que el día se sintiera como una sola casa bajo el mismo techo.",
+      "To celebrate HUMI's 15th Anniversary, we brought our community together for a unique experience featuring a tuna cutting ceremony (Ronqueo de Atún) and a Master Class with UFC athlete Jesús Aguilar, all hosted at a beautiful marina in Ensenada.",
   },
   {
     id: 2,
