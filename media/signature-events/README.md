@@ -13,9 +13,9 @@ La sección se muestra de **más reciente a más antigua** (2025 → 2018).
 
 | Archivo exacto | Año | Uso |
 | --- | --- | --- |
-| `sunday-funday.jpg` | 2025 | Poster. Preferido si existe: `Sunday Funday 03.jpg` / `sunday-funday-03.jpg` |
-| `sunday-funday-01.jpg` | 2025 | Foto 1 |
-| `sunday-funday-02.jpg` | 2025 | Foto 2 |
+| `sunday-funday-poster.jpg` | 2025 | Poster |
+| `sunday-funday-01.jpg` | 2025 | Foto 1 (highlight) |
+| `sunday-funday-03.jpg` | 2025 | Foto 2 (highlight) |
 | `taekwondo-games.jpg` | 2024 | Poster |
 | `ki-games.jpg` | 2023 | Poster |
 | `2nd-tkdolympicbootcamp.jpg` | 2019 | Poster |
