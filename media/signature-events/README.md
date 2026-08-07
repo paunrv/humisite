@@ -33,7 +33,7 @@ También en esta carpeta, o en `video/` / `video/signature-events/{year}/`:
 
 | Archivo exacto | Año | Notas |
 | --- | --- | --- |
-| `Ruumble Humi.mp4` | 2022 | Solo video (sin poster ni fotos) |
+| `Ruumble Humi.mp4` | 2022 | Solo video (sin poster ni fotos). Alias: `Rumble Humi.mp4` |
 | `ki games.mp4` | 2023 | Con poster `ki-games.jpg` |
 | `Taekwondo Games.mp4` | 2024 | Alias aceptado: `taekwondo-games.mp4` |
 

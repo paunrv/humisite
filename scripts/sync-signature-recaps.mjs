@@ -32,7 +32,12 @@ const searchDirs = [
 
 /** Exact curated recaps. `aliases` are alternate exact filenames (same asset). */
 const RECAP_MAPPINGS = [
-  { year: "2022", source: "Ruumble Humi.mp4" },
+  {
+    year: "2022",
+    // Canonical curated name keeps the historical spelling.
+    source: "Ruumble Humi.mp4",
+    aliases: ["Rumble Humi.mp4"],
+  },
   { year: "2023", source: "ki games.mp4" },
   {
     year: "2024",
