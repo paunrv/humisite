@@ -1,7 +1,8 @@
 # Media curada — Experiencias HUMI
 
-Coloca aquí **exactamente** estos archivos (nombres literales).  
-El sync no usa imágenes parecidas ni placeholders.
+Media assets are paused while the section uses empty **split** / **double**
+layout frames. Keep dropping exact files here; sync wiring returns when media
+is reattached to events.
 
 ```bash
 npm run sync:signature-media
@@ -9,7 +10,14 @@ npm run sync:signature-media
 
 La sección se muestra de **más reciente a más antigua** (2025 → 2018).
 
-## Stills
+## Layouts (data-driven)
+
+| `layout` | Composition |
+| --- | --- |
+| `split` | 1 vertical + 2 stacked horizontals |
+| `double` | 2 equal verticals |
+
+## Stills (exact filenames — for when media returns)
 
 | Archivo exacto | Año | Uso |
 | --- | --- | --- |
@@ -25,7 +33,7 @@ La sección se muestra de **más reciente a más antigua** (2025 → 2018).
 | `1st-tkdolympicbootcamp-01.jpg` | 2018 | Foto 1 |
 | `1st-tkdolympicbootcamp-02.jpg` | 2018 | Foto 2 |
 
-**No usar** `*-03.jpg`.
+**No usar** bootcamp `*-03.jpg`.
 
 ## Videos
 
@@ -36,16 +44,3 @@ También en esta carpeta, o en `video/` / `video/signature-events/{year}/`:
 | `Ruumble Humi.mp4` | 2022 | Solo video (sin poster ni fotos). Alias: `Rumble Humi.mp4` |
 | `ki games.mp4` | 2023 | Con poster `ki-games.jpg` |
 | `Taekwondo Games.mp4` | 2024 | Alias aceptado: `taekwondo-games.mp4` |
-
-## Combinaciones por año
-
-| Año | Media |
-| --- | --- |
-| 2025 | Poster + fotos |
-| 2024 | Poster + video |
-| 2023 | Poster + video |
-| 2022 | Solo video |
-| 2019 | Poster + fotos |
-| 2018 | Poster + fotos |
-
-Sin el archivo curado exacto, ese slot no se renderiza (nunca con assets aleatorios).

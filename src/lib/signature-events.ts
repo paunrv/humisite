@@ -3,12 +3,11 @@
  *
  * Display order: newest → oldest (present back to the first Bootcamp).
  *
- * Media: ONLY exact curated files from media/signature-events/ (and video/),
- * synced by scripts/sync-signature-media.mjs + sync-signature-recaps.mjs.
- * Never reference placeholder or “similar” assets.
+ * Media: each event uses one of two compositions via `layout`.
+ * Assets are wired later — frames render empty until then.
  */
 
-import { CURATED_EVENT_MEDIA } from "@/lib/signature-events-media.generated";
+export type SignatureEventMediaLayout = "split" | "double";
 
 export type SignatureEvent = {
   id: number;
@@ -17,26 +16,15 @@ export type SignatureEvent = {
   category: string;
   guest?: string;
   subtitle?: string;
-  /** Optional. Omit / null → not rendered. */
-  poster?: string | null;
-  photo1?: string | null;
-  photo2?: string | null;
-  recapVideo?: string | null;
-  recapThumbnail?: string | null;
   /** ~35–45 words. */
   description: string;
+  /**
+   * Media composition only:
+   * - `split` → 1 vertical + 2 stacked horizontals
+   * - `double` → 2 equal verticals
+   */
+  layout: SignatureEventMediaLayout;
 };
-
-/** Non-empty media paths only — use before rendering. */
-export function presentMedia(
-  ...srcs: Array<string | null | undefined>
-): string[] {
-  return srcs.filter((src): src is string => typeof src === "string" && src.length > 0);
-}
-
-function mediaFor(year: string) {
-  return CURATED_EVENT_MEDIA[year] ?? {};
-}
 
 /**
  * Newest first → oldest last.
@@ -49,7 +37,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Sunday Funday",
     category: "Master Class · Jesús Aguilar",
     subtitle: "Official UFC Athlete",
-    ...mediaFor("2025"),
+    layout: "split",
     description:
       "To celebrate HUMI's 15th Anniversary, we brought our community together for a unique experience featuring a tuna cutting ceremony (Ronqueo de Atún) and a Master Class with UFC athlete Jesús Aguilar, all hosted at a beautiful marina in Ensenada.",
   },
@@ -58,7 +46,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2024",
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
-    ...mediaFor("2024"),
+    layout: "double",
     description:
       "La competencia comunitaria que reunió a todas las generaciones en un mismo piso. Alumnos compitieron, se apoyaron y celebraron, convirtiendo un solo fin de semana en el retrato vivo de todo lo que HUMI había construido con los años.",
   },
@@ -68,7 +56,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "KI Games",
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
-    ...mediaFor("2023"),
+    layout: "double",
     description:
       "Un fin de semana de rendimiento que fue más allá del formato habitual de clase. El dojang se convirtió en escenario de intensidad, técnica y el esfuerzo compartido que transforma una escuela en una familia unida por un propósito.",
   },
@@ -77,7 +65,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2022",
     title: "Rumble HUMI Interno WTU",
     category: "Competencia Interna",
-    ...mediaFor("2022"),
+    layout: "double",
     description:
       "Una competencia interna bajo estándares de World Taekwondo Union. Los atletas midieron meses de preparación contra sus propios compañeros, demostrando que el crecimiento más intenso a menudo nace dentro de la comunidad que los formó.",
   },
@@ -88,7 +76,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Joel González",
     subtitle: "Campeón Olímpico · Londres 2012",
-    ...mediaFor("2019"),
+    layout: "split",
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
   },
@@ -99,7 +87,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Carlo Molfetta",
     subtitle: "Campeón Olímpico · Londres 2012",
-    ...mediaFor("2018"),
+    layout: "split",
     description:
       "HUMI abrió sus puertas al entrenamiento de nivel olímpico por primera vez. Precisión e intensidad de Londres 2012 llegaron a Ensenada y fijaron un nuevo estándar de lo que nuestra comunidad podía aspirar a ser cada año.",
   },
@@ -112,26 +100,4 @@ export function formatEdition(id: number): string {
 /** Assert descriptions stay in the 35–45 word band (dev aid). */
 export function descriptionWordCount(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
-}
-
-export type HostedVideoKind = "youtube" | "vimeo" | "file";
-
-export function getRecapVideoKind(src: string): HostedVideoKind {
-  if (/youtube\.com|youtu\.be/i.test(src)) return "youtube";
-  if (/vimeo\.com/i.test(src)) return "vimeo";
-  return "file";
-}
-
-export function getYouTubeEmbedId(src: string): string | null {
-  const short = src.match(/youtu\.be\/([\w-]{6,})/i);
-  if (short?.[1]) return short[1];
-  const watch = src.match(/[?&]v=([\w-]{6,})/i);
-  if (watch?.[1]) return watch[1];
-  const embed = src.match(/youtube\.com\/embed\/([\w-]{6,})/i);
-  return embed?.[1] ?? null;
-}
-
-export function getVimeoEmbedId(src: string): string | null {
-  const match = src.match(/vimeo\.com\/(?:video\/)?(\d+)/i);
-  return match?.[1] ?? null;
 }
