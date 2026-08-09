@@ -1,14 +1,13 @@
 # Media curada — Experiencias HUMI
 
-Media assets are paused while the section uses empty **split** / **double**
-layout frames. Keep dropping exact files here; sync wiring returns when media
-is reattached to events.
+Drop exact filenames here, then sync:
 
 ```bash
 npm run sync:signature-media
 ```
 
 La sección se muestra de **más reciente a más antigua** (2025 → 2018).
+Los frames `split` / `double` muestran las fotos curadas cuando existen.
 
 ## Layouts (data-driven)
 
@@ -17,11 +16,11 @@ La sección se muestra de **más reciente a más antigua** (2025 → 2018).
 | `split` | 1 vertical + 2 stacked horizontals |
 | `double` | 2 equal verticals |
 
-## Stills (exact filenames — for when media returns)
+## Stills (exact filenames)
 
 | Archivo exacto | Año | Uso |
 | --- | --- | --- |
-| `sunday-funday-poster.jpg` | 2025 | Poster |
+| `sunday-funday-poster.jpg` | 2025 | Poster (vertical) |
 | `sunday-funday-01.jpg` | 2025 | Foto 1 (highlight) |
 | `sunday-funday-03.jpg` | 2025 | Foto 2 (highlight) |
 | `taekwondo-games.jpg` | 2024 | Poster |
