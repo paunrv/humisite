@@ -18,6 +18,8 @@ export const CURATED_EVENT_MEDIA: Record<string, CuratedEventMedia> = {
     "recapThumbnail": "/signature-events/2024/taekwondo-games.jpg"
   },
   "2025": {
-    "photo1": "/signature-events/2025/sunday-funday-01.jpg"
+    "poster": "/signature-events/2025/sunday-funday-poster.jpg",
+    "photo1": "/signature-events/2025/sunday-funday-01.jpg",
+    "photo2": "/signature-events/2025/sunday-funday-03.jpg"
   }
 };

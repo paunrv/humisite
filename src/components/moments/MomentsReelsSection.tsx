@@ -5,7 +5,7 @@ import { useFinePointerHover } from "@/lib/use-fine-pointer-hover";
 import { useState } from "react";
 import { MomentsReelCell } from "./MomentsReelCell";
 
-/** Form · Human · Energy — mismo trío que el intro */
+/** Forma · Humano · Energía — mismo trío que el intro */
 const MOMENTOS_PANELS = INTRO_PANELS;
 
 export function MomentsReelsSection() {

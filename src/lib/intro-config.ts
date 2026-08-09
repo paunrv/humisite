@@ -8,21 +8,21 @@ export type IntroPanelConfig = ReelPanelConfig & { id: IntroPanelId };
 export const INTRO_PANELS: IntroPanelConfig[] = [
   {
     id: "form",
-    label: "Form",
+    label: "Forma",
     videoSrc: "/videos/intro/form.mp4",
     posterSrc: "/images/pic01.jpg",
     sourceHashtagUrl: "https://www.instagram.com/explore/tags/humitaekwondo/",
   },
   {
     id: "human",
-    label: "Human",
+    label: "Humano",
     videoSrc: "/videos/intro/human.mp4",
     posterSrc: "/images/pic07.jpg",
     sourceHashtagUrl: "https://www.instagram.com/explore/tags/humitaekwondo/",
   },
   {
     id: "energy",
-    label: "Energy",
+    label: "Energía",
     videoSrc: "/videos/intro/energy.mp4",
     posterSrc: "/images/pic06.jpg",
     sourceHashtagUrl: "https://www.instagram.com/explore/tags/entrenaconconciencia/",

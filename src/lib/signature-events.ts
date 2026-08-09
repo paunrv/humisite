@@ -4,8 +4,10 @@
  * Display order: newest → oldest (present back to the first Bootcamp).
  *
  * Media: each event uses one of two compositions via `layout`.
- * Assets are wired later — frames render empty until then.
+ * Curated assets come from media/signature-events/ via sync:signature-media.
  */
+
+import { CURATED_EVENT_MEDIA } from "@/lib/signature-events-media.generated";
 
 export type SignatureEventMediaLayout = "split" | "double";
 
@@ -24,7 +26,19 @@ export type SignatureEvent = {
    * - `double` → 2 equal verticals
    */
   layout: SignatureEventMediaLayout;
+  poster?: string | null;
+  photo1?: string | null;
+  photo2?: string | null;
 };
+
+function mediaFor(year: string) {
+  const media = CURATED_EVENT_MEDIA[year] ?? {};
+  return {
+    poster: media.poster ?? null,
+    photo1: media.photo1 ?? null,
+    photo2: media.photo2 ?? null,
+  };
+}
 
 /**
  * Newest first → oldest last.
@@ -35,11 +49,12 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     id: 1,
     year: "2025",
     title: "Sunday Funday",
-    category: "Master Class · Jesús Aguilar",
-    subtitle: "Official UFC Athlete",
+    category: "Clase Magistral · Jesús Aguilar",
+    subtitle: "Atleta oficial de UFC",
     layout: "split",
+    ...mediaFor("2025"),
     description:
-      "To celebrate HUMI's 15th Anniversary, we brought our community together for a unique experience featuring a tuna cutting ceremony (Ronqueo de Atún) and a Master Class with UFC athlete Jesús Aguilar, all hosted at a beautiful marina in Ensenada.",
+      "Para celebrar el 15.º aniversario de HUMI, reunimos a nuestra comunidad en una experiencia única con un ronqueo de atún y una clase magistral con el atleta de UFC Jesús Aguilar, en una marina de Ensenada.",
   },
   {
     id: 2,
@@ -47,6 +62,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
     layout: "double",
+    ...mediaFor("2024"),
     description:
       "La competencia comunitaria que reunió a todas las generaciones en un mismo piso. Alumnos compitieron, se apoyaron y celebraron, convirtiendo un solo fin de semana en el retrato vivo de todo lo que HUMI había construido con los años.",
   },
@@ -57,6 +73,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
     layout: "double",
+    ...mediaFor("2023"),
     description:
       "Un fin de semana de rendimiento que fue más allá del formato habitual de clase. El dojang se convirtió en escenario de intensidad, técnica y el esfuerzo compartido que transforma una escuela en una familia unida por un propósito.",
   },
@@ -66,6 +83,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Rumble HUMI Interno WTU",
     category: "Competencia Interna",
     layout: "double",
+    ...mediaFor("2022"),
     description:
       "Una competencia interna bajo estándares de World Taekwondo Union. Los atletas midieron meses de preparación contra sus propios compañeros, demostrando que el crecimiento más intenso a menudo nace dentro de la comunidad que los formó.",
   },
@@ -77,6 +95,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     guest: "Joel González",
     subtitle: "Campeón Olímpico · Londres 2012",
     layout: "split",
+    ...mediaFor("2019"),
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
   },
@@ -88,6 +107,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     guest: "Carlo Molfetta",
     subtitle: "Campeón Olímpico · Londres 2012",
     layout: "split",
+    ...mediaFor("2018"),
     description:
       "HUMI abrió sus puertas al entrenamiento de nivel olímpico por primera vez. Precisión e intensidad de Londres 2012 llegaron a Ensenada y fijaron un nuevo estándar de lo que nuestra comunidad podía aspirar a ser cada año.",
   },

@@ -53,7 +53,16 @@ export function SignatureEventChapter({
   );
 
   const media = (
-    <SignatureEventMedia layout={event.layout} variant={variant} />
+    <SignatureEventMedia
+      layout={event.layout}
+      variant={variant}
+      title={event.title}
+      year={event.year}
+      poster={event.poster}
+      photo1={event.photo1}
+      photo2={event.photo2}
+      priority={index === 0}
+    />
   );
 
   return (
