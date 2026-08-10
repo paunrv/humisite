@@ -53,13 +53,12 @@ export function SignatureEventChapter({
   );
 
   const media =
-    event.images.length > 0 ? (
+    event.media.length > 0 ? (
       <SignatureEventMedia
-        layout={event.layout}
         variant={variant}
         title={event.title}
         year={event.year}
-        images={event.images}
+        media={event.media}
         priority={index === 0}
       />
     ) : null;

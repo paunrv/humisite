@@ -1,17 +1,24 @@
 # Experiencias HUMI — media pública
 
-Put stills directly in year folders and reference the public paths in
-`src/lib/signature-events.ts` (`images: [...]`).
+List media on each event in `src/lib/signature-events.ts`:
 
-```
-public/signature-events/
-  2025/
-    sunday-funday-poster.jpg
-    sunday-funday-01.jpg
-    sunday-funday-03.jpg
-  2024/
-    taekwondo-games.jpg
+```ts
+media: [
+  { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
+  { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
+  { type: "image", src: "/signature-events/2025/sunday-funday-03.jpg" },
+]
 ```
 
-No sync step. No generated media map. Missing images are simply omitted from
-the event’s `images` array — the UI renders only what you list.
+Supported types: `poster` | `image` | `video`.
+
+Composition (derived automatically):
+
+| Available media | Layout |
+| --- | --- |
+| Poster + 2 images | Editorial photo layout |
+| Poster + video | Poster + large inline video |
+| Video only | Large inline video |
+| Poster only | Poster only |
+
+Put stills under `public/signature-events/{year}/`. Videos may live there too, or reuse paths already synced by `npm run sync:videos` (e.g. `/videos/moments/...`).
