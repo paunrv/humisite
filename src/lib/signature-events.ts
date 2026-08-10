@@ -2,12 +2,8 @@
  * Experiencias HUMI — archivo editorial de experiencias anuales de HUMI.
  *
  * Display order: newest → oldest (present back to the first Bootcamp).
- *
- * Media: each event uses one of two compositions via `layout`.
- * Curated assets come from media/signature-events/ via sync:signature-media.
+ * Each event fully describes its copy and public media paths.
  */
-
-import { CURATED_EVENT_MEDIA } from "@/lib/signature-events-media.generated";
 
 export type SignatureEventMediaLayout = "split" | "double";
 
@@ -21,24 +17,14 @@ export type SignatureEvent = {
   /** ~35–45 words. */
   description: string;
   /**
-   * Media composition only:
-   * - `split` → 1 vertical + 2 stacked horizontals
-   * - `double` → 2 equal verticals
+   * Media composition:
+   * - `split` → 1 vertical + up to 2 stacked horizontals
+   * - `double` → up to 2 equal verticals
    */
   layout: SignatureEventMediaLayout;
-  poster?: string | null;
-  photo1?: string | null;
-  photo2?: string | null;
+  /** Public paths under /signature-events/. Omit or [] when no stills. */
+  images: string[];
 };
-
-function mediaFor(year: string) {
-  const media = CURATED_EVENT_MEDIA[year] ?? {};
-  return {
-    poster: media.poster ?? null,
-    photo1: media.photo1 ?? null,
-    photo2: media.photo2 ?? null,
-  };
-}
 
 /**
  * Newest first → oldest last.
@@ -52,7 +38,11 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral · Jesús Aguilar",
     subtitle: "Atleta oficial de UFC",
     layout: "split",
-    ...mediaFor("2025"),
+    images: [
+      "/signature-events/2025/sunday-funday-poster.jpg",
+      "/signature-events/2025/sunday-funday-01.jpg",
+      "/signature-events/2025/sunday-funday-03.jpg",
+    ],
     description:
       "Para celebrar el 15.º aniversario de HUMI, reunimos a nuestra comunidad en una experiencia única con un ronqueo de atún y una clase magistral con el atleta de UFC Jesús Aguilar, en una marina de Ensenada.",
   },
@@ -62,7 +52,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
     layout: "double",
-    ...mediaFor("2024"),
+    images: ["/signature-events/2024/taekwondo-games.jpg"],
     description:
       "La competencia comunitaria que reunió a todas las generaciones en un mismo piso. Alumnos compitieron, se apoyaron y celebraron, convirtiendo un solo fin de semana en el retrato vivo de todo lo que HUMI había construido con los años.",
   },
@@ -73,7 +63,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
     layout: "double",
-    ...mediaFor("2023"),
+    images: [],
     description:
       "Un fin de semana de rendimiento que fue más allá del formato habitual de clase. El dojang se convirtió en escenario de intensidad, técnica y el esfuerzo compartido que transforma una escuela en una familia unida por un propósito.",
   },
@@ -83,7 +73,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Rumble HUMI Interno WTU",
     category: "Competencia Interna",
     layout: "double",
-    ...mediaFor("2022"),
+    images: [],
     description:
       "Una competencia interna bajo estándares de World Taekwondo Union. Los atletas midieron meses de preparación contra sus propios compañeros, demostrando que el crecimiento más intenso a menudo nace dentro de la comunidad que los formó.",
   },
@@ -95,7 +85,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     guest: "Joel González",
     subtitle: "Campeón Olímpico · Londres 2012",
     layout: "split",
-    ...mediaFor("2019"),
+    images: [],
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
   },
@@ -107,7 +97,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     guest: "Carlo Molfetta",
     subtitle: "Campeón Olímpico · Londres 2012",
     layout: "split",
-    ...mediaFor("2018"),
+    images: [],
     description:
       "HUMI abrió sus puertas al entrenamiento de nivel olímpico por primera vez. Precisión e intensidad de Londres 2012 llegaron a Ensenada y fijaron un nuevo estándar de lo que nuestra comunidad podía aspirar a ser cada año.",
   },

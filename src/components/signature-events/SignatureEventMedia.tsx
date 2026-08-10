@@ -7,15 +7,9 @@ type SignatureEventMediaProps = {
   variant: "journey" | "stack";
   title: string;
   year: string;
-  poster?: string | null;
-  photo1?: string | null;
-  photo2?: string | null;
+  images: string[];
   priority?: boolean;
 };
-
-function present(...srcs: Array<string | null | undefined>): string[] {
-  return srcs.filter((src): src is string => typeof src === "string" && src.length > 0);
-}
 
 function Frame({
   src,
@@ -24,7 +18,7 @@ function Frame({
   sizes,
   priority = false,
 }: {
-  src?: string;
+  src: string;
   alt: string;
   className: string;
   sizes: string;
@@ -32,38 +26,35 @@ function Frame({
 }) {
   return (
     <figure className={`relative overflow-hidden bg-[#ebebe8] ${className}`}>
-      {src ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className="object-cover"
-        />
-      ) : null}
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className="object-cover"
+      />
     </figure>
   );
 }
 
 /**
- * Media compositions for Signature Events.
- * Supports exactly two layouts: `split` and `double`.
- * Empty frames stay reserved when a curated asset is missing.
+ * Renders only the images provided.
+ * - `split` → 1 vertical + up to 2 stacked horizontals
+ * - `double` → up to 2 equal verticals
  */
 export function SignatureEventMedia({
   layout,
   variant,
   title,
   year,
-  poster,
-  photo1,
-  photo2,
+  images,
   priority = false,
 }: SignatureEventMediaProps) {
+  if (images.length === 0) return null;
+
   const isJourney = variant === "journey";
   const altBase = `${title} — ${year}`;
-  const images = present(poster, photo1, photo2);
 
   const shell = isJourney
     ? "flex w-full max-w-[560px] items-stretch gap-2.5 xl:gap-3"
@@ -74,49 +65,51 @@ export function SignatureEventMedia({
     : "(max-width: 768px) 45vw, 210px";
 
   if (layout === "double") {
+    const frames = images.slice(0, 2);
     return (
       <div className={shell} data-media-layout="double">
-        <Frame
-          src={images[0]}
-          alt={images[0] ? altBase : ""}
-          className="aspect-[3/4] min-w-0 flex-1"
-          sizes={sizes}
-          priority={priority}
-        />
-        <Frame
-          src={images[1]}
-          alt={images[1] ? `${altBase} · detalle` : ""}
-          className="aspect-[3/4] min-w-0 flex-1"
-          sizes={sizes}
-        />
+        {frames.map((src, i) => (
+          <Frame
+            key={src}
+            src={src}
+            alt={i === 0 ? altBase : `${altBase} · detalle`}
+            className="aspect-[3/4] min-w-0 flex-1"
+            sizes={sizes}
+            priority={priority && i === 0}
+          />
+        ))}
       </div>
     );
   }
 
-  // layout === "split": 1 vertical + 2 stacked horizontals
+  // layout === "split"
+  const [vertical, ...stacked] = images;
+  const side = stacked.slice(0, 2);
+
   return (
     <div className={shell} data-media-layout="split">
       <Frame
-        src={images[0]}
-        alt={images[0] ? altBase : ""}
+        src={vertical}
+        alt={altBase}
         className="aspect-[3/4] min-w-0 flex-1"
         sizes={sizes}
         priority={priority}
       />
-      <div className="flex min-w-0 flex-1 flex-col gap-2.5 self-stretch">
-        <Frame
-          src={images[1]}
-          alt={images[1] ? `${altBase} · momento` : ""}
-          className="min-h-0 w-full flex-1"
-          sizes={sizes}
-        />
-        <Frame
-          src={images[2]}
-          alt={images[2] ? `${altBase} · comunidad` : ""}
-          className="min-h-0 w-full flex-1"
-          sizes={sizes}
-        />
-      </div>
+      {side.length > 0 ? (
+        <div className="flex min-w-0 flex-1 flex-col gap-2.5 self-stretch">
+          {side.map((src, i) => (
+            <Frame
+              key={src}
+              src={src}
+              alt={
+                i === 0 ? `${altBase} · momento` : `${altBase} · comunidad`
+              }
+              className="min-h-0 w-full flex-1"
+              sizes={sizes}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }
