@@ -1,5 +1,6 @@
 "use client";
 
+import { SignatureEventsSection } from "@/components/signature-events/SignatureEventsSection";
 import type { LegacyLandingPayload, LegacyScript } from "@/lib/legacy-landing";
 import { useEffect, useRef } from "react";
 
@@ -25,7 +26,8 @@ function runScripts(scripts: LegacyScript[], target: HTMLElement) {
 
 /**
  * Renders the legacy landing markup (SSR + hydrate) and re-executes
- * extracted <script> tags once after mount. Does not fetch HTML at runtime.
+ * extracted <script> tags once after mount. Signature Events mounts
+ * directly in the React tree between the split legacy body halves.
  */
 export function LegacyLandingMount({ legacy, introActive }: LegacyLandingMountProps) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -61,8 +63,15 @@ export function LegacyLandingMount({ legacy, introActive }: LegacyLandingMountPr
       ) : null}
       <div
         className="legacy-landing-body"
-        dangerouslySetInnerHTML={{ __html: legacy.bodyHtml }}
+        dangerouslySetInnerHTML={{ __html: legacy.bodyHtmlBefore }}
       />
+      <SignatureEventsSection />
+      {legacy.bodyHtmlAfter ? (
+        <div
+          className="legacy-landing-body"
+          dangerouslySetInnerHTML={{ __html: legacy.bodyHtmlAfter }}
+        />
+      ) : null}
     </div>
   );
 }

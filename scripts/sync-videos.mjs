@@ -77,5 +77,3 @@ if (copied === 0) {
 }
 
 console.log(`sync-videos: ${copied} videos ready`);
-
-/** Signature Events recaps: exact filenames only — see sync-signature-recaps.mjs */

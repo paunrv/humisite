@@ -52,18 +52,16 @@ export function SignatureEventChapter({
     </div>
   );
 
-  const media = (
-    <SignatureEventMedia
-      layout={event.layout}
-      variant={variant}
-      title={event.title}
-      year={event.year}
-      poster={event.poster}
-      photo1={event.photo1}
-      photo2={event.photo2}
-      priority={index === 0}
-    />
-  );
+  const media =
+    event.media.length > 0 ? (
+      <SignatureEventMedia
+        variant={variant}
+        title={event.title}
+        year={event.year}
+        media={event.media}
+        priority={index === 0}
+      />
+    ) : null;
 
   return (
     <article
@@ -144,7 +142,7 @@ export function SignatureEventChapter({
         </div>
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
-        {isJourney ? (
+        {isJourney && media ? (
           <div className="col-span-7 flex min-h-0 items-end justify-end">
             {media}
           </div>

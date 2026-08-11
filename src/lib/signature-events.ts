@@ -2,14 +2,15 @@
  * Experiencias HUMI — archivo editorial de experiencias anuales de HUMI.
  *
  * Display order: newest → oldest (present back to the first Bootcamp).
- *
- * Media: each event uses one of two compositions via `layout`.
- * Curated assets come from media/signature-events/ via sync:signature-media.
+ * Each event fully describes its copy and media.
  */
 
-import { CURATED_EVENT_MEDIA } from "@/lib/signature-events-media.generated";
+export type SignatureMediaType = "poster" | "image" | "video";
 
-export type SignatureEventMediaLayout = "split" | "double";
+export type SignatureMediaItem = {
+  type: SignatureMediaType;
+  src: string;
+};
 
 export type SignatureEvent = {
   id: number;
@@ -20,24 +21,43 @@ export type SignatureEvent = {
   subtitle?: string;
   /** ~35–45 words. */
   description: string;
-  /**
-   * Media composition only:
-   * - `split` → 1 vertical + 2 stacked horizontals
-   * - `double` → 2 equal verticals
-   */
-  layout: SignatureEventMediaLayout;
-  poster?: string | null;
-  photo1?: string | null;
-  photo2?: string | null;
+  /** Ordered media the chapter may render. Layout adapts to what is present. */
+  media: SignatureMediaItem[];
 };
 
-function mediaFor(year: string) {
-  const media = CURATED_EVENT_MEDIA[year] ?? {};
-  return {
-    poster: media.poster ?? null,
-    photo1: media.photo1 ?? null,
-    photo2: media.photo2 ?? null,
-  };
+export type SignatureMediaComposition =
+  | "editorial"
+  | "poster-video"
+  | "video"
+  | "poster"
+  | "none";
+
+/** Derive the editorial composition from available media items. */
+export function resolveMediaComposition(
+  media: SignatureMediaItem[],
+): SignatureMediaComposition {
+  const poster = media.find((item) => item.type === "poster");
+  const images = media.filter((item) => item.type === "image");
+  const video = media.find((item) => item.type === "video");
+
+  if (poster && images.length >= 2) return "editorial";
+  if (poster && video) return "poster-video";
+  if (video) return "video";
+  if (poster && images.length > 0) return "editorial";
+  if (poster) return "poster";
+  return "none";
+}
+
+export function getPoster(media: SignatureMediaItem[]): string | undefined {
+  return media.find((item) => item.type === "poster")?.src;
+}
+
+export function getImages(media: SignatureMediaItem[]): string[] {
+  return media.filter((item) => item.type === "image").map((item) => item.src);
+}
+
+export function getVideo(media: SignatureMediaItem[]): string | undefined {
+  return media.find((item) => item.type === "video")?.src;
 }
 
 /**
@@ -51,8 +71,10 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Sunday Funday",
     category: "Clase Magistral · Jesús Aguilar",
     subtitle: "Atleta oficial de UFC",
-    layout: "split",
-    ...mediaFor("2025"),
+    media: [
+      { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
+      { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
+    ],
     description:
       "Para celebrar el 15.º aniversario de HUMI, reunimos a nuestra comunidad en una experiencia única con un ronqueo de atún y una clase magistral con el atleta de UFC Jesús Aguilar, en una marina de Ensenada.",
   },
@@ -61,8 +83,10 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2024",
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
-    layout: "double",
-    ...mediaFor("2024"),
+    media: [
+      { type: "poster", src: "/signature-events/2024/taekwondo-games.jpg" },
+      { type: "video", src: "/videos/moments/taekwondo-games.mp4" },
+    ],
     description:
       "La competencia comunitaria que reunió a todas las generaciones en un mismo piso. Alumnos compitieron, se apoyaron y celebraron, convirtiendo un solo fin de semana en el retrato vivo de todo lo que HUMI había construido con los años.",
   },
@@ -72,8 +96,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "KI Games",
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
-    layout: "double",
-    ...mediaFor("2023"),
+    media: [],
     description:
       "Un fin de semana de rendimiento que fue más allá del formato habitual de clase. El dojang se convirtió en escenario de intensidad, técnica y el esfuerzo compartido que transforma una escuela en una familia unida por un propósito.",
   },
@@ -82,8 +105,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2022",
     title: "Rumble HUMI Interno WTU",
     category: "Competencia Interna",
-    layout: "double",
-    ...mediaFor("2022"),
+    media: [],
     description:
       "Una competencia interna bajo estándares de World Taekwondo Union. Los atletas midieron meses de preparación contra sus propios compañeros, demostrando que el crecimiento más intenso a menudo nace dentro de la comunidad que los formó.",
   },
@@ -94,8 +116,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Joel González",
     subtitle: "Campeón Olímpico · Londres 2012",
-    layout: "split",
-    ...mediaFor("2019"),
+    media: [],
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
   },
@@ -106,8 +127,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Carlo Molfetta",
     subtitle: "Campeón Olímpico · Londres 2012",
-    layout: "split",
-    ...mediaFor("2018"),
+    media: [],
     description:
       "HUMI abrió sus puertas al entrenamiento de nivel olímpico por primera vez. Precisión e intensidad de Londres 2012 llegaron a Ensenada y fijaron un nuevo estándar de lo que nuestra comunidad podía aspirar a ser cada año.",
   },

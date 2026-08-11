@@ -46,5 +46,3 @@ public/sitio-editorial.html
 public/assets/css/
 public/assets/js/
 public/videos/
-# Synced Signature Events recaps (source: video/ or video/signature-events/)
-public/signature-events/**/*.mp4
