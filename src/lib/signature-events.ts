@@ -74,7 +74,6 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     media: [
       { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
       { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
-      { type: "image", src: "/signature-events/2025/sunday-funday-03.jpg" },
     ],
     description:
       "Para celebrar el 15.º aniversario de HUMI, reunimos a nuestra comunidad en una experiencia única con un ronqueo de atún y una clase magistral con el atleta de UFC Jesús Aguilar, en una marina de Ensenada.",
