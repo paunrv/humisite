@@ -6,7 +6,7 @@ List media on each event in `src/lib/signature-events.ts`:
 media: [
   { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
   { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
-  { type: "image", src: "/signature-events/2025/sunday-funday-03.jpg" },
+  { type: "image", src: "/signature-events/2025/sunday-funday-04.jpg" },
 ]
 ```
 
