@@ -19,45 +19,28 @@ type SignatureEventMediaProps = {
   priority?: boolean;
 };
 
-const VIDEO_CTA = "Revive la experiencia";
-
-function Frame({
+/**
+ * Shared editorial frame for posters, photos, and videos.
+ * Same crop, proportions, and container — media type should not change layout.
+ */
+function MediaFrame({
+  kind,
   src,
   alt,
   className,
   sizes,
   priority = false,
+  posterSrc,
+  title,
 }: {
+  kind: "image" | "video";
   src: string;
   alt: string;
   className: string;
   sizes: string;
   priority?: boolean;
-}) {
-  return (
-    <figure className={`relative overflow-hidden bg-[#ebebe8] ${className}`}>
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className="object-cover"
-      />
-    </figure>
-  );
-}
-
-function InlineVideo({
-  title,
-  src,
-  posterSrc,
-  compact,
-}: {
-  title: string;
-  src: string;
   posterSrc?: string;
-  compact: boolean;
+  title?: string;
 }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -65,91 +48,68 @@ function InlineVideo({
   const start = useCallback(() => setPlaying(true), []);
 
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || kind !== "video") return;
     void videoRef.current?.play().catch(() => {
       /* ignore autoplay / abort */
     });
-  }, [playing]);
+  }, [playing, kind]);
 
   return (
-    <div className={compact ? "w-full min-w-0 flex-1" : "w-full"}>
-      <p className="mb-2.5 font-mono text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[#888] md:mb-3 md:text-[0.7rem]">
-        Resumen
-      </p>
-      <div className="relative aspect-video w-full overflow-hidden bg-[#111]">
-        {!playing ? (
-          <button
-            type="button"
-            onClick={start}
-            className="group absolute inset-0 z-10 flex w-full flex-col items-center justify-center text-left"
-            aria-label={`${VIDEO_CTA} — ${title}`}
-          >
-            {posterSrc ? (
-              <Image
-                src={posterSrc}
-                alt=""
-                fill
-                sizes={
-                  compact
-                    ? "(max-width: 768px) 90vw, 280px"
-                    : "(max-width: 768px) 90vw, 520px"
-                }
-                className="object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
-              />
-            ) : null}
-            <span
-              className={
-                posterSrc
-                  ? "absolute inset-0 bg-black/35 transition-colors duration-300 group-hover:bg-black/28"
-                  : "absolute inset-0 bg-black/20"
-              }
+    <figure className={`relative overflow-hidden bg-[#ebebe8] ${className}`}>
+      {kind === "image" ? (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          className="object-cover"
+        />
+      ) : !playing ? (
+        <button
+          type="button"
+          onClick={start}
+          className="group absolute inset-0 z-10"
+          aria-label={`Reproducir — ${title ?? alt}`}
+        >
+          {posterSrc ? (
+            <Image
+              src={posterSrc}
+              alt=""
+              fill
+              sizes={sizes}
+              priority={priority}
+              className="object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
             />
-            <span className="relative z-10 flex flex-col items-center gap-2 px-3 sm:gap-3 sm:px-4">
-              <span
-                className={
-                  compact
-                    ? "flex h-10 w-10 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
-                    : "flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
-                }
-                aria-hidden="true"
-              >
-                <span
-                  className={
-                    compact
-                      ? "ml-0.5 text-sm leading-none"
-                      : "ml-0.5 text-lg leading-none"
-                  }
-                >
-                  ▶
-                </span>
-              </span>
-              <span className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.14em] text-white sm:text-[0.7rem]">
-                ▶ {VIDEO_CTA}
-              </span>
-            </span>
-          </button>
-        ) : (
-          <video
-            ref={videoRef}
-            className="h-full w-full object-cover"
-            controls
-            playsInline
-            preload="metadata"
-            poster={posterSrc}
-            src={src}
-          />
-        )}
-      </div>
-    </div>
+          ) : (
+            <span className="absolute inset-0 bg-[#111]" />
+          )}
+          <span className="absolute inset-0 bg-black/20 transition-colors duration-300 group-hover:bg-black/15" />
+          <span
+            className="absolute bottom-3 left-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/45 bg-black/25 text-white backdrop-blur-sm transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
+            aria-hidden="true"
+          >
+            <span className="ml-0.5 text-xs leading-none">▶</span>
+          </span>
+        </button>
+      ) : (
+        <video
+          ref={videoRef}
+          className="absolute inset-0 h-full w-full object-cover"
+          controls
+          playsInline
+          preload="metadata"
+          poster={posterSrc}
+          src={src}
+        />
+      )}
+    </figure>
   );
 }
 
 /**
- * Editorial media compositions derived from available items:
- * - poster + 2 images → photo layout
- * - poster + video → poster + large video
- * - video only → large video
- * - poster only → poster
+ * Editorial media compositions derived from available items.
+ * Videos use the same MediaFrame as images (aspect, crop, spacing).
  */
 export function SignatureEventMedia({
   variant,
@@ -171,7 +131,7 @@ export function SignatureEventMedia({
     ? "flex w-full max-w-[560px] items-stretch gap-2.5 xl:gap-3"
     : "mt-9 flex w-full max-w-[min(100%,520px)] items-stretch gap-2.5 md:mt-11";
 
-  const posterSizes = isJourney
+  const frameSizes = isJourney
     ? "(max-width: 1280px) 28vw, 280px"
     : "(max-width: 768px) 55vw, 240px";
 
@@ -179,24 +139,26 @@ export function SignatureEventMedia({
     const side = images.slice(0, 2);
     return (
       <div className={shell} data-media-layout="editorial">
-        <Frame
+        <MediaFrame
+          kind="image"
           src={poster}
           alt={altBase}
           className="aspect-[3/4] min-w-0 flex-1"
-          sizes={posterSizes}
+          sizes={frameSizes}
           priority={priority}
         />
         {side.length > 0 ? (
           <div className="flex min-w-0 flex-1 flex-col gap-2.5 self-stretch">
             {side.map((src, i) => (
-              <Frame
+              <MediaFrame
                 key={src}
+                kind="image"
                 src={src}
                 alt={
                   i === 0 ? `${altBase} · momento` : `${altBase} · comunidad`
                 }
                 className="min-h-0 w-full flex-1"
-                sizes={posterSizes}
+                sizes={frameSizes}
               />
             ))}
           </div>
@@ -206,20 +168,25 @@ export function SignatureEventMedia({
   }
 
   if (composition === "poster-video" && poster && video) {
+    // Same editorial shell as poster + image: equal 3/4 frames, shared crop language.
     return (
       <div className={shell} data-media-layout="poster-video">
-        <Frame
+        <MediaFrame
+          kind="image"
           src={poster}
           alt={altBase}
-          className="aspect-[3/4] w-[min(100%,200px)] shrink-0 sm:w-[min(100%,240px)]"
-          sizes={posterSizes}
+          className="aspect-[3/4] min-w-0 flex-1"
+          sizes={frameSizes}
           priority={priority}
         />
-        <InlineVideo
-          title={title}
+        <MediaFrame
+          kind="video"
           src={video}
+          alt={`${altBase} · video`}
+          title={title}
           posterSrc={poster}
-          compact={isJourney}
+          className="aspect-[3/4] min-w-0 flex-1"
+          sizes={frameSizes}
         />
       </div>
     );
@@ -227,19 +194,16 @@ export function SignatureEventMedia({
 
   if (composition === "video" && video) {
     return (
-      <div
-        className={
-          isJourney
-            ? "w-full max-w-[560px]"
-            : "mt-9 w-full max-w-[min(100%,520px)] md:mt-11"
-        }
-        data-media-layout="video"
-      >
-        <InlineVideo
-          title={title}
+      <div className={shell} data-media-layout="video">
+        <MediaFrame
+          kind="video"
           src={video}
+          alt={`${altBase} · video`}
+          title={title}
           posterSrc={poster}
-          compact={false}
+          className="aspect-[3/4] w-full max-w-[320px]"
+          sizes={frameSizes}
+          priority={priority}
         />
       </div>
     );
@@ -248,11 +212,12 @@ export function SignatureEventMedia({
   if (composition === "poster" && poster) {
     return (
       <div className={shell} data-media-layout="poster">
-        <Frame
+        <MediaFrame
+          kind="image"
           src={poster}
           alt={altBase}
           className="aspect-[3/4] w-full max-w-[320px]"
-          sizes={posterSizes}
+          sizes={frameSizes}
           priority={priority}
         />
       </div>
