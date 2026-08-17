@@ -1,24 +1,9 @@
-# Experiencias HUMI — media pública
+# Moved
 
-List media on each event in `src/lib/signature-events.ts`:
+Experiencias HUMI images now live in:
 
-```ts
-media: [
-  { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
-  { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
-  { type: "image", src: "/signature-events/2025/sunday-funday-04.jpg" },
-]
+```text
+public/experiencias-humi/
 ```
 
-Supported types: `poster` | `image` | `video`.
-
-Composition (derived automatically):
-
-| Available media | Layout |
-| --- | --- |
-| Poster + 2 images | Editorial photo layout |
-| Poster + video | Poster + large inline video |
-| Video only | Large inline video |
-| Poster only | Poster only |
-
-Put stills under `public/signature-events/{year}/`. Videos may live there too, or reuse paths already synced by `npm run sync:videos` (e.g. `/videos/moments/...`).
+See that folder’s README and `src/lib/experiencias-humi.ts`.

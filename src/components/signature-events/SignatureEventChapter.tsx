@@ -2,13 +2,13 @@
 
 import {
   formatEdition,
-  type SignatureEvent,
-} from "@/lib/signature-events";
+  type ExperienciaHumi,
+} from "@/lib/experiencias-humi";
 import { SignatureEventMedia } from "@/components/signature-events/SignatureEventMedia";
 import { motion, useReducedMotion } from "framer-motion";
 
 type SignatureEventChapterProps = {
-  event: SignatureEvent;
+  event: ExperienciaHumi;
   index: number;
   total: number;
   /** Desktop journey: fill the sticky viewport. Mobile stack: natural height. */

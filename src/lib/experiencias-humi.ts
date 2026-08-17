@@ -1,18 +1,21 @@
 /**
- * Experiencias HUMI — archivo editorial de experiencias anuales de HUMI.
+ * Experiencias HUMI — archivo editorial de experiencias anuales.
  *
- * Display order: newest → oldest (present back to the first Bootcamp).
- * Each event fully describes its copy and media.
+ * Media: drop/replace files in `public/experiencias-humi/`, then reference
+ * the public path here (e.g. `/experiencias-humi/sunday-funday-01.jpg`).
+ * No sync scripts. No generated maps.
+ *
+ * Display order: newest → oldest.
  */
 
-export type SignatureMediaType = "poster" | "image" | "video";
+export type ExperienciaMediaType = "poster" | "image" | "video";
 
-export type SignatureMediaItem = {
-  type: SignatureMediaType;
+export type ExperienciaMediaItem = {
+  type: ExperienciaMediaType;
   src: string;
 };
 
-export type SignatureEvent = {
+export type ExperienciaHumi = {
   id: number;
   year: string;
   title: string;
@@ -22,10 +25,10 @@ export type SignatureEvent = {
   /** ~35–45 words. */
   description: string;
   /** Ordered media the chapter may render. Layout adapts to what is present. */
-  media: SignatureMediaItem[];
+  media: ExperienciaMediaItem[];
 };
 
-export type SignatureMediaComposition =
+export type ExperienciaMediaComposition =
   | "editorial"
   | "poster-video"
   | "video"
@@ -34,8 +37,8 @@ export type SignatureMediaComposition =
 
 /** Derive the editorial composition from available media items. */
 export function resolveMediaComposition(
-  media: SignatureMediaItem[],
-): SignatureMediaComposition {
+  media: ExperienciaMediaItem[],
+): ExperienciaMediaComposition {
   const poster = media.find((item) => item.type === "poster");
   const images = media.filter((item) => item.type === "image");
   const video = media.find((item) => item.type === "video");
@@ -48,15 +51,15 @@ export function resolveMediaComposition(
   return "none";
 }
 
-export function getPoster(media: SignatureMediaItem[]): string | undefined {
+export function getPoster(media: ExperienciaMediaItem[]): string | undefined {
   return media.find((item) => item.type === "poster")?.src;
 }
 
-export function getImages(media: SignatureMediaItem[]): string[] {
+export function getImages(media: ExperienciaMediaItem[]): string[] {
   return media.filter((item) => item.type === "image").map((item) => item.src);
 }
 
-export function getVideo(media: SignatureMediaItem[]): string | undefined {
+export function getVideo(media: ExperienciaMediaItem[]): string | undefined {
   return media.find((item) => item.type === "video")?.src;
 }
 
@@ -64,7 +67,7 @@ export function getVideo(media: SignatureMediaItem[]): string | undefined {
  * Newest first → oldest last.
  * `id` is the chapter mark in the journey (01 = today, 06 = beginning).
  */
-export const SIGNATURE_EVENTS: SignatureEvent[] = [
+export const EXPERIENCIAS_HUMI: ExperienciaHumi[] = [
   {
     id: 1,
     year: "2025",
@@ -72,9 +75,9 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral · Jesús Aguilar",
     subtitle: "Atleta oficial de UFC",
     media: [
-      { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
-      { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
-      { type: "image", src: "/signature-events/2025/sunday-funday-04.jpg" },
+      { type: "poster", src: "/experiencias-humi/sunday-funday-poster.jpg" },
+      { type: "image", src: "/experiencias-humi/sunday-funday-01.jpg" },
+      { type: "image", src: "/experiencias-humi/sunday-funday-04.jpg" },
     ],
     description:
       "Para celebrar el 15.º aniversario de HUMI, reunimos a nuestra comunidad en una experiencia única con un ronqueo de atún y una clase magistral con el atleta de UFC Jesús Aguilar, en una marina de Ensenada.",
@@ -85,7 +88,8 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
     media: [
-      { type: "poster", src: "/signature-events/2024/taekwondo-games.jpg" },
+      { type: "poster", src: "/experiencias-humi/taekwondo-games.jpg" },
+      // Shared with Moments reels (synced via npm run sync:videos).
       { type: "video", src: "/videos/moments/taekwondo-games.mp4" },
     ],
     description:

@@ -5,8 +5,8 @@ import {
   getPoster,
   getVideo,
   resolveMediaComposition,
-  type SignatureMediaItem,
-} from "@/lib/signature-events";
+  type ExperienciaMediaItem,
+} from "@/lib/experiencias-humi";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -15,7 +15,7 @@ type SignatureEventMediaProps = {
   variant: "journey" | "stack";
   title: string;
   year: string;
-  media: SignatureMediaItem[];
+  media: ExperienciaMediaItem[];
   priority?: boolean;
 };
 
