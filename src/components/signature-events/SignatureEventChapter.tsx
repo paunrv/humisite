@@ -145,7 +145,7 @@ export function SignatureEventChapter({
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
         {isJourney && media ? (
-          <div className="flex min-h-0 min-w-0 items-end justify-end overflow-hidden">
+          <div className="flex min-h-0 min-w-0 items-center justify-center overflow-hidden">
             {media}
           </div>
         ) : null}
