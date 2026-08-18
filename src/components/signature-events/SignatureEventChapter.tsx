@@ -69,7 +69,7 @@ export function SignatureEventChapter({
       data-index={index}
       className={
         isJourney
-          ? "signature-event relative z-0 flex h-full w-full min-w-0 shrink-0 flex-col justify-center overflow-hidden px-8 md:px-10 lg:px-12"
+          ? "signature-event relative z-0 flex h-full w-full min-w-0 shrink-0 flex-col justify-center overflow-hidden px-[clamp(3.5rem,9vw,7rem)]"
           : "signature-event relative flex w-full flex-col border-t border-black/[0.06] px-5 py-14 md:px-10 md:py-16"
       }
       aria-labelledby={`signature-event-${event.id}-title`}
@@ -82,7 +82,7 @@ export function SignatureEventChapter({
         className={
           isJourney
             ? media
-              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[minmax(16rem,22rem)_minmax(0,560px)] items-center justify-center gap-x-12 py-4 lg:gap-x-16 xl:gap-x-20"
+              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[22rem_560px] items-center justify-center gap-x-14 py-4"
               : "mx-auto flex h-full w-full min-w-0 max-w-[40rem] flex-col justify-center py-4"
             : "mx-auto flex w-full max-w-[520px] flex-col"
         }
