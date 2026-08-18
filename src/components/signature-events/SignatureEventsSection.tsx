@@ -205,9 +205,21 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
           {SIGNATURE_EVENTS.map((event, index) => (
             <div
               key={event.id}
-              className="h-full shrink-0"
+              className="relative h-full shrink-0"
               style={{ width: `${100 / TOTAL}%` }}
             >
+              {/*
+                Edge rails sit above overflowing media so adjacent chapters
+                always keep a visible pause between them.
+              */}
+              <div
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[clamp(3rem,8vw,6.5rem)] bg-[#f7f7f5]"
+                aria-hidden="true"
+              />
+              <div
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[clamp(3rem,8vw,6.5rem)] bg-[#f7f7f5]"
+                aria-hidden="true"
+              />
               <SignatureEventChapter
                 event={event}
                 index={index}
