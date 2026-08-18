@@ -213,11 +213,11 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
                 always keep a visible pause between them.
               */}
               <div
-                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[clamp(2.25rem,6vw,5rem)] bg-[#f7f7f5]"
+                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-[clamp(3rem,8vw,6.5rem)] bg-[#f7f7f5]"
                 aria-hidden="true"
               />
               <div
-                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[clamp(2.25rem,6vw,5rem)] bg-[#f7f7f5]"
+                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-[clamp(3rem,8vw,6.5rem)] bg-[#f7f7f5]"
                 aria-hidden="true"
               />
               <SignatureEventChapter
