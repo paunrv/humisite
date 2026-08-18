@@ -2,8 +2,8 @@
 
 import {
   formatEdition,
-  SIGNATURE_EVENTS,
-} from "@/lib/signature-events";
+  EXPERIENCIAS_HUMI,
+} from "@/lib/experiencias-humi";
 import {
   motion,
   useMotionValueEvent,
@@ -19,7 +19,7 @@ import {
 } from "react";
 import { SignatureEventChapter } from "./SignatureEventChapter";
 
-const TOTAL = SIGNATURE_EVENTS.length;
+const TOTAL = EXPERIENCIAS_HUMI.length;
 /** Vertical scroll length per chapter — higher = slower, more intentional. */
 const VH_PER_CHAPTER = 100;
 /** Site nav height (index.html) */
@@ -202,7 +202,7 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
           aria-roledescription="timeline"
           aria-label="Recorrido de Experiencias HUMI"
         >
-          {SIGNATURE_EVENTS.map((event, index) => (
+          {EXPERIENCIAS_HUMI.map((event, index) => (
             <div
               key={event.id}
               className="relative h-full shrink-0"
@@ -295,7 +295,7 @@ function StackTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
         role="region"
         aria-label="Archivo de Experiencias HUMI"
       >
-        {SIGNATURE_EVENTS.map((event, index) => (
+        {EXPERIENCIAS_HUMI.map((event, index) => (
           <SignatureEventChapter
             key={event.id}
             event={event}
@@ -332,7 +332,7 @@ function ChapterProgress({
         aria-label="Experiencias"
         className="-mx-1 flex max-w-[min(100%,20rem)] items-center gap-0 overflow-x-auto overscroll-x-contain px-1 font-mono text-[0.7rem] font-medium tracking-[0.1em] [-ms-overflow-style:none] [scrollbar-width:none] md:max-w-none md:flex-wrap md:overflow-visible md:text-xs md:tracking-[0.12em] [&::-webkit-scrollbar]:hidden"
       >
-        {SIGNATURE_EVENTS.map((event, index) => {
+        {EXPERIENCIAS_HUMI.map((event, index) => {
           const active = index === activeIndex;
           return (
             <span key={event.id} className="inline-flex shrink-0 items-center">
