@@ -205,7 +205,7 @@ function JourneyTrack({ activeIndex, onActiveIndexChange }: TrackProps) {
           {SIGNATURE_EVENTS.map((event, index) => (
             <div
               key={event.id}
-              className="h-full shrink-0"
+              className="box-border h-full shrink-0 px-[clamp(1.75rem,5vw,4.5rem)]"
               style={{ width: `${100 / TOTAL}%` }}
             >
               <SignatureEventChapter
