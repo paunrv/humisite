@@ -69,7 +69,7 @@ export function SignatureEventChapter({
       data-index={index}
       className={
         isJourney
-          ? "signature-event relative flex h-full w-full min-w-0 shrink-0 flex-col justify-center overflow-hidden px-8 md:px-10 lg:px-12"
+          ? "signature-event relative z-0 flex h-full w-full min-w-0 shrink-0 flex-col justify-center overflow-hidden px-8 md:px-10 lg:px-12"
           : "signature-event relative flex w-full flex-col border-t border-black/[0.06] px-5 py-14 md:px-10 md:py-16"
       }
       aria-labelledby={`signature-event-${event.id}-title`}
