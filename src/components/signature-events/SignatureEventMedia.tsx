@@ -128,7 +128,7 @@ export function SignatureEventMedia({
   const video = getVideo(media);
 
   const shell = isJourney
-    ? "mx-auto flex w-[min(100%,560px)] min-w-0 items-stretch gap-2.5 xl:gap-3"
+    ? "mx-auto flex w-[min(100%,32rem)] min-w-0 items-stretch gap-2.5 xl:gap-3"
     : "mx-auto mt-9 flex w-[min(100%,520px)] items-stretch gap-2.5 md:mt-11";
 
   const frameSizes = isJourney

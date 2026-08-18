@@ -82,7 +82,7 @@ export function SignatureEventChapter({
         className={
           isJourney
             ? media
-              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[22rem_560px] items-center justify-center gap-x-14 py-4"
+              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[minmax(0,18rem)_minmax(0,32rem)] items-center justify-center gap-x-10 py-4 lg:gap-x-14"
               : "mx-auto flex h-full w-full min-w-0 max-w-[40rem] flex-col justify-center py-4"
             : "mx-auto flex w-full max-w-[520px] flex-col"
         }
