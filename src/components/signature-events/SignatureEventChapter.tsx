@@ -81,7 +81,9 @@ export function SignatureEventChapter({
         {...reveal}
         className={
           isJourney
-            ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-12 items-center gap-x-12 gap-y-4 overflow-hidden py-4 lg:gap-x-16 xl:gap-x-24"
+            ? media
+              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-x-12 py-4 lg:gap-x-16 xl:gap-x-20"
+              : "mx-auto flex h-full w-full min-w-0 max-w-[40rem] flex-col justify-center py-4"
             : "mx-auto flex w-full max-w-[520px] flex-col"
         }
       >
@@ -89,9 +91,7 @@ export function SignatureEventChapter({
         <div
           className={
             isJourney
-              ? media
-                ? "col-span-4 flex min-h-0 min-w-0 flex-col justify-center"
-                : "col-span-8 flex min-h-0 min-w-0 flex-col justify-center"
+              ? "flex min-h-0 min-w-0 flex-col justify-center"
               : "flex flex-col"
           }
         >
@@ -145,7 +145,7 @@ export function SignatureEventChapter({
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
         {isJourney && media ? (
-          <div className="col-span-7 col-start-6 flex min-h-0 min-w-0 items-end justify-end overflow-hidden">
+          <div className="flex min-h-0 min-w-0 items-end justify-end overflow-hidden">
             {media}
           </div>
         ) : null}
