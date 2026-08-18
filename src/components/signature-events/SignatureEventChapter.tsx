@@ -69,7 +69,7 @@ export function SignatureEventChapter({
       data-index={index}
       className={
         isJourney
-          ? "signature-event relative flex h-full w-full shrink-0 flex-col justify-center overflow-hidden px-6 md:px-10 lg:px-14 xl:px-20"
+          ? "signature-event relative flex h-full w-full shrink-0 flex-col justify-center overflow-hidden px-10 md:px-16 lg:px-24 xl:px-32 2xl:px-40"
           : "signature-event relative flex w-full flex-col border-t border-black/[0.06] px-5 py-14 md:px-10 md:py-16"
       }
       aria-labelledby={`signature-event-${event.id}-title`}
@@ -81,7 +81,7 @@ export function SignatureEventChapter({
         {...reveal}
         className={
           isJourney
-            ? "mx-auto grid h-full w-full max-w-[1200px] grid-cols-12 items-center gap-8 py-4 lg:gap-12"
+            ? "mx-auto grid h-full w-full max-w-[1200px] grid-cols-12 items-center gap-x-10 gap-y-4 py-4 lg:gap-x-16 xl:gap-x-20"
             : "mx-auto flex w-full max-w-[520px] flex-col"
         }
       >
@@ -89,7 +89,7 @@ export function SignatureEventChapter({
         <div
           className={
             isJourney
-              ? "col-span-5 flex min-h-0 flex-col justify-center pr-2"
+              ? "col-span-5 flex min-h-0 min-w-0 flex-col justify-center"
               : "flex flex-col"
           }
         >
@@ -130,7 +130,7 @@ export function SignatureEventChapter({
           <p
             className={
               isJourney
-                ? "mt-6 max-w-[32rem] text-[0.9rem] leading-[1.7] text-[#555] lg:text-[0.95rem]"
+                ? "mt-6 max-w-full text-[0.9rem] leading-[1.7] text-[#555] lg:text-[0.95rem]"
                 : "mt-6 max-w-[34ch] text-[0.975rem] leading-[1.75] text-[#555] md:mt-8 md:max-w-[34rem] md:text-base"
             }
           >
@@ -143,7 +143,7 @@ export function SignatureEventChapter({
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
         {isJourney && media ? (
-          <div className="col-span-7 flex min-h-0 items-end justify-end">
+          <div className="col-span-7 flex min-h-0 min-w-0 items-end justify-end">
             {media}
           </div>
         ) : null}
