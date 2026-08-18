@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  getImages,
   getPoster,
   getVideo,
   resolveMediaComposition,
@@ -32,6 +31,7 @@ function MediaFrame({
   priority = false,
   posterSrc,
   title,
+  objectPosition,
 }: {
   kind: "image" | "video";
   src: string;
@@ -41,6 +41,7 @@ function MediaFrame({
   priority?: boolean;
   posterSrc?: string;
   title?: string;
+  objectPosition?: string;
 }) {
   const [playing, setPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -54,6 +55,11 @@ function MediaFrame({
     });
   }, [playing, kind]);
 
+  const coverClass = objectPosition
+    ? "object-cover"
+    : "object-cover object-center";
+  const coverStyle = objectPosition ? { objectPosition } : undefined;
+
   return (
     <figure className={`relative overflow-hidden bg-[#ebebe8] ${className}`}>
       {kind === "image" ? (
@@ -63,7 +69,8 @@ function MediaFrame({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover object-center"
+          className={coverClass}
+          style={coverStyle}
         />
       ) : !playing ? (
         <button
@@ -124,7 +131,7 @@ export function SignatureEventMedia({
   const isJourney = variant === "journey";
   const altBase = `${title} — ${year}`;
   const poster = getPoster(media);
-  const images = getImages(media).slice(0, 2);
+  const sideImages = media.filter((item) => item.type === "image").slice(0, 2);
   const video = getVideo(media);
 
   const shell = isJourney
@@ -136,7 +143,6 @@ export function SignatureEventMedia({
     : "(max-width: 768px) 55vw, 240px";
 
   if (composition === "editorial" && poster) {
-    const side = images.slice(0, 2);
     return (
       <div className={shell} data-media-layout="editorial">
         <MediaFrame
@@ -147,18 +153,21 @@ export function SignatureEventMedia({
           sizes={frameSizes}
           priority={priority}
         />
-        {side.length > 0 ? (
+        {sideImages.length > 0 ? (
           <div className="flex min-w-0 flex-1 flex-col gap-2.5 self-stretch">
-            {side.map((src, i) => (
+            {sideImages.map((item, i) => (
               <MediaFrame
-                key={src}
+                key={item.src}
                 kind="image"
-                src={src}
+                src={item.src}
                 alt={
-                  i === 0 ? `${altBase} · momento` : `${altBase} · comunidad`
+                  i === 0
+                    ? `${altBase} · momento`
+                    : `${altBase} · ronqueo de atún`
                 }
                 className="min-h-0 w-full flex-1"
                 sizes={frameSizes}
+                objectPosition={item.objectPosition}
               />
             ))}
           </div>

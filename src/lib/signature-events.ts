@@ -10,6 +10,8 @@ export type SignatureMediaType = "poster" | "image" | "video";
 export type SignatureMediaItem = {
   type: SignatureMediaType;
   src: string;
+  /** Cover-crop focus. Use when a frame would otherwise hide the subject. */
+  objectPosition?: string;
 };
 
 export type SignatureEvent = {
@@ -74,7 +76,12 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     media: [
       { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
       { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
-      { type: "image", src: "/signature-events/2025/sunday-funday-04.jpg" },
+      {
+        type: "image",
+        src: "/signature-events/2025/sunday-funday-04.jpg",
+        // Portrait tuna still in a landscape slot — keep the fish in frame.
+        objectPosition: "center top",
+      },
     ],
     description:
       "Para celebrar el 15.º aniversario de HUMI, reunimos a nuestra comunidad en una experiencia única con un ronqueo de atún y una clase magistral con el atleta de UFC Jesús Aguilar, en una marina de Ensenada.",
