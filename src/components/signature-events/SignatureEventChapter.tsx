@@ -69,7 +69,7 @@ export function SignatureEventChapter({
       data-index={index}
       className={
         isJourney
-          ? "signature-event relative z-0 flex h-full w-full min-w-0 shrink-0 flex-col justify-center overflow-hidden px-8 md:px-10 lg:px-12"
+          ? "signature-event relative z-0 flex h-full w-full min-w-0 shrink-0 flex-col justify-center overflow-hidden px-[clamp(3.5rem,9vw,7rem)]"
           : "signature-event relative flex w-full flex-col border-t border-black/[0.06] px-5 py-14 md:px-10 md:py-16"
       }
       aria-labelledby={`signature-event-${event.id}-title`}
@@ -82,7 +82,7 @@ export function SignatureEventChapter({
         className={
           isJourney
             ? media
-              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-x-12 py-4 lg:gap-x-16 xl:gap-x-20"
+              ? "mx-auto grid h-full w-full min-w-0 max-w-[1200px] grid-cols-[minmax(0,18rem)_minmax(0,32rem)] items-center justify-center gap-x-10 py-4 lg:gap-x-14"
               : "mx-auto flex h-full w-full min-w-0 max-w-[40rem] flex-col justify-center py-4"
             : "mx-auto flex w-full max-w-[520px] flex-col"
         }
@@ -145,7 +145,7 @@ export function SignatureEventChapter({
 
         {/* ── Visual column (journey) ──────────────────────────────── */}
         {isJourney && media ? (
-          <div className="flex min-h-0 min-w-0 items-end justify-end overflow-hidden">
+          <div className="flex h-full min-h-0 min-w-0 w-full items-center justify-center overflow-hidden">
             {media}
           </div>
         ) : null}

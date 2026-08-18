@@ -63,7 +63,7 @@ function MediaFrame({
           fill
           sizes={sizes}
           priority={priority}
-          className="object-cover"
+          className="object-cover object-center"
         />
       ) : !playing ? (
         <button
@@ -79,7 +79,7 @@ function MediaFrame({
               fill
               sizes={sizes}
               priority={priority}
-              className="object-cover transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
+              className="object-cover object-center transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
             />
           ) : (
             <span className="absolute inset-0 bg-[#111]" />
@@ -95,7 +95,7 @@ function MediaFrame({
       ) : (
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover object-center"
           controls
           playsInline
           preload="metadata"
@@ -128,8 +128,8 @@ export function SignatureEventMedia({
   const video = getVideo(media);
 
   const shell = isJourney
-    ? "flex w-full min-w-0 max-w-[min(100%,520px)] items-stretch gap-2.5 xl:gap-3"
-    : "mt-9 flex w-full max-w-[min(100%,520px)] items-stretch gap-2.5 md:mt-11";
+    ? "mx-auto flex w-[min(100%,32rem)] min-w-0 items-stretch gap-2.5 xl:gap-3"
+    : "mx-auto mt-9 flex w-[min(100%,520px)] items-stretch gap-2.5 md:mt-11";
 
   const frameSizes = isJourney
     ? "(max-width: 1280px) 28vw, 280px"
