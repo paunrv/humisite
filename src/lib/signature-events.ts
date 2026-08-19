@@ -124,7 +124,24 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Joel González",
     subtitle: "Campeón Olímpico · Londres 2012",
-    media: [],
+    media: [
+      {
+        type: "poster",
+        src: "/signature-events/2019/2nd-tkdolympicbootcamp.jpg",
+        // Wide group still in a 3:4 frame — keep faces in the crop.
+        objectPosition: "center 40%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2019/2nd-tkdolympicbootcamp-01.jpg",
+        objectPosition: "center 30%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2019/2nd-tkdolympicbootcamp-02.jpg",
+        objectPosition: "center 45%",
+      },
+    ],
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
   },
@@ -135,7 +152,23 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Carlo Molfetta",
     subtitle: "Campeón Olímpico · Londres 2012",
-    media: [],
+    media: [
+      {
+        type: "poster",
+        src: "/signature-events/2018/1st-tkdolympicbootcamp.jpg",
+        objectPosition: "center 40%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2018/1st-tkdolympicbootcamp-01.jpg",
+        objectPosition: "center 35%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2018/1st-tkdolympicbootcamp-02.jpg",
+        objectPosition: "center 40%",
+      },
+    ],
     description:
       "HUMI abrió sus puertas al entrenamiento de nivel olímpico por primera vez. Precisión e intensidad de Londres 2012 llegaron a Ensenada y fijaron un nuevo estándar de lo que nuestra comunidad podía aspirar a ser cada año.",
   },

@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  getPoster,
   getVideo,
   resolveMediaComposition,
   type SignatureMediaItem,
@@ -130,7 +129,8 @@ export function SignatureEventMedia({
 
   const isJourney = variant === "journey";
   const altBase = `${title} — ${year}`;
-  const poster = getPoster(media);
+  const posterItem = media.find((item) => item.type === "poster");
+  const poster = posterItem?.src;
   const sideImages = media.filter((item) => item.type === "image").slice(0, 2);
   const video = getVideo(media);
 
@@ -152,6 +152,7 @@ export function SignatureEventMedia({
           className="aspect-[3/4] min-w-0 flex-1"
           sizes={frameSizes}
           priority={priority}
+          objectPosition={posterItem?.objectPosition}
         />
         {sideImages.length > 0 ? (
           <div className="flex min-w-0 flex-1 flex-col gap-2.5 self-stretch">
@@ -163,7 +164,7 @@ export function SignatureEventMedia({
                 alt={
                   i === 0
                     ? `${altBase} · momento`
-                    : `${altBase} · ronqueo de atún`
+                    : `${altBase} · detalle`
                 }
                 className="min-h-0 w-full flex-1"
                 sizes={frameSizes}
@@ -187,6 +188,7 @@ export function SignatureEventMedia({
           className="aspect-[3/4] min-w-0 flex-1"
           sizes={frameSizes}
           priority={priority}
+          objectPosition={posterItem?.objectPosition}
         />
         <MediaFrame
           kind="video"
@@ -228,6 +230,7 @@ export function SignatureEventMedia({
           className="aspect-[3/4] w-full max-w-[320px]"
           sizes={frameSizes}
           priority={priority}
+          objectPosition={posterItem?.objectPosition}
         />
       </div>
     );
