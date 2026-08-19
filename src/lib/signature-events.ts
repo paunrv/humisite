@@ -6,6 +6,7 @@
  * To add a future event:
  *   1. Put media in `public/signature-events/<year>/`
  *   2. Add one object to SIGNATURE_EVENTS (newest first)
+ *   3. For every video, set `poster` to a still from THAT event
  *
  * Public URLs are `/signature-events/<year>/<filename>`.
  * Filenames with spaces are stored as-is and encoded at render time.
@@ -16,6 +17,11 @@ export type SignatureMediaType = "poster" | "image" | "video";
 export type SignatureMediaItem = {
   type: SignatureMediaType;
   src: string;
+  /**
+   * Explicit thumbnail for `type: "video"` only.
+   * Never inferred from other items or other events.
+   */
+  poster?: string;
   /** Cover-crop focus. Use when a frame would otherwise hide the subject. */
   objectPosition?: string;
 };
@@ -33,24 +39,13 @@ export type SignatureEvent = {
   media: SignatureMediaItem[];
 };
 
-export function getPoster(
-  media: SignatureMediaItem[],
-): SignatureMediaItem | undefined {
-  return media.find((item) => item.type === "poster");
-}
-
-export function getImages(media: SignatureMediaItem[]): SignatureMediaItem[] {
-  return media.filter((item) => item.type === "image");
+/** Stills shown in the chapter gallery (designed poster + photographs). */
+export function getVisuals(media: SignatureMediaItem[]): SignatureMediaItem[] {
+  return media.filter((item) => item.type === "poster" || item.type === "image");
 }
 
 export function getVideos(media: SignatureMediaItem[]): SignatureMediaItem[] {
   return media.filter((item) => item.type === "video");
-}
-
-export function getStills(media: SignatureMediaItem[]): SignatureMediaItem[] {
-  const poster = getPoster(media);
-  const images = getImages(media);
-  return poster ? [poster, ...images] : images;
 }
 
 export function hasRenderableMedia(media: SignatureMediaItem[]): boolean {
@@ -65,6 +60,9 @@ export function publicMediaSrc(src: string): string {
 /**
  * Newest first → oldest last.
  * `id` is the chapter mark (01 = most recent, 06 = beginning).
+ *
+ * Only paths that exist on disk are listed.
+ * Videos must declare their own `poster` — never infer it.
  */
 export const SIGNATURE_EVENTS: SignatureEvent[] = [
   {
@@ -79,7 +77,6 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
       {
         type: "image",
         src: "/signature-events/2025/sunday-funday-04.jpg",
-        // Portrait tuna still in a landscape-leaning slot — keep the fish in frame.
         objectPosition: "center top",
       },
     ],
@@ -92,9 +89,17 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
     media: [
-      { type: "poster", src: "/signature-events/2024/taekwondo-games.jpg" },
-      { type: "video", src: "/signature-events/2024/Taekwondo Games.mp4" },
-      { type: "video", src: "/signature-events/2024/taekwondo-games-previ.mp4" },
+      { type: "image", src: "/signature-events/2024/taekwondo-games.jpg" },
+      {
+        type: "video",
+        src: "/signature-events/2024/Taekwondo Games.mp4",
+        poster: "/signature-events/2024/taekwondo-games.jpg",
+      },
+      {
+        type: "video",
+        src: "/signature-events/2024/taekwondo-games-previ.mp4",
+        poster: "/signature-events/2024/taekwondo-games.jpg",
+      },
     ],
     description:
       "La competencia comunitaria que reunió a todas las generaciones en un mismo piso. Alumnos compitieron, se apoyaron y celebraron, convirtiendo un solo fin de semana en el retrato vivo de todo lo que HUMI había construido con los años.",
@@ -106,8 +111,12 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
     media: [
-      { type: "poster", src: "/signature-events/2023/ki-games.jpg" },
-      { type: "video", src: "/signature-events/2023/ki games.mp4" },
+      { type: "image", src: "/signature-events/2023/ki-games.jpg" },
+      {
+        type: "video",
+        src: "/signature-events/2023/ki games.mp4",
+        poster: "/signature-events/2023/ki-games.jpg",
+      },
     ],
     description:
       "Un fin de semana de rendimiento que fue más allá del formato habitual de clase. El dojang se convirtió en escenario de intensidad, técnica y el esfuerzo compartido que transforma una escuela en una familia unida por un propósito.",
@@ -117,9 +126,7 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2022",
     title: "Rumble HUMI Interno WTU",
     category: "Competencia Interna",
-    media: [
-      { type: "video", src: "/signature-events/2022/Ruumble Humi.mp4" },
-    ],
+    media: [],
     description:
       "Una competencia interna bajo estándares de World Taekwondo Union. Los atletas midieron meses de preparación contra sus propios compañeros, demostrando que el crecimiento más intenso a menudo nace dentro de la comunidad que los formó.",
   },
@@ -146,11 +153,6 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
         src: "/signature-events/2019/2nd-tkdolympicbootcamp-02.jpg",
         objectPosition: "center 45%",
       },
-      {
-        type: "image",
-        src: "/signature-events/2019/2nd-tkdolympicbootcamp-03.jpg",
-        objectPosition: "center 40%",
-      },
     ],
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
@@ -176,11 +178,6 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
       {
         type: "image",
         src: "/signature-events/2018/1st-tkdolympicbootcamp-02.jpg",
-        objectPosition: "center 40%",
-      },
-      {
-        type: "image",
-        src: "/signature-events/2018/1st-tkdolympicbootcamp-03.jpg",
         objectPosition: "center 40%",
       },
     ],

@@ -22,13 +22,21 @@ export function SignatureEventChapter({
   return (
     <article
       id={`signature-event-${event.year}`}
-      className="signature-event relative scroll-mt-[6.5rem] border-t border-black/[0.06] px-5 py-14 md:px-10 md:py-20"
+      data-signature-panel
+      data-index={index}
+      className="signature-event relative flex h-full w-[min(88vw,72rem)] shrink-0 snap-start flex-col justify-center px-5 py-10 md:w-[min(82vw,76rem)] md:px-10 md:py-14 lg:px-14"
       aria-labelledby={`signature-event-${event.id}-title`}
       aria-setsize={total}
       aria-posinset={index + 1}
     >
-      <div className="mx-auto w-full max-w-[1100px]">
-        <div className="max-w-[40rem]">
+      <div
+        className={
+          showMedia
+            ? "grid h-full min-h-[22rem] w-full items-center gap-8 lg:min-h-[32rem] lg:grid-cols-[minmax(18rem,0.9fr)_minmax(0,1.35fr)] lg:gap-12 xl:gap-16"
+            : "flex h-full min-h-[22rem] w-full max-w-[40rem] flex-col justify-center lg:min-h-[32rem]"
+        }
+      >
+        <div className="flex min-w-0 flex-col justify-center">
           <p className="font-mono text-[0.65rem] font-medium uppercase tracking-[0.18em] text-black/25">
             {edition} / {formatEdition(total)}
           </p>
@@ -39,7 +47,7 @@ export function SignatureEventChapter({
 
           <h3
             id={`signature-event-${event.id}-title`}
-            className="mt-3 max-w-[16ch] text-[clamp(1.85rem,6vw,2.75rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#0f0f0f]"
+            className="mt-3 max-w-[16ch] text-[clamp(1.85rem,4.2vw,2.85rem)] font-semibold leading-[1.06] tracking-[-0.035em] text-[#0f0f0f]"
           >
             {event.title}
           </h3>
@@ -58,13 +66,13 @@ export function SignatureEventChapter({
             ) : null}
           </div>
 
-          <p className="mt-6 max-w-[34rem] text-[0.975rem] leading-[1.75] text-[#555] md:mt-8 md:text-base">
+          <p className="mt-6 max-w-[36rem] text-[0.975rem] leading-[1.75] text-[#555] md:mt-8 md:text-base">
             {event.description}
           </p>
         </div>
 
         {showMedia ? (
-          <div className="max-w-[820px]">
+          <div className="flex h-full min-h-[20rem] min-w-0 w-full items-center lg:min-h-[28rem]">
             <SignatureEventMedia
               title={event.title}
               year={event.year}

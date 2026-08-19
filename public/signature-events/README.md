@@ -14,7 +14,8 @@ public/signature-events/
 
 To add a future event:
 
-1. Create `public/signature-events/<year>/` and drop the poster, photos, and/or video there
+1. Drop the poster, photos, and/or video into `public/signature-events/<year>/`
 2. Add one object to `SIGNATURE_EVENTS` in `src/lib/signature-events.ts` (newest first)
+3. Every video must set `poster` to a still from that same year — never infer it
 
 Do not put Signature Event assets in `/videos`, `/images`, or `media/signature-events`.

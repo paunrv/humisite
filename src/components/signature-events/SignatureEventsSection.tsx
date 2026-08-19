@@ -1,16 +1,123 @@
+"use client";
+
 import {
   formatEdition,
   SIGNATURE_EVENTS,
 } from "@/lib/signature-events";
 import { SignatureEventChapter } from "./SignatureEventChapter";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+} from "react";
 
 const TOTAL = SIGNATURE_EVENTS.length;
 
+function usePrefersReducedMotion() {
+  const [reduce, setReduce] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduce(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  return reduce;
+}
+
 export function SignatureEventsSection() {
+  const railRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const reduceMotion = usePrefersReducedMotion();
+
+  const scrollToIndex = useCallback(
+    (index: number) => {
+      const rail = railRef.current;
+      if (!rail) return;
+      const next = Math.min(TOTAL - 1, Math.max(0, index));
+      const panel = rail.querySelector<HTMLElement>(
+        `[data-signature-panel][data-index="${next}"]`,
+      );
+      panel?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        inline: "start",
+        block: "nearest",
+      });
+      setActiveIndex(next);
+    },
+    [reduceMotion],
+  );
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+
+    const syncActive = () => {
+      const panels = [
+        ...rail.querySelectorAll<HTMLElement>("[data-signature-panel]"),
+      ];
+      if (!panels.length) return;
+      let best = 0;
+      let bestDist = Infinity;
+      for (const panel of panels) {
+        const dist = Math.abs(panel.offsetLeft - rail.scrollLeft);
+        const index = Number(panel.dataset.index ?? 0);
+        if (dist < bestDist) {
+          bestDist = dist;
+          best = index;
+        }
+      }
+      setActiveIndex(best);
+    };
+
+    rail.addEventListener("scroll", syncActive, { passive: true });
+    return () => rail.removeEventListener("scroll", syncActive);
+  }, []);
+
+  useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+
+    const onWheel = (event: WheelEvent) => {
+      if (event.ctrlKey) return;
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      event.preventDefault();
+      window.scrollBy(0, event.deltaY);
+    };
+
+    rail.addEventListener("wheel", onWheel, { passive: false });
+    return () => rail.removeEventListener("wheel", onWheel);
+  }, []);
+
+  const onRailKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      scrollToIndex(activeIndex + 1);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      scrollToIndex(activeIndex - 1);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      scrollToIndex(0);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      scrollToIndex(TOTAL - 1);
+    }
+  };
+
+  const atStart = activeIndex <= 0;
+  const atEnd = activeIndex >= TOTAL - 1;
+  const previous = SIGNATURE_EVENTS[activeIndex - 1];
+  const next = SIGNATURE_EVENTS[activeIndex + 1];
+
   return (
     <section
       id="signature-events"
-      className="signature-events relative border-t border-black/[0.06] bg-[#f7f7f5]"
+      className="signature-events relative overflow-x-hidden border-t border-black/[0.06] bg-[#f7f7f5]"
       aria-labelledby="signature-events-heading"
     >
       <div
@@ -23,7 +130,7 @@ export function SignatureEventsSection() {
       />
 
       <div className="relative">
-        <header className="mx-auto max-w-[1100px] px-5 pb-8 pt-16 md:px-10 md:pb-10 md:pt-24">
+        <header className="mx-auto max-w-[1100px] px-5 pb-6 pt-16 md:px-10 md:pb-8 md:pt-24">
           <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-[0.1em] text-[#164A89] md:mb-4">
             Experiencias HUMI
           </p>
@@ -40,11 +147,13 @@ export function SignatureEventsSection() {
           <p className="mt-3.5 max-w-[34ch] text-[0.975rem] leading-relaxed text-[#666] md:mt-4 md:max-w-[30rem] md:text-base">
             Cada año creamos una experiencia que deja huella.
           </p>
+        </header>
 
+        <div className="mx-auto flex max-w-[1100px] flex-wrap items-center justify-between gap-4 px-5 pb-4 md:px-10">
           <div
             role="navigation"
             aria-label="Archivo de experiencias"
-            className="mt-8 flex max-w-[40rem] flex-wrap gap-x-1 gap-y-1 font-mono text-[0.7rem] font-medium tracking-[0.1em] text-[#888] md:mt-10 md:text-xs md:tracking-[0.12em]"
+            className="flex max-w-full flex-wrap items-center gap-x-1 font-mono text-[0.7rem] font-medium tracking-[0.1em] md:text-xs md:tracking-[0.12em]"
           >
             {SIGNATURE_EVENTS.map((event, index) => (
               <span key={event.id} className="inline-flex items-center">
@@ -53,22 +162,59 @@ export function SignatureEventsSection() {
                     ·
                   </span>
                 ) : null}
-                <a
-                  href={`#signature-event-${event.year}`}
-                  className="min-h-11 min-w-11 px-0.5 py-2 text-[#666] transition-colors hover:text-[#164A89] md:min-h-0 md:min-w-0"
+                <button
+                  type="button"
+                  onClick={() => scrollToIndex(index)}
+                  aria-current={index === activeIndex ? "true" : undefined}
+                  className="min-h-11 px-0.5 py-2 text-[#666] transition-colors hover:text-[#164A89] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#164A89] md:min-h-0"
                 >
                   <span className="text-[#164A89]">
                     {formatEdition(index + 1)}
                   </span>
                   <span className="text-black/20"> — </span>
                   {event.year}
-                </a>
+                </button>
               </span>
             ))}
           </div>
-        </header>
 
-        <div role="region" aria-label="Archivo de Experiencias HUMI">
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={() => scrollToIndex(activeIndex - 1)}
+              disabled={atStart}
+              aria-label={
+                previous
+                  ? `Anterior: ${previous.title}`
+                  : "Anterior, inicio del archivo"
+              }
+              className="flex h-11 w-11 items-center justify-center border border-black/10 text-[#0f0f0f] transition-colors hover:border-black/25 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#164A89] disabled:cursor-not-allowed disabled:border-black/[0.06] disabled:text-black/20"
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollToIndex(activeIndex + 1)}
+              disabled={atEnd}
+              aria-label={
+                next ? `Siguiente: ${next.title}` : "Siguiente, fin del archivo"
+              }
+              className="flex h-11 w-11 items-center justify-center border border-black/10 text-[#0f0f0f] transition-colors hover:border-black/25 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#164A89] disabled:cursor-not-allowed disabled:border-black/[0.06] disabled:text-black/20"
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={railRef}
+          tabIndex={0}
+          onKeyDown={onRailKeyDown}
+          className="signature-events-rail flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain scroll-px-5 pb-8 pt-2 outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-[#164A89] md:scroll-px-10 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="region"
+          aria-roledescription="carrusel"
+          aria-label="Archivo horizontal de Experiencias HUMI"
+        >
           {SIGNATURE_EVENTS.map((event, index) => (
             <SignatureEventChapter
               key={event.id}
@@ -77,6 +223,7 @@ export function SignatureEventsSection() {
               total={TOTAL}
             />
           ))}
+          <div className="w-[8vw] shrink-0 snap-none" aria-hidden="true" />
         </div>
 
         <footer className="mx-auto max-w-[420px] border-t border-black/[0.06] px-5 pb-16 pt-12 text-center md:pb-24 md:pt-16">
