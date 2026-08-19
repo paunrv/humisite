@@ -1,8 +1,15 @@
 /**
- * Experiencias HUMI — archivo editorial de experiencias anuales de HUMI.
+ * Experiencias HUMI — archivo editorial de experiencias anuales.
  *
- * Display order: newest → oldest (present back to the first Bootcamp).
- * Each event fully describes its copy and media.
+ * Display order: newest → oldest.
+ *
+ * To add a future event:
+ *   1. Put media in `public/signature-events/<year>/`
+ *   2. Add one object to SIGNATURE_EVENTS (newest first)
+ *   3. For every video, set `poster` to a still from THAT event
+ *
+ * Public URLs are `/signature-events/<year>/<filename>`.
+ * Filenames with spaces are stored as-is and encoded at render time.
  */
 
 export type SignatureMediaType = "poster" | "image" | "video";
@@ -10,6 +17,11 @@ export type SignatureMediaType = "poster" | "image" | "video";
 export type SignatureMediaItem = {
   type: SignatureMediaType;
   src: string;
+  /**
+   * Explicit thumbnail for `type: "video"` only.
+   * Never inferred from other items or other events.
+   */
+  poster?: string;
   /** Cover-crop focus. Use when a frame would otherwise hide the subject. */
   objectPosition?: string;
 };
@@ -27,44 +39,30 @@ export type SignatureEvent = {
   media: SignatureMediaItem[];
 };
 
-export type SignatureMediaComposition =
-  | "editorial"
-  | "poster-video"
-  | "video"
-  | "poster"
-  | "none";
-
-/** Derive the editorial composition from available media items. */
-export function resolveMediaComposition(
-  media: SignatureMediaItem[],
-): SignatureMediaComposition {
-  const poster = media.find((item) => item.type === "poster");
-  const images = media.filter((item) => item.type === "image");
-  const video = media.find((item) => item.type === "video");
-
-  if (poster && images.length >= 2) return "editorial";
-  if (poster && video) return "poster-video";
-  if (video) return "video";
-  if (poster && images.length > 0) return "editorial";
-  if (poster) return "poster";
-  return "none";
+/** Stills shown in the chapter gallery (designed poster + photographs). */
+export function getVisuals(media: SignatureMediaItem[]): SignatureMediaItem[] {
+  return media.filter((item) => item.type === "poster" || item.type === "image");
 }
 
-export function getPoster(media: SignatureMediaItem[]): string | undefined {
-  return media.find((item) => item.type === "poster")?.src;
+export function getVideos(media: SignatureMediaItem[]): SignatureMediaItem[] {
+  return media.filter((item) => item.type === "video");
 }
 
-export function getImages(media: SignatureMediaItem[]): string[] {
-  return media.filter((item) => item.type === "image").map((item) => item.src);
+export function hasRenderableMedia(media: SignatureMediaItem[]): boolean {
+  return media.length > 0;
 }
 
-export function getVideo(media: SignatureMediaItem[]): string | undefined {
-  return media.find((item) => item.type === "video")?.src;
+/** Encode a public path so filenames with spaces resolve. */
+export function publicMediaSrc(src: string): string {
+  return encodeURI(src);
 }
 
 /**
  * Newest first → oldest last.
- * `id` is the chapter mark in the journey (01 = today, 06 = beginning).
+ * `id` is the chapter mark (01 = most recent, 06 = beginning).
+ *
+ * Only paths that exist on disk are listed.
+ * Videos must declare their own `poster` — never infer it.
  */
 export const SIGNATURE_EVENTS: SignatureEvent[] = [
   {
@@ -79,7 +77,6 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
       {
         type: "image",
         src: "/signature-events/2025/sunday-funday-04.jpg",
-        // Portrait tuna still in a landscape slot — keep the fish in frame.
         objectPosition: "center top",
       },
     ],
@@ -92,8 +89,17 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
     media: [
-      { type: "poster", src: "/signature-events/2024/taekwondo-games.jpg" },
-      { type: "video", src: "/videos/moments/taekwondo-games.mp4" },
+      { type: "image", src: "/signature-events/2024/taekwondo-games.jpg" },
+      {
+        type: "video",
+        src: "/signature-events/2024/Taekwondo Games.mp4",
+        poster: "/signature-events/2024/taekwondo-games.jpg",
+      },
+      {
+        type: "video",
+        src: "/signature-events/2024/taekwondo-games-previ.mp4",
+        poster: "/signature-events/2024/taekwondo-games.jpg",
+      },
     ],
     description:
       "La competencia comunitaria que reunió a todas las generaciones en un mismo piso. Alumnos compitieron, se apoyaron y celebraron, convirtiendo un solo fin de semana en el retrato vivo de todo lo que HUMI había construido con los años.",
@@ -104,7 +110,14 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "KI Games",
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
-    media: [],
+    media: [
+      { type: "image", src: "/signature-events/2023/ki-games.jpg" },
+      {
+        type: "video",
+        src: "/signature-events/2023/ki games.mp4",
+        poster: "/signature-events/2023/ki-games.jpg",
+      },
+    ],
     description:
       "Un fin de semana de rendimiento que fue más allá del formato habitual de clase. El dojang se convirtió en escenario de intensidad, técnica y el esfuerzo compartido que transforma una escuela en una familia unida por un propósito.",
   },
@@ -124,7 +137,23 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Joel González",
     subtitle: "Campeón Olímpico · Londres 2012",
-    media: [],
+    media: [
+      {
+        type: "poster",
+        src: "/signature-events/2019/2nd-tkdolympicbootcamp.jpg",
+        objectPosition: "center 40%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2019/2nd-tkdolympicbootcamp-01.jpg",
+        objectPosition: "center 30%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2019/2nd-tkdolympicbootcamp-02.jpg",
+        objectPosition: "center 45%",
+      },
+    ],
     description:
       "Un segundo año, un segundo campeón. El fuego olímpico volvió al dojang y profundizó una tradición de clases magistrales de clase mundial que define el ritmo anual de HUMI y eleva a cada alumno en el tatami.",
   },
@@ -135,7 +164,23 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral",
     guest: "Carlo Molfetta",
     subtitle: "Campeón Olímpico · Londres 2012",
-    media: [],
+    media: [
+      {
+        type: "poster",
+        src: "/signature-events/2018/1st-tkdolympicbootcamp.jpg",
+        objectPosition: "center 40%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2018/1st-tkdolympicbootcamp-01.jpg",
+        objectPosition: "center 35%",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2018/1st-tkdolympicbootcamp-02.jpg",
+        objectPosition: "center 40%",
+      },
+    ],
     description:
       "HUMI abrió sus puertas al entrenamiento de nivel olímpico por primera vez. Precisión e intensidad de Londres 2012 llegaron a Ensenada y fijaron un nuevo estándar de lo que nuestra comunidad podía aspirar a ser cada año.",
   },

@@ -1,237 +1,236 @@
 "use client";
 
 import {
-  getPoster,
-  getVideo,
-  resolveMediaComposition,
+  getVideos,
+  getVisuals,
+  publicMediaSrc,
   type SignatureMediaItem,
 } from "@/lib/signature-events";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 type SignatureEventMediaProps = {
-  /** Desktop journey: fill the visual column. Mobile stack: sit under copy. */
-  variant: "journey" | "stack";
   title: string;
   year: string;
   media: SignatureMediaItem[];
   priority?: boolean;
 };
 
-/**
- * Shared editorial frame for posters, photos, and videos.
- * Same crop, proportions, and container — media type should not change layout.
- */
-function MediaFrame({
-  kind,
-  src,
+function ImageFrame({
+  item,
   alt,
   className,
   sizes,
   priority = false,
-  posterSrc,
-  title,
-  objectPosition,
 }: {
-  kind: "image" | "video";
-  src: string;
+  item: SignatureMediaItem;
   alt: string;
   className: string;
   sizes: string;
   priority?: boolean;
-  posterSrc?: string;
-  title?: string;
-  objectPosition?: string;
 }) {
-  const [playing, setPlaying] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
 
-  const start = useCallback(() => setPlaying(true), []);
-
-  useEffect(() => {
-    if (!playing || kind !== "video") return;
-    void videoRef.current?.play().catch(() => {
-      /* ignore autoplay / abort */
-    });
-  }, [playing, kind]);
-
-  const coverClass = objectPosition
+  const coverClass = item.objectPosition
     ? "object-cover"
     : "object-cover object-center";
-  const coverStyle = objectPosition ? { objectPosition } : undefined;
+  const coverStyle = item.objectPosition
+    ? { objectPosition: item.objectPosition }
+    : undefined;
 
   return (
     <figure className={`relative overflow-hidden bg-[#ebebe8] ${className}`}>
-      {kind === "image" ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={sizes}
-          priority={priority}
-          className={coverClass}
-          style={coverStyle}
-        />
-      ) : !playing ? (
-        <button
-          type="button"
-          onClick={start}
-          className="group absolute inset-0 z-10"
-          aria-label={`Reproducir — ${title ?? alt}`}
-        >
-          {posterSrc ? (
-            <Image
-              src={posterSrc}
-              alt=""
-              fill
-              sizes={sizes}
-              priority={priority}
-              className="object-cover object-center transition-[transform,filter] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-safe:group-hover:scale-[1.01] motion-safe:group-hover:brightness-[1.03]"
-            />
-          ) : (
-            <span className="absolute inset-0 bg-[#111]" />
-          )}
-          <span className="absolute inset-0 bg-black/20 transition-colors duration-300 group-hover:bg-black/15" />
-          <span
-            className="absolute bottom-3 left-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/45 bg-black/25 text-white backdrop-blur-sm transition-transform duration-300 motion-safe:group-hover:scale-[1.04]"
-            aria-hidden="true"
-          >
-            <span className="ml-0.5 text-xs leading-none">▶</span>
-          </span>
-        </button>
-      ) : (
-        <video
-          ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover object-center"
-          controls
-          playsInline
-          preload="metadata"
-          poster={posterSrc}
-          src={src}
-        />
-      )}
+      <Image
+        src={publicMediaSrc(item.src)}
+        alt={alt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        className={coverClass}
+        style={coverStyle}
+        onError={() => setFailed(true)}
+      />
     </figure>
   );
 }
 
-/**
- * Editorial media compositions derived from available items.
- * Videos use the same MediaFrame as images (aspect, crop, spacing).
- */
-export function SignatureEventMedia({
-  variant,
+function VideoFrame({
+  item,
   title,
-  year,
-  media,
-  priority = false,
-}: SignatureEventMediaProps) {
-  const composition = resolveMediaComposition(media);
-  if (composition === "none") return null;
+  className,
+}: {
+  item: SignatureMediaItem;
+  title: string;
+  className: string;
+}) {
+  const [failed, setFailed] = useState(false);
+  if (failed) return null;
 
-  const isJourney = variant === "journey";
-  const altBase = `${title} — ${year}`;
-  const poster = getPoster(media);
-  const sideImages = media.filter((item) => item.type === "image").slice(0, 2);
-  const video = getVideo(media);
+  return (
+    <figure className={`relative overflow-hidden bg-[#111] ${className}`}>
+      <video
+        className="absolute inset-0 h-full w-full object-contain object-center"
+        controls
+        playsInline
+        muted
+        preload="metadata"
+        poster={item.poster ? publicMediaSrc(item.poster) : undefined}
+        src={publicMediaSrc(item.src)}
+        onError={() => setFailed(true)}
+        aria-label={title}
+      />
+    </figure>
+  );
+}
 
-  const shell = isJourney
-    ? "mx-auto flex w-[min(100%,32rem)] min-w-0 items-stretch gap-2.5 xl:gap-3"
-    : "mx-auto mt-9 flex w-[min(100%,520px)] items-stretch gap-2.5 md:mt-11";
+function VisualsGallery({
+  visuals,
+  altBase,
+  sizes,
+  priority,
+}: {
+  visuals: SignatureMediaItem[];
+  altBase: string;
+  sizes: string;
+  priority: boolean;
+}) {
+  const featured = visuals[0];
+  const rest = visuals.slice(1);
+  if (!featured) return null;
 
-  const frameSizes = isJourney
-    ? "(max-width: 1280px) 28vw, 280px"
-    : "(max-width: 768px) 55vw, 240px";
-
-  if (composition === "editorial" && poster) {
+  if (rest.length === 0) {
     return (
-      <div className={shell} data-media-layout="editorial">
-        <MediaFrame
-          kind="image"
-          src={poster}
+      <ImageFrame
+        item={featured}
+        alt={altBase}
+        className="aspect-[3/4] h-full w-full"
+        sizes={sizes}
+        priority={priority}
+      />
+    );
+  }
+
+  const pair = rest.slice(0, 2);
+  const extra = rest.slice(2);
+
+  return (
+    <div className="flex h-full w-full flex-col gap-2.5">
+      <div className="flex min-h-0 w-full flex-1 items-stretch gap-2.5">
+        <ImageFrame
+          item={featured}
           alt={altBase}
-          className="aspect-[3/4] min-w-0 flex-1"
-          sizes={frameSizes}
+          className="aspect-[3/4] min-h-0 min-w-0 flex-1"
+          sizes={sizes}
           priority={priority}
         />
-        {sideImages.length > 0 ? (
-          <div className="flex min-w-0 flex-1 flex-col gap-2.5 self-stretch">
-            {sideImages.map((item, i) => (
-              <MediaFrame
+        {pair.length > 0 ? (
+          <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2.5">
+            {pair.map((item, i) => (
+              <ImageFrame
                 key={item.src}
-                kind="image"
-                src={item.src}
-                alt={
-                  i === 0
-                    ? `${altBase} · momento`
-                    : `${altBase} · ronqueo de atún`
-                }
+                item={item}
+                alt={`${altBase} · ${i + 1}`}
                 className="min-h-0 w-full flex-1"
-                sizes={frameSizes}
-                objectPosition={item.objectPosition}
+                sizes={sizes}
               />
             ))}
           </div>
         ) : null}
       </div>
-    );
-  }
+      {extra.length > 0 ? (
+        <div
+          className={
+            extra.length === 1
+              ? "grid grid-cols-1 gap-2.5 empty:hidden"
+              : "grid grid-cols-2 gap-2.5 empty:hidden"
+          }
+        >
+          {extra.map((item, i) => (
+            <ImageFrame
+              key={item.src}
+              item={item}
+              alt={`${altBase} · ${pair.length + i + 1}`}
+              className="aspect-[3/2] w-full"
+              sizes={sizes}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
 
-  if (composition === "poster-video" && poster && video) {
-    // Same editorial shell as poster + image: equal 3/4 frames, shared crop language.
-    return (
-      <div className={shell} data-media-layout="poster-video">
-        <MediaFrame
-          kind="image"
-          src={poster}
-          alt={altBase}
-          className="aspect-[3/4] min-w-0 flex-1"
-          sizes={frameSizes}
+/**
+ * Renders stills and videos independently.
+ * Video thumbnails come only from each item's explicit `poster` field.
+ */
+export function SignatureEventMedia({
+  title,
+  year,
+  media,
+  priority = false,
+}: SignatureEventMediaProps) {
+  const visuals = getVisuals(media);
+  const videos = getVideos(media);
+  if (visuals.length === 0 && videos.length === 0) return null;
+
+  const altBase = `${title} — ${year}`;
+  const sizes = "(max-width: 1024px) 88vw, 48vw";
+  const videoTitle = `${title} — recap ${year}`;
+  const pairVisualAndVideo = visuals.length === 1 && videos.length > 0;
+
+  return (
+    <div className="flex h-full w-full min-w-0 flex-col gap-2.5 empty:hidden">
+      {pairVisualAndVideo ? (
+        <div className="flex min-h-0 w-full flex-1 flex-col items-stretch gap-2.5 empty:hidden sm:flex-row">
+          <ImageFrame
+            item={visuals[0]}
+            alt={altBase}
+            className="aspect-[3/4] min-h-0 min-w-0 flex-1"
+            sizes={sizes}
+            priority={priority}
+          />
+          <VideoFrame
+            item={videos[0]}
+            title={videoTitle}
+            className="aspect-[3/4] min-h-0 min-w-0 flex-1"
+          />
+        </div>
+      ) : visuals.length > 0 ? (
+        <VisualsGallery
+          visuals={visuals}
+          altBase={altBase}
+          sizes={sizes}
           priority={priority}
         />
-        <MediaFrame
-          kind="video"
-          src={video}
-          alt={`${altBase} · video`}
-          title={title}
-          posterSrc={poster}
-          className="aspect-[3/4] min-w-0 flex-1"
-          sizes={frameSizes}
-        />
-      </div>
-    );
-  }
+      ) : null}
 
-  if (composition === "video" && video) {
-    return (
-      <div className={shell} data-media-layout="video">
-        <MediaFrame
-          kind="video"
-          src={video}
-          alt={`${altBase} · video`}
-          title={title}
-          posterSrc={poster}
-          className="aspect-[3/4] w-full max-w-[320px]"
-          sizes={frameSizes}
-          priority={priority}
-        />
-      </div>
-    );
-  }
+      {videos.length > 0 && !pairVisualAndVideo ? (
+        <div className="flex flex-col gap-2.5 empty:hidden">
+          {videos.map((item) => (
+            <VideoFrame
+              key={item.src}
+              item={item}
+              title={videoTitle}
+              className="aspect-video w-full min-h-[12rem]"
+            />
+          ))}
+        </div>
+      ) : null}
 
-  if (composition === "poster" && poster) {
-    return (
-      <div className={shell} data-media-layout="poster">
-        <MediaFrame
-          kind="image"
-          src={poster}
-          alt={altBase}
-          className="aspect-[3/4] w-full max-w-[320px]"
-          sizes={frameSizes}
-          priority={priority}
-        />
-      </div>
-    );
-  }
-
-  return null;
+      {pairVisualAndVideo && videos.length > 1 ? (
+        <div className="flex flex-col gap-2.5 empty:hidden">
+          {videos.slice(1).map((item) => (
+            <VideoFrame
+              key={item.src}
+              item={item}
+              title={videoTitle}
+              className="aspect-video w-full min-h-[12rem]"
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
 }
