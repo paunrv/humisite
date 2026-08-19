@@ -1,8 +1,8 @@
 # Media curada — Experiencias HUMI
 
-Signature Events no longer sync from this folder.
+Signature Events no longer sync from this folder. Do not drop new photos here.
 
-1. Add files under `public/signature-events/{year}/` (or use synced `/videos/...` paths)
+1. Drop jpg / mp4 under `public/signature-events/{year}/` (the year **folder**, not `src/lib/signature-events.ts`)
 2. Describe them on the event’s `media` array in `src/lib/signature-events.ts`
 
 ```ts
