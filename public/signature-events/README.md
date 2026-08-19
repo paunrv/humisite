@@ -1,24 +1,20 @@
-# Experiencias HUMI — media pública
+# Experiencias HUMI — media
 
-List media on each event in `src/lib/signature-events.ts`:
+Each year lives in its own folder. Served as `/signature-events/<year>/...`.
 
-```ts
-media: [
-  { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
-  { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
-  { type: "image", src: "/signature-events/2025/sunday-funday-04.jpg" },
-]
+```
+public/signature-events/
+  2025/   Sunday Funday
+  2024/   Taekwondo Games
+  2023/   KI Games
+  2022/   Rumble HUMI Interno WTU
+  2019/   2º Bootcamp Olímpico de TKD
+  2018/   1er Bootcamp Olímpico de TKD
 ```
 
-Supported types: `poster` | `image` | `video`.
+To add a future event:
 
-Composition (derived automatically):
+1. Create `public/signature-events/<year>/` and drop the poster, photos, and/or video there
+2. Add one object to `SIGNATURE_EVENTS` in `src/lib/signature-events.ts` (newest first)
 
-| Available media | Layout |
-| --- | --- |
-| Poster + 2 images | Editorial photo layout |
-| Poster + video | Poster + large inline video |
-| Video only | Large inline video |
-| Poster only | Poster only |
-
-Put stills under `public/signature-events/{year}/`. Videos may live there too, or reuse paths already synced by `npm run sync:videos` (e.g. `/videos/moments/...`).
+Do not put Signature Event assets in `/videos`, `/images`, or `media/signature-events`.
