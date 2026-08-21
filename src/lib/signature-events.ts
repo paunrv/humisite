@@ -6,13 +6,17 @@
  * To add a future event:
  *   1. Put media in `public/signature-events/<year>/`
  *   2. Add one object to SIGNATURE_EVENTS (newest first)
- *   3. For every video, set `poster` to a still from THAT event
+ *   3. Every video must set `poster` to a still from that same year
+ *   4. Set `orientation` / `aspect` from the real file
  *
  * Public URLs are `/signature-events/<year>/<filename>`.
  * Filenames with spaces are stored as-is and encoded at render time.
+ * Video posters are never inferred from array order.
  */
 
 export type SignatureMediaType = "poster" | "image" | "video";
+
+export type SignatureMediaOrientation = "portrait" | "landscape";
 
 export type SignatureMediaItem = {
   type: SignatureMediaType;
@@ -22,8 +26,11 @@ export type SignatureMediaItem = {
    * Never inferred from other items or other events.
    */
   poster?: string;
-  /** Cover-crop focus. Use when a frame would otherwise hide the subject. */
+  /** Cover-crop focus when the frame still needs a nudge. */
   objectPosition?: string;
+  orientation?: SignatureMediaOrientation;
+  /** CSS aspect-ratio, e.g. "3 / 4" or "9 / 16". */
+  aspect?: string;
 };
 
 export type SignatureEvent = {
@@ -35,34 +42,26 @@ export type SignatureEvent = {
   subtitle?: string;
   /** ~35–45 words. */
   description: string;
-  /** Ordered media the chapter may render. Layout adapts to what is present. */
   media: SignatureMediaItem[];
 };
-
-/** Stills shown in the chapter gallery (designed poster + photographs). */
-export function getVisuals(media: SignatureMediaItem[]): SignatureMediaItem[] {
-  return media.filter((item) => item.type === "poster" || item.type === "image");
-}
-
-export function getVideos(media: SignatureMediaItem[]): SignatureMediaItem[] {
-  return media.filter((item) => item.type === "video");
-}
 
 export function hasRenderableMedia(media: SignatureMediaItem[]): boolean {
   return media.length > 0;
 }
 
-/** Encode a public path so filenames with spaces resolve. */
 export function publicMediaSrc(src: string): string {
   return encodeURI(src);
 }
 
+export function isPortrait(item: SignatureMediaItem): boolean {
+  if (item.orientation === "portrait") return true;
+  if (item.orientation === "landscape") return false;
+  return item.type === "video";
+}
+
 /**
  * Newest first → oldest last.
- * `id` is the chapter mark (01 = most recent, 06 = beginning).
- *
- * Only paths that exist on disk are listed.
- * Videos must declare their own `poster` — never infer it.
+ * Aspects below were measured from the files on disk.
  */
 export const SIGNATURE_EVENTS: SignatureEvent[] = [
   {
@@ -72,11 +71,23 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Clase Magistral · Jesús Aguilar",
     subtitle: "Atleta oficial de UFC",
     media: [
-      { type: "poster", src: "/signature-events/2025/sunday-funday-poster.jpg" },
-      { type: "image", src: "/signature-events/2025/sunday-funday-01.jpg" },
+      {
+        type: "poster",
+        src: "/signature-events/2025/sunday-funday-poster.jpg",
+        orientation: "portrait",
+        aspect: "3 / 4",
+      },
+      {
+        type: "image",
+        src: "/signature-events/2025/sunday-funday-01.jpg",
+        orientation: "landscape",
+        aspect: "4 / 3",
+      },
       {
         type: "image",
         src: "/signature-events/2025/sunday-funday-04.jpg",
+        orientation: "portrait",
+        aspect: "4 / 5",
         objectPosition: "center top",
       },
     ],
@@ -89,16 +100,19 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     title: "Taekwondo Games",
     category: "Competencia Comunitaria",
     media: [
-      { type: "image", src: "/signature-events/2024/taekwondo-games.jpg" },
       {
         type: "video",
         src: "/signature-events/2024/Taekwondo Games.mp4",
         poster: "/signature-events/2024/taekwondo-games.jpg",
+        orientation: "portrait",
+        aspect: "9 / 16",
       },
       {
         type: "video",
-        src: "/signature-events/2024/taekwondo-games-previ.mp4",
+        src: "/signature-events/2024/tkd-games-previ.mp4",
         poster: "/signature-events/2024/taekwondo-games.jpg",
+        orientation: "portrait",
+        aspect: "9 / 16",
       },
     ],
     description:
@@ -111,11 +125,18 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     category: "Fin de Semana de Rendimiento",
     guest: "Gabriel Bracamontes",
     media: [
-      { type: "image", src: "/signature-events/2023/ki-games.jpg" },
+      {
+        type: "image",
+        src: "/signature-events/2023/ki-games.jpg",
+        orientation: "landscape",
+        aspect: "1375 / 719",
+      },
       {
         type: "video",
         src: "/signature-events/2023/ki games.mp4",
         poster: "/signature-events/2023/ki-games.jpg",
+        orientation: "portrait",
+        aspect: "9 / 16",
       },
     ],
     description:
@@ -126,7 +147,15 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     year: "2022",
     title: "Rumble HUMI Interno WTU",
     category: "Competencia Interna",
-    media: [],
+    media: [
+      {
+        type: "video",
+        src: "/signature-events/2022/Ruumble Humi.mp4",
+        poster: "/signature-events/2022/rumble-humi-poster.jpg",
+        orientation: "portrait",
+        aspect: "9 / 16",
+      },
+    ],
     description:
       "Una competencia interna bajo estándares de World Taekwondo Union. Los atletas midieron meses de preparación contra sus propios compañeros, demostrando que el crecimiento más intenso a menudo nace dentro de la comunidad que los formó.",
   },
@@ -139,19 +168,22 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     subtitle: "Campeón Olímpico · Londres 2012",
     media: [
       {
-        type: "poster",
+        type: "image",
         src: "/signature-events/2019/2nd-tkdolympicbootcamp.jpg",
-        objectPosition: "center 40%",
+        orientation: "landscape",
+        aspect: "3 / 2",
       },
       {
         type: "image",
         src: "/signature-events/2019/2nd-tkdolympicbootcamp-01.jpg",
-        objectPosition: "center 30%",
+        orientation: "landscape",
+        aspect: "3 / 2",
       },
       {
         type: "image",
         src: "/signature-events/2019/2nd-tkdolympicbootcamp-02.jpg",
-        objectPosition: "center 45%",
+        orientation: "landscape",
+        aspect: "3 / 2",
       },
     ],
     description:
@@ -166,19 +198,22 @@ export const SIGNATURE_EVENTS: SignatureEvent[] = [
     subtitle: "Campeón Olímpico · Londres 2012",
     media: [
       {
-        type: "poster",
+        type: "image",
         src: "/signature-events/2018/1st-tkdolympicbootcamp.jpg",
-        objectPosition: "center 40%",
+        orientation: "landscape",
+        aspect: "3 / 2",
       },
       {
         type: "image",
         src: "/signature-events/2018/1st-tkdolympicbootcamp-01.jpg",
-        objectPosition: "center 35%",
+        orientation: "landscape",
+        aspect: "3 / 2",
       },
       {
         type: "image",
         src: "/signature-events/2018/1st-tkdolympicbootcamp-02.jpg",
-        objectPosition: "center 40%",
+        orientation: "landscape",
+        aspect: "3 / 2",
       },
     ],
     description:
@@ -190,7 +225,6 @@ export function formatEdition(id: number): string {
   return String(id).padStart(2, "0");
 }
 
-/** Assert descriptions stay in the 35–45 word band (dev aid). */
 export function descriptionWordCount(text: string): number {
   return text.trim().split(/\s+/).filter(Boolean).length;
 }

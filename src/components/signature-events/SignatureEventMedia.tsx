@@ -1,236 +1,136 @@
 "use client";
 
 import {
-  getVideos,
-  getVisuals,
   publicMediaSrc,
   type SignatureMediaItem,
 } from "@/lib/signature-events";
-import Image from "next/image";
 import { useState } from "react";
 
 type SignatureEventMediaProps = {
   title: string;
   year: string;
   media: SignatureMediaItem[];
-  priority?: boolean;
 };
 
-function ImageFrame({
+/** Presentation-only pick. Mapping and files stay untouched. */
+const FEATURED_SRC: Record<string, string> = {
+  "2025": "/signature-events/2025/sunday-funday-poster.jpg",
+  "2024": "/signature-events/2024/Taekwondo Games.mp4",
+  "2023": "/signature-events/2023/ki-games.jpg",
+  "2022": "/signature-events/2022/Ruumble Humi.mp4",
+  "2019": "/signature-events/2019/2nd-tkdolympicbootcamp.jpg",
+  "2018": "/signature-events/2018/1st-tkdolympicbootcamp.jpg",
+};
+
+function nativeAspect(item: SignatureMediaItem) {
+  if (item.aspect) return item.aspect;
+  if (item.type === "video") return "9 / 16";
+  if (item.orientation === "portrait") return "3 / 4";
+  return "3 / 2";
+}
+
+function isPortraitPiece(item: SignatureMediaItem) {
+  const [w, h] = nativeAspect(item)
+    .split("/")
+    .map((part) => Number.parseFloat(part.trim()));
+  if (w > 0 && h > 0) return w / h < 1;
+  return item.orientation === "portrait";
+}
+
+function featuredOf(year: string, media: SignatureMediaItem[]) {
+  const wanted = FEATURED_SRC[year];
+  return (wanted ? media.find((item) => item.src === wanted) : undefined) ?? media[0];
+}
+
+export function featuredIsVertical(year: string, media: SignatureMediaItem[]) {
+  const item = featuredOf(year, media);
+  return item ? isPortraitPiece(item) : false;
+}
+
+function NaturalStill({
   item,
   alt,
-  className,
-  sizes,
-  priority = false,
 }: {
   item: SignatureMediaItem;
   alt: string;
-  className: string;
-  sizes: string;
-  priority?: boolean;
 }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
 
-  const coverClass = item.objectPosition
-    ? "object-cover"
-    : "object-cover object-center";
-  const coverStyle = item.objectPosition
-    ? { objectPosition: item.objectPosition }
-    : undefined;
-
   return (
-    <figure className={`relative overflow-hidden bg-[#ebebe8] ${className}`}>
-      <Image
+    <figure
+      className="signature-media-frame"
+      style={{ aspectRatio: nativeAspect(item) }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
         src={publicMediaSrc(item.src)}
         alt={alt}
-        fill
-        sizes={sizes}
-        priority={priority}
-        className={coverClass}
-        style={coverStyle}
+        style={{
+          display: "block",
+          width: "100%",
+          height: "auto",
+          objectFit: "contain",
+        }}
         onError={() => setFailed(true)}
       />
     </figure>
   );
 }
 
-function VideoFrame({
+function NaturalVideo({
   item,
   title,
-  className,
 }: {
   item: SignatureMediaItem;
   title: string;
-  className: string;
 }) {
   const [failed, setFailed] = useState(false);
   if (failed) return null;
 
   return (
-    <figure className={`relative overflow-hidden bg-[#111] ${className}`}>
-      <video
-        className="absolute inset-0 h-full w-full object-contain object-center"
-        controls
-        playsInline
-        muted
-        preload="metadata"
-        poster={item.poster ? publicMediaSrc(item.poster) : undefined}
-        src={publicMediaSrc(item.src)}
-        onError={() => setFailed(true)}
-        aria-label={title}
-      />
-    </figure>
-  );
-}
-
-function VisualsGallery({
-  visuals,
-  altBase,
-  sizes,
-  priority,
-}: {
-  visuals: SignatureMediaItem[];
-  altBase: string;
-  sizes: string;
-  priority: boolean;
-}) {
-  const featured = visuals[0];
-  const rest = visuals.slice(1);
-  if (!featured) return null;
-
-  if (rest.length === 0) {
-    return (
-      <ImageFrame
-        item={featured}
-        alt={altBase}
-        className="aspect-[3/4] h-full w-full"
-        sizes={sizes}
-        priority={priority}
-      />
-    );
-  }
-
-  const pair = rest.slice(0, 2);
-  const extra = rest.slice(2);
-
-  return (
-    <div className="flex h-full w-full flex-col gap-2.5">
-      <div className="flex min-h-0 w-full flex-1 items-stretch gap-2.5">
-        <ImageFrame
-          item={featured}
-          alt={altBase}
-          className="aspect-[3/4] min-h-0 min-w-0 flex-1"
-          sizes={sizes}
-          priority={priority}
-        />
-        {pair.length > 0 ? (
-          <div className="flex min-h-0 min-w-0 flex-1 flex-col gap-2.5">
-            {pair.map((item, i) => (
-              <ImageFrame
-                key={item.src}
-                item={item}
-                alt={`${altBase} · ${i + 1}`}
-                className="min-h-0 w-full flex-1"
-                sizes={sizes}
-              />
-            ))}
-          </div>
-        ) : null}
-      </div>
-      {extra.length > 0 ? (
-        <div
-          className={
-            extra.length === 1
-              ? "grid grid-cols-1 gap-2.5 empty:hidden"
-              : "grid grid-cols-2 gap-2.5 empty:hidden"
-          }
-        >
-          {extra.map((item, i) => (
-            <ImageFrame
-              key={item.src}
-              item={item}
-              alt={`${altBase} · ${pair.length + i + 1}`}
-              className="aspect-[3/2] w-full"
-              sizes={sizes}
-            />
-          ))}
-        </div>
-      ) : null}
-    </div>
+    <video
+      className="signature-media-solo-video"
+      controls
+      playsInline
+      muted
+      preload="metadata"
+      poster={item.poster ? publicMediaSrc(item.poster) : undefined}
+      src={publicMediaSrc(item.src)}
+      onError={() => setFailed(true)}
+      aria-label={title}
+    />
   );
 }
 
 /**
- * Renders stills and videos independently.
- * Video thumbnails come only from each item's explicit `poster` field.
+ * Renders a single featured asset per event.
+ * Extra mapped files remain on disk and in signature-events.ts.
  */
 export function SignatureEventMedia({
   title,
   year,
   media,
-  priority = false,
 }: SignatureEventMediaProps) {
-  const visuals = getVisuals(media);
-  const videos = getVideos(media);
-  if (visuals.length === 0 && videos.length === 0) return null;
+  const item = featuredOf(year, media);
+  if (!item) return null;
 
   const altBase = `${title} — ${year}`;
-  const sizes = "(max-width: 1024px) 88vw, 48vw";
-  const videoTitle = `${title} — recap ${year}`;
-  const pairVisualAndVideo = visuals.length === 1 && videos.length > 0;
+  const portrait = isPortraitPiece(item);
 
   return (
-    <div className="flex h-full w-full min-w-0 flex-col gap-2.5 empty:hidden">
-      {pairVisualAndVideo ? (
-        <div className="flex min-h-0 w-full flex-1 flex-col items-stretch gap-2.5 empty:hidden sm:flex-row">
-          <ImageFrame
-            item={visuals[0]}
-            alt={altBase}
-            className="aspect-[3/4] min-h-0 min-w-0 flex-1"
-            sizes={sizes}
-            priority={priority}
-          />
-          <VideoFrame
-            item={videos[0]}
-            title={videoTitle}
-            className="aspect-[3/4] min-h-0 min-w-0 flex-1"
-          />
-        </div>
-      ) : visuals.length > 0 ? (
-        <VisualsGallery
-          visuals={visuals}
-          altBase={altBase}
-          sizes={sizes}
-          priority={priority}
-        />
-      ) : null}
-
-      {videos.length > 0 && !pairVisualAndVideo ? (
-        <div className="flex flex-col gap-2.5 empty:hidden">
-          {videos.map((item) => (
-            <VideoFrame
-              key={item.src}
-              item={item}
-              title={videoTitle}
-              className="aspect-video w-full min-h-[12rem]"
-            />
-          ))}
-        </div>
-      ) : null}
-
-      {pairVisualAndVideo && videos.length > 1 ? (
-        <div className="flex flex-col gap-2.5 empty:hidden">
-          {videos.slice(1).map((item) => (
-            <VideoFrame
-              key={item.src}
-              item={item}
-              title={videoTitle}
-              className="aspect-video w-full min-h-[12rem]"
-            />
-          ))}
-        </div>
-      ) : null}
+    <div
+      className={
+        portrait
+          ? "signature-media signature-media--solo signature-media--portrait"
+          : "signature-media signature-media--solo signature-media--landscape"
+      }
+    >
+      {item.type === "video" ? (
+        <NaturalVideo item={item} title={`${title} — recap ${year}`} />
+      ) : (
+        <NaturalStill item={item} alt={altBase} />
+      )}
     </div>
   );
 }
