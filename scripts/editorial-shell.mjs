@@ -1,5 +1,5 @@
 import { PRIMARY_NAV, SECONDARY_NAV } from "./site-config.mjs";
-import { formatPageTitle, socialMetaTags } from "./seo-meta.mjs";
+import { formatPageTitle, getSiteUrl, socialMetaTags } from "./seo-meta.mjs";
 
 export function escapeHtml(s) {
   return String(s)
@@ -53,7 +53,12 @@ export function siteNav(active = "inicio") {
 
 export function pageShell({ title, description, main, activeNav = "inicio", canonical, ogImage }) {
   const pageTitle = formatPageTitle(title, { brand: "HUMI Taekwondo" });
-  const canon = canonical ? `\n\t<link rel="canonical" href="${escapeHtml(canonical)}" />` : "";
+  const canonicalUrl = canonical
+    ? canonical.startsWith("http")
+      ? canonical
+      : `${getSiteUrl()}${canonical.startsWith("/") ? canonical : `/${canonical}`}`
+    : "";
+  const canon = canonicalUrl ? `\n\t<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />` : "";
   const social = socialMetaTags({
     title: pageTitle,
     description,

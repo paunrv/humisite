@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BLOG_ARTICLES, BLOG_CATEGORIES, articleImageSrc, articlePath, categoryPath } from "./blog-config.mjs";
 import { analyticsScripts, escapeHtml, pageShell, siteFooter, siteNav } from "./editorial-shell.mjs";
-import { articleSeo } from "./seo-meta.mjs";
+import { absoluteAssetUrl, articleSeo, getSiteUrl } from "./seo-meta.mjs";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const publicBlog = path.join(root, "public", "blog");
@@ -27,10 +27,13 @@ function patchArticleHtml(html, article) {
     out = out.replaceAll(`href="${legacy}"`, `href="${next}"`);
   }
 
-  out = out.replace(/<link rel="canonical" href="[^"]*"\s*\/>/, `<link rel="canonical" href="${canonical}" />`);
+  out = out.replace(
+    /<link rel="canonical" href="[^"]*"\s*\/>/,
+    `<link rel="canonical" href="${escapeHtml(`${getSiteUrl()}${canonical}`)}" />`,
+  );
 
   const seo = articleSeo(article);
-  const ogImage = articleImageSrc(article.slug, article.image);
+  const ogImage = absoluteAssetUrl(articleImageSrc(article.slug, article.image));
   out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(seo.pageTitle)}</title>`);
   out = out.replace(
     /<meta\s+name="description"[^>]*\/?>/i,
@@ -47,8 +50,18 @@ function patchArticleHtml(html, article) {
     );
     out = out.replace(
       /<meta\s+property="og:image"[^>]*\/?>/i,
-      `<meta property="og:image" content="${ogImage}" />`,
+      `<meta property="og:image" content="${escapeHtml(ogImage)}" />`,
     );
+    out = out.replace(
+      /<meta\s+property="og:url"[^>]*\/?>/i,
+      `<meta property="og:url" content="${escapeHtml(`${getSiteUrl()}${canonical}`)}" />`,
+    );
+    if (/<meta\s+name="twitter:image"/i.test(out)) {
+      out = out.replace(
+        /<meta\s+name="twitter:image"[^>]*\/?>/i,
+        `<meta name="twitter:image" content="${escapeHtml(ogImage)}" />`,
+      );
+    }
   }
   if (/"@type":\s*"BlogPosting"/.test(out)) {
     out = out.replace(/"headline":\s*"[^"]*"/, `"headline": ${JSON.stringify(seo.headline)}`);

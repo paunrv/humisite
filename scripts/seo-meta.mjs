@@ -6,6 +6,21 @@
 export const SEO_BRAND = "HUMI Taekwondo";
 export const SEO_LOCATION = "Ensenada, B.C.";
 
+export function getSiteUrl() {
+  return (process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "https://humisite.vercel.app").replace(
+    /\/$/,
+    "",
+  );
+}
+
+/** @param {string} assetPath */
+export function absoluteAssetUrl(assetPath) {
+  if (!assetPath) return `${getSiteUrl()}/images/pic11.jpg`;
+  if (assetPath.startsWith("http")) return assetPath;
+  const path = assetPath.startsWith("/") ? assetPath : `/${assetPath}`;
+  return `${getSiteUrl()}${path}`;
+}
+
 /** @param {string} text */
 export function clampMetaDescription(text, max = 158) {
   const t = String(text).replace(/\s+/g, " ").trim();
@@ -72,11 +87,11 @@ export function socialMetaTags({ title, description, canonical, ogImage = "/imag
       .replace(/"/g, "&quot;");
   const t = esc(title);
   const d = esc(description);
-  const img = esc(ogImage);
+  const img = esc(absoluteAssetUrl(ogImage));
   const canonUrl = canonical
     ? canonical.startsWith("http")
       ? canonical
-      : `${(process.env.SITE_URL ?? process.env.NEXT_PUBLIC_SITE_URL ?? "https://humisite.vercel.app").replace(/\/$/, "")}${canonical}`
+      : `${getSiteUrl()}${canonical.startsWith("/") ? canonical : `/${canonical}`}`
     : undefined;
   const canon = canonUrl ? `\n\t<meta property="og:url" content="${esc(canonUrl)}" />` : "";
   return `

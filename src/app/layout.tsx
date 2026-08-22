@@ -48,8 +48,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: "/images/pic11.jpg",
-        width: 1200,
-        height: 630,
+        width: 1920,
+        height: 1280,
         alt: "HUMI Taekwondo — Ensenada",
       },
     ],
@@ -78,53 +78,6 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SportsActivityLocation",
-  name: "HUMI Taekwondo",
-  description: siteDescription,
-  url: siteUrl,
-  image: `${siteUrl}/images/pic11.jpg`,
-  telephone: "+52-646-109-3879",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "C. Séptima 436, Zona Centro",
-    addressLocality: "Ensenada",
-    addressRegion: "B.C.",
-    postalCode: "22800",
-    addressCountry: "MX",
-  },
-  sameAs: [
-    "https://www.instagram.com/humi.taekwondo/",
-    "https://www.facebook.com/HumiTaekwondo/",
-  ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5.0",
-    bestRating: "5",
-  },
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
-      opens: "07:30",
-      closes: "08:30",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday"],
-      opens: "08:30",
-      closes: "09:30",
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "15:20",
-      closes: "20:00",
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -133,10 +86,6 @@ export default function RootLayout({
   return (
     <html lang="es-MX" className={`${geist.variable} ${geistMono.variable}`}>
       <body className="min-h-screen bg-[#080808] antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
-        />
         <Analytics />
         {children}
       </body>
