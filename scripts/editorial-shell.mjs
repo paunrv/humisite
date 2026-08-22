@@ -29,6 +29,14 @@ export function siteFooter() {
 	</footer>`;
 }
 
+export function analyticsScripts() {
+  const id = (process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "").trim();
+  if (!id) return "";
+  return `
+	<script>window.__HUMI_GA_MEASUREMENT_ID__="${escapeHtml(id)}";</script>
+	<script src="/assets/js/humi-analytics.js" defer></script>`;
+}
+
 export function siteNav(active = "inicio") {
   const link = (href, label, key) =>
     `<a href="${href}"${active === key ? ' aria-current="page"' : ""}>${escapeHtml(label)}</a>`;
@@ -87,7 +95,7 @@ export function pageShell({ title, description, main, activeNav = "inicio", cano
 	</header>
 	<main id="contenido">${main}</main>
 	${siteFooter()}
-	<script src="/assets/js/humi-redesign.js" defer></script>
+	<script src="/assets/js/humi-redesign.js" defer></script>${analyticsScripts()}
 </body>
 </html>`;
 }

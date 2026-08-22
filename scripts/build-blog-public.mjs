@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BLOG_ARTICLES, BLOG_CATEGORIES, articleImageSrc, articlePath, categoryPath } from "./blog-config.mjs";
-import { escapeHtml, pageShell, siteFooter, siteNav } from "./editorial-shell.mjs";
+import { analyticsScripts, escapeHtml, pageShell, siteFooter, siteNav } from "./editorial-shell.mjs";
 import { articleSeo } from "./seo-meta.mjs";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
@@ -73,6 +73,14 @@ function patchArticleHtml(html, article) {
   out = out.replace(/<nav class="hm-nav__links" aria-label="Principal">[\s\S]*?<\/nav>/, navBlock.trim());
 
   out = out.replace(/<footer class="hm-footer">[\s\S]*?<\/footer>/, siteFooter());
+
+  const analytics = analyticsScripts();
+  if (analytics && !out.includes("humi-analytics.js")) {
+    out = out.replace(
+      /<script src="\/assets\/js\/humi-redesign\.js" defer><\/script>/,
+      `<script src="/assets/js/humi-redesign.js" defer></script>${analytics}`,
+    );
+  }
 
   return out;
 }

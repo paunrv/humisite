@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@/components/site/Analytics";
 import "./globals.css";
 
 const geist = Geist({
@@ -136,6 +137,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }}
         />
+        <Analytics />
         {children}
       </body>
     </html>
