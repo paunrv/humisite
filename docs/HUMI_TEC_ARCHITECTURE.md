@@ -16,6 +16,8 @@ Este documento valida las decisiones del plan de arquitectura. Fuente de verdad 
 
 Escalado futuro (sin cambiar modelo de datos): subdominio `tec.` / dominio propio HUMI-tec.
 
+**URL producto (piloto jul 2026):** `https://humi-sistema.vercel.app` — `app.humi.mx` pendiente DNS. Ver [`PILOTO_PUERTA_SAAS.md`](./PILOTO_PUERTA_SAAS.md).
+
 ## Tenancy
 
 ```
