@@ -1,13 +1,25 @@
 import { TecLanding } from "@/components/tec/TecLanding";
 import { TEC_META } from "@/lib/humi-tec/copy";
 import type { Metadata } from "next";
-import { Syne } from "next/font/google";
+import { IBM_Plex_Mono, Syne } from "next/font/google";
 
 const tecDisplay = Syne({
   subsets: ["latin"],
   variable: "--font-tec-display",
   display: "swap",
   weight: ["500", "600", "700"],
+});
+
+/**
+ * Mono del producto (humi-sistema usa IBM Plex Mono en sus etiquetas).
+ * Se carga solo en /tec: las etiquetas del landing riman con las que se ven
+ * dentro de las capturas reales. Nunca para texto corrido.
+ */
+const tecMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  variable: "--font-tec-mono",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://humisite.vercel.app";
@@ -51,7 +63,7 @@ export const metadata: Metadata = {
 
 export default function TecPage() {
   return (
-    <div className={tecDisplay.variable}>
+    <div className={`${tecDisplay.variable} ${tecMono.variable}`}>
       <TecLanding />
     </div>
   );

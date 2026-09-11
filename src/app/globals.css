@@ -10,6 +10,33 @@
   --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
 }
 
+/*
+ * HUMI-tec (/tec) — tokens locales de la landing SaaS.
+ * Acento heredado del producto (humi-sistema) para que las capturas reales
+ * no se vean pegadas. Deliberadamente NO se toca --color-humi-accent, que
+ * sigue sirviendo a las superficies de auth.
+ */
+.tec {
+  --tec-bg: #0a0a0b;
+  --tec-surf: #121215;
+  --tec-surf-2: #17171b;
+  --tec-line: rgba(245, 240, 232, 0.08);
+  --tec-line-strong: rgba(245, 240, 232, 0.14);
+  --tec-txt: #f5f0e8;
+  --tec-txt-2: #c8c2b8;
+  --tec-mut: #8a8580;
+  --tec-dim: #6a6560;
+  --tec-accent: #e23b3b;
+  --tec-ok: #3ec98c;
+  --tec-warn: #f0b429;
+}
+
+.tec :focus-visible {
+  outline: 2px solid var(--tec-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 html {
   scroll-behavior: smooth;
 }

@@ -1,6 +1,10 @@
 /**
  * HUMI-tec SaaS landing — voice from 15+ years running an academy,
  * marketing clarity, and B2B SaaS positioning.
+ *
+ * Landing V2: producto primero. Cada afirmación de este archivo está
+ * respaldada por una pantalla real de humi-sistema. No agregar capacidades
+ * que el producto no tenga.
  */
 
 export const TEC_BRAND = {
@@ -25,106 +29,223 @@ export const TEC_META = {
   ],
 } as const;
 
+export const TEC_NAV = [
+  { href: "#producto", label: "Producto" },
+  { href: "#operacion", label: "Operación" },
+  { href: "#familia", label: "Familia" },
+  { href: "#escala", label: "Escala" },
+  { href: "#planes", label: "Planes" },
+] as const;
+
+/* 01 — MARCA */
 export const TEC_HERO = {
   brand: "HUMI-tec",
   headline: "Operar la academia\ncon el mismo criterio\ncon el que se entrena.",
   support:
-    "Plataforma SaaS para escuelas y agrupaciones. Nacida de más de 15 años en el dojang — no de un escritorio que nunca dio clase.",
-  primaryCta: { label: "Ver lo que incluye", href: "#escuela" },
-  secondaryCta: { label: "Iniciar sesión", href: "/login" },
-  proof: "Calidad HUMI · Probado en operación real · Ensenada, B.C.",
+    "Nacida de más de 15 años en el dojang — no de un escritorio que nunca dio clase. Hoy opera una academia real, todos los días.",
+  primaryCta: { label: "Ver el sistema", href: "#producto" },
+  secondaryCta: { label: "Entrar" },
+  proof: "Probado en operación real · Ensenada, B.C.",
 } as const;
 
-export const TEC_ESSENCE = {
-  eyebrow: "Esencia HUMI",
-  title: "La calidad no es un claim. Es el estándar con el que construimos.",
-  body: "HUMI-tec no es software genérico con logo. Es la herramienta que necesitábamos para no elegir entre enseñar bien y administrar bien. Misma exigencia, misma calidez, mismo respeto por el detalle.",
-} as const;
-
-export const TEC_SCHOOL = {
-  id: "escuela",
-  eyebrow: "Nivel Escuela",
-  title: "El día a día, bajo control",
-  body: "Lo que un dueño o director necesita cada semana: alumnos claros, grupos ordenados, cobranza sin fricción y comunidad informada.",
-  features: [
-    {
-      num: "01",
-      title: "Alumnos, grupos y agenda",
-      body: "Control de matrícula, grupos por edad u objetivo, y agenda de trabajo para que el staff sepa qué toca cada día — sin WhatsApp eterno ni Excel paralelo.",
-    },
-    {
-      num: "02",
-      title: "Cobranza que facilita a los papás",
-      body: "Múltiples formas de pago para familias. Menos persecución de mensualidades; más claridad de quién está al corriente y quién necesita un recordatorio amable.",
-    },
-    {
-      num: "03",
-      title: "Expediente de cada alumno",
-      body: "Historial, asistencia, progresión y notas en un solo lugar. Cuando un papá pregunta, respondes con datos — no con memoria.",
-    },
-    {
-      num: "04",
-      title: "Eventos que se comparten fácil",
-      body: "Crea exámenes, clínicas o actividades y compártelos con la comunidad sin armar cadenas interminables. Información clara, un solo enlace.",
-    },
+/* 02 — PRODUCTO */
+export const TEC_PRODUCT = {
+  id: "producto",
+  eyebrow: "El sistema",
+  title: "El mes de tu academia, en una pantalla.",
+  body: "Dirección reúne lo que normalmente vive en cinco lugares: quién entrena hoy, quién ya pagó, quién lleva tres semanas sin venir. No es un demo — es la pantalla con la que se abre el día.",
+  marks: [
+    "Alumnos activos y altas del mes",
+    "Clases de hoy y asistencia de los últimos 7 días",
+    "Semáforo de cobranza: cobrado, por vencer, vencido",
+    "Ingresos de los últimos 6 meses",
   ],
 } as const;
 
-export const TEC_ENTERPRISE = {
-  id: "enterprise",
-  eyebrow: "Nivel Enterprise",
+/* 03 — DOS SUPERFICIES */
+export const TEC_SURFACES = {
+  id: "superficies",
+  eyebrow: "Dos superficies",
+  title: "Una plataforma. Dos experiencias.",
+  body: "La academia opera. La familia entiende. Misma cuenta, y nadie entra a un lugar que no es el suyo.",
+  quote: "Misma cuenta. Elige escuela, agrupación o portal alumno.",
+  quoteSource: "Pantalla de acceso de HUMI-tec",
+  academy: {
+    label: "Academia",
+    lead: "Trece módulos para operar la escuela.",
+    modules: [
+      "Dirección",
+      "Agenda",
+      "Eventos",
+      "Asistencia",
+      "Cobranza",
+      "Tienda",
+      "Alumnos",
+      "Grupos",
+      "Graduación",
+      "Onboarding",
+      "Correcciones",
+      "Mensajes",
+      "Ajustes",
+    ],
+    note: "Por rol: un instructor entra a pasar lista, no a la cobranza. Graduación se activa según el programa de cada escuela.",
+  },
+  family: {
+    label: "Familia",
+    lead: "Siete pantallas para saber qué pasa.",
+    modules: [
+      "Inicio",
+      "Pagos",
+      "Pedidos",
+      "Asistencia",
+      "Agenda",
+      "Exámenes",
+      "Perfil",
+    ],
+    note: "No es el panel de la escuela en versión reducida. Es otra cosa, para otra persona.",
+  },
+} as const;
+
+/* 04 — OPERACIÓN */
+export const TEC_OPERATION = {
+  id: "operacion",
+  eyebrow: "Operación",
+  title: "Lo que se repite todos los días es lo que tiene que estar bien hecho.",
+  body: "Pasar lista y cobrar. Todo lo demás en una academia depende de que esas dos cosas no se caigan.",
+  moments: [
+    {
+      id: "asistencia",
+      title: "Tres toques por alumno. Se guarda solo.",
+      body: "El pase de lista se hace en el tatami, no en la oficina. Cada marca se guarda al instante — y avisa cuando no pudo guardarse.",
+      detailLabel: "Presente · Tarde · Ausente",
+      detailNote:
+        "El color de cinta de cada alumno viaja con su fila, para reconocer al grupo de un vistazo.",
+    },
+    {
+      id: "cobranza",
+      title: "Quién pagó, quién no, y quién está por vencer.",
+      body: "El mes entero en tres estados. Desde ahí se marca un pago o se manda un recordatorio, sin cambiar de pantalla.",
+      detailLabel: "Pagado · Por vencer · Vencido",
+      detailNote:
+        "Cobranza en línea según la pasarela que configure la escuela. El cargo automático con tarjeta funciona con Mercado Pago.",
+    },
+  ],
+  aside:
+    "La agenda de clases, los grupos, la tienda y los eventos viven en el mismo sistema — no en cuatro hojas de cálculo distintas.",
+} as const;
+
+/* 05 — FAMILIA */
+export const TEC_FAMILY = {
+  id: "familia",
+  eyebrow: "Familia",
+  title: "La academia también se vive del otro lado del escritorio.",
+  body: "Qué pasa, qué debo, qué sigue y cómo va mi hijo. Cuatro preguntas, un solo lugar para responderlas — sin preguntar por WhatsApp un domingo.",
+  questions: [
+    { q: "¿Qué pasa?", a: "Agenda del grupo y asistencia marcada en clase." },
+    { q: "¿Qué debo?", a: "Cargos del mes, con su estado y su comprobante." },
+    { q: "¿Qué sigue?", a: "Exámenes, torneos y eventos de la escuela." },
+    { q: "¿Cómo va?", a: "Grado actual, expediente y Athlete ID del alumno." },
+  ],
+  detailLabel: "Athlete ID",
+  detailNote: "El identificador del alumno para torneos y agrupación.",
+} as const;
+
+/* 06 — CORRECCIONES */
+export const TEC_CORRECTIONS = {
+  id: "correcciones",
+  eyebrow: "Correcciones",
+  title: "La tecnología organiza el proceso.\nLa solución sigue siendo humana.",
+  body: "Una familia ve un dato mal en el expediente y lo describe. La escuela lo recibe en un solo lugar, lo corrige y lo marca hecho. Nadie persigue a nadie.",
+  family: {
+    label: "Portal de la familia",
+    caption: "La familia describe qué hay que corregir y lo envía.",
+  },
+  academy: {
+    label: "Oficina",
+    caption: "La solicitud llega a Correcciones y se resuelve en el expediente.",
+  },
+  stateOpen: "ABIERTA",
+  stateDone: "HECHA",
+  footnote:
+    "Dos estados. Sin tickets, sin folios, sin un canal más que revisar.",
+} as const;
+
+/* 07 — MENSAJES */
+export const TEC_MESSAGES = {
+  id: "mensajes",
+  eyebrow: "Mensajes",
+  title: "No inventamos otro chat.",
+  body: "Eliges plantilla y alumno; el sistema arma el mensaje y abre WhatsApp. Tus familias ya están ahí — no vamos a pedirles que aprendan otra cosa.",
+  steps: [
+    { n: "01", label: "Plantilla", note: "Pago, ausencia o evento." },
+    { n: "02", label: "Alumno", note: "Buscas por alumno, tutor o grupo." },
+    { n: "03", label: "WhatsApp", note: "Se abre con el mensaje ya escrito." },
+  ],
+  note: "Abre wa.me con el texto listo, una conversación a la vez.",
+} as const;
+
+/* 08 — ESCALA */
+export const TEC_SCALE = {
+  id: "escala",
+  eyebrow: "Escala",
   title: "Una agrupación. Una dirección. Muchas escuelas alineadas.",
-  body: "Para el director de agrupación que necesita conectar escuelas, levantar eventos serios y mantener comunicación clara — sin perder el hilo entre dojangs.",
-  minSchools: "Mínimo 10 escuelas",
-  features: [
+  body: "Cuando ya no es una escuela: afiliación de academias, eventos con logística, brackets y agenda de competencia bajo una sola cuenta.",
+  minSchools: "Desde 10 escuelas",
+  levels: [
     {
-      title: "Red de escuelas conectada",
-      body: "Cuenta master que afilia academias. Visibilidad de la red sin microgestionar el día a día de cada dojang.",
+      label: "Dirección de agrupación",
+      note: "Una cuenta master que afilia escuelas y lleva el registro de la red.",
     },
     {
-      title: "Eventos con logística de alto nivel",
-      body: "Organiza torneos y concentraciones con estructura: sedes, roles, tiempos y seguimiento — no un grupo de chat improvisado.",
+      label: "Escuelas afiliadas",
+      note: "Cada academia sigue operando su día a día; la dirección ve el conjunto.",
     },
     {
-      title: "Brackets y agenda de competencia",
-      body: "Desarrollo de brackets y agenda para que atletas, coaches y jueces sepan dónde estar y cuándo competir.",
-    },
-    {
-      title: "Comunicación con el director",
-      body: "Canal claro entre escuelas y la dirección de la agrupación. Menos ruido; más decisiones que llegan a tiempo.",
+      label: "Eventos y competencia",
+      note: "Inscripciones, brackets, agenda de competencia y verificación previa.",
     },
   ],
+  ctaLabel: "Hablar de agrupaciones",
 } as const;
 
-export const TEC_WEBSITE = {
-  id: "website",
-  eyebrow: "Website / Landing",
-  title: "Tu academia, visible donde las familias buscan.",
-  body: "Un website o landing bien hecho no es lujo: es la puerta de entrada. Solicítalo con HUMI-tec y posiciona tu academia en Google con la misma calidad con la que entrenas.",
-  points: [
-    "Landing o sitio completo con la identidad de tu academia",
-    "Pensado para que te encuentren: SEO local y claridad de oferta",
-    "Misma barra de calidad que el sitio de HUMI — no plantillas genéricas",
+/* 09 — EMPEZAR */
+export const TEC_START = {
+  id: "empezar",
+  eyebrow: "Empezar",
+  title: "Empezar es configurar, no implementar.",
+  body: "Cinco pasos guiados dentro del sistema. Al terminar, ya estás pasando lista.",
+  steps: [
+    { n: "01", label: "Academia", note: "Nombre, zona horaria y moneda." },
+    { n: "02", label: "Cintas", note: "El sistema de grados de tu escuela." },
+    { n: "03", label: "Grupos", note: "Al menos un grupo o programa." },
+    { n: "04", label: "Horario", note: "Días y horas de cada grupo." },
+    { n: "05", label: "Revisión", note: "Confirmas y queda configurado." },
   ],
-  ctaLabel: "Solicitar website",
-  secondaryLabel: "Ver ejemplo HUMI →",
-  secondaryHref: "/",
+  ctaLabel: "Ver planes",
 } as const;
 
+/* 10 — PLANES */
 export const TEC_PLANS_COPY = {
+  id: "planes",
   eyebrow: "Planes",
-  title: "Escuela o Enterprise",
+  title: "Escuela o agrupación",
   body: "Empieza con una academia, o escala con una agrupación. El cobro del software es aparte de la cobranza a tus alumnos.",
-} as const;
-
-export const TEC_ACCESS = {
-  eyebrow: "Acceso",
-  title: "Entra a la plataforma",
-  body: "Staff con su cuenta. Alumnos y familias con el correo de inscripción y la contraseña que define la academia en oficina. Un login; cada quien ve lo suyo.",
 } as const;
 
 export const TEC_VERTICALS_NOTE =
   "Hoy lo probamos en taekwondo. El modelo sirve a ballet, gimnasia, fútbol, tenis y más academias que viven de la constancia.";
+
+/* 11 — CIERRE */
+export const TEC_CLOSING = {
+  id: "cierre",
+  eyebrow: "HUMI",
+  title: "Hecho en una academia. Para academias.",
+  body: "HUMI-tec es la herramienta que necesitábamos para no elegir entre enseñar bien y administrar bien.",
+  primaryCta: "Entrar al sistema",
+  secondaryCta: "Hablar con nosotros",
+  websiteLine: "También hacemos el sitio web de tu escuela",
+  websiteCta: "Solicitar website",
+} as const;
 
 export const TEC_FOOTER = {
   legalNote:
