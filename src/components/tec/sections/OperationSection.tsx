@@ -39,7 +39,7 @@ export function OperationSection() {
                     capture={capture}
                     sizes="(min-width: 1024px) 540px, 100vw"
                     ratio={undefined}
-                    caption={`${capture.screen} · ${capture.route}`}
+                    caption={`${capture.screen} · ${capture.productRoute}`}
                   />
                 </div>
 

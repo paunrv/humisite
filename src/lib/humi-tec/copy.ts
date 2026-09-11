@@ -194,7 +194,7 @@ export const TEC_SCALE = {
   levels: [
     {
       label: "Dirección de agrupación",
-      note: "Una cuenta master que afilia escuelas y lleva el registro de la red.",
+      note: "Una cuenta principal que afilia escuelas y lleva el registro de la red.",
     },
     {
       label: "Escuelas afiliadas",

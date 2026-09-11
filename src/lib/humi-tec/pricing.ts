@@ -35,10 +35,10 @@ export const TEC_PLANS: TecPlan[] = [
     tagline: "Para la academia que ya no quiere administrar a ciegas.",
     minSchools: 1,
     features: [
-      "Alumnos, grupos y agenda de trabajo",
-      "Cobranza con múltiples opciones para papás",
-      "Expediente y data de cada alumno",
-      "Eventos compartidos con la comunidad",
+      "Alumnos, grupos, agenda y asistencia",
+      "Cobranza del mes: cargos, pagos, pendientes y comprobantes",
+      "Pago en línea con tu pasarela; cargo automático con Mercado Pago",
+      "Expediente del alumno y eventos de la escuela",
     ],
     ctaLabel: "Empezar con Escuela",
     signupPlan: "escuela",
@@ -61,7 +61,7 @@ export const TEC_PLANS: TecPlan[] = [
     tagline: "Para agrupaciones y federaciones. Mínimo 10 escuelas.",
     minSchools: 10,
     features: [
-      "Red de escuelas bajo una cuenta master",
+      "Red de escuelas bajo una cuenta principal",
       "Eventos con logística de alto nivel",
       "Brackets y agenda de competencia",
       "Comunicación clara con el director de agrupación",

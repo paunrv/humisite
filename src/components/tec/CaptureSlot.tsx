@@ -57,7 +57,7 @@ export function CaptureSlot({
             className="object-cover object-top"
           />
         ) : (
-          <PendingCapture capture={capture} />
+          <MissingCapture capture={capture} />
         )}
         {/* Reflejo superior de 1px: sugiere plano de pantalla sin sombras. */}
         {!frameless ? (
@@ -76,28 +76,42 @@ export function CaptureSlot({
   );
 }
 
-function PendingCapture({ capture }: { capture: Capture }) {
+/**
+ * Hueco sin captura. Dos casos, nunca una interfaz simulada:
+ * - pendiente: falta capturarla y anonimizarla.
+ * - no publicable: contiene datos que no se pueden anonimizar limpiamente,
+ *   marcada así en el inventario en vez de taparse con un overlay.
+ */
+function MissingCapture({ capture }: { capture: Capture }) {
+  const blocked = Boolean(capture.notPublishable);
+  const heading = blocked ? "Captura no publicable" : "Captura pendiente";
+
   return (
     <div
       role="img"
-      aria-label={`Captura pendiente: ${capture.screen} (${capture.route})`}
+      aria-label={`${heading}: ${capture.screen} (${capture.productRoute})`}
       className="absolute inset-0 grid place-content-center gap-2 p-6 text-center"
       style={{
         backgroundImage:
           "repeating-linear-gradient(45deg, rgba(245,240,232,0.035) 0 1px, transparent 1px 9px)",
       }}
     >
-      <span className="font-[family-name:var(--font-tec-mono)] text-[0.625rem] tracking-[0.22em] text-[var(--tec-accent)] uppercase">
-        Captura pendiente
+      <span
+        className={`font-[family-name:var(--font-tec-mono)] text-[0.625rem] tracking-[0.22em] uppercase ${
+          blocked ? "text-[var(--tec-warn)]" : "text-[var(--tec-accent)]"
+        }`}
+      >
+        {heading}
       </span>
       <span className="font-[family-name:var(--font-tec-display)] text-sm font-medium text-[var(--tec-txt-2)]">
         {capture.id} · {capture.screen}
       </span>
       <Meta className="block">
-        {capture.route} · {CAPTURE_VIEWPORTS[capture.viewport]} · 2×
+        {capture.productRoute} · {CAPTURE_VIEWPORTS[capture.viewport]} · 2×
       </Meta>
       <Meta className="block max-w-[34ch]">
-        Anonimizar antes de publicar: sin datos identificables de menores.
+        {capture.notPublishable ??
+          "Anonimizar antes de publicar: sin datos identificables de menores."}
       </Meta>
     </div>
   );
