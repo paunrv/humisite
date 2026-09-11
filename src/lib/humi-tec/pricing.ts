@@ -37,8 +37,8 @@ export const TEC_PLANS: TecPlan[] = [
     features: [
       "Alumnos, grupos, agenda y asistencia",
       "Cobranza del mes: cargos, pagos, pendientes y comprobantes",
-      "Pago en línea con tu pasarela; cargo automático con Mercado Pago",
-      "Expediente del alumno y eventos de la escuela",
+      "Expediente del alumno",
+      "Eventos de la escuela",
     ],
     ctaLabel: "Empezar con Escuela",
     signupPlan: "escuela",
@@ -62,7 +62,7 @@ export const TEC_PLANS: TecPlan[] = [
     minSchools: 10,
     features: [
       "Red de escuelas bajo una cuenta principal",
-      "Eventos con logística de alto nivel",
+      "Eventos de agrupación con inscripciones y seguimiento",
       "Brackets y agenda de competencia",
       "Comunicación clara con el director de agrupación",
     ],

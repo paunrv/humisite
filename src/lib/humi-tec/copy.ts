@@ -127,7 +127,7 @@ export const TEC_OPERATION = {
       body: "El mes entero en tres estados. Desde ahí se marca un pago o se manda un recordatorio, sin cambiar de pantalla.",
       detailLabel: "Pagado · Por vencer · Vencido",
       detailNote:
-        "Cobranza en línea según la pasarela que configure la escuela. El cargo automático con tarjeta funciona con Mercado Pago.",
+        "Cada cargo guarda su categoría, su método y su comprobante. El mes cierra sin reconstruir nada de memoria.",
     },
   ],
   aside:
