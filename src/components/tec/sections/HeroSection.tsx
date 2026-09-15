@@ -28,7 +28,7 @@ export function HeroSection() {
 
   return (
     <section className="relative sm:min-h-[min(86dvh,820px)]">
-      <div className="relative h-[46vh] min-h-[260px] sm:absolute sm:inset-0 sm:h-auto sm:min-h-0">
+      <div className="relative h-[40vh] min-h-[240px] sm:absolute sm:inset-0 sm:h-auto sm:min-h-0">
         <Image
           src="/images/pic11.jpg"
           alt="Entrenamiento infantil de taekwondo en HUMI, Ensenada."
@@ -47,7 +47,13 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto flex max-w-6xl flex-col justify-end px-5 pt-10 pb-16 sm:min-h-[min(86dvh,820px)] sm:px-8 sm:pt-28 sm:pb-24">
+      {/*
+        Móvil: el bloque de texto sube hasta la cola del degradado, que ya es
+        negro sólido. Cierra el hueco muerto entre foto y titular y hace que
+        el hero se lea como un plano continuo, no como foto + bloque aparte.
+        En sm+ el margen se anula: el layout desktop no cambia.
+      */}
+      <div className="relative z-10 mx-auto -mt-14 flex max-w-6xl flex-col justify-end px-5 pt-10 pb-16 sm:mt-0 sm:min-h-[min(86dvh,820px)] sm:px-8 sm:pt-28 sm:pb-24">
         <motion.p
           {...fadeUp(0)}
           className="font-[family-name:var(--font-tec-mono)] text-[0.6875rem] tracking-[0.3em] text-[var(--tec-accent)] uppercase"

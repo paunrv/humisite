@@ -42,9 +42,9 @@ export const TEC_HERO = {
   brand: "HUMI-tec",
   headline: "Operar la academia\ncon el mismo criterio\ncon el que se entrena.",
   support:
-    "Nacida de más de 15 años en el dojang — no de un escritorio que nunca dio clase. Hoy opera una academia real, todos los días.",
-  primaryCta: { label: "Ver el sistema", href: "#producto" },
-  secondaryCta: { label: "Entrar" },
+    "Plataforma SaaS para escuelas y agrupaciones. Nacida de más de 15 años en el dojang — no de un escritorio que nunca dio clase.",
+  primaryCta: { label: "Conoce HUMI-tec →", href: "#producto" },
+  secondaryCta: { label: "Iniciar sesión" },
   proof: "Probado en operación real · Ensenada, B.C.",
 } as const;
 
