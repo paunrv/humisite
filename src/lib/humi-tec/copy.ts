@@ -200,20 +200,20 @@ export const TEC_SCALE = {
   id: "escala",
   eyebrow: "Escala",
   title: "Una agrupación. Una dirección. Muchas escuelas alineadas.",
-  body: "Cuando ya no es una escuela: afiliación de academias, eventos con logística, brackets y agenda de competencia bajo una sola cuenta.",
+  body: "Cuando ya no es una escuela. Una cuenta principal afilia academias y ve el conjunto; cada escuela sigue operando su día. Eventos de agrupación con inscripciones y seguimiento, bajo la misma cuenta.",
   minSchools: "Desde 10 escuelas",
   levels: [
     {
-      label: "Dirección de agrupación",
-      note: "Una cuenta principal que afilia escuelas y lleva el registro de la red.",
+      label: "Una dirección",
+      note: "La cuenta principal afilia escuelas y lleva el registro de la red.",
     },
     {
-      label: "Escuelas afiliadas",
-      note: "Cada academia sigue operando su día a día; la dirección ve el conjunto.",
+      label: "Muchas escuelas",
+      note: "Cada academia opera su día a día: sus grupos, su cobranza, su gente.",
     },
     {
-      label: "Eventos y competencia",
-      note: "Inscripciones, brackets, agenda de competencia y verificación previa.",
+      label: "El mismo criterio",
+      note: "Nadie reinventa cómo se trabaja al crecer. Una escuela nueva entra operando bajo el mismo criterio.",
     },
   ],
   ctaLabel: "Hablar de agrupaciones",
