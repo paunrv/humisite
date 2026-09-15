@@ -303,7 +303,7 @@ export const TEC_FOOTER = {
 export const TEC_WHATSAPP_ENTERPRISE =
   "https://wa.me/526461093879?text=" +
   encodeURIComponent(
-    "Hola — me interesa HUMI-tec Enterprise para una agrupación (≥10 escuelas): red, eventos, brackets y comunicación.",
+    "Hola — me interesa HUMI-tec para una agrupación y quisiera conocer cómo funciona con varias escuelas.",
   );
 
 export const TEC_WHATSAPP_WEBSITE =
