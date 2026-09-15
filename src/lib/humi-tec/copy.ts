@@ -176,12 +176,21 @@ export const TEC_CORRECTIONS = {
 export const TEC_MESSAGES = {
   id: "mensajes",
   eyebrow: "Mensajes",
-  title: "No inventamos otro chat.",
-  body: "Eliges plantilla y alumno; el sistema arma el mensaje y abre WhatsApp. Tus familias ya están ahí — no vamos a pedirles que aprendan otra cosa.",
-  steps: [
-    { n: "01", label: "Plantilla", note: "Pago, ausencia o evento." },
-    { n: "02", label: "Alumno", note: "Buscas por alumno, tutor o grupo." },
-    { n: "03", label: "WhatsApp", note: "Se abre con el mensaje ya escrito." },
+  title: "Saber a quién escribirle es la mitad del mensaje.",
+  body: "Eliges la plantilla, buscas al alumno o al grupo, y WhatsApp se abre con el mensaje ya armado. Tus familias ya están ahí — no vamos a pedirles que aprendan otra cosa, ni a inventar otro chat.",
+  pairs: [
+    {
+      q: "¿A quién le toca?",
+      a: "Buscas por alumno, tutor o grupo, con el estado del mes ya delante.",
+    },
+    {
+      q: "¿Qué le digo?",
+      a: "El mensaje parte de lo que ya está registrado: el cargo, la falta, el evento.",
+    },
+    {
+      q: "¿Y la conversación?",
+      a: "Ocurre en WhatsApp. Esa parte sigue siendo tuya.",
+    },
   ],
   note: "Abre wa.me con el texto listo, una conversación a la vez.",
 } as const;
