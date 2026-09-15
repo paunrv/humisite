@@ -72,7 +72,7 @@ export const TEC_SURFACES = {
   quoteSource: "Pantalla de acceso de HUMI-tec",
   academy: {
     label: "Academia",
-    lead: "Trece módulos para operar la escuela.",
+    lead: "Tu equipo sabe qué hacer.",
     modules: [
       "Dirección",
       "Agenda",
@@ -92,7 +92,7 @@ export const TEC_SURFACES = {
   },
   family: {
     label: "Familia",
-    lead: "Siete pantallas para saber qué pasa.",
+    lead: "Las familias saben qué pasa.",
     modules: [
       "Inicio",
       "Pagos",
