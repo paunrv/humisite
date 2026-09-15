@@ -43,29 +43,12 @@ export function ProductSection() {
           </SectionTitle>
           <SectionBody>{TEC_PRODUCT.body}</SectionBody>
         </Reveal>
-
-        <Reveal delay={0.1}>
-          <ul className="mt-8 grid gap-x-8 gap-y-2 sm:grid-cols-2">
-            {TEC_PRODUCT.marks.map((mark) => (
-              <li
-                key={mark}
-                className="flex gap-3 text-sm text-[var(--tec-mut)]"
-              >
-                <span
-                  aria-hidden
-                  className="mt-2 h-px w-3 shrink-0 bg-[var(--tec-line-strong)]"
-                />
-                <span>{mark}</span>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
       </div>
 
       {/* Desktop ≥768px: pantalla completa, sangrando. */}
       <motion.div
         {...rise}
-        className="mx-auto mt-14 hidden w-[92vw] max-w-[1280px] md:block"
+        className="mx-auto mt-8 hidden w-[92vw] max-w-[1280px] md:block"
       >
         <CaptureSlot
           capture={TEC_CAPTURES.direccion}
@@ -79,7 +62,7 @@ export function ProductSection() {
       </motion.div>
 
       {/* Móvil: derivados legibles en lugar de la pantalla completa. */}
-      <div className="mx-auto mt-12 max-w-6xl px-5 md:hidden">
+      <div className="mx-auto mt-8 max-w-6xl px-5 md:hidden">
         <div className="grid gap-4">
           <CaptureSlot
             capture={TEC_CAPTURES.direccionKpis}
@@ -95,6 +78,30 @@ export function ProductSection() {
         <p className="mt-4">
           <Meta>Dirección · el mes de un vistazo</Meta>
         </p>
+      </div>
+
+      {/*
+        Lo que la pantalla de arriba está mostrando. Va DEBAJO y en una sola
+        franja: leída después de la captura describe lo que el lector acaba de
+        ver, no una lista de features que le anticipa lo que verá.
+      */}
+      <div className="mx-auto mt-8 max-w-6xl px-5 sm:px-8">
+        <Reveal>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 border-t border-[var(--tec-line)] pt-5">
+            {TEC_PRODUCT.marks.map((mark) => (
+              <li
+                key={mark}
+                className="flex gap-3 text-sm text-[var(--tec-mut)]"
+              >
+                <span
+                  aria-hidden
+                  className="mt-2 h-px w-3 shrink-0 bg-[var(--tec-line-strong)]"
+                />
+                <span>{mark}</span>
+              </li>
+            ))}
+          </ul>
+        </Reveal>
       </div>
 
       <div className="h-20 sm:h-28 lg:h-36" />
