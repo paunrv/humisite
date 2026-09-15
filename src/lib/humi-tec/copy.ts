@@ -286,10 +286,10 @@ export const TEC_VERTICALS_NOTE =
 export const TEC_CLOSING = {
   id: "cierre",
   eyebrow: "HUMI",
-  title: "Hecho en una academia. Para academias.",
-  body: "HUMI-tec es la herramienta que necesitábamos para no elegir entre enseñar bien y administrar bien.",
-  primaryCta: "Entrar al sistema",
-  secondaryCta: "Hablar con nosotros",
+  title: "Hecho en una academia.\nEmpieza en la tuya.",
+  body: "La herramienta que necesitábamos para no elegir entre enseñar bien y administrar bien. Si es una escuela, empiezas como escuela; si ya son varias, hablamos de agrupación.",
+  primaryCta: "Empezar con HUMI",
+  secondaryCta: "Entrar al sistema",
   websiteLine: "También hacemos el sitio web de tu escuela",
   websiteCta: "Solicitar website",
 } as const;

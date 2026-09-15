@@ -12,50 +12,52 @@ import { Eyebrow, Reveal, Section, SectionBody, SectionTitle } from "../primitiv
 /**
  * 11 — CIERRE
  *
- * Vuelve la fotografía y cierra el círculo con el hero. El servicio de
- * website sale del cuerpo principal y queda como una línea con enlace:
- * es otra venta, a otro comprador, en otro momento.
+ * No vuelve a explicar el producto: responde «¿y ahora qué?». La 10 ya hizo
+ * elegir; aquí solo se empieza, así que hay UNA acción dominante y todo lo
+ * demás baja de rango.
+ *
+ * El texto va primero en el DOM y en la columna izquierda: la versión
+ * anterior abría con la fotografía en los dos viewports —medido: FOTO →
+ * eyebrow → H2— y el cierre arrancaba con una imagen en vez de con la frase
+ * que lo cierra.
+ *
+ * La fotografía se conserva porque rima con el hero y da fin de página, pero
+ * deja de dominar: pasa de 525px a un retrato contenido en desktop y a un
+ * recorte apaisado en móvil, donde a ancho completo costaba 438px.
+ *
+ * «Entrar al sistema» es para quien ya tiene cuenta, no para quien acaba de
+ * decidir: por eso deja de ser el botón de acento y queda como enlace.
  */
 export function ClosingSection() {
   return (
     <Section id={TEC_CLOSING.id}>
-      <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+      <div className="grid items-center gap-10 sm:gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
         <Reveal>
-          <div className="relative aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-xl border border-[var(--tec-line)]">
-            <Image
-              src="/images/pic03.jpg"
-              alt="Un instructor de HUMI ajusta la cinta de una alumna durante una ceremonia de graduación."
-              fill
-              loading="lazy"
-              sizes="(min-width: 1024px) 420px, 100vw"
-              className="object-cover object-center"
-            />
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.08}>
           <Eyebrow>{TEC_CLOSING.eyebrow}</Eyebrow>
-          <SectionTitle className="max-w-[16ch]">{TEC_CLOSING.title}</SectionTitle>
-          <SectionBody>{TEC_CLOSING.body}</SectionBody>
+          <SectionTitle className="max-w-[18ch]">
+            {TEC_CLOSING.title}
+          </SectionTitle>
+          <SectionBody className="max-w-[54ch]">{TEC_CLOSING.body}</SectionBody>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href={productLoginUrl()}
-              className="inline-flex rounded-lg bg-[var(--tec-accent)] px-5 py-3 text-sm font-medium text-[#12090a] transition hover:brightness-110"
-            >
-              {TEC_CLOSING.primaryCta}
-            </a>
+          {/* Último paso de la página: un solo botón lleva el peso. */}
+          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
             <a
               href={TEC_WHATSAPP_ESCUELA}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-lg border border-[var(--tec-line-strong)] px-5 py-3 text-sm transition hover:border-[var(--tec-txt-2)]"
+              className="inline-flex rounded-lg bg-[var(--tec-accent)] px-6 py-4 text-base font-medium text-[#12090a] transition hover:brightness-110"
+            >
+              {TEC_CLOSING.primaryCta} →
+            </a>
+            <a
+              href={productLoginUrl()}
+              className="text-sm text-[var(--tec-mut)] underline decoration-[var(--tec-line-strong)] underline-offset-4 transition hover:text-[var(--tec-txt)]"
             >
               {TEC_CLOSING.secondaryCta}
             </a>
           </div>
 
-          <p className="mt-10 border-t border-[var(--tec-line)] pt-6 text-sm text-[var(--tec-mut)]">
+          <p className="mt-8 border-t border-[var(--tec-line)] pt-5 text-sm text-[var(--tec-mut)]">
             {TEC_CLOSING.websiteLine}{" "}
             <a
               href={TEC_WHATSAPP_WEBSITE}
@@ -66,6 +68,19 @@ export function ClosingSection() {
               {TEC_CLOSING.websiteCta} →
             </a>
           </p>
+        </Reveal>
+
+        <Reveal delay={0.08}>
+          <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-[var(--tec-line)] sm:aspect-[4/5] lg:ml-auto lg:max-w-[300px]">
+            <Image
+              src="/images/pic03.jpg"
+              alt="Un instructor de HUMI ajusta la cinta de una alumna durante una ceremonia de graduación."
+              fill
+              loading="lazy"
+              sizes="(min-width: 1024px) 300px, 100vw"
+              className="object-cover object-center"
+            />
+          </div>
         </Reveal>
       </div>
     </Section>
