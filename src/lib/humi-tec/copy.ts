@@ -243,6 +243,42 @@ export const TEC_PLANS_COPY = {
   body: "Empieza con una academia, o escala con una agrupación. El cobro del software es aparte de la cobranza a tus alumnos.",
 } as const;
 
+/**
+ * Cómo se NOMBRA y se EXPLICA cada plan en el landing.
+ *
+ * Los PRECIOS, el mínimo de escuelas y el intervalo siguen viviendo en
+ * `lib/humi-tec/pricing.ts` y no se tocan desde aquí: esto es solo la capa
+ * de presentación de la página, indexada por el `PlanId` de ese archivo.
+ *
+ * El plan que `pricing.ts` llama internamente `enterprise` se presenta como
+ * «Agrupación»: en la página no se usa lenguaje de enterprise genérico, y la
+ * cuenta que coordina varias escuelas es una CUENTA PRINCIPAL, no una
+ * «master account».
+ */
+export const TEC_PLAN_PRESENTATION = {
+  escuela: {
+    name: "Escuela",
+    lead: "Para una academia.",
+    bullets: [
+      "Alumnos, grupos, agenda y asistencia",
+      "Cobranza del mes: cargos, pagos, pendientes y comprobantes",
+      "Expediente del alumno",
+      "Eventos de la escuela",
+    ],
+    ctaLabel: "Empezar con Escuela",
+  },
+  enterprise: {
+    name: "Agrupación",
+    lead: "Para una cuenta que coordina varias escuelas.",
+    bullets: [
+      "Una cuenta principal que afilia escuelas",
+      "Cada escuela afiliada sigue operando su día a día",
+      "Eventos de agrupación con inscripciones y seguimiento",
+    ],
+    ctaLabel: "Hablar de agrupaciones",
+  },
+} as const;
+
 export const TEC_VERTICALS_NOTE =
   "Hoy lo probamos en taekwondo. El modelo sirve a ballet, gimnasia, fútbol, tenis y más academias que viven de la constancia.";
 
