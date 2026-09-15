@@ -14,7 +14,16 @@ const EASE = [0.22, 1, 0.36, 1] as const;
  * Único momento de motion protagonista de la página: ABIERTA → HECHA.
  * Se reproduce una sola vez, dura ~1.6s y no se repite al volver a subir.
  *
- * Honestidad visual: el conector y la píldora de estado son elementos DEL
+ * La sección es un puente entre DOS PERSONAS, no entre dos pantallas. Por eso
+ * los rótulos nombran a quien actúa —la familia, la escuela— y el nombre de
+ * la superficie baja al pie técnico de cada captura, junto a su ruta.
+ *
+ * La secuencia tiene que leerse sin leer el copy, así que se apoya en tres
+ * señales y no en las leyendas: la numeración 01 / 02, el conector que va de
+ * una a otra, y el estado como punto de llegada — centrado bajo las dos y
+ * colgando de su propio tallo, porque el desenlace es de ambas.
+ *
+ * Honestidad visual: conector, numeración y píldora son elementos DEL
  * LANDING, no de la interfaz — el producto no dibuja ninguna línea entre el
  * portal y la oficina. Por eso viven fuera de los marcos de captura, en la
  * tipografía de la página, y usan los dos estados reales del producto
@@ -56,8 +65,11 @@ export function CorrectionsSection() {
     : {
         initial: "hidden" as const,
         whileInView: "shown" as const,
-        viewport: { once: true, amount: 0.6 },
+        viewport: { once: true, amount: 0.4 },
       };
+
+  const familyCapture = TEC_CAPTURES.correccionFamilia;
+  const officeCapture = TEC_CAPTURES.correccionOficina;
 
   return (
     <Section id={TEC_CORRECTIONS.id}>
@@ -67,74 +79,87 @@ export function CorrectionsSection() {
         <SectionBody>{TEC_CORRECTIONS.body}</SectionBody>
       </Reveal>
 
-      <motion.div
-        {...stage}
-        className="mt-16 grid items-center gap-8 sm:mt-20 lg:grid-cols-[1fr_auto_1fr] lg:gap-0"
-      >
-        {/* Familia */}
-        <div className="lg:pr-12">
-          <Meta className="block">{TEC_CORRECTIONS.family.label}</Meta>
-          <CaptureSlot
-            capture={TEC_CAPTURES.correccionFamilia}
-            sizes="(min-width: 1024px) 440px, 100vw"
-            className="mt-3 max-w-[440px]"
-          />
-          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-[var(--tec-mut)]">
-            {TEC_CORRECTIONS.family.caption}
-          </p>
-          <motion.p
-            variants={sent}
-            className="mt-3 flex items-center gap-2 font-[family-name:var(--font-tec-mono)] text-[0.6875rem] tracking-[0.08em] text-[var(--tec-txt-2)]"
-          >
-            <span
-              aria-hidden
-              className="h-1.5 w-1.5 rounded-full bg-[var(--tec-accent)]"
+      <motion.div {...stage} className="mt-10 sm:mt-14">
+        <div className="grid items-start lg:grid-cols-[1fr_auto_1.1fr]">
+          {/* 01 — quien señala */}
+          <div className="lg:pr-10">
+            <Step n="01" label={TEC_CORRECTIONS.family.label} />
+            <CaptureSlot
+              capture={familyCapture}
+              sizes="(min-width: 1024px) 380px, 100vw"
+              className="mt-4 max-w-[380px]"
+              caption={`${familyCapture.screen} · ${familyCapture.productRoute}`}
             />
-            Solicitud enviada a la escuela
-          </motion.p>
+            <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-[var(--tec-mut)]">
+              {TEC_CORRECTIONS.family.caption}
+            </p>
+            <motion.p
+              variants={sent}
+              className="mt-3 flex items-center gap-2 font-[family-name:var(--font-tec-mono)] text-[0.6875rem] tracking-[0.08em] text-[var(--tec-txt-2)]"
+            >
+              <span
+                aria-hidden
+                className="h-1.5 w-1.5 rounded-full bg-[var(--tec-accent)]"
+              />
+              Solicitud enviada a la escuela
+            </motion.p>
+          </div>
+
+          {/* Conector 01 → 02. Horizontal en desktop, vertical en móvil. */}
+          <div
+            aria-hidden
+            className="flex items-center justify-center lg:h-full lg:px-1"
+          >
+            <motion.span
+              variants={connectorX}
+              style={{ transformOrigin: "left center" }}
+              className="hidden h-px w-24 bg-[var(--tec-accent)]/60 lg:block"
+            />
+            <motion.span
+              variants={connectorY}
+              style={{ transformOrigin: "center top" }}
+              className="my-6 block h-10 w-px bg-[var(--tec-accent)]/60 lg:hidden"
+            />
+          </div>
+
+          {/* 02 — quien resuelve */}
+          <div className="lg:pl-10">
+            <Step n="02" label={TEC_CORRECTIONS.academy.label} />
+            <CaptureSlot
+              capture={officeCapture}
+              sizes="(min-width: 1024px) 480px, 100vw"
+              className="mt-4 max-w-[480px]"
+              caption={`${officeCapture.screen} · ${officeCapture.productRoute}`}
+            />
+            <p className="mt-4 max-w-[42ch] text-sm leading-relaxed text-[var(--tec-mut)]">
+              {TEC_CORRECTIONS.academy.caption}
+            </p>
+          </div>
         </div>
 
-        {/* Conector — grafismo del landing, no del producto */}
-        <div
-          aria-hidden
-          className="flex items-center justify-center lg:h-full lg:px-2"
-        >
+        {/*
+          Punto de llegada. Cuelga de su propio tallo y va centrado bajo las
+          dos columnas: el desenlace no es de la escuela, es de las dos.
+        */}
+        <div className="flex flex-col items-start lg:items-center">
           <motion.span
-            variants={connectorX}
-            style={{ transformOrigin: "left center" }}
-            className="hidden h-px w-16 bg-[var(--tec-accent)]/30 lg:block"
-          />
-          <motion.span
+            aria-hidden
             variants={connectorY}
             style={{ transformOrigin: "center top" }}
-            className="block h-10 w-px bg-[var(--tec-accent)]/30 lg:hidden"
+            className="mt-6 block h-8 w-px bg-[var(--tec-accent)]/60 lg:mt-10 lg:h-10"
           />
-        </div>
-
-        {/* Academia */}
-        <div className="lg:pl-12">
-          <Meta className="block">{TEC_CORRECTIONS.academy.label}</Meta>
-          <CaptureSlot
-            capture={TEC_CAPTURES.correccionOficina}
-            sizes="(min-width: 1024px) 440px, 100vw"
-            className="mt-3 max-w-[440px]"
-          />
-          <p className="mt-4 max-w-[38ch] text-sm leading-relaxed text-[var(--tec-mut)]">
-            {TEC_CORRECTIONS.academy.caption}
-          </p>
-
-          <div className="mt-4 flex items-center gap-3">
-            <Meta>Estado</Meta>
+          <div className="mt-4 flex items-center gap-3 lg:mt-5">
+            <Meta>Estado de la solicitud</Meta>
             <span className="relative inline-grid">
               <motion.span
                 variants={stateOut}
-                className="col-start-1 row-start-1 rounded-full border border-[var(--tec-warn)]/40 bg-[var(--tec-warn)]/10 px-2.5 py-0.5 font-[family-name:var(--font-tec-mono)] text-[0.625rem] tracking-[0.12em] text-[var(--tec-warn)]"
+                className="col-start-1 row-start-1 rounded-full border border-[var(--tec-warn)]/40 bg-[var(--tec-warn)]/10 px-3.5 py-1 font-[family-name:var(--font-tec-mono)] text-[0.75rem] tracking-[0.14em] text-[var(--tec-warn)]"
               >
                 {TEC_CORRECTIONS.stateOpen}
               </motion.span>
               <motion.span
                 variants={stateIn}
-                className="col-start-1 row-start-1 rounded-full border border-[var(--tec-ok)]/40 bg-[var(--tec-ok)]/10 px-2.5 py-0.5 font-[family-name:var(--font-tec-mono)] text-[0.625rem] tracking-[0.12em] text-[var(--tec-ok)]"
+                className="col-start-1 row-start-1 rounded-full border border-[var(--tec-ok)]/40 bg-[var(--tec-ok)]/10 px-3.5 py-1 font-[family-name:var(--font-tec-mono)] text-[0.75rem] tracking-[0.14em] text-[var(--tec-ok)]"
               >
                 {TEC_CORRECTIONS.stateDone}
               </motion.span>
@@ -144,10 +169,28 @@ export function CorrectionsSection() {
       </motion.div>
 
       <Reveal delay={0.1}>
-        <p className="mt-14 max-w-[52ch] border-t border-[var(--tec-line)] pt-6 text-sm leading-relaxed text-[var(--tec-mut)]">
+        <p className="mt-12 max-w-[52ch] border-t border-[var(--tec-line)] pt-6 text-sm leading-relaxed text-[var(--tec-mut)]">
           {TEC_CORRECTIONS.footnote}
         </p>
       </Reveal>
     </Section>
+  );
+}
+
+/**
+ * Rótulo de paso. La numeración es lo que hace legible la dirección cuando
+ * el lector no lee las leyendas: 01 antes que 02, en el color de acento.
+ */
+function Step({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-[family-name:var(--font-tec-mono)] text-[0.6875rem] tracking-[0.2em] text-[var(--tec-accent)]">
+        {n}
+      </span>
+      <span aria-hidden className="h-px w-5 bg-[var(--tec-accent)]/40" />
+      <span className="font-[family-name:var(--font-tec-mono)] text-[0.6875rem] tracking-[0.2em] text-[var(--tec-txt)] uppercase">
+        {label}
+      </span>
+    </div>
   );
 }

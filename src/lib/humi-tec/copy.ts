@@ -159,11 +159,11 @@ export const TEC_CORRECTIONS = {
   title: "La tecnología organiza el proceso.\nLa solución sigue siendo humana.",
   body: "Una familia ve un dato mal en el expediente y lo describe. La escuela lo recibe en un solo lugar, lo corrige y lo marca hecho. Nadie persigue a nadie.",
   family: {
-    label: "Portal de la familia",
+    label: "La familia",
     caption: "La familia describe qué hay que corregir y lo envía.",
   },
   academy: {
-    label: "Oficina",
+    label: "La escuela",
     caption: "La solicitud llega a Correcciones y se resuelve en el expediente.",
   },
   stateOpen: "ABIERTA",
