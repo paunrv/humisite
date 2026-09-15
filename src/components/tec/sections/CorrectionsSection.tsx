@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { TEC_CORRECTIONS } from "@/lib/humi-tec/copy";
 import { TEC_CAPTURES } from "@/lib/humi-tec/captures";
@@ -73,11 +74,36 @@ export function CorrectionsSection() {
 
   return (
     <Section id={TEC_CORRECTIONS.id}>
-      <Reveal className="max-w-[46ch]">
-        <Eyebrow>{TEC_CORRECTIONS.eyebrow}</Eyebrow>
-        <SectionTitle>{TEC_CORRECTIONS.title}</SectionTitle>
-        <SectionBody>{TEC_CORRECTIONS.body}</SectionBody>
-      </Reveal>
+      {/*
+        El encabezado ocupaba media pantalla y dejaba el resto vacío. Ese hueco
+        recibe ahora la fotografía: la tesis de la sección es que la solución
+        sigue siendo humana, y hasta aquí solo la demostraban dos capturas de
+        software. La columna de texto conserva su `max-w-[46ch]`, así que el
+        titular rompe exactamente donde ya estaba aprobado.
+
+        La pista de la foto es FIJA (260px), no `auto`: con una pista `auto` el
+        ítem se encoge a su contenido y el `w-full` interior colapsa a cero.
+      */}
+      <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_260px] lg:gap-16">
+        <Reveal className="max-w-[46ch]">
+          <Eyebrow>{TEC_CORRECTIONS.eyebrow}</Eyebrow>
+          <SectionTitle>{TEC_CORRECTIONS.title}</SectionTitle>
+          <SectionBody>{TEC_CORRECTIONS.body}</SectionBody>
+        </Reveal>
+
+        <Reveal delay={0.06}>
+          <div className="relative aspect-[2/3] w-full max-w-[208px] overflow-hidden rounded-xl border border-[var(--tec-line)] sm:max-w-[260px]">
+            <Image
+              src="/images/pic07.jpg"
+              alt="Un instructor de HUMI ajusta el cinturón de un alumno pequeño mientras el resto del grupo espera su turno."
+              fill
+              loading="lazy"
+              sizes="(min-width: 1024px) 260px, (min-width: 640px) 260px, 208px"
+              className="object-cover object-center"
+            />
+          </div>
+        </Reveal>
+      </div>
 
       <motion.div {...stage} className="mt-10 sm:mt-14">
         <div className="grid items-start lg:grid-cols-[1fr_auto_1.1fr]">

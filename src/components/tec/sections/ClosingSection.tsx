@@ -73,8 +73,8 @@ export function ClosingSection() {
         <Reveal delay={0.08}>
           <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-[var(--tec-line)] sm:aspect-[4/5] lg:ml-auto lg:max-w-[300px]">
             <Image
-              src="/images/pic03.jpg"
-              alt="Un instructor de HUMI ajusta la cinta de una alumna durante una ceremonia de graduación."
+              src="/images/pic22.jpg"
+              alt="Un instructor de HUMI enseña un movimiento a dos alumnos pequeños durante una clase al aire libre."
               fill
               loading="lazy"
               sizes="(min-width: 1024px) 300px, 100vw"
