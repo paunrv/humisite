@@ -115,6 +115,7 @@ export const TEC_OPERATION = {
   moments: [
     {
       id: "asistencia",
+      when: "Durante el día",
       title: "Tres toques por alumno. Se guarda solo.",
       body: "El pase de lista se hace en el tatami, no en la oficina. Cada marca se guarda al instante — y avisa cuando no pudo guardarse.",
       detailLabel: "Presente · Tarde · Ausente",
@@ -123,6 +124,7 @@ export const TEC_OPERATION = {
     },
     {
       id: "cobranza",
+      when: "Al cierre del mes",
       title: "Quién pagó, quién no, y quién está por vencer.",
       body: "El mes entero en tres estados. Desde ahí se marca un pago o se manda un recordatorio, sin cambiar de pantalla.",
       detailLabel: "Pagado · Por vencer · Vencido",
