@@ -31,16 +31,16 @@ export const TEC_HERO = {
   brand: "HUMI io",
   headline: "Operar la academia\ncon el mismo criterio\ncon el que se entrena.",
   support:
-    "El sistema para llevar tu escuela: alumnos, mensualidades, asistencia y exámenes. Nacido de más de 16 años en el dojang — no de un escritorio que nunca dio clase.",
+    "El sistema para llevar tu escuela: alumnos, mensualidades, asistencia y exámenes. Nacido en el dojang — no en un escritorio que nunca dio clase.",
   primaryCta: { label: "Ver lo que incluye", href: "#escuela" },
   secondaryCta: { label: "Iniciar sesión", href: "/login" },
   proof: "16 años de dojang · Generaciones de cintas negras · Ensenada, B.C.",
 } as const;
 
 export const TEC_EASE = {
-  eyebrow: "De dónde viene",
+  eyebrow: "El problema",
   title: "Administrar una academia se complica más rápido de lo que crece.",
-  body: "HUMI io nace de más de 16 años llevando un dojang, con varias generaciones de cintas negras formadas. Con alumnos entrando y saliendo todo el año, y exámenes, clínicas y torneos encima, seguir quién es quién y qué le toca a cada uno se vuelve un trabajo aparte.",
+  body: "Con alumnos entrando y saliendo todo el año, y exámenes, clínicas y torneos encima, seguir quién es quién y qué le toca a cada uno se vuelve un trabajo aparte.",
   seeLabel: "Lo que ves al entrar",
   see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién ya reúne asistencia, tiempo en grado y pagos para presentar examen. Nada que vaciar, nada que buscar en tres chats.",
   audiences: [
