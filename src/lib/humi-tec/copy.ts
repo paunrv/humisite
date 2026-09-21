@@ -36,13 +36,28 @@ export const TEC_HERO = {
 } as const;
 
 export const TEC_EASE = {
-  eyebrow: "El lunes en la mañana",
-  title: "Abres, y ya sabes qué atender.",
-  body: "Quién no ha pagado. Quién lleva tres clases sin venir. Qué grupo tiene examen el sábado. Qué papá pidió hablar contigo. Está en una pantalla porque ahí lo fue dejando el staff durante la semana, no porque alguien se sentó a vaciar un Excel el domingo.",
-  adoption:
-    "Eso solo sirve si el equipo de verdad lo usa. La mayoría de los sistemas se capacitan una tarde y a las dos semanas todos volvieron al cuaderno. Este se usa como se usa WhatsApp, así que nadie necesita curso.",
+  eyebrow: "Para qué es",
+  title: "Cuando eran ocho alumnos, te acordabas de todo.",
+  body: "Con ochenta ya no. No es falta de cuidado, es que no cabe en una cabeza. HUMI io existe para que sigas notando lo que notabas cuando eran ocho, con todos los que tienes hoy y el mismo staff.",
+  seeLabel: "Lo que ves al entrar",
+  see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién examina el sábado. Nada que vaciar, nada que buscar en tres chats.",
+  audiences: [
+    {
+      who: "Para ti",
+      what: "Ya no armas el reporte para saber cómo va la escuela. Entras y el reporte ya está.",
+    },
+    {
+      who: "Para tu staff",
+      what: "Pasan lista desde el celular, en el tatami, antes de que se les olvide.",
+    },
+    {
+      who: "Para los papás",
+      what: "Pagan desde su teléfono y ven cómo va su hijo, sin tener que escribirte un domingo.",
+    },
+  ],
+  ease: "Nadie necesita curso. Si saben usar WhatsApp, ya saben usar esto. Los tres.",
   payoff:
-    "Y el alumno que estaba por darse de baja aparece en tu lista mientras todavía puedes hacer algo.",
+    "Y al alumno que está por dejarlo lo ves mientras todavía puedes hablarle.",
 } as const;
 
 export const TEC_ESSENCE = {

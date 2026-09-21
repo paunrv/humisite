@@ -171,7 +171,7 @@ export function TecLanding() {
           </div>
         </section>
 
-        {/* EASE — the Monday-morning scene, then the adoption objection */}
+        {/* EASE — what it is for, what you see, easy for all three */}
         <section className="border-t border-white/8 py-20 sm:py-28">
           <div className="mx-auto max-w-3xl px-5 sm:px-8">
             <p className="text-xs tracking-[0.24em] text-[#4a8fd4] uppercase">
@@ -183,10 +183,32 @@ export function TecLanding() {
             <p className="mt-7 text-base leading-[1.7] text-[#c8c2b8] sm:text-lg">
               {TEC_EASE.body}
             </p>
-            <p className="mt-6 text-base leading-[1.7] text-[#8a8580]">
-              {TEC_EASE.adoption}
-            </p>
-            <p className="mt-10 border-t border-white/10 pt-8 text-lg leading-[1.55] text-[#f5f0e8] sm:text-xl">
+
+            <div className="mt-12 border-l-2 border-[#164a89] pl-6">
+              <p className="text-xs tracking-[0.2em] text-[#4a8fd4] uppercase">
+                {TEC_EASE.seeLabel}
+              </p>
+              <p className="mt-3 text-base leading-[1.7] text-[#f5f0e8] sm:text-lg">
+                {TEC_EASE.see}
+              </p>
+            </div>
+
+            <dl className="mt-14 border-t border-white/10">
+              {TEC_EASE.audiences.map((a) => (
+                <div
+                  key={a.who}
+                  className="flex flex-col gap-1 border-b border-white/10 py-5 sm:flex-row sm:gap-8"
+                >
+                  <dt className="shrink-0 font-[family-name:var(--font-tec-display)] text-sm tracking-[0.14em] text-[#4a8fd4] uppercase sm:w-40 sm:pt-0.5">
+                    {a.who}
+                  </dt>
+                  <dd className="text-base leading-[1.6] text-[#c8c2b8]">{a.what}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-8 text-base leading-[1.7] text-[#8a8580]">{TEC_EASE.ease}</p>
+            <p className="mt-10 text-lg leading-[1.55] text-[#f5f0e8] sm:text-xl">
               {TEC_EASE.payoff}
             </p>
           </div>
