@@ -3,6 +3,7 @@
 import {
   TEC_ACCESS,
   TEC_BRAND,
+  TEC_EASE,
   TEC_ENTERPRISE,
   TEC_ESSENCE,
   TEC_FOOTER,
@@ -166,6 +167,24 @@ export function TecLanding() {
             </motion.div>
             <p className="mt-10 text-[0.7rem] tracking-[0.14em] text-[#6a6560] uppercase">
               {TEC_HERO.proof}
+            </p>
+          </div>
+        </section>
+
+        {/* EASE — what it actually frees up */}
+        <section className="border-t border-white/8 py-20 sm:py-28">
+          <div className="mx-auto max-w-4xl px-5 sm:px-8">
+            <p className="text-xs tracking-[0.24em] text-[#4a8fd4] uppercase">
+              {TEC_EASE.eyebrow}
+            </p>
+            <h2 className="mt-4 max-w-[22ch] font-[family-name:var(--font-tec-display)] text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] tracking-tight">
+              {TEC_EASE.title}
+            </h2>
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-[#c8c2b8] sm:text-lg">
+              {TEC_EASE.body}
+            </p>
+            <p className="mt-10 max-w-2xl border-l border-[#164a89] pl-5 text-sm leading-relaxed text-[#8a8580] sm:text-base">
+              {TEC_EASE.outgoing}
             </p>
           </div>
         </section>
