@@ -108,7 +108,7 @@ function buildHtmlSitemap() {
             ...main,
             ...secondary,
             { href: "/internacional", label: "Internacional" },
-            { href: "/tec", label: "HUMI-tec" },
+            { href: "/tec", label: "HUMI io" },
             { href: "/login", label: "Portal / Login" },
           ])}
 				</div>

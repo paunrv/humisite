@@ -1,6 +1,6 @@
-# Arquitectura HUMI-tec (validada)
+# Arquitectura HUMI io (validada)
 
-Marca academia **HUMI** · Marca software **HUMI-tec** · Sitio piloto [humisite.vercel.app](https://humisite.vercel.app/)
+Marca academia **HUMI** · Marca software **HUMI io** · Sitio piloto [humisite.vercel.app](https://humisite.vercel.app/)
 
 Este documento valida las decisiones del plan de arquitectura. Fuente de verdad de producto/DB: **humi-sistema**. Este repo (humisite) hospeda marketing academia + landing SaaS `/tec`.
 
@@ -9,12 +9,12 @@ Este documento valida las decisiones del plan de arquitectura. Fuente de verdad 
 | Ruta | Superficie | Repo |
 |------|------------|------|
 | `/` | Academia HUMI (familias) | humisite |
-| `/tec` | Landing HUMI-tec + planes + acceso | humisite |
+| `/tec` | Landing HUMI io + planes + acceso | humisite |
 | `/login`, `/signup` | Auth (puerta compartida) | humisite → producto |
 | `/app` | Admin escuela / portal | humi-sistema (canónico) |
 | `/agrupacion` | Enterprise (org master) | humi-sistema |
 
-Escalado futuro (sin cambiar modelo de datos): subdominio `tec.` / dominio propio HUMI-tec.
+Escalado futuro (sin cambiar modelo de datos): subdominio `tec.` / dominio propio HUMI io.
 
 ## Tenancy
 
@@ -36,7 +36,7 @@ subscriptions → billing_owner = school | organization
 
 - Pasarela piloto: **Stripe Billing** (mensual/anual).
 - CFDI México: offline al inicio.
-- Separar siempre: cobro SaaS (HUMI-tec) vs mensualidad alumno (ops de la escuela).
+- Separar siempre: cobro SaaS (HUMI io) vs mensualidad alumno (ops de la escuela).
 - Price IDs y montos: [`HUMI_TEC_PRICING.md`](./HUMI_TEC_PRICING.md) · código [`src/lib/humi-tec/pricing.ts`](../src/lib/humi-tec/pricing.ts).
 
 ## Seguridad

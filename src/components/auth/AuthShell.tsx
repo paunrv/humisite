@@ -18,9 +18,9 @@ export function AuthShell({ title, subtitle, children }: AuthShellProps) {
         <div className="mb-8 flex flex-col items-center gap-2 text-center">
           <Link
             href="/tec"
-            className="text-sm tracking-[0.2em] text-humi-muted uppercase hover:text-humi-off-white"
+            className="text-sm tracking-[0.12em] text-humi-muted hover:text-humi-off-white"
           >
-            HUMI-tec
+            HUMI io
           </Link>
           <Link
             href="/"

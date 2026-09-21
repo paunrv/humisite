@@ -1,5 +1,5 @@
 /**
- * HUMI-tec public pricing (MXN). Keep in sync with docs/HUMI_TEC_PRICING.md
+ * HUMI io public pricing (MXN). Keep in sync with docs/HUMI_TEC_PRICING.md
  */
 
 export type BillingInterval = "monthly" | "yearly";

@@ -1,4 +1,4 @@
-# EPICs HUMI-tec
+# EPICs HUMI io
 
 Criterios de aceptación (DoD) anclados al timeline piloto. Issues de implementación de producto viven en **humi-sistema**; landing/marketing en **humisite**.
 
@@ -10,7 +10,7 @@ Criterios de aceptación (DoD) anclados al timeline piloto. Issues de implementa
 **Ventana:** antes del 20 jul 2026
 
 ### Scope
-- Página `/tec` con marca HUMI-tec, planes Escuela/Enterprise, CTAs registro/login.
+- Página `/tec` con marca HUMI io, planes Escuela/Enterprise, CTAs registro/login.
 - Enlace desde home academia (footer).
 - Precios y copy centralizados en código.
 
@@ -18,7 +18,7 @@ Criterios de aceptación (DoD) anclados al timeline piloto. Issues de implementa
 - [x] `/tec` publica en el deploy Vercel.
 - [x] Planes visibles (mensual/anual Escuela + Enterprise ≥10).
 - [x] CTA “Iniciar sesión” → `/login`; “Empezar” → `/signup`.
-- [x] Home footer enlaza a HUMI-tec.
+- [x] Home footer enlaza a HUMI io.
 - [x] `/tec` en sitemap.
 - [ ] Términos SaaS legales (borrador aceptable post-piloto).
 

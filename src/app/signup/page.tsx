@@ -32,13 +32,13 @@ export default async function SignupPage({ searchParams }: SignupPageProps) {
 
   return (
     <AuthShell
-      title="Crear cuenta HUMI-tec"
+      title="Crear cuenta HUMI io"
       subtitle={planSubtitle(params.plan, params.interval)}
     >
       <AuthForm mode="signup" action={signup} />
       <p className="mt-4 text-center text-xs text-humi-dim">
         <a href="/tec" className="text-humi-accent-soft hover:underline">
-          Ver planes HUMI-tec
+          Ver planes HUMI io
         </a>
       </p>
     </AuthShell>

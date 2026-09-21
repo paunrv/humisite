@@ -5,7 +5,7 @@
 | | |
 |--|--|
 | **Repo** | [`paunrv/humisite`](https://github.com/paunrv/humisite) |
-| **Qué es** | Landing academia HUMI, blog, SEO, intro cinematográfico, **landing HUMI-tec (`/tec`)** |
+| **Qué es** | Landing academia HUMI, blog, SEO, intro cinematográfico, **landing HUMI io (`/tec`)** |
 | **Deploy** | Vercel ([humisite.vercel.app](https://humisite.vercel.app/)) |
 
 ## Producto = humi-sistema
@@ -23,7 +23,7 @@
 | Marca | Superficie |
 |-------|------------|
 | **HUMI** | Academia taekwondo (`/`) |
-| **HUMI-tec** | Software multi-academia (`/tec` + app) |
+| **HUMI io** | Software multi-academia (`/tec` + app) |
 
 ## Importante
 
