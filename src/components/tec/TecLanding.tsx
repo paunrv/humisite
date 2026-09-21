@@ -141,7 +141,7 @@ export function TecLanding() {
             </motion.p>
             <motion.h1
               {...fadeUp(0.08)}
-              className="mt-5 max-w-[16ch] font-[family-name:var(--font-tec-display)] text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.02] font-semibold tracking-tight whitespace-pre-line"
+              className="mt-5 max-w-none font-[family-name:var(--font-tec-display)] text-[clamp(1.95rem,6.4vw,4.5rem)] leading-[1.06] font-semibold tracking-tight whitespace-normal sm:max-w-[16ch] sm:leading-[1.02] sm:whitespace-pre-line"
             >
               {TEC_HERO.headline}
             </motion.h1>

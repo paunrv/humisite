@@ -12,7 +12,7 @@ export const TEC_BRAND = {
 export const TEC_META = {
   title: "HUMI io · Software para administrar tu academia deportiva",
   description:
-    "Software para escuelas deportivas: alumnos, grupos, agenda, cobranza, expediente y eventos. Enterprise con brackets y logística. Website para posicionarte en Google. Hecho y probado en el dojang HUMI, Ensenada.",
+    "Software para academias deportivas: alumnos, cobranza, asistencia y exámenes. Brackets y logística para agrupaciones. Hecho en el dojang HUMI, Ensenada.",
   ogAlt: "HUMI io — software para administrar academias, hecho en el dojang HUMI",
   keywords: [
     "software academia deportiva",
@@ -23,6 +23,7 @@ export const TEC_META = {
     "HUMI io",
     "software federación deportiva",
     "plataforma SaaS academias deportivas",
+    "HUMI-tec",
   ],
 } as const;
 
@@ -41,7 +42,7 @@ export const TEC_EASE = {
   title: "Administrar una academia se complica más rápido de lo que crece.",
   body: "HUMI io nace de más de 16 años llevando un dojang, con varias generaciones de cintas negras formadas. Con alumnos entrando y saliendo todo el año, y exámenes, clínicas y torneos encima, seguir quién es quién y qué le toca a cada uno se vuelve un trabajo aparte.",
   seeLabel: "Lo que ves al entrar",
-  see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién ya cumple asistencia, tiempo en grado y pagos para presentar examen. Nada que vaciar, nada que buscar en tres chats.",
+  see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién ya reúne asistencia, tiempo en grado y pagos para presentar examen. Nada que vaciar, nada que buscar en tres chats.",
   audiences: [
     {
       who: "Para ti",
@@ -56,7 +57,7 @@ export const TEC_EASE = {
       what: "Pagan desde su teléfono y ven cómo va su hijo, sin tener que escribirte un domingo.",
     },
   ],
-  ease: "Nadie necesita curso. Si saben usar WhatsApp, ya saben usar esto. Los tres.",
+  ease: "No hace falta curso. Si saben usar WhatsApp, ya saben usar esto. Los tres.",
   payoff:
     "Todo en un mismo lugar, para que decidas con el detalle completo y no con lo que alcanzas a recordar.",
 } as const;
