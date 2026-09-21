@@ -39,9 +39,9 @@ export const TEC_HERO = {
 export const TEC_EASE = {
   eyebrow: "De dónde viene",
   title: "Administrar una academia se complica más rápido de lo que crece.",
-  body: "HUMI io nace de más de 16 años llevando un dojang, con varias generaciones de cintas negras formadas y más de 20 alumnos nuevos cada año. Con ese movimiento de altas y bajas, seguir quién entra, quién sale y qué pasa en el tatami se vuelve un trabajo aparte.",
+  body: "HUMI io nace de más de 16 años llevando un dojang, con varias generaciones de cintas negras formadas. Con alumnos entrando y saliendo todo el año, y exámenes, clínicas y torneos encima, seguir quién es quién y qué le toca a cada uno se vuelve un trabajo aparte.",
   seeLabel: "Lo que ves al entrar",
-  see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién examina el sábado. Nada que vaciar, nada que buscar en tres chats.",
+  see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién ya cumple asistencia, tiempo en grado y pagos para presentar examen. Nada que vaciar, nada que buscar en tres chats.",
   audiences: [
     {
       who: "Para ti",
