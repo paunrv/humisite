@@ -1,5 +1,5 @@
 /**
- * HUMI io landing — voice from 15+ years running an academy,
+ * HUMI io landing — voice from 16+ years running an academy,
  * marketing clarity, and B2B SaaS positioning.
  */
 
@@ -30,16 +30,16 @@ export const TEC_HERO = {
   brand: "HUMI io",
   headline: "Operar la academia\ncon el mismo criterio\ncon el que se entrena.",
   support:
-    "El sistema para llevar tu escuela: alumnos, mensualidades, asistencia y exámenes. Nacido de más de 15 años en el dojang — no de un escritorio que nunca dio clase.",
+    "El sistema para llevar tu escuela: alumnos, mensualidades, asistencia y exámenes. Nacido de más de 16 años en el dojang — no de un escritorio que nunca dio clase.",
   primaryCta: { label: "Ver lo que incluye", href: "#escuela" },
   secondaryCta: { label: "Iniciar sesión", href: "/login" },
-  proof: "Hecho en el dojang · Probado con alumnos reales · Ensenada, B.C.",
+  proof: "16 años de dojang · Generaciones de cintas negras · Ensenada, B.C.",
 } as const;
 
 export const TEC_EASE = {
-  eyebrow: "Para qué es",
-  title: "Cuando eran ocho alumnos, te acordabas de todo.",
-  body: "Con ochenta ya no. No es falta de cuidado, es que no cabe en una cabeza. HUMI io existe para que sigas notando lo que notabas cuando eran ocho, con todos los que tienes hoy y el mismo staff.",
+  eyebrow: "De dónde viene",
+  title: "Administrar una academia se complica más rápido de lo que crece.",
+  body: "HUMI io nace de más de 16 años llevando un dojang, con varias generaciones de cintas negras formadas y más de 20 alumnos nuevos cada año. Con ese movimiento de altas y bajas, seguir quién entra, quién sale y qué pasa en el tatami se vuelve un trabajo aparte.",
   seeLabel: "Lo que ves al entrar",
   see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién examina el sábado. Nada que vaciar, nada que buscar en tres chats.",
   audiences: [
@@ -58,7 +58,7 @@ export const TEC_EASE = {
   ],
   ease: "Nadie necesita curso. Si saben usar WhatsApp, ya saben usar esto. Los tres.",
   payoff:
-    "Y al alumno que está por dejarlo lo ves mientras todavía puedes hablarle.",
+    "Todo en un mismo lugar, para que decidas con el detalle completo y no con lo que alcanzas a recordar.",
 } as const;
 
 export const TEC_ESSENCE = {
