@@ -36,11 +36,13 @@ export const TEC_HERO = {
 } as const;
 
 export const TEC_EASE = {
-  eyebrow: "Lo fácil",
-  title: "Lo fácil no es que tenga menos. Es que no tienes que pensarlo.",
-  body: "Entras, ves quién debe, ves quién falta, mandas un examen a toda la comunidad en un link. Nada de aprender un sistema nuevo. Si sabes usar WhatsApp, sabes usar HUMI io.",
-  outgoing:
-    "Lo que se va: el Excel paralelo, la persecución de mensualidad por chat, la memoria como expediente.",
+  eyebrow: "El lunes en la mañana",
+  title: "Abres, y ya sabes qué atender.",
+  body: "Quién no ha pagado. Quién lleva tres clases sin venir. Qué grupo tiene examen el sábado. Qué papá pidió hablar contigo. Está en una pantalla porque ahí lo fue dejando el staff durante la semana, no porque alguien se sentó a vaciar un Excel el domingo.",
+  adoption:
+    "Eso solo sirve si el equipo de verdad lo usa. La mayoría de los sistemas se capacitan una tarde y a las dos semanas todos volvieron al cuaderno. Este se usa como se usa WhatsApp, así que nadie necesita curso.",
+  payoff:
+    "Y el alumno que estaba por darse de baja aparece en tu lista mientras todavía puedes hacer algo.",
 } as const;
 
 export const TEC_ESSENCE = {

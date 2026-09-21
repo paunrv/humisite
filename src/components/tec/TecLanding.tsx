@@ -171,20 +171,23 @@ export function TecLanding() {
           </div>
         </section>
 
-        {/* EASE — what it actually frees up */}
+        {/* EASE — the Monday-morning scene, then the adoption objection */}
         <section className="border-t border-white/8 py-20 sm:py-28">
-          <div className="mx-auto max-w-4xl px-5 sm:px-8">
+          <div className="mx-auto max-w-3xl px-5 sm:px-8">
             <p className="text-xs tracking-[0.24em] text-[#4a8fd4] uppercase">
               {TEC_EASE.eyebrow}
             </p>
-            <h2 className="mt-4 max-w-[22ch] font-[family-name:var(--font-tec-display)] text-[clamp(1.9rem,4.2vw,3rem)] leading-[1.1] tracking-tight">
+            <h2 className="mt-4 font-[family-name:var(--font-tec-display)] text-[clamp(1.75rem,5vw,2.75rem)] leading-[1.12] tracking-tight">
               {TEC_EASE.title}
             </h2>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-[#c8c2b8] sm:text-lg">
+            <p className="mt-7 text-base leading-[1.7] text-[#c8c2b8] sm:text-lg">
               {TEC_EASE.body}
             </p>
-            <p className="mt-10 max-w-2xl border-l border-[#164a89] pl-5 text-sm leading-relaxed text-[#8a8580] sm:text-base">
-              {TEC_EASE.outgoing}
+            <p className="mt-6 text-base leading-[1.7] text-[#8a8580]">
+              {TEC_EASE.adoption}
+            </p>
+            <p className="mt-10 border-t border-white/10 pt-8 text-lg leading-[1.55] text-[#f5f0e8] sm:text-xl">
+              {TEC_EASE.payoff}
             </p>
           </div>
         </section>
