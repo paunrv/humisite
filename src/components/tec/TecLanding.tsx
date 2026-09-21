@@ -86,7 +86,7 @@ export function TecLanding() {
       <header className="relative z-20 mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
         <Link
           href="/tec"
-          className="font-[family-name:var(--font-tec-display)] text-base tracking-[0.2em] uppercase sm:text-lg"
+          className="font-[family-name:var(--font-tec-display)] text-base tracking-[0.12em] sm:text-lg"
         >
           {TEC_BRAND.name}
         </Link>
@@ -135,7 +135,7 @@ export function TecLanding() {
           <div className="relative z-10 mx-auto flex min-h-[min(92dvh,880px)] max-w-6xl flex-col justify-end px-5 pb-16 pt-24 sm:px-8 sm:pb-24">
             <motion.p
               {...fadeUp(0)}
-              className="font-[family-name:var(--font-tec-display)] text-xs tracking-[0.3em] text-[#4a8fd4] uppercase"
+              className="font-[family-name:var(--font-tec-display)] text-sm tracking-[0.16em] text-[#4a8fd4]"
             >
               {TEC_HERO.brand}
             </motion.p>
@@ -459,7 +459,7 @@ export function TecLanding() {
       <footer className="border-t border-white/8 px-5 py-10 sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[#6a6560] sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="font-[family-name:var(--font-tec-display)] tracking-[0.18em] text-[#8a8580] uppercase">
+            <p className="font-[family-name:var(--font-tec-display)] tracking-[0.12em] text-[#8a8580]">
               {TEC_BRAND.name}
             </p>
             <p className="mt-2 max-w-md">{TEC_FOOTER.legalNote}</p>
