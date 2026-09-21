@@ -1,4 +1,4 @@
-# Precios HUMI-tec (MXN)
+# Precios HUMI io (MXN)
 
 Precios de piloto comercial. Fuente en código: [`src/lib/humi-tec/pricing.ts`](../src/lib/humi-tec/pricing.ts).
 

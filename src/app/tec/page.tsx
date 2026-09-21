@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   },
   description: TEC_META.description,
   keywords: [...TEC_META.keywords],
+  authors: [{ name: "HUMI io" }],
+  creator: "HUMI io",
   alternates: {
     canonical: `${siteUrl}/tec`,
   },
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     title: TEC_META.title,
     description: TEC_META.description,
     url: `${siteUrl}/tec`,
-    siteName: "HUMI-tec",
+    siteName: "HUMI io",
     locale: "es_MX",
     type: "website",
     images: [

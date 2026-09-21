@@ -1144,6 +1144,12 @@ button:focus-visible {
   text-decoration: none;
 }
 
+/* La marca siempre se escribe "HUMI io", asi que se exime del
+   text-transform: uppercase que hereda de .hm-footer__row */
+.hm-footer__links a.hm-footer__brand {
+  text-transform: none;
+}
+
 .hm-footer__meta {
   margin: 0;
   font-family: var(--font-mono);

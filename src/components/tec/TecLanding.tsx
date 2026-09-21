@@ -3,6 +3,7 @@
 import {
   TEC_ACCESS,
   TEC_BRAND,
+  TEC_EASE,
   TEC_ENTERPRISE,
   TEC_ESSENCE,
   TEC_FOOTER,
@@ -85,7 +86,7 @@ export function TecLanding() {
       <header className="relative z-20 mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
         <Link
           href="/tec"
-          className="font-[family-name:var(--font-tec-display)] text-base tracking-[0.2em] uppercase sm:text-lg"
+          className="font-[family-name:var(--font-tec-display)] text-base tracking-[0.12em] sm:text-lg"
         >
           {TEC_BRAND.name}
         </Link>
@@ -134,13 +135,13 @@ export function TecLanding() {
           <div className="relative z-10 mx-auto flex min-h-[min(92dvh,880px)] max-w-6xl flex-col justify-end px-5 pb-16 pt-24 sm:px-8 sm:pb-24">
             <motion.p
               {...fadeUp(0)}
-              className="font-[family-name:var(--font-tec-display)] text-xs tracking-[0.3em] text-[#4a8fd4] uppercase"
+              className="font-[family-name:var(--font-tec-display)] text-sm tracking-[0.16em] text-[#4a8fd4]"
             >
               {TEC_HERO.brand}
             </motion.p>
             <motion.h1
               {...fadeUp(0.08)}
-              className="mt-5 max-w-[16ch] font-[family-name:var(--font-tec-display)] text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.02] font-semibold tracking-tight whitespace-pre-line"
+              className="mt-5 max-w-none font-[family-name:var(--font-tec-display)] text-[clamp(1.95rem,6.4vw,4.5rem)] leading-[1.06] font-semibold tracking-tight whitespace-normal sm:max-w-[16ch] sm:leading-[1.02] sm:whitespace-pre-line"
             >
               {TEC_HERO.headline}
             </motion.h1>
@@ -166,6 +167,49 @@ export function TecLanding() {
             </motion.div>
             <p className="mt-10 text-[0.7rem] tracking-[0.14em] text-[#6a6560] uppercase">
               {TEC_HERO.proof}
+            </p>
+          </div>
+        </section>
+
+        {/* EASE — what it is for, what you see, easy for all three */}
+        <section className="border-t border-white/8 py-20 sm:py-28">
+          <div className="mx-auto max-w-3xl px-5 sm:px-8">
+            <p className="text-xs tracking-[0.24em] text-[#4a8fd4] uppercase">
+              {TEC_EASE.eyebrow}
+            </p>
+            <h2 className="mt-4 font-[family-name:var(--font-tec-display)] text-[clamp(1.75rem,5vw,2.75rem)] leading-[1.12] tracking-tight">
+              {TEC_EASE.title}
+            </h2>
+            <p className="mt-7 text-base leading-[1.7] text-[#c8c2b8] sm:text-lg">
+              {TEC_EASE.body}
+            </p>
+
+            <div className="mt-12 border-l-2 border-[#164a89] pl-6">
+              <p className="text-xs tracking-[0.2em] text-[#4a8fd4] uppercase">
+                {TEC_EASE.seeLabel}
+              </p>
+              <p className="mt-3 text-base leading-[1.7] text-[#f5f0e8] sm:text-lg">
+                {TEC_EASE.see}
+              </p>
+            </div>
+
+            <dl className="mt-14 border-t border-white/10">
+              {TEC_EASE.audiences.map((a) => (
+                <div
+                  key={a.who}
+                  className="flex flex-col gap-1 border-b border-white/10 py-5 sm:flex-row sm:gap-8"
+                >
+                  <dt className="shrink-0 font-[family-name:var(--font-tec-display)] text-sm tracking-[0.14em] text-[#4a8fd4] uppercase sm:w-40 sm:pt-0.5">
+                    {a.who}
+                  </dt>
+                  <dd className="text-base leading-[1.6] text-[#c8c2b8]">{a.what}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-8 text-base leading-[1.7] text-[#8a8580]">{TEC_EASE.ease}</p>
+            <p className="mt-10 text-lg leading-[1.55] text-[#f5f0e8] sm:text-xl">
+              {TEC_EASE.payoff}
             </p>
           </div>
         </section>
@@ -415,7 +459,7 @@ export function TecLanding() {
       <footer className="border-t border-white/8 px-5 py-10 sm:px-8">
         <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[#6a6560] sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="font-[family-name:var(--font-tec-display)] tracking-[0.18em] text-[#8a8580] uppercase">
+            <p className="font-[family-name:var(--font-tec-display)] tracking-[0.12em] text-[#8a8580]">
               {TEC_BRAND.name}
             </p>
             <p className="mt-2 max-w-md">{TEC_FOOTER.legalNote}</p>

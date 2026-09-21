@@ -1,44 +1,71 @@
 /**
- * HUMI-tec SaaS landing — voice from 15+ years running an academy,
+ * HUMI io landing — voice from 16+ years running an academy,
  * marketing clarity, and B2B SaaS positioning.
  */
 
 export const TEC_BRAND = {
-  name: "HUMI-tec",
+  name: "HUMI io",
   umbrella: "HUMI",
-  productLine: "tec",
+  productLine: "io",
 } as const;
 
 export const TEC_META = {
-  title: "HUMI-tec · Plataforma SaaS para academias y agrupaciones",
+  title: "HUMI io · Software para administrar tu academia deportiva",
   description:
-    "Software para escuelas deportivas: alumnos, grupos, agenda, cobranza, expediente y eventos. Enterprise con brackets y logística. Website para posicionarte en Google. Hecho y probado en HUMI.",
-  ogAlt: "HUMI-tec — plataforma para academias y enterprise",
+    "Software para academias deportivas: alumnos, cobranza, asistencia y exámenes. Brackets y logística para agrupaciones. Hecho en el dojang HUMI, Ensenada.",
+  ogAlt: "HUMI io — software para administrar academias, hecho en el dojang HUMI",
   keywords: [
     "software academia deportiva",
     "sistema gestión escuela taekwondo",
     "plataforma cobranza alumnos",
     "brackets torneo academia",
     "website academia deportiva",
-    "HUMI-tec",
+    "HUMI io",
     "software federación deportiva",
+    "plataforma SaaS academias deportivas",
+    "HUMI-tec",
   ],
 } as const;
 
 export const TEC_HERO = {
-  brand: "HUMI-tec",
+  brand: "HUMI io",
   headline: "Operar la academia\ncon el mismo criterio\ncon el que se entrena.",
   support:
-    "Plataforma SaaS para escuelas y agrupaciones. Nacida de más de 15 años en el dojang — no de un escritorio que nunca dio clase.",
+    "El sistema para llevar tu escuela: alumnos, mensualidades, asistencia y exámenes. Nacido en el dojang — no en un escritorio que nunca dio clase.",
   primaryCta: { label: "Ver lo que incluye", href: "#escuela" },
   secondaryCta: { label: "Iniciar sesión", href: "/login" },
-  proof: "Calidad HUMI · Probado en operación real · Ensenada, B.C.",
+  proof: "16 años de dojang · Generaciones de cintas negras · Ensenada, B.C.",
+} as const;
+
+export const TEC_EASE = {
+  eyebrow: "El problema",
+  title: "Administrar una academia se complica más rápido de lo que crece.",
+  body: "Con alumnos entrando y saliendo todo el año, y exámenes, clínicas y torneos encima, seguir quién es quién y qué le toca a cada uno se vuelve un trabajo aparte.",
+  seeLabel: "Lo que ves al entrar",
+  see: "Quién debe y desde cuándo. Quién faltó las últimas tres clases. Cómo viene cada alumno. Quién ya reúne asistencia, tiempo en grado y pagos para presentar examen. Nada que vaciar, nada que buscar en tres chats.",
+  audiences: [
+    {
+      who: "Para ti",
+      what: "Ya no armas el reporte para saber cómo va la escuela. Entras y el reporte ya está.",
+    },
+    {
+      who: "Para tu staff",
+      what: "Pasan lista desde el celular, en el tatami, antes de que se les olvide.",
+    },
+    {
+      who: "Para los papás",
+      what: "Pagan desde su teléfono y ven cómo va su hijo, sin tener que escribirte un domingo.",
+    },
+  ],
+  ease: "No hace falta curso. Si saben usar WhatsApp, ya saben usar esto. Los tres.",
+  payoff:
+    "Todo en un mismo lugar, para que decidas con el detalle completo y no con lo que alcanzas a recordar.",
 } as const;
 
 export const TEC_ESSENCE = {
   eyebrow: "Esencia HUMI",
-  title: "La calidad no es un claim. Es el estándar con el que construimos.",
-  body: "HUMI-tec no es software genérico con logo. Es la herramienta que necesitábamos para no elegir entre enseñar bien y administrar bien. Misma exigencia, misma calidez, mismo respeto por el detalle.",
+  title: "HUMI es un dojang. HUMI io es lo que usamos para llevarlo.",
+  body: "HUMI es una academia de taekwondo en Ensenada, con su dojang, sus alumnos y sus exámenes. HUMI io es el producto que construimos para administrarla, y que hoy abrimos a otras escuelas. No es software genérico con un logo encima: es lo que nos hacía falta para no elegir entre enseñar bien y administrar bien.",
 } as const;
 
 export const TEC_SCHOOL = {
@@ -100,7 +127,7 @@ export const TEC_WEBSITE = {
   id: "website",
   eyebrow: "Website / Landing",
   title: "Tu academia, visible donde las familias buscan.",
-  body: "Un website o landing bien hecho no es lujo: es la puerta de entrada. Solicítalo con HUMI-tec y posiciona tu academia en Google con la misma calidad con la que entrenas.",
+  body: "Un website o landing bien hecho no es lujo: es la puerta de entrada. Solicítalo con HUMI io y posiciona tu academia en Google con la misma calidad con la que entrenas.",
   points: [
     "Landing o sitio completo con la identidad de tu academia",
     "Pensado para que te encuentren: SEO local y claridad de oferta",
@@ -128,24 +155,24 @@ export const TEC_VERTICALS_NOTE =
 
 export const TEC_FOOTER = {
   legalNote:
-    "HUMI-tec es un producto de HUMI. El sitio de familias y la plataforma SaaS son superficies distintas con el mismo estándar de calidad.",
-  termsNote: "Términos del servicio SaaS se publicarán antes del cobro a terceros.",
+    "HUMI es la academia de taekwondo, con su dojang en Ensenada. HUMI io es el producto tecnológico que nació ahí para administrar academias. Dos cosas distintas, el mismo estándar de calidad.",
+  termsNote: "Términos del servicio se publicarán antes del cobro a terceros.",
 } as const;
 
 export const TEC_WHATSAPP_ENTERPRISE =
   "https://wa.me/526461093879?text=" +
   encodeURIComponent(
-    "Hola — me interesa HUMI-tec Enterprise para una agrupación (≥10 escuelas): red, eventos, brackets y comunicación.",
+    "Hola — me interesa HUMI io Enterprise para una agrupación (≥10 escuelas): red, eventos, brackets y comunicación.",
   );
 
 export const TEC_WHATSAPP_WEBSITE =
   "https://wa.me/526461093879?text=" +
   encodeURIComponent(
-    "Hola — quiero solicitar un website / landing para mi academia con HUMI-tec (posicionamiento y calidad HUMI).",
+    "Hola — quiero solicitar un website / landing para mi academia con HUMI io (posicionamiento y calidad HUMI).",
   );
 
 export const TEC_WHATSAPP_ESCUELA =
   "https://wa.me/526461093879?text=" +
   encodeURIComponent(
-    "Hola — me interesa el plan Escuela de HUMI-tec (alumnos, cobranza, expediente y eventos).",
+    "Hola — me interesa el plan Escuela de HUMI io (alumnos, cobranza, expediente y eventos).",
   );

@@ -16,7 +16,7 @@ export function siteFooter() {
 				<span>© HUMI Taekwondo · Ensenada</span>
 				<nav class="hm-footer__links" aria-label="Pie de página">
 					<a href="/">Inicio</a>
-					<a href="/tec">HUMI-tec</a>
+					<a href="/tec" class="hm-footer__brand">HUMI io</a>
 					<a href="/blog">Blog</a>
 					<a href="/contacto">Contacto</a>
 					<a href="/sitemap">Mapa del sitio</a>
