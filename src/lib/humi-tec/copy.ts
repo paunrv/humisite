@@ -1,5 +1,5 @@
 /**
- * HUMI io SaaS landing — voice from 15+ years running an academy,
+ * HUMI io landing — voice from 15+ years running an academy,
  * marketing clarity, and B2B SaaS positioning.
  */
 
@@ -10,10 +10,10 @@ export const TEC_BRAND = {
 } as const;
 
 export const TEC_META = {
-  title: "HUMI io · Plataforma SaaS para academias y agrupaciones",
+  title: "HUMI io · Software para administrar tu academia deportiva",
   description:
-    "Software para escuelas deportivas: alumnos, grupos, agenda, cobranza, expediente y eventos. Enterprise con brackets y logística. Website para posicionarte en Google. Hecho y probado en HUMI.",
-  ogAlt: "HUMI io — plataforma para academias y enterprise",
+    "Software para escuelas deportivas: alumnos, grupos, agenda, cobranza, expediente y eventos. Enterprise con brackets y logística. Website para posicionarte en Google. Hecho y probado en el dojang HUMI, Ensenada.",
+  ogAlt: "HUMI io — software para administrar academias, hecho en el dojang HUMI",
   keywords: [
     "software academia deportiva",
     "sistema gestión escuela taekwondo",
@@ -22,6 +22,7 @@ export const TEC_META = {
     "website academia deportiva",
     "HUMI io",
     "software federación deportiva",
+    "plataforma SaaS academias deportivas",
   ],
 } as const;
 
@@ -29,10 +30,10 @@ export const TEC_HERO = {
   brand: "HUMI io",
   headline: "Operar la academia\ncon el mismo criterio\ncon el que se entrena.",
   support:
-    "Plataforma SaaS para escuelas y agrupaciones. Nacida de más de 15 años en el dojang — no de un escritorio que nunca dio clase.",
+    "El sistema para llevar tu escuela: alumnos, mensualidades, asistencia y exámenes. Nacido de más de 15 años en el dojang — no de un escritorio que nunca dio clase.",
   primaryCta: { label: "Ver lo que incluye", href: "#escuela" },
   secondaryCta: { label: "Iniciar sesión", href: "/login" },
-  proof: "Calidad HUMI · Probado en operación real · Ensenada, B.C.",
+  proof: "Hecho en el dojang · Probado con alumnos reales · Ensenada, B.C.",
 } as const;
 
 export const TEC_EASE = {
@@ -62,8 +63,8 @@ export const TEC_EASE = {
 
 export const TEC_ESSENCE = {
   eyebrow: "Esencia HUMI",
-  title: "La calidad no es un claim. Es el estándar con el que construimos.",
-  body: "HUMI io no es software genérico con logo. Es la herramienta que necesitábamos para no elegir entre enseñar bien y administrar bien. Misma exigencia, misma calidez, mismo respeto por el detalle.",
+  title: "HUMI es un dojang. HUMI io es lo que usamos para llevarlo.",
+  body: "HUMI es una academia de taekwondo en Ensenada, con su dojang, sus alumnos y sus exámenes. HUMI io es el producto que construimos para administrarla, y que hoy abrimos a otras escuelas. No es software genérico con un logo encima: es lo que nos hacía falta para no elegir entre enseñar bien y administrar bien.",
 } as const;
 
 export const TEC_SCHOOL = {
@@ -153,8 +154,8 @@ export const TEC_VERTICALS_NOTE =
 
 export const TEC_FOOTER = {
   legalNote:
-    "HUMI io es un producto de HUMI. El sitio de familias y la plataforma SaaS son superficies distintas con el mismo estándar de calidad.",
-  termsNote: "Términos del servicio SaaS se publicarán antes del cobro a terceros.",
+    "HUMI es la academia de taekwondo, con su dojang en Ensenada. HUMI io es el producto tecnológico que nació ahí para administrar academias. Dos cosas distintas, el mismo estándar de calidad.",
+  termsNote: "Términos del servicio se publicarán antes del cobro a terceros.",
 } as const;
 
 export const TEC_WHATSAPP_ENTERPRISE =
