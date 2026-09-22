@@ -62,3 +62,4 @@ No abrir cohort WTU hasta estabilizar un tenant (bug ×15 escuelas).
 - [`HUMI_TEC_EPICS.md`](./HUMI_TEC_EPICS.md)
 - [`HUMI_TEC_PRICING.md`](./HUMI_TEC_PRICING.md)
 - Copy landing: [`src/lib/humi-tec/copy.ts`](../src/lib/humi-tec/copy.ts)
+- Propuesta WTU (maestros + hermanos, sep 2026): [`HUMI_IO_PROPUESTA_WTU_MAESTROS_HERMANOS.md`](./HUMI_IO_PROPUESTA_WTU_MAESTROS_HERMANOS.md)
