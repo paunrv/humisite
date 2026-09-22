@@ -866,11 +866,48 @@ Contrastadas contra `humi-sistema` @ `f374add`. No cambian las decisiones de arr
 | # | Sección | Nota | Pregunta para Product |
 | --- | --- | --- | --- |
 | R1 | §2 M1, §16 Test 1 | La invitación **ya funciona a nivel base de datos**: `claim_school_memberships()` se ejecuta al iniciar sesión (`lib/school.ts:31`) y crea el membership con el rol de `school_allowed_emails`. Falta la pantalla para el Owner/Admin (Ajustes › Equipo); la policy de escritura ya exige owner/admin. Es el ticket más barato del plan. | — |
-| R2 | §13 punto 4 ("ver las clases que le corresponden") | Hoy RLS da al instructor **todos** los alumnos de la escuela (`my_schools()`). Filtrar "mis clases" en UI es barato; hacerlo frontera de seguridad (RLS por grupo) es bastante más grande y complica suplencias (`coach_hours.coach_name` = sustituto). | ¿"Mis clases" es **vista por defecto** (recomendado para MVP) o **restricción**? |
-| R3 | §12 criterio "no puede modificar guardians" | Compatible con que el instructor **lea** el teléfono del tutor (emergencias en clase). Conviene decirlo explícito en el ADR para no bloquear lectura por accidente. | ¿El instructor lee teléfono del tutor? (recomendado: sí, solo lectura) |
+| R2 | §13 punto 4 ("ver las clases que le corresponden") | ✅ **Resuelto por Product (D1)**: el instructor ve a **todos** los alumnos; "mis clases" es solo la vista por defecto. | — |
+| R3 | §12 criterio "no puede modificar guardians" | ✅ **Resuelto por Product (D1)**: el instructor **no** ve datos de tutores (ni lectura). | — |
 | R4 | §8, §16 Test 4 | Muchos tutores se inscriben **sin correo** (el alta exige teléfono, no email). Con email, la dedupe es trivial; sin email, la única llave es el teléfono. | ¿La dedupe cae a **teléfono** cuando no hay email, con confirmación en pantalla ("este tutor ya existe con Gael")? |
 | R5 | §18 | Cuatro artefactos es más de lo necesario según [Governance §5](https://github.com/paunrv/humi-sistema/blob/main/docs/governance/GOVERNANCE.md) ("restating a settled rule is drift"). `student_access` N:M ya existe y no cambia de estructura. Propuesta: **1 ADR** (roles/autorización + atribución de asistencia; ambos estructurales y el primero ya está como candidato **ADR-F "school RBAC"** en PR #316) + **1 PDR** (Staff & Family Access MVP, que incluye dedupe, cambio de email y digest por guardian — son reglas de negocio, no estructura). | ¿Consolidar en 1 ADR + 1 PDR? |
 | R6 | §10 | El digest consolidado es de Communication; no cambia estado (Blueprint), así que es compatible con [PDR-002 §7](https://github.com/paunrv/humi-sistema/blob/main/docs/product/PDR-002-humi-commercial-model.md). El guardian overdue es **opt-in** hoy (`off` por defecto): la prueba de §16 Test 5 requiere activarlo para HUMI Ensenada. | — |
 | R7 | §12 P0 | Además de `charges` y `guardians`, revisar con la misma regla: `charge_payment_proofs`, tienda/pedidos, `student_access` (hoy cualquier staff puede escribirla → un instructor podría darse acceso de portal a un alumno) y `school_allowed_emails` (ya bien: owner/admin). | — |
 
-**Orden de trabajo sugerido:** R5 decidido → ADR + PDR aceptados → P0 (RLS + tests de aislamiento) → Ajustes › Equipo → atribución de asistencia → hermanos (dedupe, email explícito, digest) → pruebas §16 con personas reales.
+## D1 — Qué ve el instructor (decisión de Product, 22 sep 2026)
+
+> **El maestro puede ver a todos los alumnos de su escuela: nombre completo, cinta/grado actual, peso, altura y el programa en el que está. NO puede ver información personal ni de pagos.**
+
+Es una **lista permitida (allowlist)**: lo que no está en ella, el instructor no lo ve.
+
+| Instructor **ve** | Fuente hoy |
+| --- | --- |
+| Nombre completo | `students.full_name` |
+| Cinta / grado actual | último registro de `ranks` |
+| Peso y altura | última fila de `measurements` (`weight_kg`, `height_cm`) |
+| Programa / grupo | `groups` (+ `training_plan_id` → plan) |
+| *Técnico, no personal:* `id`, `status`, `group_id` | necesarios para pasar lista — solo alumnos `active` pueden marcarse presentes (Architecture ADR-001) |
+
+| Instructor **no ve** | Columnas |
+| --- | --- |
+| Personal | `birth_date`, `sex`, `notes`, `avatar_path`, `emergency_contact_name`, `emergency_contact_phone`, `guardian_id` y toda la tabla `guardians` (nombre, teléfonos, email, `portal_token`) |
+| Pagos | `monthly_fee`, `scholarship_percent`, `dues_plan`, `billing_day`, `pay_method`, `mp_customer_id`, `mp_preapproval_id`, y las tablas `charges`, `charge_payment_proofs`, pedidos de tienda |
+
+### Consecuencia de arquitectura (va al ADR)
+
+RLS en Postgres filtra **filas, no columnas**, y todo el staff entra como el mismo rol `authenticated`. Por eso esta decisión **no se cumple** con solo agregar el rol a las policies:
+
+1. El instructor **pierde SELECT sobre la tabla `students`** (y `guardians`, `charges`, etc.) — las policies de lectura/escritura de esas tablas pasan a owner/admin.
+2. Se crea una **vista de solo lectura para instructores** (p. ej. `instructor_roster`, security-definer, filtrada por `my_schools()`) que expone **únicamente** las columnas de la allowlist, ya resueltas (cinta actual, última medición, programa).
+3. Las pantallas que el instructor puede abrir (Asistencia, Agenda, Alumnos, Grupos, Eventos, Correcciones) leen de esa vista cuando el rol es instructor. Hoy ~5 módulos consultan `students` directo en esas rutas, y el **expediente `/admin/alumnos/[id]` está abierto al instructor** con datos personales — se cierra o se muestra una versión reducida.
+4. Test de aislamiento (patrón `lib/architecture/entitlement-isolation.test.ts`): un instructor que consulta `students`, `guardians` o `charges` por API recibe **0 filas**; `instructor_roster` no contiene ninguna columna fuera de la allowlist.
+
+Esto amplía la P0 (§12): ya no es "separar la policy de `charges`", es **"el instructor solo lee por la vista"**. Es más trabajo, pero es la única forma de que la frontera la ponga la base de datos y no la UI.
+
+### Pendientes derivados de D1
+
+| # | Pregunta | Recomendación |
+| --- | --- | --- |
+| D1.a | El **contacto de emergencia** queda excluido. ¿En una lesión en clase, el maestro llama a la dirección? | Mantener excluido y dejarlo escrito en el runbook de la escuela |
+| D1.b | ¿El instructor puede **capturar** peso y altura (p. ej. antes de un torneo), o solo verlos? | Solo ver en MVP; la captura sigue en dirección |
+
+**Orden de trabajo sugerido:** R5 decidido → ADR + PDR aceptados → P0 (RLS por rol + vista `instructor_roster` + tests de aislamiento) → Ajustes › Equipo → atribución de asistencia → hermanos (dedupe, email explícito, digest) → pruebas §16 con personas reales.
