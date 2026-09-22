@@ -4,7 +4,7 @@
 | ---------------- | -------------------------------------------------------------------------------------------------------------- |
 | Fecha            | 22 sep 2026 — cierre del primer mes MVP con operación real                                                     |
 | Audiencia        | Interna (Product / Architecture / Engineering) · base para pitch a director WTU                                |
-| Estado           | **Borrador — Engineering drafts, Product/Architect accept**                                                    |
+| Estado           | **Aceptada** (22 sep 2026) — formalizada en `humi-sistema` como PDR-003 y ADR-005 (Accepted, ready for implementation) |
 | Código evaluado  | `paunrv/humi-sistema` @ `f374add`                                                                              |
 | Fuente de verdad | `humi-sistema`                                                                                                 |
 | Objetivo         | Corregir los huecos identificados en el primer mes y volver a probar HUMI io inmediatamente con operación real |
@@ -907,7 +907,7 @@ Esto amplía la P0 (§12): ya no es "separar la policy de `charges`", es **"el i
 
 | # | Pregunta | Recomendación |
 | --- | --- | --- |
-| D1.a | El **contacto de emergencia** queda excluido. ¿En una lesión en clase, el maestro llama a la dirección? | Mantener excluido y dejarlo escrito en el runbook de la escuela |
-| D1.b | ¿El instructor puede **capturar** peso y altura (p. ej. antes de un torneo), o solo verlos? | Solo ver en MVP; la captura sigue en dirección |
+| D1.a | Contacto de emergencia | ✅ **Cerrado por Product:** excluido; en emergencia el maestro contacta a dirección. Documentado en `humi-sistema/docs/INTERNAL_PILOT.md` |
+| D1.b | Captura de peso y altura | ✅ **Cerrado por Product:** el instructor solo lee; la captura sigue en dirección |
 
 **Orden de trabajo sugerido:** R5 decidido → ADR + PDR aceptados → P0 (RLS por rol + vista `instructor_roster` + tests de aislamiento) → Ajustes › Equipo → atribución de asistencia → hermanos (dedupe, email explícito, digest) → pruebas §16 con personas reales.
